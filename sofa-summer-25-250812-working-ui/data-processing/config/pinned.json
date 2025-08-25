@@ -1,0 +1,23 @@
+{
+  "macos": {
+    "retention": { "mode": "all" }
+  },
+  "ios": {
+    "retention": { "mode": "last_n_major", "last_n": 2 }
+  },
+  "ipados": {
+    "retention": { "mode": "last_n_major", "last_n": 2 }
+  },
+  "watchos": {
+    "retention": { "mode": "last_n_major", "last_n": 2 }
+  },
+  "tvos": {
+    "retention": { "mode": "last_n_major", "last_n": 2 }
+  },
+  "visionos": {
+    "retention": { "mode": "last_n_major", "last_n": 2 }
+  },
+  "safari": {
+    "retention": { "mode": "last_n_major", "last_n": 2 }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "update_hash": "sha256:3825b8cb8a7f0b08a78f6a879e92d5a3a4ed8daa9cd9c2256c0f5754cb5b749e",
+  "config_version": "5311",
+  "payload_version": "153",
+  "remediator_version": "153",
+  "gatekeeper_version": "140",
+  "mrt_version": "1.93",
+  "plugin_service_version": "74",
+  "release_date": "2025-08-19T17:29:56Z",
+  "xprotect_entries": {
+    "com.apple.MRT": "1.93",
+    "com.apple.XProtect": "5311",
+    "com.apple.XProtectFramework.XProtect": "153",
+    "com.apple.XprotectFramework.PluginService": "74",
+    "com.apple.security.gkopaque": "140"
+  }
+}

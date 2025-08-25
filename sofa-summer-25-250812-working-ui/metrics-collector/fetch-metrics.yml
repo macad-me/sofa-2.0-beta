@@ -1,0 +1,281 @@
+name: Fetch Cloudflare Metrics and Push to Public Repo
+
+on:
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  fetch-and-push-metrics:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout private repo
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Create metrics directory
+        run: mkdir -p output
+      
+      - name: Fetch Cloudflare Analytics
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+        run: |
+          cat > fetch-metrics.js << 'EOF'
+          const fs = require('fs');
+          const https = require('https');
+
+          async function fetchWithHttps(url, options) {
+            return new Promise((resolve, reject) => {
+              const req = https.request(url, options, (res) => {
+                let data = '';
+                res.on('data', chunk => data += chunk);
+                res.on('end', () => {
+                  try {
+                    resolve(JSON.parse(data));
+                  } catch (e) {
+                    reject(e);
+                  }
+                });
+              });
+              req.on('error', reject);
+              req.end();
+            });
+          }
+
+          async function fetchCloudflareMetrics() {
+            const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
+            const ZONE_ID = process.env.CLOUDFLARE_ZONE_ID;
+            
+            // Calculate date range (last 30 days)
+            const endDate = new Date();
+            const startDate = new Date();
+            startDate.setDate(startDate.getDate() - 30);
+            
+            const params = new URLSearchParams({
+              since: startDate.toISOString().split('T')[0],
+              until: endDate.toISOString().split('T')[0]
+            });
+            
+            const options = {
+              hostname: 'api.cloudflare.com',
+              path: `/client/v4/zones/${ZONE_ID}/analytics/dashboard?${params}`,
+              method: 'GET',
+              headers: {
+                'Authorization': `Bearer ${API_TOKEN}`,
+                'Content-Type': 'application/json'
+              }
+            };
+            
+            try {
+              console.log('Fetching Cloudflare analytics...');
+              const data = await fetchWithHttps(`https://api.cloudflare.com`, options);
+              
+              if (!data.success) {
+                throw new Error('Failed to fetch Cloudflare metrics: ' + JSON.stringify(data.errors));
+              }
+              
+              // Process and sanitize data
+              const metrics = processMetrics(data.result);
+              
+              // Save to output directory
+              fs.writeFileSync('output/metrics.json', JSON.stringify(metrics, null, 2));
+              
+              console.log('✅ Metrics fetched successfully');
+              console.log('Total Requests:', metrics.metrics.totalRequests.formatted);
+              console.log('Unique Visitors:', metrics.metrics.uniqueVisitors.formatted);
+              console.log('Bandwidth:', metrics.metrics.bandwidth.formatted);
+            } catch (error) {
+              console.error('❌ Error fetching metrics:', error.message);
+              
+              // Create fallback metrics file
+              const fallbackMetrics = {
+                timestamp: new Date().toISOString(),
+                error: true,
+                message: 'Failed to fetch metrics',
+                metrics: {
+                  totalRequests: { value: 0, formatted: '--' },
+                  pageViews: { value: 0, formatted: '--' },
+                  uniqueVisitors: { value: 0, formatted: '--' },
+                  bandwidth: { bytes: 0, formatted: '--' },
+                  apiRequests: { value: 0, formatted: '--' }
+                }
+              };
+              
+              fs.writeFileSync('output/metrics.json', JSON.stringify(fallbackMetrics, null, 2));
+              process.exit(1);
+            }
+          }
+
+          function processMetrics(data) {
+            const totals = data.totals || {};
+            const requests = totals.requests?.all || 0;
+            const pageViews = totals.pageviews?.all || 0;
+            const uniques = totals.uniques?.all || 0;
+            const bandwidth = totals.bandwidth?.all || 0;
+            const threats = totals.threats?.all || 0;
+            const cachedRequests = totals.cachedRequests || 0;
+            
+            // Calculate cache ratio
+            const cacheRatio = requests > 0 ? ((cachedRequests / requests) * 100).toFixed(1) : 0;
+            
+            // Estimate API requests (JSON feed requests)
+            const apiRequests = Math.floor(requests * 0.68);
+            
+            return {
+              timestamp: new Date().toISOString(),
+              period: {
+                start: startDate.toISOString(),
+                end: endDate.toISOString(),
+                days: 30
+              },
+              metrics: {
+                totalRequests: {
+                  value: requests,
+                  formatted: formatNumber(requests)
+                },
+                pageViews: {
+                  value: pageViews,
+                  formatted: formatNumber(pageViews)
+                },
+                uniqueVisitors: {
+                  value: uniques,
+                  formatted: formatNumber(uniques)
+                },
+                bandwidth: {
+                  bytes: bandwidth,
+                  formatted: formatBytes(bandwidth)
+                },
+                apiRequests: {
+                  value: apiRequests,
+                  formatted: formatNumber(apiRequests)
+                },
+                threats: {
+                  value: threats,
+                  formatted: formatNumber(threats)
+                },
+                cacheRatio: {
+                  value: cacheRatio,
+                  formatted: `${cacheRatio}%`
+                }
+              },
+              calculated: {
+                dailyAverage: {
+                  requests: Math.floor(requests / 30),
+                  visitors: Math.floor(uniques / 30),
+                  pageViews: Math.floor(pageViews / 30),
+                  formatted: {
+                    requests: formatNumber(Math.floor(requests / 30)),
+                    visitors: formatNumber(Math.floor(uniques / 30)),
+                    pageViews: formatNumber(Math.floor(pageViews / 30))
+                  }
+                }
+              }
+            };
+          }
+
+          function formatNumber(num) {
+            if (num >= 1000000) {
+              return (num / 1000000).toFixed(2) + 'M';
+            } else if (num >= 1000) {
+              return (num / 1000).toFixed(1) + 'k';
+            }
+            return num.toString();
+          }
+
+          function formatBytes(bytes) {
+            const gb = bytes / (1024 * 1024 * 1024);
+            if (gb >= 1) {
+              return gb.toFixed(2) + ' GB';
+            }
+            const mb = bytes / (1024 * 1024);
+            if (mb >= 1) {
+              return mb.toFixed(2) + ' MB';
+            }
+            const kb = bytes / 1024;
+            if (kb >= 1) {
+              return kb.toFixed(2) + ' KB';
+            }
+            return bytes + ' B';
+          }
+
+          const startDate = new Date();
+          startDate.setDate(startDate.getDate() - 30);
+          const endDate = new Date();
+
+          // Run the script
+          fetchCloudflareMetrics();
+          EOF
+          
+          node fetch-metrics.js
+      
+      - name: Display fetched metrics
+        run: |
+          echo "📊 Fetched metrics:"
+          cat output/metrics.json | head -20
+      
+      - name: Clone public repository
+        run: |
+          git clone https://${{ secrets.PUBLIC_REPO_TOKEN }}@github.com/headmin/sofa-summer-25.git public-repo
+      
+      - name: Copy metrics to public repo
+        run: |
+          # Ensure directory exists
+          mkdir -p public-repo/public/v1
+          
+          # Copy metrics file
+          cp output/metrics.json public-repo/public/v1/metrics.json
+          
+          # Also create a timestamped backup
+          TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+          mkdir -p public-repo/public/v1/metrics-history
+          cp output/metrics.json public-repo/public/v1/metrics-history/metrics_${TIMESTAMP}.json
+          
+          # Keep only last 7 days of history
+          cd public-repo/public/v1/metrics-history
+          ls -t metrics_*.json | tail -n +8 | xargs rm -f 2>/dev/null || true
+      
+      - name: Commit and push changes
+        run: |
+          cd public-repo
+          
+          # Configure git
+          git config user.email "metrics-bot@sofa25.macadmin.me"
+          git config user.name "SOFA Metrics Bot"
+          
+          # Check if there are changes
+          if git diff --quiet; then
+            echo "No changes to metrics"
+            exit 0
+          fi
+          
+          # Add and commit
+          git add public/v1/metrics.json
+          git add public/v1/metrics-history/
+          
+          # Create commit message with metrics summary
+          REQUESTS=$(cat ../output/metrics.json | grep -A1 '"totalRequests"' | grep '"formatted"' | cut -d'"' -f4)
+          VISITORS=$(cat ../output/metrics.json | grep -A1 '"uniqueVisitors"' | grep '"formatted"' | cut -d'"' -f4)
+          
+          git commit -m "📊 Update metrics: ${REQUESTS} requests, ${VISITORS} visitors [skip ci]" \
+                     -m "Updated at: $(date -u +%Y-%m-%d' '%H:%M:%S' UTC')" \
+                     -m "Automated metrics update from Cloudflare Analytics"
+          
+          # Push changes
+          git push origin main
+          
+          echo "✅ Metrics pushed to public repository"
+      
+      - name: Verify push
+        run: |
+          echo "🔍 Verifying metrics were pushed..."
+          cd public-repo
+          git log --oneline -1
+          echo "Latest metrics file:"
+          ls -la public/v1/metrics.json

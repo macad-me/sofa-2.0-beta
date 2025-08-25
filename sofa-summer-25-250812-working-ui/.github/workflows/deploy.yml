@@ -1,0 +1,82 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  # Allow manual trigger
+  workflow_dispatch:
+  
+  # Trigger on push to main branch
+  push:
+    branches: [main]
+  
+  # Also trigger on pull requests to main
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build VitePress site
+        env:
+          VITEPRESS_BASE: "/"
+          GITHUB_ACTIONS: "true"
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: pnpm run build
+      
+      - name: Copy CNAME file to dist
+        run: |
+          if [ -f "public/CNAME" ]; then
+            cp public/CNAME .vitepress/dist/CNAME
+            echo "✅ CNAME file copied to dist"
+          else
+            echo "⚠️ No CNAME file found"
+          fi
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .vitepress/dist
+
+  deploy:
+    # Deploy on push to main or manual trigger, but not on PRs
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

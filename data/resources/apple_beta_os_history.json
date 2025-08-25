@@ -1,0 +1,108 @@
+{
+  "UpdateHash": "c6b01003cfd91616c06fbe63f13276c41cb7233e72cffaae23bc610e72a0bccf",
+  "created_at": "2025-08-25T15:15:45.075975Z",
+  "description": "Historical archive of Apple OS releases including betas removed from current feed",
+  "items": [
+    {
+      "build": "17A5305f",
+      "downloads_url": "https://developer.apple.com/download/applications",
+      "platform": "Xcode",
+      "release_notes_url": "https://developer.apple.com/go/?id=xcode-26-sdk-rn",
+      "released": "2025-08-18",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "Xcode 26 beta 6 (17A5305f)",
+      "version": "26 beta 6"
+    },
+    {
+      "build": "23A5326a",
+      "downloads_url": "https://developer.apple.com/download",
+      "platform": "iOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=ios-26-rn",
+      "released": "2025-08-18",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "iOS 26 beta 7 (23A5326a)",
+      "version": "26 beta 7"
+    },
+    {
+      "build": "25A5346a",
+      "downloads_url": "https://developer.apple.com/download",
+      "platform": "macOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=macos-26-rn",
+      "released": "2025-08-18",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "macOS 26 beta 7 (25A5346a)",
+      "version": "26 beta 7"
+    },
+    {
+      "build": "23J5346a",
+      "downloads_url": "https://developer.apple.com/download",
+      "platform": "tvOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=tvos-26-rn",
+      "released": "2025-08-18",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "tvOS 26 beta 7 (23J5346a)",
+      "version": "26 beta 7"
+    },
+    {
+      "build": "23M5328a",
+      "downloads_url": "https://developer.apple.com/download",
+      "platform": "visionOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=visionos-26-rn",
+      "released": "2025-08-18",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "visionOS 26 beta 7 (23M5328a)",
+      "version": "26 beta 7"
+    },
+    {
+      "build": "23R5346a",
+      "downloads_url": "https://developer.apple.com/download",
+      "platform": "watchOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=watchos-26-rn",
+      "released": "2025-08-18",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "watchOS 26 beta 7 (23R5346a)",
+      "version": "26 beta 7"
+    },
+    {
+      "build": "21H446",
+      "downloads_url": "https://developer.apple.com/download",
+      "platform": "iPadOS",
+      "release_notes_url": null,
+      "released": "2025-07-21",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "iPadOS 17.7.9 RC (21H446)",
+      "version": "17.7.9 RC"
+    },
+    {
+      "build": "16F6",
+      "downloads_url": "https://developer.apple.com/download/applications",
+      "platform": "Xcode",
+      "release_notes_url": "https://developer.apple.com/go/?id=xcode-16_4-sdk-rn",
+      "released": "2025-05-28",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "Xcode 16.4 (16F6)",
+      "version": "16.4"
+    },
+    {
+      "build": "16E140",
+      "downloads_url": "https://developer.apple.com/download/applications",
+      "platform": "Xcode",
+      "release_notes_url": "https://developer.apple.com/go/?id=xcode-16_3-sdk-rn",
+      "released": "2025-03-31",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "Xcode 16.3 (16E140)",
+      "version": "16.3"
+    },
+    {
+      "build": "21H423",
+      "downloads_url": "https://developer.apple.com/download",
+      "platform": "iPadOS",
+      "release_notes_url": null,
+      "released": "2025-03-24",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "iPadOS 17.7.6 RC(21H423)",
+      "version": "17.7.6 RC"
+    }
+  ],
+  "last_updated": "2025-08-25T15:15:45.076009Z"
+}

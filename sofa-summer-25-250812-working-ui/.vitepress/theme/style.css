@@ -1,0 +1,225 @@
+/* Import mobile-desktop enhancements */
+@import './mobile-desktop-enhancements.css';
+
+/* Your base styles */
+:root {
+  --vp-c-brand: #646cff;
+  --vp-c-brand-light: #747bff;
+  --vp-c-brand-lighter: #9499ff;
+  --vp-c-brand-dark: #535bf2;
+  --vp-c-brand-darker: #454ce1;
+  --vp-c-brand-soft: rgba(100, 108, 255, 0.14);
+
+  /* Adjust layout widths */
+  --vp-sidebar-width: 272px;
+  --vp-layout-max-width: 1440px;
+}
+
+/* Dark mode background colors to match bento and nav */
+.dark {
+  --vp-c-bg: #0f172a;
+  --vp-c-bg-soft: #1e293b;
+  --vp-c-bg-mute: #334155;
+  --vp-c-bg-alt: #0f172a;
+}
+
+/* Custom navbar styling */
+.VPNavBar {
+  background-color: var(--vp-c-bg);
+  border-bottom: 1px solid var(--vp-c-divider);
+  min-height: 64px;
+}
+
+.VPNavBar .container {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+/* Custom site title styling */
+.VPNavBarTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background-color 0.25s;
+}
+
+.VPNavBarTitle:hover {
+  background-color: var(--vp-c-bg-soft);
+}
+
+.VPNavBarTitle .logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.VPNavBarTitle .title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--vp-c-text-1);
+}
+
+/* Subtitle styling */
+.VPNavBar .container {
+  position: relative;
+}
+
+.VPNavBar .container::after {
+  content: "by Mac Admins Open Source";
+  position: absolute;
+  left: 62px;
+  top: 40px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--vp-c-text-2);
+  opacity: 0.7;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Feature section styling */
+.VPFeatures {
+  padding: 24px;
+}
+
+.VPFeatures .container {
+  margin: 0 auto;
+  max-width: 1152px;
+}
+
+.VPFeatures .items {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (min-width: 960px) {
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.VPFeature {
+  display: block;
+  border: 1px solid var(--vp-c-bg-soft);
+  border-radius: 12px;
+  height: 100%;
+  background-color: var(--vp-c-bg-soft);
+  transition: border-color 0.25s, background-color 0.25s;
+}
+
+.VPFeature:hover {
+  border-color: var(--vp-c-brand);
+  background-color: var(--vp-c-bg);
+}
+
+.VPFeature .box {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  height: 100%;
+}
+
+.VPFeature .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  background-color: var(--vp-c-bg);
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+  transition: background-color 0.25s;
+}
+
+.VPFeature:hover .icon {
+  background-color: var(--vp-c-bg-soft);
+}
+
+.VPFeature .title {
+  margin: 0 0 8px;
+  border-bottom: none;
+  padding-bottom: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.VPFeature .details {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--vp-c-text-2);
+}
+
+.VPFeature .box-footer {
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.VPFeature .link {
+  color: var(--vp-c-brand);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.VPFeature .link:hover {
+  color: var(--vp-c-brand-dark);
+}
+
+/* Adjust TOC styles */
+.VPDocAside {
+  padding-left: 16px !important;
+  background-color: var(--vp-c-bg);
+}
+
+/* Remove sidebar divider */
+.VPSidebar {
+  border-right: none !important;
+  background-color: var(--vp-c-bg) !important;
+}
+
+/* Optional: Adjust content width when sidebar is present */
+.VPDoc.has-aside .content-container {
+  max-width: 800px !important;
+}
+
+/* Restore and properly position right sidebar (TOC/outline) */
+.VPDocAside.right {
+  display: block !important;
+  position: fixed !important;
+  right: 0 !important;
+  top: 64px !important;
+  height: calc(100vh - 64px) !important;
+  width: 256px !important;
+  padding: 1rem !important;
+  background: var(--vp-c-bg) !important;
+  border-left: 1px solid var(--vp-c-divider) !important;
+  z-index: 800;
+  overflow-y: auto;
+}
+
+/* Hide right TOC on smaller screens */
+@media (max-width: 1280px) {
+  .VPDocAside.right {
+    display: none !important;
+  }
+  
+  .VPDoc.has-aside .VPContent:not(.layout-home .VPContent) {
+    margin-right: 0 !important;
+  }
+}

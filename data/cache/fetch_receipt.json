@@ -1,0 +1,37 @@
+{
+  "fetch_timestamp": "2025-08-25T14:58:42.511190Z",
+  "fetch_version": "1.0.0",
+  "index_pages": [],
+  "detail_pages_count": 0,
+  "releases_count": 587,
+  "cache_stats": {
+    "cache_hits": 0,
+    "cache_misses": 0,
+    "cache_directory": "data/cache",
+    "html_files_cached": 0,
+    "total_cache_size_bytes": 0
+  },
+  "output_files": [
+    {
+      "path": "data/resources/apple_security_releases.ndjson",
+      "size_bytes": 212218,
+      "sha256_hash": null
+    }
+  ],
+  "execution_time_seconds": 106.639595209,
+  "content_hash": "df17cbf9b6ea30867783047cbe271e6b966bf4be810b325d7f739495d14d330b",
+  "content_changed": true,
+  "change_detection": {
+    "enabled": true,
+    "method": "sha256_metadata",
+    "cache_hash": "d306643c6fa3a0fe780a0321fb88aded88e8b2ac21296297e7129f9e2d24ca84",
+    "previous_cache_hash": null,
+    "summary": {
+      "files_changed": 0,
+      "files_added": 492,
+      "files_deleted": 0,
+      "top_changes": [],
+      "history_saved_to": "20250825_150029"
+    }
+  }
+}

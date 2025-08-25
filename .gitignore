@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+.npm/
+
+# Build outputs
+.vitepress/dist/
+.vitepress/cache/
+dist/
+
+# Development
+.DS_Store
+*.log
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing
+coverage/
+.nyc_output/
+
+# Act (local testing)
+.secrets
+.actrc
+act_artifacts/
+
+# Temporary files
+*.tmp
+data/tmp/
+
+# But keep data directory structure
+!data/
+!data/raw/.gitkeep
+!data/feeds/.gitkeep
+!data/archive/.gitkeep

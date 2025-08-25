@@ -1,0 +1,25 @@
+{
+  "name": "sofa-2.0",
+  "version": "2.0.0",
+  "description": "Apple Security Data Platform",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev site",
+    "build": "vitepress build site",
+    "preview": "vitepress preview site",
+    "setup": "npm install && chmod +x bin/* && echo '✅ Setup complete!'",
+    "test": "node scripts/test-data.js",
+    "update": "gh workflow run update-data.yml"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "vitepress": "^1.0.0",
+    "vue": "^3.4.0"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.0",
+    "dayjs": "^1.11.0",
+    "puppeteer": "^24.17.0",
+    "vue-chartjs": "^5.3.0"
+  }
+}
