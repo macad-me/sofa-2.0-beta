@@ -195,6 +195,13 @@ jobs:
         if: contains(github.event.inputs.test_stage, 'build') || github.event.inputs.test_stage == 'all'
         run: |
           echo "🔨 Testing BUILD stage..."
+          
+          # Ensure models file is available in resources directory for SOFA CLI
+          if [ -f "data/models/supported_devices.json" ]; then
+            cp data/models/supported_devices.json data/resources/
+            echo "✅ Copied supported_devices.json to resources directory"
+          fi
+          
           cd scripts
           
           export SOFA_BIN_PATH="../bin"

@@ -185,6 +185,12 @@ jobs:
           echo "🚀 Starting SOFA Pipeline..."
           echo "Pipeline stage: ${{ github.event.inputs.pipeline_stage || 'all' }}"
           
+          # Ensure models file is available for SOFA CLI
+          if [ -f "data/models/supported_devices.json" ]; then
+            cp data/models/supported_devices.json data/resources/
+            echo "✅ Copied supported_devices.json to resources directory"
+          fi
+          
           cd scripts
           
           # Run the pipeline with the specified stage
