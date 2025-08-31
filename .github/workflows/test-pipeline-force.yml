@@ -148,6 +148,14 @@ jobs:
         if: contains(github.event.inputs.test_stage, 'gather') || github.event.inputs.test_stage == 'all'
         run: |
           echo "📊 Testing GATHER stage..."
+          
+          # Temporarily disable AppleRoot.pem to force --insecure mode for GDMF
+          # This avoids SSL certificate chain issues on Linux runners
+          if [ -f "config/AppleRoot.pem" ]; then
+            mv config/AppleRoot.pem config/AppleRoot.pem.backup
+            echo "⚠️ Temporarily disabled AppleRoot.pem - GDMF will use --insecure mode"
+          fi
+          
           cd scripts
           
           export SOFA_BIN_PATH="../bin"
@@ -155,7 +163,7 @@ jobs:
           
           if [[ "${{ github.event.inputs.debug_mode }}" == "true" ]]; then
             echo "🔍 Debug mode: Showing binary locations..."
-            ls -la ../bin-linux/
+            ls -la ../bin/
             echo "🔍 Current PATH: $PATH"
             echo "🔍 SOFA_BIN_PATH: $SOFA_BIN_PATH"
           fi
@@ -200,6 +208,13 @@ jobs:
           if [ -f "data/models/supported_devices.json" ]; then
             cp data/models/supported_devices.json data/resources/
             echo "✅ Copied supported_devices.json to resources directory"
+          fi
+          
+          # Temporarily disable AppleRoot.pem to force --insecure mode for GDMF
+          # This avoids SSL certificate chain issues on Linux runners
+          if [ -f "config/AppleRoot.pem" ]; then
+            mv config/AppleRoot.pem config/AppleRoot.pem.backup
+            echo "⚠️ Temporarily disabled AppleRoot.pem - GDMF will use --insecure mode"
           fi
           
           cd scripts

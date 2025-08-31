@@ -191,6 +191,13 @@ jobs:
             echo "✅ Copied supported_devices.json to resources directory"
           fi
           
+          # Temporarily disable AppleRoot.pem to force --insecure mode for GDMF
+          # This avoids SSL certificate chain issues on Linux runners
+          if [ -f "config/AppleRoot.pem" ]; then
+            mv config/AppleRoot.pem config/AppleRoot.pem.backup
+            echo "⚠️ Temporarily disabled AppleRoot.pem - GDMF will use --insecure mode"
+          fi
+          
           cd scripts
           
           # Run the pipeline with the specified stage
