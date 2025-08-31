@@ -2,7 +2,7 @@
 # Standard directory structure: bin/, config/, data/
 
 [output]
-directory = "data/resources"
+directory = "../data/resources"
 history_enabled = true
 timestamp_tracking = true
 preserve_history = false
@@ -34,7 +34,7 @@ fetch_xprotect = true
 
 [cache]
 enabled = true
-directory = "data/cache"
+directory = "../data/cache"
 ttl_seconds = 21600
 preserve_history = false
 
