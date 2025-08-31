@@ -1,8 +1,8 @@
-# SOFA Automated Feed Generation Process
+# SOFA Automated Pipeline Process
 
 ## Overview
 
-SOFA (Simple Organized Feed for Apple Software Updates) runs an automated pipeline that checks Apple's software update APIs every 6 hours, processes the data, and updates the dashboard with the latest information about macOS, iOS, tvOS, watchOS, visionOS, and Safari updates.
+SOFA (Simple Organized Feed for Apple Software Updates) runs an automated data pipeline that processes Apple's software update information every 6 hours, generates structured feeds, and updates the dashboard with the latest information about macOS, iOS, tvOS, watchOS, visionOS, and Safari updates.
 
 ## Schedule & Frequency
 
@@ -10,304 +10,286 @@ The pipeline runs automatically via GitHub Actions:
 
 - **Frequency**: Every 6 hours
 - **Schedule**: 00:00, 06:00, 12:00, 18:00 UTC
-- **Duration**: ~5-10 minutes per run
+- **Duration**: ~10-15 minutes per run
 - **Manual Trigger**: Available via GitHub Actions UI
+- **On-Demand**: Can be triggered by workflow completion or manually
 
 ## Pipeline Architecture
 
 ```
 ┌─────────────────┐
-│  GitHub Action  │ ◄── Triggered by schedule (cron: '0 */6 * * *')
-└────────┬────────┘     or manual dispatch
+│  GitHub Action  │ ◄── Triggered by:
+└────────┬────────┘     • Schedule (cron: '0 */6 * * *')
+         │               • Manual dispatch (workflow_dispatch)
+         │               • Workflow completion (workflow_run)
+         │               • Code changes (push to scripts/config)
+         ▼
+┌─────────────────┐
+│  Prepare Stage  │ ◄── Check for changes, get SOFA CLI version
+└────────┬────────┘     Determine if pipeline should run
          │
          ▼
 ┌─────────────────┐
-│  Environment    │ ◄── Ubuntu latest, Python with uv
-│     Setup       │     Creates directories, sets timestamps
-└────────┬────────┘
+│ Download Bins   │ ◄── Download fresh SOFA CLI binaries
+└────────┬────────┘     Extract to bin/, cache for reuse
          │
          ▼
 ┌─────────────────────────────────────────────────────┐
 │                   GATHER STAGE                       │
-├───────────────────────────────────────────────────────┤
-│  Fetches raw data from Apple sources:                │
-│  • KEV Catalog - Known Exploited Vulnerabilities     │
-│  • GDMF - macOS version catalog                      │
-│  • IPSW API - iOS/iPadOS firmware data              │
-│  • XProtect - Apple security definitions             │
-│  • Beta feeds - Developer/public beta releases       │
-│  • UMA Catalog - Update metadata                     │
+├─────────────────────────────────────────────────────┤
+│  Uses sofa-gather to collect raw data:              │
+│  • KEV Catalog - Known Exploited Vulnerabilities    │
+│  • GDMF - Apple Global Device Management Feed       │
+│  • IPSW API - iOS/iPadOS firmware information       │
+│  • XProtect - Apple security definitions            │
+│  • Beta feeds - Developer/public beta releases      │
+│  • UMA Catalog - Unified Mac Analytics              │
 └────────┬──────────────────────────────────────────────┘
          │
          ▼
 ┌─────────────────────────────────────────────────────┐
 │                   FETCH STAGE                        │
-├───────────────────────────────────────────────────────┤
-│  Enriches data with security information:            │
-│  • CVE details from Apple security releases          │
-│  • Security content from release notes               │
-│  • Update package information                        │
-│  • Build numbers and versions                        │
+├─────────────────────────────────────────────────────┤
+│  Uses sofa-fetch to enrich data:                    │
+│  • Scrapes Apple security release pages             │
+│  • Extracts CVE details and security content        │
+│  • Downloads HTML cache for faster future runs      │
+│  • Processes release notes and package information   │
 └────────┬──────────────────────────────────────────────┘
          │
          ▼
 ┌─────────────────────────────────────────────────────┐
 │                   BUILD STAGE                        │
-├───────────────────────────────────────────────────────┤
-│  Generates platform-specific feeds:                  │
-│  • v1 format feeds (legacy compatibility)            │
-│  • v2 format feeds (enhanced structure)              │
-│  • Update SHA-256 hashes for verification            │
-│  • Timestamp metadata for each platform              │
+├─────────────────────────────────────────────────────┤
+│  Uses sofa-build to generate feeds:                 │
+│  • v1 format feeds (legacy compatibility)           │
+│  • v2 format feeds (enhanced structure)             │
+│  • Platform-specific JSON files for each OS         │
+│  • SHA-256 hashes for data verification             │
+│  • Timestamp metadata and status tracking           │
 └────────┬──────────────────────────────────────────────┘
          │
          ▼
 ┌─────────────────────────────────────────────────────┐
-│                  POST-PROCESSING                     │
-├───────────────────────────────────────────────────────┤
-│  Creates final outputs:                              │
-│  • RSS feed generation for subscribers               │
-│  • Bulletin data for homepage                        │
-│  • feed_metadata.json sync for dashboard             │
-│  • Statistics and summary generation                 │
+│                 RSS GENERATION                       │
+├─────────────────────────────────────────────────────┤
+│  Uses generate_rss.py to create feeds:              │
+│  • RSS XML feed for subscribers                     │
+│  • Includes latest security updates                 │
+│  • XProtect definition updates                      │
+│  • Beta release notifications                       │
 └────────┬──────────────────────────────────────────────┘
          │
          ▼
 ┌─────────────────────────────────────────────────────┐
-│                   GIT COMMIT                         │
-├───────────────────────────────────────────────────────┤
-│  Commits changes if any:                             │
-│  • Automated commit message with timestamp           │
-│  • Push to main branch                               │
-│  • Triggers site rebuild                             │
+│                  COMMIT RESULTS                      │
+├─────────────────────────────────────────────────────┤
+│  Commits changes if any:                            │
+│  • Downloads all pipeline artifacts                 │
+│  • Commits data/feeds/ and data/resources/          │
+│  • Professional commit messages with timestamps     │
+│  • Push to main branch triggers site rebuild        │
 └────────┬──────────────────────────────────────────────┘
          │
          ▼
 ┌─────────────────┐
 │   Dashboard     │ ◄── Updates reflect in ~5 minutes
-│   Updates       │     Shows live feed status
+│   Updates       │     Shows live feed status via API
 └─────────────────┘
 ```
 
-## Key Files Updated
+## Key Components
 
-### Feed Files
+### SOFA CLI Binaries (Auto-Downloaded)
+| Binary | Purpose | Stage |
+|--------|---------|-------|
+| `sofa-gather` | Collect data from Apple APIs | Gather |
+| `sofa-fetch` | Scrape security pages and enrich data | Fetch |
+| `sofa-build` | Generate JSON feeds and bulletin data | Build |
+| `sofa-cve` | Process CVE data (optional) | CVE |
+
+### Generated Files
 | File | Description | Update Frequency |
 |------|-------------|------------------|
-| `/data/feeds/v1/*.json` | Legacy format feeds | Every run with changes |
-| `/data/feeds/v2/*.json` | New enhanced format feeds | Every run with changes |
-| `/data/feeds/v2/last_feed_timestamp.json` | Pipeline metadata with hashes | Every successful run |
-| `/data/feeds/v2/feed_metadata.json` | Dashboard metadata (synced) | Every successful run |
+| `data/feeds/v1/*.json` | Legacy format feeds | Every run with changes |
+| `data/feeds/v2/*.json` | Enhanced format feeds | Every run with changes |
+| `data/resources/bulletin_data.json` | Homepage latest releases | When new releases detected |
+| `data/feeds/v1/rss_feed.xml` | RSS feed for subscribers | When content changes |
+| `data/resources/sofa-status.json` | Pipeline status and metadata | Every successful run |
 
-### Content Files
-| File | Description | Update Frequency |
-|------|-------------|------------------|
-| `/data/resources/bulletin_data.json` | Homepage latest releases | When new releases detected |
-| `/v1/rss_feed.xml` | RSS feed for subscribers | When content changes |
-| `/data/resources/apple_security_releases.json` | Security release database | When Apple publishes |
+## Workflow Configuration
+
+### Current Workflows
+- **`sofa-pipeline.yml`**: Main data processing pipeline
+- **`deploy-pages.yml`**: GitHub Pages deployment
+- **`test-pipeline-force.yml`**: Manual testing and debugging
+
+### Trigger Configuration
+```yaml
+on:
+  # Auto-trigger after scan completion
+  workflow_run:
+    workflows: ["macOS and iOS SOFA Scan"]
+    types: [completed]
+    conclusions: [success]
+    
+  # Manual execution with options
+  workflow_dispatch:
+    inputs:
+      generate_rss: # Enable/disable RSS generation
+      force_run: # Bypass change detection
+      pipeline_stage: # Select specific stage
+      
+  # Scheduled execution
+  schedule:
+    - cron: '0 */6 * * *'
+    
+  # Code changes
+  push:
+    paths: ['scripts/**', 'config/**']
+```
 
 ## Expected Behaviors
 
 ### ✅ Successful Run (No Updates)
-- Pipeline completes in ~5 minutes
-- Timestamps updated to current time
-- Hashes remain unchanged
+- Downloads fresh SOFA CLI binaries
+- Pipeline completes in ~10-15 minutes
+- No content changes detected
+- Timestamps updated, hashes unchanged
 - No git commit (avoids repository noise)
 - Dashboard shows "Live" status (green indicator)
-- Next run scheduled in 6 hours
 
 ### ✅ Successful Run (With Updates)
-- Pipeline detects new versions or security releases
-- All feeds regenerated with new content
-- Update hashes change to reflect new data
-- Git commit with descriptive message
-- Dashboard immediately shows new versions
+- Downloads fresh SOFA CLI binaries
+- Pipeline detects new Apple releases
+- All relevant feeds regenerated
+- Content hashes change
+- Automatic git commit with descriptive message
+- Dashboard immediately reflects new versions
 - RSS subscribers receive updates
 
 ### ⚠️ Partial Failure
-- Some data sources unavailable (common for beta feeds)
+- Binary download succeeds
+- Some pipeline stages fail (network issues, API limits)
 - Pipeline continues with available data
-- Warning logged but process continues
-- Partial data updates committed
-- Dashboard shows "Degraded" if critical feeds fail
+- Partial updates committed
+- Dashboard shows "Degraded" status
 
 ### ❌ Complete Failure
-- Critical error prevents pipeline completion
+- Binary download or critical stage fails
 - Previous data remains unchanged
 - No commit or data corruption
-- Error notification in GitHub Actions
+- Error artifacts uploaded for debugging
 - Dashboard shows "Stale" after 24 hours
-- Manual intervention may be required
 
-## Dashboard Status Indicators
+## Dashboard Status Integration
 
-The dashboard displays real-time feed health:
+The pipeline generates `sofa-status.json` which feeds the dashboard status indicators:
 
-| Status | Indicator | Condition | Meaning |
-|--------|-----------|-----------|---------|
-| **Live** | 🟢 Green | < 1 hour old | Feeds are current |
-| **Recent** | 🟡 Yellow | < 24 hours old | Feeds are acceptable |
-| **Stale** | 🔴 Red | > 24 hours old | Feeds need attention |
-| **Unknown** | ⚫ Gray | No timestamp | Data unavailable |
-
-## Data Flow Example
-
-```mermaid
-graph LR
-    A[Apple APIs] -->|Every 6h| B[GitHub Action]
-    B --> C[SOFA Pipeline]
-    C --> D[JSON Feeds]
-    C --> E[RSS Feed]
-    C --> F[Metadata]
-    D --> G[Dashboard]
-    E --> H[RSS Readers]
-    F --> G
-    G --> I[Users]
-    H --> I
-```
+| Status | Indicator | Condition | Data Source |
+|--------|-----------|-----------|-------------|
+| **Live** | 🟢 Green | < 1 hour old | sofa-status.json timestamps |
+| **Recent** | 🟡 Yellow | < 24 hours old | Pipeline last_updated fields |
+| **Stale** | 🔴 Red | > 24 hours old | Calculated freshness |
+| **Offline** | ⚫ Gray | No data loaded | API fetch failures |
 
 ## Manual Operations
 
-### Trigger Manual Update
+### Trigger Manual Pipeline
 ```bash
 # Via GitHub UI:
 # 1. Go to Actions tab
-# 2. Select "SOFA Feed Updates"
+# 2. Select "SOFA Data Pipeline" 
 # 3. Click "Run workflow"
-# 4. Optional: Enable debug mode
+# 4. Configure options:
+#    - Generate RSS: true/false
+#    - Force run: true/false  
+#    - Pipeline stage: all/gather/fetch/build
 
 # Via GitHub CLI:
-gh workflow run sofa-feeds.yml
+gh workflow run sofa-pipeline.yml
+```
+
+### Debug Pipeline Issues
+```bash
+# Run test workflow with debugging
+# 1. Go to Actions → "🧪 Force Test SOFA Pipeline"
+# 2. Enable debug mode
+# 3. Select specific stage to test
+
+# View logs
+gh run view [RUN_ID] --log
+
+# Check artifacts
+gh run download [RUN_ID]
 ```
 
 ### Check Pipeline Status
 ```bash
 # View latest runs
-gh run list --workflow=sofa-feeds.yml
+gh run list --workflow=sofa-pipeline.yml
 
-# View specific run details
-gh run view [RUN_ID]
-
-# Watch run in progress
-gh run watch
-```
-
-### Verify Feed Freshness
-```bash
-# Check metadata
-curl https://[your-site]/data/feeds/v2/feed_metadata.json | jq '.feeds.macos.last_check'
-
-# Compare with current time
-date -u +%Y-%m-%dT%H:%M:%SZ
-```
-
-## Monitoring & Alerts
-
-### Automated Monitoring
-- GitHub Actions sends email on failure (configurable)
-- Dashboard shows visual feed status
-- RSS feed includes update timestamps
-- Commit history shows update frequency
-
-### Health Checks
-1. **Feed Age**: Check if feeds are updating regularly
-2. **Hash Changes**: Verify content is changing when Apple releases updates
-3. **Pipeline Duration**: Monitor for unusual processing times
-4. **Error Rates**: Track failure frequency
-
-### Key Metrics
-- **Update Frequency**: Should see ~4 updates daily
-- **Success Rate**: Target >95% successful runs
-- **Processing Time**: Typically 5-10 minutes
-- **Data Freshness**: Always <6 hours during normal operation
-
-## Troubleshooting
-
-### Common Issues
-
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| Feeds showing "Stale" | Pipeline hasn't run in 24h | Check GitHub Actions for failures |
-| No new updates detected | Apple hasn't released updates | Normal behavior, check Apple's site |
-| Pipeline timeout | Network issues or API limits | Will retry on next schedule |
-| Partial data | Some APIs unavailable | Usually self-resolves |
-
-### Debug Commands
-```bash
-# Check last pipeline run
-gh run view --log
-
-# Test pipeline locally
-./scripts/sofa_pipeline.py run --verbose
-
-# Verify data integrity
-./scripts/sofa_pipeline.py validate
-
-# Force update
-gh workflow run sofa-feeds.yml -f force_update=true
+# Check API endpoints
+curl https://sofa-beta.macadmin.me/resources/sofa-status.json
+curl https://sofa-beta.macadmin.me/resources/bulletin_data.json
 ```
 
 ## Configuration
 
-### Enable Automation
-To enable automated updates, uncomment the schedule in `.github/workflows/sofa-feeds.yml`:
+### Environment Variables
+- **Production API**: Set in `.env.production`
+- **Development API**: Set in `.env.local`
+- **Pipeline Config**: TOML files in `config/` directory
 
-```yaml
-on:
-  schedule:
-    # Uncomment the line below to enable
-    - cron: '0 */6 * * *'
+### Binary Management
+- **Auto-Download**: Fresh binaries from sofa-core-cli releases
+- **Version Tracking**: Uses specific version (v0.1.0-beta1)
+- **Caching**: Binaries cached between runs for efficiency
+- **Clean Extraction**: Non-essential binaries removed
+
+### Data Flow
+```
+bin/sofa-gather → data/resources/
+bin/sofa-fetch → data/resources/
+bin/sofa-build → data/feeds/v1/ + data/feeds/v2/
+generate_rss.py → data/feeds/v1/rss_feed.xml
 ```
 
-### Adjust Frequency
-Modify the cron expression for different schedules:
-- `0 */4 * * *` - Every 4 hours
-- `0 */12 * * *` - Every 12 hours  
-- `0 0 * * *` - Daily at midnight
-- `0 9,17 * * *` - Twice daily (9 AM and 5 PM)
+## Monitoring & Health Checks
 
-### Environment Variables
-Configure in GitHub repository settings:
-- `GITHUB_TOKEN` - Automatically provided
-- `SOFA_DEBUG` - Enable verbose logging (optional)
-- `NOTIFICATION_EMAIL` - For failure alerts (optional)
+### Automated Monitoring
+- **GitHub Actions**: Email notifications on failure
+- **Dashboard Integration**: Real-time status via API
+- **RSS Feed**: Timestamp tracking for subscribers
+- **Git History**: Complete audit trail
 
-## Security Considerations
+### Key Metrics
+- **Pipeline Success Rate**: >95% target
+- **Processing Time**: 10-15 minutes typical
+- **Update Frequency**: ~4 runs daily
+- **Data Freshness**: <6 hours during normal operation
+- **Binary Updates**: Automatic when new releases available
 
-- **Read-only operations**: Pipeline only reads from Apple APIs
-- **No credentials stored**: Uses public APIs only
-- **Signed commits**: Can be enabled for verification
-- **Hash verification**: All updates include SHA-256 hashes
-- **Audit trail**: Complete history in git commits
+## Troubleshooting
 
-## Performance Optimization
+### Common Issues
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| "Binary not found" | Path misconfiguration | Check bin/ directory exists |
+| "Configuration validation failed" | Missing config files | Verify config/ directory |
+| "UV command not found" | Installation path issue | Check ~/.local/bin in PATH |
+| "403/404 API errors" | Apple API limits/changes | Wait for next scheduled run |
+| "RSS generation failed" | Missing bulletin_data.json | Ensure build stage completed |
 
-The pipeline is optimized for efficiency:
-- Parallel API requests where possible
-- Incremental updates (only changed files)
-- Cached dependencies in GitHub Actions
-- Minimal git history (no large files)
-- CDN-friendly static JSON output
-
-## Future Enhancements
-
-Planned improvements:
-- [ ] Webhook notifications for critical updates
-- [ ] Differential feeds (only changes)
-- [ ] API rate limit monitoring
-- [ ] Automated rollback on errors
-- [ ] Performance metrics dashboard
-- [ ] Multi-region deployment
-
-## Support
-
-For issues or questions:
-1. Check GitHub Actions logs
-2. Review this documentation
-3. Open an issue on GitHub
-4. Contact the maintainers
+### Debug Steps
+1. **Check Binary Download**: Verify ZIP extraction works
+2. **Test Binary Execution**: Run `./bin/sofa-build --version`
+3. **Validate Paths**: Ensure all relative paths resolve from scripts/
+4. **Check Data**: Verify data/ directory structure exists
+5. **Test Stages**: Run individual stages (gather/fetch/build)
 
 ---
 
-*Last updated: 2024-08-27*
-*Version: 1.0.0*
+*Last updated: 2025-08-31*  
+*Pipeline Version: 2.0-beta*  
+*SOFA CLI Version: v0.1.0-beta1*
