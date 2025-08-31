@@ -224,6 +224,16 @@ jobs:
           echo "## 📁 Generated Files" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           
+          # Debug: Show actual directory structure on runner
+          echo "🔍 Runner directory structure:"
+          pwd
+          echo "Root directory contents:"
+          ls -la
+          echo "Data directory contents:"
+          ls -la data/ 2>/dev/null || echo "No data/ directory"
+          echo "Scripts directory contents:"
+          ls -la scripts/ 2>/dev/null || echo "No scripts/ directory"
+          
           if [ -d "data/feeds" ]; then
             echo "### Feeds Directory:" >> $GITHUB_STEP_SUMMARY
             find data/feeds -type f | head -20 | while read file; do
@@ -269,6 +279,36 @@ jobs:
             echo "⚠️ No bulletin_data.json found, skipping RSS test"
             echo "## ⚠️ RSS Test Skipped" >> $GITHUB_STEP_SUMMARY
             echo "No bulletin_data.json found for RSS generation" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+      - name: Commit test results to repo
+        if: github.event.inputs.test_stage == 'all' || github.event.inputs.test_stage == 'build'
+        run: |
+          echo "💾 Committing generated data back to repository..."
+          
+          # Show what data was generated
+          echo "🔍 Generated data structure:"
+          find data/ -type f | head -20 || echo "No data files found"
+          
+          # Add generated data
+          git config --local user.email "test@github.com"
+          git config --local user.name "Pipeline Test"
+          
+          git add data/feeds/ data/resources/ || true
+          
+          if git diff --staged --quiet; then
+            echo "📝 No new data to commit"
+          else
+            echo "📝 Committing generated pipeline data..."
+            git commit -m "Update SOFA data from test pipeline run
+
+            - Generated from test workflow execution
+            - Pipeline stage: ${{ github.event.inputs.test_stage }}
+            - Test timestamp: $(date -u)
+            - Updated feeds and resources with latest data"
+            
+            git push
+            echo "✅ Pipeline data committed to repository"
           fi
           
       - name: Final summary
