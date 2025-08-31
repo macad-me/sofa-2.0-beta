@@ -244,7 +244,7 @@ class SOFAPipeline:
                 # Use sofa-gather binary from bin or bin
                 binary = self.config.bin_dir / "sofa-gather"
                 if not binary.exists():
-                    binary = Path("bin/sofa-gather")
+                    binary = Path("../bin/sofa-gather")
                 if not binary.exists():
                     self.log(f"Binary not found: sofa-gather", "error")
                     errors.append(f"{source}: Binary sofa-gather not found")
@@ -253,7 +253,7 @@ class SOFAPipeline:
                 cmd = [str(binary), source.value]
                 
                 # Add output dir if not using default
-                if output_dir != Path("data/resources"):
+                if output_dir != Path("../data/resources"):
                     cmd.extend(["--output", str(output_dir / f"{source.value}_catalog.json")])
                 
                 # Add --insecure flag for GDMF if needed
@@ -337,7 +337,7 @@ class SOFAPipeline:
             # Use sofa-fetch binary
             binary = self.config.bin_dir / "sofa-fetch"
             if not binary.exists():
-                binary = Path("bin/sofa-fetch")
+                binary = Path("../bin/sofa-fetch")
             
             cmd = [
                 str(binary),
@@ -430,7 +430,7 @@ class SOFAPipeline:
                 
                 binary = self.config.bin_dir / "sofa-build"
                 if not binary.exists():
-                    binary = Path("bin/sofa-build")
+                    binary = Path("../bin/sofa-build")
                 
                 # Build all products at once with --legacy flag
                 cmd = [
@@ -480,7 +480,7 @@ class SOFAPipeline:
                     # sofa-build uses default data directories
                     binary = self.config.bin_dir / "sofa-build"
                     if not binary.exists():
-                        binary = Path("bin/sofa-build")
+                        binary = Path("../bin/sofa-build")
                     
                     # Build command with product subcommand
                     output_file = output_dir / f"{product.value}_data_feed.json"
@@ -550,7 +550,7 @@ class SOFAPipeline:
             # Use sofa-build binary with bulletin subcommand
             binary = self.config.bin_dir / "sofa-build"
             if not binary.exists():
-                binary = Path("bin/sofa-build")
+                binary = Path("../bin/sofa-build")
             
             if not binary.exists():
                 error_msg = "sofa-build binary not found"
@@ -736,7 +736,7 @@ class SOFAPipeline:
         console.print("📤 Extracting CVEs from Apple security releases...")
         binary = self.config.bin_dir / "sofa-cve"
         if not binary.exists():
-            binary = Path("bin/sofa-cve")
+            binary = Path("../bin/sofa-cve")
         
         if not binary.exists():
             error_msg = "sofa-cve binary not found"
@@ -928,16 +928,8 @@ class SOFAPipeline:
         
 
     def get_binary_path(self, binary_name: str) -> Path:
-        """Get the path to a binary, checking bin/ first then bin/"""
+        """Get the path to a binary from configured bin directory"""
         bin_path = self.config.bin_dir / binary_name
-        if bin_path.exists():
-            return bin_path
-        
-        release_path = Path("bin") / binary_name
-        if release_path.exists():
-            return release_path
-            
-        # Return bin path as default (will fail with clear error if not found)
         return bin_path
     
     def print_binary_info(self) -> None:
@@ -948,7 +940,7 @@ class SOFAPipeline:
         binaries = ["sofa-gather", "sofa-fetch", "sofa-build", "sofa-cve"]
         
         # Check bin directory first, then base_dir
-        bin_dir = Path("bin")
+        bin_dir = Path("../bin")
         
         console.print("[bold]Binary paths and timestamps:[/bold]")
         for binary_name in binaries:
@@ -972,13 +964,12 @@ class SOFAPipeline:
         console.rule("[bold yellow]Config Validation")
         errors = []
         
-        # Check binaries exist in bin/ or bin/
+        # Check binaries exist in configured bin directory
         binaries = ["sofa-gather", "sofa-fetch", "sofa-build", "sofa-cve"]
         for binary in binaries:
             bin_path = self.config.bin_dir / binary
-            release_path = Path("bin") / binary
-            if not bin_path.exists() and not release_path.exists():
-                errors.append(f"Missing binary: {binary} (checked bin/ and bin/)")
+            if not bin_path.exists():
+                errors.append(f"Missing binary: {binary} (checked {self.config.bin_dir}/)")
         
         # Config files are no longer required - binaries have embedded defaults
         # But check for optional AppleRoot.pem

@@ -38,7 +38,7 @@ def load_security_releases() -> List[Dict]:
     releases = []
     
     # First, load from bulletin_data.json which has better dates
-    bulletin_file = Path("data/resources/bulletin_data.json")
+    bulletin_file = Path("../data/resources/bulletin_data.json")
     bulletin_data = load_json_file(bulletin_file)
     
     if bulletin_data and "recent_releases" in bulletin_data:
@@ -55,7 +55,7 @@ def load_security_releases() -> List[Dict]:
             })
     
     # Then load from apple_security_releases.json for comprehensive list
-    releases_file = Path("data/resources/apple_security_releases.json")
+    releases_file = Path("../data/resources/apple_security_releases.json")
     releases_data = load_json_file(releases_file)
     
     if releases_data:
@@ -101,7 +101,7 @@ def load_security_releases() -> List[Dict]:
 
 def load_kev_catalog() -> Set[str]:
     """Load CISA KEV catalog to identify exploited CVEs"""
-    kev_file = Path("data/resources/kev_catalog.json")
+    kev_file = Path("../data/resources/kev_catalog.json")
     data = load_json_file(kev_file)
 
     if not data or "vulnerabilities" not in data:
@@ -117,7 +117,7 @@ def load_xprotect_updates() -> List[Dict]:
     (Config, Remediator, Gatekeeper, MRT, Plugin Service) may have
     different update frequencies and dates.
     """
-    xprotect_file = Path("data/resources/xprotect.json")
+    xprotect_file = Path("../data/resources/xprotect.json")
     data = load_json_file(xprotect_file)
 
     if not data:
@@ -179,7 +179,7 @@ def load_xprotect_updates() -> List[Dict]:
 
 def load_beta_releases() -> List[Dict]:
     """Load Apple beta releases"""
-    beta_file = Path("data/resources/apple_beta_feed.json")
+    beta_file = Path("../data/resources/apple_beta_feed.json")
     data = load_json_file(beta_file)
 
     if not data or "items" not in data:
@@ -544,8 +544,8 @@ def main():
     parser.add_argument(
         "--data-dir",
         type=str,
-        default="data/resources",
-        help="Data directory containing JSON files (default: data/resources)",
+        default="../data/resources",
+        help="Data directory containing JSON files (default: ../data/resources)",
     )
     parser.add_argument("--verbose", action="store_true", help="Enable verbose output")
     parser.add_argument(
