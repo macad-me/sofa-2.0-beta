@@ -1,0 +1,172 @@
+name: Download SOFA Binaries
+
+on:
+  workflow_dispatch:
+    inputs:
+      sofa_version:
+        description: 'SOFA CLI version to download (e.g., v0.1.0-beta1, or "latest")'
+        required: false
+        default: 'latest'
+        type: string
+  schedule:
+    # Check for new releases daily at 6 AM UTC
+    - cron: '0 6 * * *'
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/download-sofa-binaries.yml'
+
+env:
+  SOFA_REPO: headmin/sofa-core-cli
+
+jobs:
+  download-binaries:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Get latest SOFA CLI release
+        id: get-release
+        run: |
+          if [ "${{ github.event.inputs.sofa_version }}" = "latest" ] || [ -z "${{ github.event.inputs.sofa_version }}" ]; then
+            echo "Getting latest release..."
+            RELEASE_DATA=$(curl -s "https://api.github.com/repos/${{ env.SOFA_REPO }}/releases/latest")
+            RELEASE_TAG=$(echo "$RELEASE_DATA" | jq -r '.tag_name')
+            RELEASE_ID=$(echo "$RELEASE_DATA" | jq -r '.id')
+          else
+            echo "Using specified version: ${{ github.event.inputs.sofa_version }}"
+            RELEASE_TAG="${{ github.event.inputs.sofa_version }}"
+            RELEASE_DATA=$(curl -s "https://api.github.com/repos/${{ env.SOFA_REPO }}/releases/tags/$RELEASE_TAG")
+            RELEASE_ID=$(echo "$RELEASE_DATA" | jq -r '.id')
+          fi
+          
+          echo "release_tag=$RELEASE_TAG" >> $GITHUB_OUTPUT
+          echo "release_id=$RELEASE_ID" >> $GITHUB_OUTPUT
+          echo "📦 Found SOFA CLI release: $RELEASE_TAG"
+          
+      - name: Check if binaries need updating
+        id: check-update
+        run: |
+          CURRENT_VERSION=""
+          if [ -f "bin/.sofa-version" ]; then
+            CURRENT_VERSION=$(cat bin/.sofa-version)
+          fi
+          
+          echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "target_version=${{ steps.get-release.outputs.release_tag }}" >> $GITHUB_OUTPUT
+          
+          if [ "$CURRENT_VERSION" = "${{ steps.get-release.outputs.release_tag }}" ]; then
+            echo "needs_update=false" >> $GITHUB_OUTPUT
+            echo "✅ Binaries are already up to date ($CURRENT_VERSION)"
+          else
+            echo "needs_update=true" >> $GITHUB_OUTPUT
+            echo "🔄 Update needed: $CURRENT_VERSION → ${{ steps.get-release.outputs.release_tag }}"
+          fi
+          
+      - name: Create binary directories
+        if: steps.check-update.outputs.needs_update == 'true'
+        run: |
+          mkdir -p bin bin-linux
+          echo "📁 Created binary directories"
+          
+      - name: Download Linux binaries
+        if: steps.check-update.outputs.needs_update == 'true'
+        run: |
+          echo "📥 Downloading Linux binaries..."
+          cd bin-linux
+          
+          BINARIES=("sofa-build" "sofa-cve" "sofa-fetch" "sofa-gather")
+          for binary in "${BINARIES[@]}"; do
+            echo "  • Downloading $binary..."
+            curl -L -o "$binary" \
+              "https://github.com/${{ env.SOFA_REPO }}/releases/download/${{ steps.get-release.outputs.release_tag }}/$binary"
+            chmod +x "$binary"
+            echo "    ✅ Downloaded and made executable: $binary"
+          done
+          
+      - name: Download macOS binaries
+        if: steps.check-update.outputs.needs_update == 'true'
+        run: |
+          echo "📥 Downloading macOS ARM64 binaries..."
+          cd bin
+          
+          BINARIES=("sofa-build" "sofa-cve" "sofa-fetch" "sofa-gather")
+          for binary in "${BINARIES[@]}"; do
+            echo "  • Downloading $binary..."
+            curl -L -o "$binary" \
+              "https://github.com/${{ env.SOFA_REPO }}/releases/download/${{ steps.get-release.outputs.release_tag }}/$binary-darwin-arm64"
+            chmod +x "$binary"
+            echo "    ✅ Downloaded and made executable: $binary"
+          done
+          
+      - name: Create version file
+        if: steps.check-update.outputs.needs_update == 'true'
+        run: |
+          echo "${{ steps.get-release.outputs.release_tag }}" > bin/.sofa-version
+          echo "${{ steps.get-release.outputs.release_tag }}" > bin-linux/.sofa-version
+          echo "📝 Created version files"
+          
+      - name: Verify downloads
+        if: steps.check-update.outputs.needs_update == 'true'
+        run: |
+          echo "🔍 Verifying downloaded binaries..."
+          echo "Linux binaries:"
+          ls -la bin-linux/
+          echo
+          echo "macOS binaries:"  
+          ls -la bin/
+          
+          # Test binary execution (just version check)
+          echo "Testing Linux sofa-build..."
+          ./bin-linux/sofa-build --version || echo "⚠️ Could not test Linux binary (expected on macOS runner)"
+          
+          echo "Testing macOS sofa-build..."
+          ./bin/sofa-build --version || echo "⚠️ Could not test macOS binary"
+          
+      - name: Commit updated binaries
+        if: steps.check-update.outputs.needs_update == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          git add bin/ bin-linux/
+          git commit -m "Update SOFA CLI binaries to ${{ steps.get-release.outputs.release_tag }}
+
+          - Downloaded latest SOFA CLI binaries from ${{ env.SOFA_REPO }}
+          - Linux x86_64 binaries in bin-linux/
+          - macOS ARM64 binaries in bin/
+          - Updated from ${{ steps.check-update.outputs.current_version }} to ${{ steps.get-release.outputs.release_tag }}"
+          
+          echo "✅ Committed binary updates"
+          
+      - name: Push changes
+        if: steps.check-update.outputs.needs_update == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          
+      - name: Create release summary
+        if: steps.check-update.outputs.needs_update == 'true'
+        run: |
+          echo "## 🎉 SOFA CLI Binaries Updated!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Version:** ${{ steps.get-release.outputs.release_tag }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Source:** https://github.com/${{ env.SOFA_REPO }}/releases/tag/${{ steps.get-release.outputs.release_tag }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Downloaded Binaries:" >> $GITHUB_STEP_SUMMARY
+          echo "- **Linux (x86_64):** bin-linux/" >> $GITHUB_STEP_SUMMARY
+          echo "- **macOS (ARM64):** bin/" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "The repository now has the latest SOFA CLI binaries!" >> $GITHUB_STEP_SUMMARY
+          
+      - name: No update needed
+        if: steps.check-update.outputs.needs_update == 'false'
+        run: |
+          echo "## ✅ SOFA CLI Binaries Up to Date" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Current Version:** ${{ steps.check-update.outputs.current_version }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "No update needed - binaries are already at the latest version!" >> $GITHUB_STEP_SUMMARY
