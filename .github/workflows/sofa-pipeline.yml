@@ -102,7 +102,6 @@ jobs:
       - name: Download SOFA binaries
         run: |
           mkdir -p bin-linux
-          cd bin-linux
           
           VERSION="${{ needs.prepare.outputs.sofa_version }}"
           if [ "$VERSION" = "latest" ]; then
@@ -113,17 +112,23 @@ jobs:
           
           echo "📥 Downloading SOFA CLI binaries from $DOWNLOAD_URL"
           
-          BINARIES=("sofa-build" "sofa-cve" "sofa-fetch" "sofa-gather")
-          for binary in "${BINARIES[@]}"; do
-            echo "  • Downloading $binary..."
-            curl -L -o "$binary" "$DOWNLOAD_URL/$binary"
-            chmod +x "$binary"
-            echo "    ✅ Downloaded: $binary"
-          done
+          LINUX_ZIP="sofa-core-cli-x86_64-linux-binaries.zip"
+          echo "  • Downloading: $LINUX_ZIP"
+          curl -L -f -o "$LINUX_ZIP" "$DOWNLOAD_URL/$LINUX_ZIP"
+          
+          echo "  • Extracting binaries to bin-linux/..."
+          unzip -j "$LINUX_ZIP" -d bin-linux/
+          chmod +x bin-linux/*
+          rm "$LINUX_ZIP"
+          
+          echo "    ✅ Extracted files:"
+          ls -la bin-linux/
           
           # Test binaries
           echo "🧪 Testing binaries..."
-          for binary in "${BINARIES[@]}"; do
+          cd bin-linux
+          for binary in sofa-*; do
+            echo "Testing $binary..."
             ./"$binary" --version || echo "⚠️ $binary version check failed"
           done
           

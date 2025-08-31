@@ -45,21 +45,26 @@ jobs:
         run: |
           echo "📥 Downloading latest SOFA CLI binaries..."
           mkdir -p bin-linux
-          cd bin-linux
           
           DOWNLOAD_URL="https://github.com/headmin/sofa-core-cli/releases/latest/download"
+          LINUX_ZIP="sofa-core-cli-x86_64-linux-binaries.zip"
           
-          BINARIES=("sofa-build" "sofa-cve" "sofa-fetch" "sofa-gather")
-          for binary in "${BINARIES[@]}"; do
-            echo "  • Downloading $binary..."
-            if curl -L -f -o "$binary" "$DOWNLOAD_URL/$binary"; then
-              chmod +x "$binary"
-              echo "    ✅ Downloaded and made executable: $binary"
-            else
-              echo "    ❌ Failed to download: $binary"
-              exit 1
-            fi
-          done
+          echo "  • Downloading Linux binaries: $LINUX_ZIP"
+          if curl -L -f -o "$LINUX_ZIP" "$DOWNLOAD_URL/$LINUX_ZIP"; then
+            echo "    ✅ Downloaded: $LINUX_ZIP"
+            
+            echo "  • Extracting binaries..."
+            unzip -j "$LINUX_ZIP" -d bin-linux/
+            chmod +x bin-linux/*
+            rm "$LINUX_ZIP"
+            
+            echo "    ✅ Extracted and made executable"
+            echo "  • Extracted files:"
+            ls -la bin-linux/
+          else
+            echo "    ❌ Failed to download: $LINUX_ZIP"
+            exit 1
+          fi
           
       - name: Test binary execution
         run: |
