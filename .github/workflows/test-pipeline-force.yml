@@ -91,10 +91,15 @@ jobs:
           
           echo "📦 Installing UV..."
           curl -LsSf https://astral.sh/uv/install.sh | sh
-          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
           
-          # Verify UV
-          $HOME/.cargo/bin/uv --version
+          # UV installs to ~/.local/bin, not ~/.cargo/bin
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          export PATH="$HOME/.local/bin:$PATH"
+          
+          # Verify UV installation
+          echo "🔍 Checking UV installation..."
+          ls -la $HOME/.local/bin/
+          uv --version
           
       - name: Test gather stage
         if: contains(github.event.inputs.test_stage, 'gather') || github.event.inputs.test_stage == 'all'
