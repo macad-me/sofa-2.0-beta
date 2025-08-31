@@ -15,15 +15,13 @@ interface DataResponse<T> {
   refresh: () => Promise<void>
 }
 
-// Determine API base based on environment
+// Determine API base based on environment configuration
 const getAPIBase = () => {
-  // In production, use the beta domain without /data prefix
+  // Use configured API base URLs from VitePress config
   if (import.meta.env.PROD) {
-    // Files are served directly from the domain root
-    return 'https://sofa-beta.macadmin.me'
+    return __API_BASE_PROD__
   }
-  // In dev, use local data
-  return '/data'
+  return __API_BASE_DEV__
 }
 
 // Check if data is stale (older than 6 hours)
