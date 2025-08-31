@@ -35,11 +35,18 @@ jobs:
           echo "## 🧪 Pipeline Test Environment" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**OS:** $(lsb_release -d | cut -f2)" >> $GITHUB_STEP_SUMMARY
+          echo "**Architecture:** $(uname -m)" >> $GITHUB_STEP_SUMMARY
+          echo "**Kernel:** $(uname -r)" >> $GITHUB_STEP_SUMMARY
           echo "**Python:** $(python3 --version)" >> $GITHUB_STEP_SUMMARY
           echo "**Test Stage:** ${{ github.event.inputs.test_stage }}" >> $GITHUB_STEP_SUMMARY
           echo "**Debug Mode:** ${{ github.event.inputs.debug_mode }}" >> $GITHUB_STEP_SUMMARY
           echo "**Timestamp:** $(date -u)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Show architecture details
+          echo "🖥️ Runner Architecture Details:"
+          uname -a
+          lscpu | head -5 || echo "lscpu not available"
           
       - name: Download SOFA CLI binaries
         run: |
@@ -77,12 +84,31 @@ jobs:
           
           for binary in "${ESSENTIAL_BINARIES[@]}"; do
             echo "Testing $binary..."
-            if ./"$binary" --version; then
+            
+            # Check if binary exists and is executable
+            if [ ! -f "$binary" ]; then
+              echo "  ❌ $binary not found"
+              continue
+            fi
+            
+            if [ ! -x "$binary" ]; then
+              echo "  ❌ $binary not executable"
+              continue  
+            fi
+            
+            # Check binary architecture
+            echo "  🔍 Binary info: $(file "$binary")"
+            
+            # Test execution
+            if ./"$binary" --version 2>&1; then
               echo "  ✅ $binary works"
             else
-              echo "  ❌ $binary failed"
+              EXITCODE=$?
+              echo "  ❌ $binary failed (exit code: $EXITCODE)"
+              echo "  🔍 Checking binary dependencies..."
+              ldd "$binary" 2>/dev/null | head -3 || echo "  Static binary (no dependencies)"
               echo "## ❌ Binary Test Failed" >> $GITHUB_STEP_SUMMARY
-              echo "Essential binary \`$binary\` failed to execute" >> $GITHUB_STEP_SUMMARY
+              echo "Essential binary \`$binary\` failed with exit code $EXITCODE" >> $GITHUB_STEP_SUMMARY
               exit 1
             fi
           done

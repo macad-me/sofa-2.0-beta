@@ -2,6 +2,12 @@
 # SOFA 2.0 .gitignore
 # ============================================
 
+# Downloaded SOFA CLI binaries (workflow fetches fresh ones)
+bin/sofa-*
+# Keep configuration files in bin/
+!bin/*.toml
+!bin/*.md
+
 # Dependencies
 node_modules/
 .npm/

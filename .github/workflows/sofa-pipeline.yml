@@ -319,8 +319,8 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          # Add data directories and any new binaries
-          git add data/feeds/ data/resources/ bin/ || true
+          # Add data directories (binaries are downloaded fresh each run)
+          git add data/feeds/ data/resources/ || true
           
           if git diff --staged --quiet; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
