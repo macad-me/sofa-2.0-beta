@@ -176,7 +176,7 @@ jobs:
           
       - name: Run SOFA Pipeline
         env:
-          SOFA_BIN_PATH: "./bin"
+          SOFA_BIN_PATH: "../bin"
         run: |
           echo "🚀 Starting SOFA Pipeline..."
           echo "Pipeline stage: ${{ github.event.inputs.pipeline_stage || 'all' }}"
@@ -188,17 +188,17 @@ jobs:
           
           if [ "$STAGE" = "all" ] || [ "$STAGE" = "gather" ]; then
             echo "📊 Running gather stage..."
-            uv run --script sofa_pipeline.py gather --config ../config/gather.toml
+            uv run --script sofa_pipeline.py run --stage gather
           fi
           
           if [ "$STAGE" = "all" ] || [ "$STAGE" = "fetch" ]; then
             echo "🔍 Running fetch stage..."
-            uv run --script sofa_pipeline.py fetch --config ../config/fetch.toml
+            uv run --script sofa_pipeline.py run --stage fetch
           fi
           
           if [ "$STAGE" = "all" ] || [ "$STAGE" = "build" ]; then
             echo "🔨 Running build stage..."
-            uv run --script sofa_pipeline.py build --config ../config/build.toml
+            uv run --script sofa_pipeline.py run --stage build
           fi
           
           echo "✅ Pipeline completed successfully!"
@@ -270,11 +270,9 @@ jobs:
           
           # Generate RSS feeds
           uv run --script generate_rss.py \
-            --input ../data/resources/bulletin_data.json \
+            --data-dir ../data/resources \
             --output ../data/feeds/v1/rss_feed.xml \
-            --title "SOFA - Apple Software Updates" \
-            --description "Simple Organized Feed for Apple Software Updates" \
-            --link "https://sofa-beta.macadmin.me"
+            --include-xprotect
             
           echo "✅ RSS feeds generated successfully!"
           

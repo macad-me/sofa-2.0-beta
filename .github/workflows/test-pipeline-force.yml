@@ -126,8 +126,8 @@ jobs:
             echo "🔍 SOFA_BIN_PATH: $SOFA_BIN_PATH"
           fi
           
-          echo "Running: uv run --script sofa_pipeline.py gather --config ../config/gather.toml"
-          if uv run --script sofa_pipeline.py gather --config ../config/gather.toml; then
+          echo "Running: uv run --script sofa_pipeline.py run --stage gather"
+          if uv run --script sofa_pipeline.py run --stage gather; then
             echo "✅ GATHER stage completed"
             echo "## ✅ Gather Stage Success" >> $GITHUB_STEP_SUMMARY
           else
@@ -146,8 +146,8 @@ jobs:
           export SOFA_BIN_PATH="../bin"
           export PATH="../bin:$HOME/.local/bin:$PATH"
           
-          echo "Running: uv run --script sofa_pipeline.py fetch --config ../config/fetch.toml"
-          if uv run --script sofa_pipeline.py fetch --config ../config/fetch.toml; then
+          echo "Running: uv run --script sofa_pipeline.py run --stage fetch"
+          if uv run --script sofa_pipeline.py run --stage fetch; then
             echo "✅ FETCH stage completed"
             echo "## ✅ Fetch Stage Success" >> $GITHUB_STEP_SUMMARY
           else
@@ -166,8 +166,8 @@ jobs:
           export SOFA_BIN_PATH="../bin"
           export PATH="../bin:$HOME/.local/bin:$PATH"
           
-          echo "Running: uv run --script sofa_pipeline.py build --config ../config/build.toml"
-          if uv run --script sofa_pipeline.py build --config ../config/build.toml; then
+          echo "Running: uv run --script sofa_pipeline.py run --stage build"
+          if uv run --script sofa_pipeline.py run --stage build; then
             echo "✅ BUILD stage completed"
             echo "## ✅ Build Stage Success" >> $GITHUB_STEP_SUMMARY
           else
@@ -211,11 +211,9 @@ jobs:
           if [ -f "../data/resources/bulletin_data.json" ]; then
             echo "Found bulletin_data.json, testing RSS generation..."
             if uv run --script generate_rss.py \
-              --input ../data/resources/bulletin_data.json \
+              --data-dir ../data/resources \
               --output ../data/feeds/v1/rss_feed.xml \
-              --title "SOFA Test - Apple Software Updates" \
-              --description "Test RSS generation" \
-              --link "https://sofa-beta.macadmin.me"; then
+              --include-xprotect; then
               echo "✅ RSS generation completed"
               echo "## ✅ RSS Generation Success" >> $GITHUB_STEP_SUMMARY
               if [ -f "../data/feeds/v1/rss_feed.xml" ]; then
