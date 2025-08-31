@@ -282,6 +282,12 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
+      - name: Restore SOFA binaries for commit
+        uses: actions/cache/restore@v3
+        with:
+          path: bin-linux/
+          key: sofa-binaries-${{ needs.prepare.outputs.sofa_version }}-${{ runner.os }}
+          
       - name: Download pipeline artifacts
         uses: actions/download-artifact@v3
         with:
@@ -296,13 +302,17 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          git add .
+          # Add data directories and any new binaries
+          git add data/feeds/ data/resources/ bin-linux/ || true
+          
           if git diff --staged --quiet; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "📝 No changes to commit"
           else
             echo "has_changes=true" >> $GITHUB_OUTPUT  
             echo "📝 Changes detected, will commit"
+            echo "Changes to commit:"
+            git diff --staged --name-only
           fi
           
       - name: Commit and push changes
