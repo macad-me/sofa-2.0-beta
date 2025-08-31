@@ -17,10 +17,10 @@ interface DataResponse<T> {
 
 // Determine API base based on environment
 const getAPIBase = () => {
-  // In production, use GitHub Pages (works with private repos)
+  // In production, use the correct beta domain without /data prefix
   if (import.meta.env.PROD) {
-    // GitHub Pages serves the deployed site's data directory
-    return 'https://sofa.macadmin.me/data'
+    // Files are served directly from the domain root
+    return 'https://sofa2beta.macadmin.me'
   }
   // In dev, use local data
   return '/data'
