@@ -55,7 +55,7 @@ jobs:
             echo "    ✅ Downloaded: $LINUX_ZIP"
             
             echo "  • Extracting binaries..."
-            unzip -j "$LINUX_ZIP" -d bin-linux/
+            unzip -o -j "$LINUX_ZIP" -d bin-linux/
             chmod +x bin-linux/*
             rm "$LINUX_ZIP"
             

@@ -118,7 +118,7 @@ jobs:
           curl -L -f -o "$LINUX_ZIP" "$DOWNLOAD_URL/$LINUX_ZIP"
           
           echo "  • Extracting binaries to bin-linux/..."
-          unzip -j "$LINUX_ZIP" -d bin-linux/
+          unzip -o -j "$LINUX_ZIP" -d bin-linux/
           chmod +x bin-linux/*
           rm "$LINUX_ZIP"
           
