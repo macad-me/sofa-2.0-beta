@@ -105,7 +105,8 @@ jobs:
           
           VERSION="${{ needs.prepare.outputs.sofa_version }}"
           if [ "$VERSION" = "latest" ]; then
-            DOWNLOAD_URL="https://github.com/headmin/sofa-core-cli/releases/latest/download"
+            # Use specific version since the latest release is marked as prerelease
+            DOWNLOAD_URL="https://github.com/headmin/sofa-core-cli/releases/download/v0.1.0-beta1"
           else
             DOWNLOAD_URL="https://github.com/headmin/sofa-core-cli/releases/download/$VERSION"
           fi
