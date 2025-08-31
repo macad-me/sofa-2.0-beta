@@ -94,18 +94,18 @@
       <div class="examples-grid">
         <div class="example-card">
           <h4>Using curl</h4>
-          <pre><code>curl -s https://sofa25.macadmin.me/v1/macos_data_feed.json | jq '.OSVersions[0].Latest'</code></pre>
+          <pre><code>curl -s https://sofa25.macadmin.me/v2/macos_data_feed.json | jq '.OSVersions[0].Latest'</code></pre>
         </div>
         <div class="example-card">
           <h4>Using Python</h4>
           <pre><code>import requests
-response = requests.get('https://sofa25.macadmin.me/v1/ios_data_feed.json')
+response = requests.get('https://sofa25.macadmin.me/v2/ios_data_feed.json')
 data = response.json()
 print(data['OSVersions'][0]['Latest']['ProductVersion'])</code></pre>
         </div>
         <div class="example-card">
           <h4>Using JavaScript</h4>
-          <pre><code>fetch('https://sofa25.macadmin.me/v1/macos_data_feed.json')
+          <pre><code>fetch('https://sofa25.macadmin.me/v2/macos_data_feed.json')
   .then(res => res.json())
   .then(data => console.log(data.OSVersions[0].Latest));</code></pre>
         </div>
@@ -152,42 +152,42 @@ const mainFeeds = [
     id: 'macos',
     name: 'macOS Data Feed',
     description: 'Complete macOS version data including security releases, CVEs, and installer information',
-    url: 'https://sofa25.macadmin.me/v1/macos_data_feed.json',
+    url: 'https://sofa25.macadmin.me/v2/macos_data_feed.json',
     icon: Monitor
   },
   {
     id: 'ios',
     name: 'iOS Data Feed',
     description: 'iOS and iPadOS version data with security updates and vulnerability information',
-    url: 'https://sofa25.macadmin.me/v1/ios_data_feed.json',
+    url: 'https://sofa25.macadmin.me/v2/ios_data_feed.json',
     icon: Smartphone
   },
   {
     id: 'tvos',
     name: 'tvOS Data Feed',
     description: 'tvOS version information and security updates',
-    url: 'https://sofa25.macadmin.me/v1/tvos_data_feed.json',
+    url: 'https://sofa25.macadmin.me/v2/tvos_data_feed.json',
     icon: Tv
   },
   {
     id: 'watchos',
     name: 'watchOS Data Feed',
     description: 'watchOS version data and security releases',
-    url: 'https://sofa25.macadmin.me/v1/watchos_data_feed.json',
+    url: 'https://sofa25.macadmin.me/v2/watchos_data_feed.json',
     icon: WatchIcon
   },
   {
     id: 'visionos',
     name: 'visionOS Data Feed',
     description: 'visionOS version information and updates',
-    url: 'https://sofa25.macadmin.me/v1/visionos_data_feed.json',
+    url: 'https://sofa25.macadmin.me/v2/visionos_data_feed.json',
     icon: Eye
   },
   {
     id: 'safari',
     name: 'Safari Data Feed',
     description: 'Safari browser version data and security updates',
-    url: 'https://sofa25.macadmin.me/v1/safari_data_feed.json',
+    url: 'https://sofa25.macadmin.me/v2/safari_data_feed.json',
     icon: Shield
   }
 ]
@@ -204,7 +204,7 @@ const betaFeeds = [
     id: 'full',
     name: 'Full OS Data Feed',
     description: 'Combined feed with all platform data in a single endpoint',
-    url: 'https://sofa25.macadmin.me/v1/full_os_data_feed.json',
+    url: 'https://sofa25.macadmin.me/v2/full_os_data_feed.json',
     icon: Package
   }
 ]

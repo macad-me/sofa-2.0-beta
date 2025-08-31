@@ -57,8 +57,8 @@
 </template>
 
 <script>
-import macOSData from '@v1/macos_data_feed.json';
-import iOSData from '@v1/ios_data_feed.json';
+import macOSData from '@v2/macos_data_feed.json';
+import iOSData from '@v2/ios_data_feed.json';
 
 export default {
   props: {

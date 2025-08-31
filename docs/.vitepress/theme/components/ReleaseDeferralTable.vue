@@ -444,11 +444,11 @@ onMounted(async () => {
   try {
     const base = import.meta.env.BASE_URL || '/'
     const [macOS, iOS, tvOS, watchOS, visionOS] = await Promise.all([
-      fetch(`${base}v1/macos_data_feed.json`).then(r => r.json()),
-      fetch(`${base}v1/ios_data_feed.json`).then(r => r.json()),
-      fetch(`${base}v1/tvos_data_feed.json`).then(r => r.json()),
-      fetch(`${base}v1/watchos_data_feed.json`).then(r => r.json()),
-      fetch(`${base}v1/visionos_data_feed.json`).then(r => r.json())
+      fetch(`${base}v2/macos_data_feed.json`).then(r => r.json()),
+      fetch(`${base}v2/ios_data_feed.json`).then(r => r.json()),
+      fetch(`${base}v2/tvos_data_feed.json`).then(r => r.json()),
+      fetch(`${base}v2/watchos_data_feed.json`).then(r => r.json()),
+      fetch(`${base}v2/visionos_data_feed.json`).then(r => r.json())
     ])
     macOSData = macOS
     iOSData = iOS

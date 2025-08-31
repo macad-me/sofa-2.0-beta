@@ -441,13 +441,15 @@ export default {
   methods: {
     async loadAllData() {
       try {
+        // Use withBase to handle base URL in development
+        const base = import.meta.env.BASE_URL || '/'
         const [macOS, iOS, tvOS, watchOS, visionOS, safari] = await Promise.all([
-          fetch('/sofa-2.0/v1/macos_data_feed.json').then(r => r.json()),
-          fetch('/sofa-2.0/v1/ios_data_feed.json').then(r => r.json()),
-          fetch('/sofa-2.0/v1/tvos_data_feed.json').then(r => r.json()),
-          fetch('/sofa-2.0/v1/watchos_data_feed.json').then(r => r.json()),
-          fetch('/sofa-2.0/v1/visionos_data_feed.json').then(r => r.json()),
-          fetch('/sofa-2.0/v1/safari_data_feed.json').then(r => r.json())
+          fetch(`${base}v2/macos_data_feed.json`).then(r => r.json()),
+          fetch(`${base}v2/ios_data_feed.json`).then(r => r.json()),
+          fetch(`${base}v2/tvos_data_feed.json`).then(r => r.json()),
+          fetch(`${base}v2/watchos_data_feed.json`).then(r => r.json()),
+          fetch(`${base}v2/visionos_data_feed.json`).then(r => r.json()),
+          fetch(`${base}v2/safari_data_feed.json`).then(r => r.json())
         ])
         this.macOSData = macOS
         this.iOSData = iOS
@@ -458,7 +460,8 @@ export default {
         
         // Try to load essential links, but don't fail if not found
         try {
-          this.essentialLinksData = await fetch('/sofa-2.0/v1/essential_links.json').then(r => r.json())
+          const base = import.meta.env.BASE_URL || '/'
+          this.essentialLinksData = await fetch(`${base}v1/essential_links.json`).then(r => r.json())
         } catch (e) {
           console.warn('Essential links data not found')
           this.essentialLinksData = {}
@@ -610,6 +613,12 @@ export default {
     },
     loadData() {
       try {
+        console.log('LatestFeatures loadData:', {
+          platform: this.platform,
+          title: this.title,
+          macOSData: this.macOSData
+        })
+        
         // Select the correct data based on platform
         let data
         switch (this.platform.toLowerCase()) {
@@ -637,6 +646,7 @@ export default {
         }
 
         const version = this.title.split(' ')[1]
+        console.log('Looking for version:', version, 'in data:', data)
 
         if (this.platform.toLowerCase() === 'safari') {
           // Handle Safari data structure
@@ -652,7 +662,9 @@ export default {
           }
         } else {
           // Handle OS data structure
-          this.osData = data.OSVersions.find((os) => os.OSVersion.includes(version))
+          const foundOS = data.OSVersions?.find((os) => os.OSVersion.includes(version))
+          console.log('Found OS data:', foundOS)
+          this.osData = foundOS
         }
 
         if (this.osData) {
@@ -795,18 +807,19 @@ export default {
       return this.getAssetPath('/SWUpdate.png');
     },
     getAssetPath(relativePath) {
-      // Use relative path that works with any base path setting
-      // Since base is '/' for custom domain, just return the path directly
+      // Use base URL for proper asset paths
+      const base = import.meta.env.BASE_URL || '/'
       if (relativePath.startsWith('/')) {
-        return relativePath;
+        return base + relativePath.substring(1);
       }
-      return '/' + relativePath;
+      return base + relativePath;
     },
     handleImageError(e) {
       console.error('Image failed to load:', e.target.src);
       this.imageError = true;
       // Set fallback image to SWUpdate.png using correct path
-      e.target.src = '/SWUpdate.png';
+      const base = import.meta.env.BASE_URL || '/'
+      e.target.src = base + 'SWUpdate.png';
     },
     getReleaseNotesUrl() {
       // Get release notes URL based on platform and version

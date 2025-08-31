@@ -1,0 +1,164 @@
+{
+  "version": "2.0",
+  "generated": "2025-08-28T09:08:34.387692Z",
+  "feeds": {
+    "v2": {
+      "macos": {
+        "status": "available",
+        "lastUpdate": "2025-08-28T10:35:52.613978Z",
+        "size": 370101,
+        "hash": "f5a388e37fb2eeb8",
+        "entries": 90
+      },
+      "ios": {
+        "status": "available",
+        "lastUpdate": "2025-08-28T10:35:52.612534Z",
+        "size": 29136,
+        "hash": "b99554f6bfdb5220",
+        "entries": 9
+      },
+      "tvos": {
+        "status": "available",
+        "lastUpdate": "2025-08-28T10:35:52.614812Z",
+        "size": 17823,
+        "hash": "ab22a0945c7c0617",
+        "entries": 6
+      },
+      "watchos": {
+        "status": "available",
+        "lastUpdate": "2025-08-28T10:35:52.615416Z",
+        "size": 13567,
+        "hash": "67649102d7b1df1a",
+        "entries": 6
+      },
+      "visionos": {
+        "status": "available",
+        "lastUpdate": "2025-08-28T10:35:52.615140Z",
+        "size": 35186,
+        "hash": "4d377683bfd1e622",
+        "entries": 18
+      },
+      "safari": {
+        "status": "available",
+        "lastUpdate": "2025-08-28T10:35:52.614442Z",
+        "size": 42845,
+        "hash": "c410e6e5d538a98e",
+        "entries": 0
+      }
+    },
+    "v1": {
+      "macos": {
+        "status": "available",
+        "lastUpdate": "2025-08-28T10:35:52.609668Z",
+        "size": 442075,
+        "hash": "0c3a8e950fcfebb3",
+        "entries": 93
+      },
+      "ios": {
+        "status": "available",
+        "lastUpdate": "2025-08-27T10:52:23.547117Z",
+        "size": 134423,
+        "hash": "fd18148a4926535f",
+        "entries": 71
+      },
+      "tvos": {
+        "status": "available",
+        "lastUpdate": "2025-08-28T10:35:52.611476Z",
+        "size": 32689,
+        "hash": "2cd31ebc04791a93",
+        "entries": 17
+      },
+      "watchos": {
+        "status": "available",
+        "lastUpdate": "2025-08-28T10:35:52.612151Z",
+        "size": 33113,
+        "hash": "66a4ab0ba8f4ba49",
+        "entries": 14
+      },
+      "visionos": {
+        "status": "available",
+        "lastUpdate": "2025-08-28T10:35:52.611885Z",
+        "size": 33137,
+        "hash": "66cc9f1d6752ff7c",
+        "entries": 18
+      },
+      "safari": {
+        "status": "available",
+        "lastUpdate": "2025-08-28T10:35:52.610879Z",
+        "size": 42845,
+        "hash": "841252611780636f",
+        "entries": 0
+      }
+    },
+    "metadata": {
+      "version": "2.0",
+      "generated": "2025-08-27T05:49:12Z",
+      "feeds": {
+        "macos": {
+          "last_check": "2025-08-27T05:49:12Z",
+          "update_hash": "fa63240e5ea6617140a66823a344c5237c309b81992e51247fdd0a5841f2b5f7",
+          "feed_url": "v2/macos_data_feed.json",
+          "status": "active"
+        },
+        "ios": {
+          "last_check": "2025-08-27T05:49:12Z",
+          "update_hash": "9463b6a030c2b65bb82e1996a0853fa01e083c6c85721c179da97287f60c76ee",
+          "feed_url": "v2/ios_data_feed.json",
+          "status": "active"
+        },
+        "tvos": {
+          "last_check": "2025-08-27T05:49:12Z",
+          "update_hash": "9e8e34730287c4fc06e67e6a0db1b6f7e4af297a21c5cf224e2fd085ba0bd049",
+          "feed_url": "v2/tvos_data_feed.json",
+          "status": "active"
+        },
+        "watchos": {
+          "last_check": "2025-08-27T05:49:12Z",
+          "update_hash": "51e54e885016f6dafc726ee1054cf212c45ec7ed60a5572efb5a7fd0055dfe2e",
+          "feed_url": "v2/watchos_data_feed.json",
+          "status": "active"
+        },
+        "visionos": {
+          "last_check": "2025-08-27T05:49:12Z",
+          "update_hash": "67650408a71589010ec1919cac169f14a4962d6e989765bd7f1bb7b8bbc97a6b",
+          "feed_url": "v2/visionos_data_feed.json",
+          "status": "active"
+        },
+        "safari": {
+          "last_check": "2025-08-27T05:49:12Z",
+          "update_hash": "85dc83b511cd96ed965d87dd46e8514beac9b788d4eacd7f4f558c950f48ca56",
+          "feed_url": "v2/safari_data_feed.json",
+          "status": "active"
+        }
+      }
+    }
+  },
+  "resources": {
+    "kev-catalog": {
+      "available": true,
+      "lastUpdate": "2025-08-28T10:35:52.624411Z",
+      "size": 1124791
+    },
+    "gdmf-cached": {
+      "available": true,
+      "lastUpdate": "2025-08-28T10:35:52.621463Z",
+      "size": 91440
+    },
+    "apple-security-releases": {
+      "available": true,
+      "lastUpdate": "2025-08-28T10:35:52.617297Z",
+      "size": 1105313
+    }
+  },
+  "pipeline": {
+    "lastRun": "2025-08-28T09:08:34.387785Z",
+    "stages": [],
+    "status": "success"
+  },
+  "health": {
+    "staleness": {},
+    "errors": [],
+    "score": 100,
+    "status": "healthy"
+  }
+}

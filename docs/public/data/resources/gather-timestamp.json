@@ -1,0 +1,65 @@
+{
+  "last_run": "2025-08-28T07:59:27.323437560Z",
+  "sources": {
+    "ipsw": {
+      "last_fetch": "2025-08-25T22:14:25.720554Z",
+      "current_hash": "440a56c2c6c7f933d3e4fe30f0795814ef68e2d047f729a511fa3f8f509924f0",
+      "previous_hashes": [],
+      "changed": true
+    },
+    "uma": {
+      "last_fetch": "2025-08-28T07:59:27.323436719Z",
+      "current_hash": "df7069e0394552a8063efa33969821ef8e8610ded377d716995d4fc71fe4c93f",
+      "previous_hashes": [
+        "0c7c289970951825960332391839f641aa371f837e19e3c656774170c7d265db",
+        "0c7c289970951825960332391839f641aa371f837e19e3c656774170c7d265db",
+        "df7069e0394552a8063efa33969821ef8e8610ded377d716995d4fc71fe4c93f"
+      ],
+      "changed": false
+    },
+    "kev": {
+      "last_fetch": "2025-08-28T07:59:24.929595919Z",
+      "current_hash": "762f85251ac6aeba0d723de99e4bcbab308a93695abdc203af6d2b60781da796",
+      "previous_hashes": [
+        "cf1302ee12ef73a0203cf9a575979df22593802921e55450aca8e18a5afc465d",
+        "444ad94280130b843fedf704705b9bd708b46cbb6b08f7b3f222c4006115a3b8",
+        "36db90a9227ac9539bd97cc99ef4275ed8d1ab3dd08e46339f677d18780e76f6"
+      ],
+      "changed": true
+    },
+    "beta": {
+      "last_fetch": "2025-08-25T22:14:26.029826Z",
+      "current_hash": "e01ff3ea8da09feab97164c2f9b27e986112e73a0933316551a9ad279c695a3b",
+      "previous_hashes": [],
+      "changed": true
+    },
+    "gdmf": {
+      "last_fetch": "2025-08-28T07:59:25.408753673Z",
+      "current_hash": "c34d587513a9b0c00a0a122b61878ec0448b7fa7c41792c32437d2fb2a84b40c",
+      "previous_hashes": [
+        "3db9582388835b0794e55ffb0f522b4db78e6fedd73ab8def7ae71cbaf851316",
+        "3db9582388835b0794e55ffb0f522b4db78e6fedd73ab8def7ae71cbaf851316",
+        "0b76411ef3587b6ea9cbd5b1d48f6703f4a67cba559064c96d009dc1c5e0e010"
+      ],
+      "changed": true
+    },
+    "xprotect": {
+      "last_fetch": "2025-08-28T07:59:26.651849080Z",
+      "current_hash": "173a1216e0a56146e6f671225ca21516d258b872673131b296a1466ab7823581",
+      "previous_hashes": [
+        "591a4acf18f88881965c31fae8d96354cfe1c6def7d45fdb16615a768ba2e714",
+        "591a4acf18f88881965c31fae8d96354cfe1c6def7d45fdb16615a768ba2e714",
+        "173a1216e0a56146e6f671225ca21516d258b872673131b296a1466ab7823581"
+      ],
+      "changed": false
+    }
+  },
+  "changes_detected": [
+    "beta",
+    "gdmf",
+    "ipsw",
+    "kev",
+    "uma",
+    "xprotect"
+  ]
+}

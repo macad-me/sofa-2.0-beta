@@ -16,6 +16,8 @@ Manages the complete SOFA data pipeline: gather → fetch → build (v1 & v2)
 Uses TOML configuration files
 """
 
+__version__ = "0.1.0"
+
 import json
 import logging
 import shutil
@@ -42,10 +44,11 @@ from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn, TextColumn
 from rich.table import Table
 from rich.tree import Tree
+from rich.text import Text
 
 # Initialize Rich console
 console = Console()
-app = typer.Typer(help="SOFA Pipeline Orchestrator")
+app = typer.Typer(help=f"SOFA Pipeline Orchestrator v{__version__}")
 
 
 class PipelineStage(str, Enum):
@@ -86,7 +89,7 @@ class PipelineConfig(BaseModel):
     v1_dir: Path = Field(default=Path("v1"), description="v1 output directory")
     v2_dir: Path = Field(default=Path("v2"), description="v2 output directory")
     config_dir: Path = Field(default=Path("config"), description="Config directory")
-    bin_dir: Path = Field(default=Path("bin"), description="Binary directory")
+    bin_dir: Path = Field(default=Path("bin-linux"), description="Binary directory")
     
     gather_sources: List[GatherSource] = Field(
         default=[GatherSource.KEV, GatherSource.GDMF, GatherSource.IPSW, GatherSource.XPROTECT, GatherSource.BETA, GatherSource.UMA],
@@ -421,57 +424,54 @@ class SOFAPipeline:
                 total=len(self.config.products)
             )
             
-            # Use Python legacy builder for v1 if requested
+            # Use sofa-build all --legacy for v1 if requested
             if use_legacy_v1 and version == "v1":
-                # Only build macOS and iOS with legacy builder
-                legacy_products = ["macos", "ios"]
+                progress.update(task, description=f"Building all v1 feeds with legacy mode...")
                 
-                # Run the Python legacy builder once for all products
-                progress.update(task, description=f"Building v1 feeds with legacy Python builder...")
+                binary = self.config.bin_dir / "sofa-build"
+                if not binary.exists():
+                    binary = Path("target/release/sofa-build")
                 
-                legacy_script = Path("scripts/build_legacy_v1_feeds.py")
-                if not legacy_script.exists():
-                    errors.append("Legacy v1 builder script not found: scripts/build_legacy_v1_feeds.py")
-                else:
-                    # Build macOS and iOS feeds with the legacy script
-                    cmd = [
-                        str(legacy_script),
-                        "macOS", "iOS",
-                        "--output-dir", str(output_dir)
-                    ]
+                # Build all products at once with --legacy flag
+                cmd = [
+                    str(binary),
+                    "all",  # Build all products
+                    "-i", str(self.config.data_dir / "resources"),
+                    "-o", str(output_dir),  # Output directory
+                    "--type", "v1",
+                    "--legacy"  # Use legacy builder
+                ]
+                
+                try:
+                    result = subprocess.run(
+                        cmd, capture_output=True, text=True, timeout=600
+                    )
                     
-                    try:
-                        result = subprocess.run(
-                            cmd, capture_output=True, text=True, timeout=300
-                        )
-                        
-                        if result.returncode == 0:
-                            # Check which files were created
-                            for product in legacy_products:
-                                feed_file = output_dir / f"{product}_data_feed.json"
-                                if feed_file.exists():
-                                    outputs[product] = "✅"
-                                else:
-                                    outputs[product] = "❌"
-                                    errors.append(f"{product}: Output file not created")
-                        else:
-                            for product in legacy_products:
+                    if result.returncode == 0:
+                        # Check which files were created
+                        for product in self.config.products:
+                            feed_file = output_dir / f"{product.value}_data_feed.json"
+                            if feed_file.exists():
+                                outputs[product] = "✅"
+                            else:
                                 outputs[product] = "❌"
-                            error_msg = f"Legacy builder failed: return code {result.returncode}"
-                            if result.stderr:
-                                error_msg += f", stderr: {result.stderr[:500]}"
-                            errors.append(error_msg)
-                    except Exception as e:
-                        for product in legacy_products:
+                                errors.append(f"{product}: Output file not created")
+                    else:
+                        for product in self.config.products:
                             outputs[product] = "❌"
-                        errors.append(f"Legacy builder exception: {str(e)}")
+                        error_msg = f"Legacy builder failed: return code {result.returncode}"
+                        if result.stderr:
+                            error_msg += f", stderr: {result.stderr[:500]}"
+                        if result.stdout:
+                            error_msg += f", stdout: {result.stdout[:500]}"
+                        errors.append(error_msg)
+                except Exception as e:
+                    for product in self.config.products:
+                        outputs[product] = "❌"
+                    errors.append(f"Legacy builder exception: {str(e)}")
                 
-                # Mark other products as not built with legacy
-                for product in self.config.products:
-                    if product.value not in legacy_products:
-                        outputs[product] = "⏭️"  # Skipped
-                
-                progress.advance(task)
+                for _ in self.config.products:
+                    progress.advance(task)
             else:
                 # Use sofa-build for all products
                 for product in self.config.products:
@@ -928,7 +928,7 @@ class SOFAPipeline:
         
 
     def get_binary_path(self, binary_name: str) -> Path:
-        """Get the path to a binary, checking bin/ first then target/release/"""
+        """Get the path to a binary, checking bin-linux/ first then target/release/"""
         bin_path = self.config.bin_dir / binary_name
         if bin_path.exists():
             return bin_path
@@ -947,12 +947,12 @@ class SOFAPipeline:
         # Check for our binaries
         binaries = ["sofa-gather", "sofa-fetch", "sofa-build", "sofa-cve"]
         
-        # Check bin directory first, then base_dir
-        bin_dir = Path("bin")
+        # Check bin-linux directory first, then base_dir
+        bin_dir = Path("bin-linux")
         
         console.print("[bold]Binary paths and timestamps:[/bold]")
         for binary_name in binaries:
-            # Try bin/ first, then target/release/
+            # Try bin-linux/ first, then target/release/
             bin_path = self.config.bin_dir / binary_name
             if not bin_path.exists():
                 bin_path = Path("target/release") / binary_name
@@ -972,13 +972,13 @@ class SOFAPipeline:
         console.rule("[bold yellow]Config Validation")
         errors = []
         
-        # Check binaries exist in bin/ or target/release/
+        # Check binaries exist in bin-linux/ or target/release/
         binaries = ["sofa-gather", "sofa-fetch", "sofa-build", "sofa-cve"]
         for binary in binaries:
             bin_path = self.config.bin_dir / binary
             release_path = Path("target/release") / binary
             if not bin_path.exists() and not release_path.exists():
-                errors.append(f"Missing binary: {binary} (checked bin/ and target/release/)")
+                errors.append(f"Missing binary: {binary} (checked bin-linux/ and target/release/)")
         
         # Config files are no longer required - binaries have embedded defaults
         # But check for optional AppleRoot.pem
@@ -1142,13 +1142,13 @@ class SOFAPipeline:
             )
 
 
-@app.command()
+@app.command(short_help="Run the SOFA pipeline (use 'run --help' for examples)")
 def run(
     stages: List[PipelineStage] = typer.Option(
         [PipelineStage.ALL],
         "--stage",
         "-s",
-        help="Stages to run"
+        help="Stages to run (gather, fetch, build, bulletin, rss, cve, all)"
     ),
     base_dir: Path = typer.Option(
         Path("."),
@@ -1184,7 +1184,7 @@ def run(
     use_legacy_v1: bool = typer.Option(
         False,
         "--use-legacy-v1",
-        help="Use Python legacy builder for v1 feeds (macOS/iOS only)"
+        help="Use legacy builder for v1 feeds via sofa-build all --legacy"
     ),
     verbose: bool = typer.Option(
         False,
@@ -1193,7 +1193,48 @@ def run(
         help="Verbose output"
     ),
 ):
-    """Run the SOFA pipeline"""
+    """Run the SOFA pipeline with specified stages.
+    
+    \b
+    AVAILABLE STAGES:
+    ─────────────────
+    gather   : Fetch Apple Security Updates RSS feed
+    fetch    : Process releases and download security notes
+    build    : Generate SOFA v1 and v2 data feeds
+    bulletin : Create security bulletin with recent releases
+    rss      : Generate RSS feed from processed data
+    cve      : Build CVE database with vulnerability details
+    all      : Run entire pipeline (default)
+    
+    \b
+    USAGE EXAMPLES:
+    ───────────────
+    Run entire pipeline:
+      ./scripts/sofa_pipeline.py run
+    
+    Run single stage:
+      ./scripts/sofa_pipeline.py run --stage gather
+      ./scripts/sofa_pipeline.py run --stage fetch
+      ./scripts/sofa_pipeline.py run --stage build
+    
+    Run multiple stages:
+      ./scripts/sofa_pipeline.py run --stage gather --stage fetch
+      ./scripts/sofa_pipeline.py run --stage build --stage bulletin --stage rss
+    
+    Skip stages:
+      ./scripts/sofa_pipeline.py run --skip-gather --skip-fetch
+    
+    Detect changes:
+      ./scripts/sofa_pipeline.py run --stage fetch --detect-changes
+      ./scripts/sofa_pipeline.py run --stage fetch --detect-cache-changes
+    
+    Build CVE database:
+      ./scripts/sofa_pipeline.py run --stage cve                # Light mode
+      ./scripts/sofa_pipeline.py run --stage cve --full-cve      # Full enrichment
+    
+    Use legacy v1 builder:
+      ./scripts/sofa_pipeline.py run --stage build --use-legacy-v1
+    """
     config = PipelineConfig(base_dir=base_dir)
     pipeline = SOFAPipeline(config)
     pipeline.run(stages, skip_gather, skip_fetch, detect_changes, detect_cache_changes, full_cve, use_legacy_v1)
@@ -1403,6 +1444,12 @@ def build_cve_database(
         console.print("\n❌ Failed to build CVE database", style="red")
         for error in result.errors:
             console.print(f"  • {error}", style="red")
+
+
+@app.command()
+def version():
+    """Display the SOFA Pipeline version"""
+    console.print(f"[bold blue]SOFA Pipeline Orchestrator[/bold blue] v{__version__}")
 
 
 if __name__ == "__main__":

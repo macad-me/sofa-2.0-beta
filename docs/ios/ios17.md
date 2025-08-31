@@ -4,19 +4,12 @@ platform: iOS
 layout: doc
 ---
 
-<script setup>
-import LatestFeatures from '../../.vitepress/theme/components/LatestFeatures.vue'
-import SecurityInfo from '../../.vitepress/theme/components/SecurityInfo.vue'
-import LinksComponent from '../../.vitepress/theme/components/LinksComponent.vue'
-import linksData from '@v1/essential_links.json'
-</script>
-
 # iOS/iPadOS 17
 
 <LatestFeatures 
   title="iOS 17" 
   platform="iOS"
-  dataPath="/v1/ios_data_feed.json" 
+  dataPath="/v2/ios_data_feed.json" 
   linksData="/v1/essential_links.json"
 >
 </LatestFeatures>
@@ -24,13 +17,5 @@ import linksData from '@v1/essential_links.json'
 <SecurityInfo 
   title="iOS 17" 
   platform="iOS" 
-  dataPath="/v1/ios_data_feed.json" 
-/>
-
-## Essential Resources
-
-<LinksComponent
-  title="iOS 17"
-  platform="iOS"
-  :linksData="linksData"
+  dataPath="/v2/ios_data_feed.json" 
 />

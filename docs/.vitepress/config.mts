@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
-import { resolve } from 'path';
-import { jsonPlugin } from './json-plugin.mts';
+import { resolve } from 'path'
+import { dataPlugin } from './dataPlugin.mts'
 
 export default defineConfig({
   title: "SOFA",
@@ -8,8 +8,8 @@ export default defineConfig({
   description: "Simple Organized Feed for Apple Software Updates - by Mac Admins Open Source",
   cleanUrls: true,
   
-  // Update base to match custom domain (root path)
-  base: '/sofa-2.0/',  // Development base path
+  // For custom domain (sofa.macadmin.me), use root path
+  base: '/',  // Root path for custom domain
   
   themeConfig: {
     // Keep navigation data for routing but hide the visual navbar
@@ -19,7 +19,8 @@ export default defineConfig({
       { text: 'Safari', link: '/safari/safari18' },
       { text: 'tvOS', link: '/tvos/tvos18' },
       { text: 'visionOS', link: '/visionos/visionos2' },
-      { text: 'watchOS', link: '/watchos/watchos11' }
+      { text: 'watchOS', link: '/watchos/watchos11' },
+      { text: 'How It Works', link: '/how-it-works' }
     ],
     
     // Disable next/prev page links if desired
@@ -29,6 +30,13 @@ export default defineConfig({
     },
     
     sidebar: [
+      {
+        text: 'Documentation',
+        items: [
+          { text: 'How It Works', link: '/how-it-works' },
+          { text: 'Scheduled Process', link: '/scheduled-process' }
+        ]
+      },
       {
         text: 'macOS',
         items: [
@@ -45,13 +53,12 @@ export default defineConfig({
           { text: 'iOS/iPadOS 26', link: '/ios/ios26' },
           { text: 'iOS/iPadOS 18', link: '/ios/ios18' },
           { text: 'iOS/iPadOS 17', link: '/ios/ios17' },
-          
         ]
       },
       {
         text: 'Safari',
         items: [
-          { text: 'Safari 18', link: 'safari/safari18'},
+          { text: 'Safari 18', link: '/safari/safari18' },
         ]
       },
       {
@@ -60,7 +67,6 @@ export default defineConfig({
           { text: 'tvOS 26', link: '/tvos/tvos26' },
           { text: 'tvOS 18', link: '/tvos/tvos18' },
           { text: 'tvOS 17', link: '/tvos/tvos17' },
-          
         ]
       },
       {
@@ -84,7 +90,6 @@ export default defineConfig({
           { text: 'Model Identifiers', link: '/model-identifier' },
           { text: 'macOS Installers', link: '/macos-installer-info' },
           { text: 'Beta Releases', link: '/beta-releases' },
-          { text: 'Essential Resources', link: '/essential-resources' },
           { text: 'Essential Info', link: '/essential-info' }
         ]
       }
@@ -99,28 +104,50 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [jsonPlugin()],
-    resolve: {
-      alias: {
-        '@components': resolve(__dirname, './theme/components'),
-        '@cache': resolve(__dirname, '../cache'),
-        '@images': resolve(__dirname, '../public/'),
-        '@data/feeds': resolve(__dirname, '../../data/feeds'),
-        '@data/resources': resolve(__dirname, '../../data/resources'),
-        '@v1': resolve(__dirname, '../../data/feeds/v1'),
-        '/v1': resolve(__dirname, '../../data/feeds/v1'),
-      },
-    },
-    optimizeDeps: {
-      include: ['@v1/*.json', '/v1/*.json', '@data/feeds/**/*.json']
+    plugins: [
+      dataPlugin() // Serve data files from source directories during dev
+    ],
+    build: {
+      rollupOptions: {
+        external: [
+          // Prevent Vite from trying to bundle our data files
+          /^\.\.\/data\//
+        ]
+      }
     },
     server: {
       fs: {
         allow: [
-          resolve(__dirname, '../../data/feeds'),
-          resolve(__dirname, '..'),
+          resolve(__dirname, '../..'), // Allow access to project root for data directories
         ]
       }
+    },
+    resolve: {
+      alias: {
+        // Component aliases
+        '@components': resolve(__dirname, './theme/components'),
+        
+        // Public assets
+        '@images': resolve(__dirname, '../public/'),
+        
+        // Data source directories (for imports)
+        '@data/feeds': resolve(__dirname, '../../data/feeds'),
+        '@data/resources': resolve(__dirname, '../../data/resources'),
+        '@v1': resolve(__dirname, '../../data/feeds/v1'),
+        '@v2': resolve(__dirname, '../../data/feeds/v2'),
+        '@resources': resolve(__dirname, '../../data/resources'),
+        
+        // URL path mappings (for fetch requests - handled by serveDataPlugin)
+        '/v1': resolve(__dirname, '../../data/feeds/v1'),
+        '/v2': resolve(__dirname, '../../data/feeds/v2'),
+        '/resources': resolve(__dirname, '../../data/resources'),
+      },
+    },
+    optimizeDeps: {
+      include: [
+        '@data/feeds/**/*.json',
+        '@data/resources/*.json'
+      ]
     }
   }
 })

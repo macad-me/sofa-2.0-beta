@@ -55,7 +55,7 @@
           <div class="result-header">
             <div class="cve-id-section">
               <span class="cve-label">CVE ID:</span>
-              <a :href="`/cve-details?cveId=${result.cveId}`" class="cve-id-link">
+              <a :href="`${baseUrl}cve-details?cveId=${result.cveId}`" class="cve-id-link">
                 {{ result.cveId }}
                 <svg class="w-3 h-3 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
@@ -126,6 +126,7 @@
 import { ref, computed, onMounted } from 'vue'
 // Data will be loaded dynamically instead of imported
 
+const baseUrl = import.meta.env.BASE_URL || '/'
 const searchTerm = ref('')
 const searchResults = ref([])
 const quickSearch = ref(false)
@@ -143,11 +144,11 @@ onMounted(async () => {
   try {
     const base = import.meta.env.BASE_URL || '/'
     const [macOS, iOS, tvOS, watchOS, visionOS] = await Promise.all([
-      fetch(`${base}v1/macos_data_feed.json`).then(r => r.json()),
-      fetch(`${base}v1/ios_data_feed.json`).then(r => r.json()),
-      fetch(`${base}v1/tvos_data_feed.json`).then(r => r.json()),
-      fetch(`${base}v1/watchos_data_feed.json`).then(r => r.json()),
-      fetch(`${base}v1/visionos_data_feed.json`).then(r => r.json())
+      fetch(`${base}v2/macos_data_feed.json`).then(r => r.json()),
+      fetch(`${base}v2/ios_data_feed.json`).then(r => r.json()),
+      fetch(`${base}v2/tvos_data_feed.json`).then(r => r.json()),
+      fetch(`${base}v2/watchos_data_feed.json`).then(r => r.json()),
+      fetch(`${base}v2/visionos_data_feed.json`).then(r => r.json())
     ])
     macOSData.value = macOS
     iOSData.value = iOS

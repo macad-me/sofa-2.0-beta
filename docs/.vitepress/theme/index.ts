@@ -20,9 +20,12 @@ import ReleaseDeferralTable from './components/ReleaseDeferralTable.vue';
 import ReleaseInstallerTable from './components/ReleaseInstallerTable.vue';
 import ModelIdentifierTable from './components/ModelIdentifierTable.vue';
 import BetaInfo from './components/BetaInfo.vue';
+import BetaFeatures from './components/BetaFeatures.vue';
 import FeedInfo from './components/FeedInfo.vue';
 import CveDetails from './components/CveDetails.vue';
 import BulletinDashboard from './components/BulletinDashboard.vue';
+import DataSourceDebug from './components/DataSourceDebug.vue';
+import DataTest from './components/DataTest.vue';
 
 export default {
   extends: DefaultTheme,
@@ -30,6 +33,8 @@ export default {
     return h(DefaultTheme.Layout, null, {
       // Insert our custom navbar at the top of the layout
       'layout-top': () => h(CustomNavBar),
+      // Add debug panel at the bottom
+      'layout-bottom': () => h(DataSourceDebug),
     });
   },
   enhanceApp({ app, router, siteData }) {
@@ -47,8 +52,11 @@ export default {
     app.component('ReleaseInstallerTable', ReleaseInstallerTable);
     app.component('ModelIdentifierTable', ModelIdentifierTable);
     app.component('BetaInfo', BetaInfo);
+    app.component('BetaFeatures', BetaFeatures);
     app.component('FeedInfo', FeedInfo);
     app.component('CveDetails', CveDetails);
     app.component('BulletinDashboard', BulletinDashboard);
+    app.component('DataSourceDebug', DataSourceDebug);
+    app.component('DataTest', DataTest);
   },
 } satisfies Theme;

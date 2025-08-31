@@ -1,39 +1,143 @@
+# ============================================
+# SOFA 2.0 .gitignore
+# ============================================
+
 # Dependencies
 node_modules/
 .npm/
+.pnpm-store/
+pnpm-lock.yaml
+
+# Python / uv
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+.uv/
+uv.lock
+.python-version
 
 # Build outputs
 .vitepress/dist/
 .vitepress/cache/
+.vitepress/.temp/
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+docs/.vitepress/.temp/
 dist/
+build/
+*.egg-info/
+
+# Data directories (IMPORTANT: Discuss what to keep)
+# ============================================
+# Option 1: Ignore cache but keep feeds/resources for deployment
+data/cache/
+data/cache/**/*
+*.html
+
+# Option 2: Keep everything except cache (CURRENT CHOICE)
+# We commit feeds and resources for GitHub Pages
+# but ignore the HTML cache
+!data/
+!data/feeds/
+!data/feeds/v1/
+!data/feeds/v1/*.json
+!data/feeds/v2/
+!data/feeds/v2/*.json
+!data/resources/
+!data/resources/*.json
+!data/resources/*.ndjson
+data/resources/history/
+data/cache/
+
+# Option 3: Ignore all data (generate fresh in CI)
+# Uncomment these if you want CI to generate everything
+# data/feeds/
+# data/resources/
+# data/cache/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
 
 # Development
 .DS_Store
-*.log
+Thumbs.db
 .env
 .env.local
+.env.*.local
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
 # Testing
 coverage/
 .nyc_output/
+*.lcov
+.coverage
+htmlcov/
+.pytest_cache/
+.hypothesis/
 
-# Act (local testing)
+# Act (GitHub Actions local testing)
 .secrets
 .actrc
 act_artifacts/
+.env.local
 
 # Temporary files
 *.tmp
-data/tmp/
+*.temp
+*.bak
+*.backup
+*.old
+tmp/
+temp/
 
-# But keep data directory structure
-!data/
-!data/raw/.gitkeep
-!data/feeds/.gitkeep
-!data/archive/.gitkeep
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Rust/Binary artifacts (if building locally)
+target/
+Cargo.lock
+
+# Documentation build
+docs/_site/
+docs/.jekyll-cache/
+docs/.jekyll-metadata
+
+# Keep important config files
+!.gitignore
+!.gitattributes
+!package.json
+!pnpm-workspace.yaml
+!pyproject.toml
+!README.md
+
+# Keep .gitkeep files for directory structure
+!**/.gitkeep

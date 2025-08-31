@@ -32,6 +32,14 @@
   display: none !important;
 }
 
+/* Show sidebar on all non-home pages */
+.VPContent:not(.is-home) + .VPSidebar,
+.VPDoc ~ .VPSidebar,
+body:not(.layout-home) .VPSidebar {
+  display: block !important;
+  visibility: visible !important;
+}
+
 /* Adjust content padding to account for custom navbar */
 .VPContent {
   padding-top: 0 !important;
@@ -115,14 +123,15 @@
 /* Fix sidebar styling and positioning - align with VitePress defaults */
 .VPSidebar {
   position: fixed !important;
-  top: var(--vp-nav-height) !important;
+  top: 64px !important; /* Match custom navbar height */
   left: 0 !important;
-  height: calc(100vh - var(--vp-nav-height)) !important;
+  height: calc(100vh - 64px) !important; /* Match custom navbar height */
   width: 250px !important; /* Reduced sidebar width */
   background: var(--vp-c-bg) !important;
   border-right: 1px solid var(--vp-c-divider) !important;
   padding: 0 !important;
-  z-index: var(--vp-z-index-sidebar) !important;
+  z-index: 10 !important; /* Lower than navbar but visible */
+  display: block !important; /* Ensure it's visible */
 }
 
 /* Remove grey header box from sidebar */
@@ -625,4 +634,35 @@ h1[id], h2[id], h3[id] {
 .VPSidebar .backdrop,
 .VPSidebar .overlay {
   display: none !important;
+}
+
+/* Remove any unwanted active state borders */
+.VPSidebar .VPSidebarItem.active,
+.VPSidebar .VPSidebarItem.active::before,
+.VPSidebar .VPSidebarItem.active::after,
+.VPSidebar .active {
+  border-left: none !important;
+  border-right: none !important;
+  border-color: transparent !important;
+}
+
+/* Ensure no green or colored borders on sidebar elements */
+.VPSidebar *,
+.VPSidebar::before,
+.VPSidebar::after {
+  border-color: var(--vp-c-divider) !important;
+}
+
+/* Override any VitePress active link styling */
+.VPSidebarItem.active .link {
+  border-left: none !important;
+}
+
+/* Hide sidebar completely on home page - stronger override */
+.is-home .VPSidebar,
+.layout-home .VPSidebar,
+body.layout-home .VPSidebar {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
 }

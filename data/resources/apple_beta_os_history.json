@@ -1,67 +1,67 @@
 {
-  "UpdateHash": "c6b01003cfd91616c06fbe63f13276c41cb7233e72cffaae23bc610e72a0bccf",
-  "created_at": "2025-08-25T15:15:45.075975Z",
+  "UpdateHash": "68abe98ab3b4eacee42e4946776f1bd5082f15e4fca3de1dff5392ff8f9e34d7",
+  "created_at": "2025-08-30T09:20:06.985885Z",
   "description": "Historical archive of Apple OS releases including betas removed from current feed",
   "items": [
     {
-      "build": "17A5305f",
+      "build": "17A5305kTF",
       "downloads_url": "https://developer.apple.com/download/applications",
       "platform": "Xcode",
       "release_notes_url": "https://developer.apple.com/go/?id=xcode-26-sdk-rn",
-      "released": "2025-08-18",
+      "released": "2025-08-28",
       "source_card_url": "https://developer.apple.com/news/releases/",
-      "title": "Xcode 26 beta 6 (17A5305f)",
-      "version": "26 beta 6"
+      "title": "Xcode 26 beta 7 (17A5305kTF)",
+      "version": "26 beta 7"
     },
     {
-      "build": "23A5326a",
+      "build": "23A5330a",
       "downloads_url": "https://developer.apple.com/download",
       "platform": "iOS",
       "release_notes_url": "https://developer.apple.com/go/?id=ios-26-rn",
-      "released": "2025-08-18",
+      "released": "2025-08-25",
       "source_card_url": "https://developer.apple.com/news/releases/",
-      "title": "iOS 26 beta 7 (23A5326a)",
-      "version": "26 beta 7"
+      "title": "iOS 26 beta 8 (23A5330a)",
+      "version": "26 beta 8"
     },
     {
-      "build": "25A5346a",
+      "build": "25A5349a",
       "downloads_url": "https://developer.apple.com/download",
       "platform": "macOS",
       "release_notes_url": "https://developer.apple.com/go/?id=macos-26-rn",
-      "released": "2025-08-18",
+      "released": "2025-08-25",
       "source_card_url": "https://developer.apple.com/news/releases/",
-      "title": "macOS 26 beta 7 (25A5346a)",
-      "version": "26 beta 7"
+      "title": "macOS 26 beta 8 (25A5349a)",
+      "version": "26 beta 8"
     },
     {
-      "build": "23J5346a",
+      "build": "23J5348a",
       "downloads_url": "https://developer.apple.com/download",
       "platform": "tvOS",
       "release_notes_url": "https://developer.apple.com/go/?id=tvos-26-rn",
-      "released": "2025-08-18",
+      "released": "2025-08-25",
       "source_card_url": "https://developer.apple.com/news/releases/",
-      "title": "tvOS 26 beta 7 (23J5346a)",
-      "version": "26 beta 7"
+      "title": "tvOS 26 beta 8 (23J5348a)",
+      "version": "26 beta 8"
     },
     {
-      "build": "23M5328a",
+      "build": "23M5332a",
       "downloads_url": "https://developer.apple.com/download",
       "platform": "visionOS",
       "release_notes_url": "https://developer.apple.com/go/?id=visionos-26-rn",
-      "released": "2025-08-18",
+      "released": "2025-08-25",
       "source_card_url": "https://developer.apple.com/news/releases/",
-      "title": "visionOS 26 beta 7 (23M5328a)",
-      "version": "26 beta 7"
+      "title": "visionOS 26 beta 8 (23M5332a)",
+      "version": "26 beta 8"
     },
     {
-      "build": "23R5346a",
+      "build": "23R5350a",
       "downloads_url": "https://developer.apple.com/download",
       "platform": "watchOS",
       "release_notes_url": "https://developer.apple.com/go/?id=watchos-26-rn",
-      "released": "2025-08-18",
+      "released": "2025-08-25",
       "source_card_url": "https://developer.apple.com/news/releases/",
-      "title": "watchOS 26 beta 7 (23R5346a)",
-      "version": "26 beta 7"
+      "title": "watchOS 26 beta 8 (23R5350a)",
+      "version": "26 beta 8"
     },
     {
       "build": "21H446",
@@ -104,5 +104,5 @@
       "version": "17.7.6 RC"
     }
   ],
-  "last_updated": "2025-08-25T15:15:45.076009Z"
+  "last_updated": "2025-08-30T09:20:06.986467Z"
 }

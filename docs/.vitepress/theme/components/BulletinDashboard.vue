@@ -175,24 +175,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
+import { useSOFAData } from '../composables/useSOFAData'
 
+// Use composable for bulletin data fetching
+const { data, loading, error } = useSOFAData('feeds/v1/bulletin_data.json')
+
+// Keep bulletinData ref for template compatibility
 const bulletinData = ref({})
-const loading = ref(true)
 
-onMounted(async () => {
-  try {
-    // Use base path from VitePress config
-    const base = import.meta.env.BASE_URL || '/'
-    const response = await fetch(`${base}v1/bulletin_data.json`)
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-    bulletinData.value = await response.json()
-  } catch (e) {
-    console.error('Failed to load bulletin data:', e)
-  } finally {
-    loading.value = false
+// Watch for data changes
+watch(() => data.value, (newData) => {
+  if (newData) {
+    bulletinData.value = newData
   }
 })
 

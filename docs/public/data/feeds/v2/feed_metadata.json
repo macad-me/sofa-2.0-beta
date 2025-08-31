@@ -1,0 +1,42 @@
+{
+  "version": "2.0",
+  "generated": "2025-08-27T05:49:12Z",
+  "feeds": {
+    "macos": {
+      "last_check": "2025-08-27T05:49:12Z",
+      "update_hash": "fa63240e5ea6617140a66823a344c5237c309b81992e51247fdd0a5841f2b5f7",
+      "feed_url": "v2/macos_data_feed.json",
+      "status": "active"
+    },
+    "ios": {
+      "last_check": "2025-08-27T05:49:12Z",
+      "update_hash": "9463b6a030c2b65bb82e1996a0853fa01e083c6c85721c179da97287f60c76ee",
+      "feed_url": "v2/ios_data_feed.json",
+      "status": "active"
+    },
+    "tvos": {
+      "last_check": "2025-08-27T05:49:12Z",
+      "update_hash": "9e8e34730287c4fc06e67e6a0db1b6f7e4af297a21c5cf224e2fd085ba0bd049",
+      "feed_url": "v2/tvos_data_feed.json",
+      "status": "active"
+    },
+    "watchos": {
+      "last_check": "2025-08-27T05:49:12Z",
+      "update_hash": "51e54e885016f6dafc726ee1054cf212c45ec7ed60a5572efb5a7fd0055dfe2e",
+      "feed_url": "v2/watchos_data_feed.json",
+      "status": "active"
+    },
+    "visionos": {
+      "last_check": "2025-08-27T05:49:12Z",
+      "update_hash": "67650408a71589010ec1919cac169f14a4962d6e989765bd7f1bb7b8bbc97a6b",
+      "feed_url": "v2/visionos_data_feed.json",
+      "status": "active"
+    },
+    "safari": {
+      "last_check": "2025-08-27T05:49:12Z",
+      "update_hash": "85dc83b511cd96ed965d87dd46e8514beac9b788d4eacd7f4f558c950f48ca56",
+      "feed_url": "v2/safari_data_feed.json",
+      "status": "active"
+    }
+  }
+}

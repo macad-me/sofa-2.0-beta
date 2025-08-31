@@ -4,7 +4,7 @@ import puppeteer from 'puppeteer';
   const browser = await puppeteer.launch({ headless: 'new' });
   const page = await browser.newPage();
   
-  await page.goto('http://localhost:5175/sofa-2.0/', { waitUntil: 'networkidle2' });
+  await page.goto('http://localhost:5173/sofa-2.0/', { waitUntil: 'networkidle2' });
   await new Promise(r => setTimeout(r, 2000));
   
   const cards = await page.evaluate(() => {

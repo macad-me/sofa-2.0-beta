@@ -177,7 +177,8 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
+import { useSOFAData } from '../composables/useSOFAData'
 import { Monitor, Smartphone, Tv, Watch as WatchIcon, Eye, Tablet } from 'lucide-vue-next'
 
 const platforms = ['All', 'macOS', 'iOS', 'iPadOS', 'tvOS', 'watchOS', 'visionOS']
@@ -288,18 +289,31 @@ const processMacOSInstallers = () => {
   return installers
 }
 
-onMounted(async () => {
-  try {
-    const [history, macos] = await Promise.all([
-      fetch('/sofa-2.0/v1/apple-beta-os-history.json').then(r => r.json()),
-      fetch('/sofa-2.0/v1/macos_data_feed.json').then(r => r.json())
-    ])
-    betaHistory.value = history
-    macosData.value = macos
+// Use composable for data fetching
+const historyInfo = useSOFAData('feeds/v1/apple-beta-os-history.json')
+const macosInfo = useSOFAData('feeds/v2/macos_data_feed.json')
+
+// Watch for data changes
+watch(() => historyInfo.data.value, (newData) => {
+  if (newData) {
+    betaHistory.value = newData
+    betaData.value = processBetaData()
+  }
+})
+
+watch(() => macosInfo.data.value, (newData) => {
+  if (newData) {
+    macosData.value = newData
+    macosInstallers.value = processMacOSInstallers()
+  }
+})
+
+onMounted(() => {
+  // Data loads automatically via composables
+  // Process data when both are loaded
+  if (betaHistory.value && macosData.value) {
     betaData.value = processBetaData()
     macosInstallers.value = processMacOSInstallers()
-  } catch (e) {
-    console.error('Failed to load beta data:', e)
   }
 })
 </script>

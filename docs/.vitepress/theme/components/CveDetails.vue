@@ -23,6 +23,12 @@
               {{ cveData.severity || 'Unknown' }} Severity
             </span>
           </div>
+          <!-- Tags -->
+          <div v-if="cveData.tags && cveData.tags.length > 0" class="cve-tags">
+            <span v-for="tag in cveData.tags" :key="tag" class="tag" :class="getTagClass(tag)">
+              {{ formatTag(tag) }}
+            </span>
+          </div>
         </div>
       </div>
 
@@ -75,6 +81,17 @@
             <div v-if="cveData.impact" class="impact-section">
               <h3>Impact</h3>
               <p>{{ cveData.impact }}</p>
+            </div>
+            <div v-if="cveData.cweList && cveData.cweList.length > 0" class="cwe-section">
+              <h3>CWE Classification</h3>
+              <div class="cwe-list">
+                <a v-for="cwe in cveData.cweList" :key="cwe" 
+                   :href="`https://cwe.mitre.org/data/definitions/${cwe.replace('CWE-', '')}.html`" 
+                   target="_blank" 
+                   class="cwe-link">
+                  {{ cwe }}
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -183,14 +200,12 @@ import { useRoute, useRouter } from 'vitepress'
 import { Monitor, Smartphone, Tv, Watch as WatchIcon, Eye } from 'lucide-vue-next'
 
 // Data will be loaded dynamically
-let macOSData = {}
-let iOSData = {}
-let tvOSData = {}
-let watchOSData = {}
-let visionOSData = {}
-
-
-
+const macOSData = ref({})
+const iOSData = ref({})
+const safariData = ref({})
+const tvOSData = ref({})
+const watchOSData = ref({})
+const visionOSData = ref({})
 
 
 
@@ -213,6 +228,7 @@ const getPlatformIcon = (platform) => {
     'macOS': Monitor,
     'iOS': Smartphone,
     'iPadOS': Smartphone,
+    'Safari': Monitor,
     'tvOS': Tv,
     'watchOS': WatchIcon,
     'visionOS': Eye
@@ -225,6 +241,7 @@ const getPlatformLink = (system) => {
     'macOS': '/macos/sequoia',
     'iOS': '/ios/ios18',
     'iPadOS': '/ios/ios18',
+    'Safari': '/safari/safari18',
     'tvOS': '/tvos/tvos18',
     'watchOS': '/watchos/watchos11',
     'visionOS': '/visionos/visionos2'
@@ -279,8 +296,32 @@ const goBack = () => {
     window.history.back()
   } else {
     // Use window.location for better compatibility
-    window.location.href = '/cve-search'
+    const base = import.meta.env.BASE_URL || '/'
+    window.location.href = `${base}cve-search`
   }
+}
+
+const formatTag = (tag) => {
+  // Format tags for display
+  if (tag.startsWith('platform:')) {
+    return tag.replace('platform:', '').toUpperCase()
+  }
+  if (tag === 'bypass') return 'Security Bypass'
+  if (tag === 'memory') return 'Memory Corruption'
+  if (tag === 'code-execution') return 'Code Execution'
+  if (tag === 'privilege-escalation') return 'Privilege Escalation'
+  if (tag === 'dos') return 'Denial of Service'
+  if (tag === 'information-disclosure') return 'Info Disclosure'
+  return tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' ')
+}
+
+const getTagClass = (tag) => {
+  // Return class based on tag type
+  if (tag.startsWith('platform:')) return 'tag-platform'
+  if (['bypass', 'code-execution', 'privilege-escalation'].includes(tag)) return 'tag-critical'
+  if (['memory', 'dos'].includes(tag)) return 'tag-high'
+  if (['information-disclosure'].includes(tag)) return 'tag-medium'
+  return 'tag-default'
 }
 
 const searchCveInFeed = (dataFeed, platform) => {
@@ -311,76 +352,177 @@ const searchCveInFeed = (dataFeed, platform) => {
   return results
 }
 
-const loadCveDetails = () => {
+const loadCveDetails = async () => {
   if (!cveId.value) {
     loading.value = false
     return
   }
   
+  // First try to load CVE data from the NDJSON file
+  let cveContextData = null
+  let kevData = null
+  
+  try {
+    const base = import.meta.env.BASE_URL || '/'
+    
+    // Load NDJSON context data
+    const ndjsonResponse = await fetch(`${base}resources/apple_cves_with_context.ndjson`)
+    if (ndjsonResponse.ok) {
+      const text = await ndjsonResponse.text()
+      const lines = text.split('\n').filter(line => line.trim())
+      
+      // Skip metadata line and search for our CVE
+      for (let i = 1; i < lines.length; i++) {
+        try {
+          const data = JSON.parse(lines[i])
+          if (data.cve_id === cveId.value) {
+            cveContextData = data
+            break
+          }
+        } catch (e) {
+          console.warn('Failed to parse NDJSON line:', e)
+        }
+      }
+    }
+    
+    // Load KEV catalog data if CVE is in KEV
+    if (cveContextData?.is_in_kev_catalog) {
+      const kevResponse = await fetch(`${base}resources/kev_catalog.json`)
+      if (kevResponse.ok) {
+        const kevCatalog = await kevResponse.json()
+        kevData = kevCatalog.vulnerabilities?.find(v => v.cveID === cveId.value)
+      }
+    }
+  } catch (error) {
+    console.warn('Failed to load CVE data:', error)
+  }
+  
   // Search across all platforms
-  const macOSResults = searchCveInFeed(macOSData, 'macOS')
-  const iOSResults = searchCveInFeed(iOSData, 'iOS')
-  const tvOSResults = searchCveInFeed(tvOSData, 'tvOS')
-  const watchOSResults = searchCveInFeed(watchOSData, 'watchOS')
-  const visionOSResults = searchCveInFeed(visionOSData, 'visionOS')
+  const macOSResults = searchCveInFeed(macOSData.value, 'macOS')
+  const iOSResults = searchCveInFeed(iOSData.value, 'iOS')
+  const safariResults = searchCveInFeed(safariData.value, 'Safari')
+  const tvOSResults = searchCveInFeed(tvOSData.value, 'tvOS')
+  const watchOSResults = searchCveInFeed(watchOSData.value, 'watchOS')
+  const visionOSResults = searchCveInFeed(visionOSData.value, 'visionOS')
   
   const allResults = [
     ...macOSResults,
     ...iOSResults,
+    ...safariResults,
     ...tvOSResults,
     ...watchOSResults,
     ...visionOSResults
   ]
   
-  if (allResults.length > 0) {
-    // Aggregate the data
-    const firstResult = allResults[0]
+  if (allResults.length > 0 || cveContextData) {
+    // Use context data if available
+    const firstResult = allResults[0] || {}
     
     // Generate a meaningful description based on affected systems
-    const affectedPlatforms = [...new Set(allResults.map(r => r.platform))].join(', ')
-    const affectedVersions = [...new Set(allResults.map(r => r.version))].join(', ')
+    const affectedPlatforms = cveContextData?.platforms_with_fix?.join(', ') || 
+                              [...new Set(allResults.map(r => r.platform))].join(', ')
+    const affectedVersions = cveContextData?.os_versions_with_fix?.join(', ') ||
+                             [...new Set(allResults.map(r => r.version))].join(', ')
     
-    // Create description based on what we know
-    const baseDescription = firstResult.description || 
-      `A security vulnerability that affects ${affectedPlatforms}. This issue has been addressed in version${allResults.length > 1 ? 's' : ''} ${affectedVersions}.`
+    // Create description based on what we know - prioritize KEV data
+    const baseDescription = kevData?.shortDescription || 
+                           firstResult.description || 
+                           `A security vulnerability that affects ${affectedPlatforms}. This issue has been addressed in version${(cveContextData?.os_versions_with_fix?.length || allResults.length) > 1 ? 's' : ''} ${affectedVersions}.`
+    
+    // Use KEV status from context data or fallback to feed data
+    const isKev = cveContextData?.is_in_kev_catalog || 
+                  cveContextData?.is_actively_exploited ||
+                  allResults.some(r => r.isKev)
     
     // Determine severity based on KEV status and number of affected systems
-    const isKev = allResults.some(r => r.isKev)
     const severity = isKev ? 'Critical' : 
-                    allResults.length > 3 ? 'High' : 
-                    allResults.length > 1 ? 'Medium' : 'Low'
+                    (cveContextData?.total_releases_with_fix || allResults.length) > 3 ? 'High' : 
+                    (cveContextData?.total_releases_with_fix || allResults.length) > 1 ? 'Medium' : 'Low'
     
     const cvssScore = isKev ? 9.1 : 
-                     allResults.length > 3 ? 7.5 : 
-                     allResults.length > 1 ? 5.5 : 3.5
+                     (cveContextData?.total_releases_with_fix || allResults.length) > 3 ? 7.5 : 
+                     (cveContextData?.total_releases_with_fix || allResults.length) > 1 ? 5.5 : 3.5
     
     cveData.value = {
       id: cveId.value,
       description: baseDescription,
       isKev: isKev,
-      affectedSystems: allResults.map(r => ({
+      affectedSystems: allResults.length > 0 ? allResults.map(r => ({
         platform: r.platform,
         version: r.version,
         updateName: r.updateName,
         productName: r.productName
+      })) : (cveContextData?.platforms_with_fix || []).map(p => ({
+        platform: p,
+        version: cveContextData?.os_versions_with_fix?.join(', ') || 'Multiple',
+        updateName: 'Security Update',
+        productName: p
       })),
-      publishedDate: firstResult.releaseDate,
-      modifiedDate: firstResult.releaseDate,
-      fixedDate: firstResult.releaseDate,
-      appleUrl: firstResult.appleUrl,
+      publishedDate: cveContextData?.first_fix_date || firstResult.releaseDate,
+      modifiedDate: cveContextData?.last_fix_date || firstResult.releaseDate,
+      fixedDate: cveContextData?.first_fix_date || firstResult.releaseDate,
+      appleUrl: cveContextData?.apple_security_index_urls?.[0] || 
+                cveContextData?.apple_security_bulletin_urls?.[0] || 
+                firstResult.appleUrl,
       severity: severity,
       cvssScore: cvssScore,
       cvssVector: `CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:${isKev ? 'H' : 'L'}/I:${isKev ? 'H' : 'L'}/A:${isKev ? 'H' : 'N'}`,
-      impact: isKev ? 
+      impact: kevData ? 
+        `${kevData.vulnerabilityName}. ${kevData.requiredAction} Due date: ${kevData.dueDate}.` :
+        isKev ? 
         'This vulnerability is known to be actively exploited in the wild. Immediate patching is strongly recommended.' :
-        'This vulnerability could potentially be exploited to compromise system security. Timely patching is recommended.'
+        'This vulnerability could potentially be exploited to compromise system security. Timely patching is recommended.',
+      // Add KEV specific data
+      vulnerabilityName: kevData?.vulnerabilityName || '',
+      cweList: kevData?.cwes || [],
+      kevNotes: kevData?.notes || '',
+      kevDateAdded: kevData?.dateAdded || '',
+      kevDueDate: kevData?.dueDate || '',
+      // Add context data references
+      references: [
+        ...(cveContextData?.apple_security_index_urls || []).map(url => ({
+          source: 'Apple Security',
+          url: url
+        })),
+        ...(cveContextData?.apple_security_bulletin_urls || []).map(url => ({
+          source: 'Apple Bulletin',
+          url: url
+        })),
+        ...(cveContextData?.nist_nvd_url ? [{
+          source: 'NIST NVD',
+          url: cveContextData.nist_nvd_url
+        }] : [])
+      ],
+      tags: cveContextData?.tags || []
     }
   }
   
   loading.value = false
 }
 
-onMounted(() => {
+onMounted(async () => {
+  // Load all data feeds first
+  try {
+    const base = import.meta.env.BASE_URL || '/'
+    const [macOS, iOS, safari, tvOS, watchOS, visionOS] = await Promise.all([
+      fetch(`${base}v2/macos_data_feed.json`).then(r => r.json()),
+      fetch(`${base}v2/ios_data_feed.json`).then(r => r.json()),
+      fetch(`${base}v2/safari_data_feed.json`).then(r => r.json()),
+      fetch(`${base}v2/tvos_data_feed.json`).then(r => r.json()),
+      fetch(`${base}v2/watchos_data_feed.json`).then(r => r.json()),
+      fetch(`${base}v2/visionos_data_feed.json`).then(r => r.json())
+    ])
+    macOSData.value = macOS
+    iOSData.value = iOS
+    safariData.value = safari
+    tvOSData.value = tvOS
+    watchOSData.value = watchOS
+    visionOSData.value = visionOS
+  } catch (e) {
+    console.error('Failed to load data feeds:', e)
+  }
+  
+  // Then load CVE details
   loadCveDetails()
 })
 </script>
@@ -481,6 +623,55 @@ onMounted(() => {
   background: rgba(34, 197, 94, 0.1);
   color: #22c55e;
   border-color: rgba(34, 197, 94, 0.2);
+}
+
+/* Tags styling */
+.cve-tags {
+  display: flex;
+  gap: 0.375rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.tag-platform {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand);
+  border: 1px solid var(--vp-c-brand);
+}
+
+.tag-critical {
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.tag-high {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.tag-medium {
+  background: rgba(251, 191, 36, 0.1);
+  color: #f59e0b;
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.tag-default {
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-2);
+  border: 1px solid var(--vp-c-divider);
 }
 
 .back-btn {
@@ -691,11 +882,43 @@ onMounted(() => {
   border-top: 1px solid var(--vp-c-divider-light);
 }
 
-.impact-section h3 {
+.impact-section h3,
+.cwe-section h3 {
   font-size: 1rem;
   font-weight: 600;
   color: var(--vp-c-text-1);
   margin: 0 0 0.5rem 0;
+}
+
+.cwe-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--vp-c-divider-light);
+}
+
+.cwe-list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cwe-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--vp-c-brand);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cwe-link:hover {
+  background: var(--vp-c-brand-soft);
+  border-color: var(--vp-c-brand);
 }
 
 .cvss-info {

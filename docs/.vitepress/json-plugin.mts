@@ -7,7 +7,11 @@ export function jsonPlugin() {
     resolveId(id) {
       if (id.startsWith('@v1/') || id.startsWith('/v1/')) {
         const fileName = id.replace('@v1/', '').replace('/v1/', '')
-        return resolve(__dirname, '../v1', fileName)
+        return resolve(__dirname, '../../data/feeds/v1', fileName)
+      }
+      if (id.startsWith('@resources/')) {
+        const fileName = id.replace('@resources/', '')
+        return resolve(__dirname, '../../data/resources', fileName)
       }
     },
     load(id) {

@@ -1,0 +1,26 @@
+{
+  "iOS": {
+    "LastCheck": "2025-08-28T08:00:01+0000Z",
+    "UpdateHash": "b99554f6bfdb52203135b18cd9a2b0b6d5f0dc55629947727cc42ae694affc0b"
+  },
+  "Safari": {
+    "LastCheck": "2025-08-28T08:00:01+0000Z",
+    "UpdateHash": "c410e6e5d538a98eee0d3556c0b0eef1326b4cdbbb3cc3e925201cf69586fc23"
+  },
+  "tvOS": {
+    "LastCheck": "2025-08-28T08:00:01+0000Z",
+    "UpdateHash": "ab22a0945c7c06176d149a03f79e732e91ab00d0a018be8791f7d3db326f1f8e"
+  },
+  "visionOS": {
+    "LastCheck": "2025-08-28T08:00:01+0000Z",
+    "UpdateHash": "4d377683bfd1e622397849da3d69b7b06a72e18ad49ed374735cb8c621d45bf4"
+  },
+  "macOS": {
+    "LastCheck": "2025-08-28T08:00:01+0000Z",
+    "UpdateHash": "f5a388e37fb2eeb85bf401378437b036b64cd055b52478a45275fac18c721e80"
+  },
+  "watchOS": {
+    "LastCheck": "2025-08-28T08:00:01+0000Z",
+    "UpdateHash": "67649102d7b1df1abb460d4d3e33c58711da33697f8f5ff759e1a3fde5222b3c"
+  }
+}

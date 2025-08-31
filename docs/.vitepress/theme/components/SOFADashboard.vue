@@ -35,6 +35,58 @@
           {{ starCount }}
         </a>
       </div>
+      
+      <!-- Preferences Button -->
+      <div class="preferences-control">
+        <button 
+          @click="showOrderControls = !showOrderControls"
+          class="preferences-btn"
+          :class="{ active: showOrderControls }"
+          title="Customize dashboard layout"
+        >
+          <component :is="SettingsIcon" class="h-4 w-4" />
+          <span>Customize Layout</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Preferences Panel -->
+    <div v-if="showOrderControls" class="preferences-panel">
+      <div class="preferences-header">
+        <h3>Customize Dashboard Layout</h3>
+        <button @click="resetToDefault" class="reset-btn">
+          <component :is="RotateCcwIcon" class="h-4 w-4" />
+          Reset to Default
+        </button>
+      </div>
+      <div class="preferences-info">
+        Drag cards or use arrows to reorder your dashboard. Changes are saved automatically.
+      </div>
+      <div class="order-list">
+        <div v-for="(cardId, index) in bentoOrder" :key="cardId" class="order-item">
+          <div class="order-item-name">
+            {{ getCardName(cardId) }}
+          </div>
+          <div class="order-controls">
+            <button 
+              @click="moveCard(index, 'up')" 
+              :disabled="index === 0"
+              class="move-btn"
+              :class="{ disabled: index === 0 }"
+            >
+              <component :is="ArrowUpIcon" class="h-4 w-4" />
+            </button>
+            <button 
+              @click="moveCard(index, 'down')" 
+              :disabled="index === bentoOrder.length - 1"
+              class="move-btn"
+              :class="{ disabled: index === bentoOrder.length - 1 }"
+            >
+              <component :is="ArrowDownIcon" class="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Platform Navigation -->
@@ -65,7 +117,7 @@
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Beta</span>
         </template>
         <div class="grid grid-cols-1 gap-3 flex-grow">
-          <a v-if="bulletinData?.beta_releases?.macos" href="/macos/tahoe26" class="block">
+          <a v-if="bulletinData?.beta_releases?.macos" :href="`${baseUrl}/macos/tahoe26`" class="block">
             <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-emerald-300 dark:hover:border-emerald-600 transition-all duration-150">
               <div class="space-y-1">
                 <div class="flex items-center gap-1">
@@ -81,7 +133,7 @@
               </div>
             </div>
           </a>
-          <a v-if="bulletinData?.beta_releases?.ios" href="/ios/ios26" class="block">
+          <a v-if="bulletinData?.beta_releases?.ios" :href="`${baseUrl}/ios/ios26`" class="block">
             <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-emerald-300 dark:hover:border-emerald-600 transition-all duration-150">
               <div class="space-y-1">
                 <div class="flex items-center gap-1">
@@ -113,7 +165,7 @@
           <a 
             v-for="(version, idx) in macosVersions.slice(0, 2)"
             :key="idx"
-            :href="version.version.startsWith('14') ? `/macos/sonoma` : `/macos/sequoia`"
+            :href="version.version.startsWith('14') ? `${baseUrl}/macos/sonoma` : `${baseUrl}/macos/sequoia`"
             class="block"
           >
             <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-150">
@@ -154,7 +206,7 @@
           <a 
             v-for="(version, idx) in iosVersions.slice(0, 2)"
             :key="idx"
-            :href="version.version.startsWith('17') ? `/ios/ios17` : `/ios/ios18`"
+            :href="version.version.startsWith('17') ? `${baseUrl}/ios/ios17` : `${baseUrl}/ios/ios18`"
             class="block"
           >
             <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-150">
@@ -192,7 +244,7 @@
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">Latest</span>
         </template>
         <div class="grid grid-cols-1 gap-3 flex-grow">
-          <a v-if="watchOSVersion" href="/watchos/watchos11" class="block">
+          <a v-if="watchOSVersion" :href="`${baseUrl}/watchos/watchos11`" class="block">
             <div class="group/btn p-4 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
               <div class="space-y-2">
                 <div class="flex items-center justify-between">
@@ -215,7 +267,7 @@
               </div>
             </div>
           </a>
-          <a v-if="tvOSVersion" href="/tvos/tvos18" class="block">
+          <a v-if="tvOSVersion" :href="`${baseUrl}/tvos/tvos18`" class="block">
             <div class="group/btn p-4 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
               <div class="space-y-2">
                 <div class="flex items-center justify-between">
@@ -238,7 +290,7 @@
               </div>
             </div>
           </a>
-          <a v-if="visionOSVersion" href="/visionos/visionos2" class="block">
+          <a v-if="visionOSVersion" :href="`${baseUrl}/visionos/visionos2`" class="block">
             <div class="group/btn p-4 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
               <div class="space-y-2">
                 <div class="flex items-center justify-between">
@@ -274,7 +326,7 @@
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Latest</span>
         </template>
         <div class="grid grid-cols-1 gap-3 flex-grow">
-          <a v-if="safariVersion" href="/safari/safari18" class="block">
+          <a v-if="safariVersion" :href="`${baseUrl}/safari/safari18`" class="block">
             <div class="group/btn p-4 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-150">
               <div class="space-y-2">
                 <div class="flex items-center justify-between">
@@ -359,10 +411,10 @@
                 <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Last Check</span>
               </div>
               <div class="text-lg font-bold text-blue-700 dark:text-blue-300">
-                {{ currentTime.local.time }}
+                {{ macosTime.local.time }}
               </div>
               <div class="text-xs text-gray-500 dark:text-gray-400">
-                Local • {{ currentTime.local.date }}
+                Local • {{ macosTime.local.date }}
               </div>
             </div>
             <div class="space-y-1">
@@ -371,7 +423,7 @@
                 <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">UTC</span>
               </div>
               <div class="text-sm font-bold text-blue-700 dark:text-blue-300">
-                {{ currentTime.utc.full }}
+                {{ macosTime.utc.full }}
               </div>
               <div class="text-xs text-gray-500 dark:text-gray-400">
                 Coordinated Universal Time
@@ -384,8 +436,8 @@
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Update Hash (SHA-256)</span>
             </div>
             <div class="flex items-center justify-between">
-              <span class="text-sm font-mono text-blue-700 dark:text-blue-300">
-                {{ updateHash.substring(0, 12) }}...{{ updateHash.slice(-12) }}
+              <span class="text-sm font-mono text-blue-700 dark:text-blue-300" :title="updateHash">
+                {{ updateHash ? `${updateHash.substring(0, 12)}...${updateHash.slice(-12)}` : 'Loading...' }}
               </span>
               <button 
                 @click.stop="copyToClipboard(updateHash, 'macos-hash')"
@@ -399,7 +451,7 @@
         </div>
         <template #footer>
           <button
-            @click="copyToClipboard('https://sofafeed.macadmins.io/v1/macos_data_feed.json', 'macos-footer')"
+            @click="copyToClipboard('https://sofafeed.macadmins.io/v2/macos_data_feed.json', 'macos-footer')"
             class="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 flex items-center gap-1 transition-colors"
           >
             <component :is="copiedItem === 'macos-footer' ? CheckCircle2Icon : ClipboardIcon" class="h-3 w-3" :class="copiedItem === 'macos-footer' ? 'text-green-500' : ''" />
@@ -425,10 +477,10 @@
                 <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Last Check</span>
               </div>
               <div class="text-lg font-bold text-purple-700 dark:text-purple-300">
-                {{ currentTime.local.time }}
+                {{ iosTime.local.time }}
               </div>
               <div class="text-xs text-gray-500 dark:text-gray-400">
-                Local • {{ currentTime.local.date }}
+                Local • {{ iosTime.local.date }}
               </div>
             </div>
             <div class="space-y-1">
@@ -437,7 +489,7 @@
                 <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">UTC</span>
               </div>
               <div class="text-sm font-bold text-purple-700 dark:text-purple-300">
-                {{ currentTime.utc.full }}
+                {{ iosTime.utc.full }}
               </div>
               <div class="text-xs text-gray-500 dark:text-gray-400">
                 Coordinated Universal Time
@@ -450,11 +502,11 @@
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Update Hash (SHA-256)</span>
             </div>
             <div class="flex items-center justify-between">
-              <span class="text-sm font-mono text-purple-700 dark:text-purple-300">
-                cef30622...70d087c
+              <span class="text-sm font-mono text-purple-700 dark:text-purple-300" :title="iosUpdateHash">
+                {{ iosUpdateHash ? `${iosUpdateHash.substring(0, 12)}...${iosUpdateHash.slice(-12)}` : 'Loading...' }}
               </span>
               <button 
-                @click.stop="copyToClipboard('cef30622604abdf52b2dcd44040239210907d56d9592cfc693c017c3470d087c', 'ios-hash')"
+                @click.stop="copyToClipboard(iosUpdateHash, 'ios-hash')"
                 class="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                 title="Copy full hash"
               >
@@ -465,7 +517,7 @@
         </div>
         <template #footer>
           <button
-            @click="copyToClipboard('https://sofafeed.macadmins.io/v1/ios_data_feed.json', 'ios-footer')"
+            @click="copyToClipboard('https://sofafeed.macadmins.io/v2/ios_data_feed.json', 'ios-footer')"
             class="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 flex items-center gap-1 transition-colors"
           >
             <component :is="copiedItem === 'ios-footer' ? CheckCircle2Icon : ClipboardIcon" class="h-3 w-3" :class="copiedItem === 'ios-footer' ? 'text-green-500' : ''" />
@@ -481,31 +533,63 @@
         card-class="hover:border-gray-400 dark:hover:border-gray-500"
       >
         <template #badge>
-          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">Status</span>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md"
+                :class="{
+                  'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200': apiStatus.color === 'green',
+                  'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200': apiStatus.color === 'yellow',
+                  'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200': apiStatus.color === 'red',
+                  'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400': apiStatus.color === 'gray'
+                }">{{ apiStatus.status }}</span>
         </template>
         <div class="grid grid-cols-2 gap-3 flex-grow">
           <div class="space-y-1">
             <div class="flex items-center gap-1">
-              <component :is="ActivityIcon" class="h-3.5 w-3.5 text-gray-600" />
+              <component :is="ActivityIcon" class="h-3.5 w-3.5"
+                         :class="{
+                           'text-green-600': macOSFeedStatus.color === 'green',
+                           'text-yellow-600': macOSFeedStatus.color === 'yellow',
+                           'text-red-600': macOSFeedStatus.color === 'red',
+                           'text-gray-600': macOSFeedStatus.color === 'gray'
+                         }" />
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">macOS Feed</span>
             </div>
-            <div class="text-lg font-bold text-gray-700 dark:text-gray-300">
-              Live
+            <div class="text-lg font-bold flex items-center gap-1"
+                 :class="{
+                   'text-green-700 dark:text-green-300': macOSFeedStatus.color === 'green',
+                   'text-yellow-700 dark:text-yellow-300': macOSFeedStatus.color === 'yellow',
+                   'text-red-700 dark:text-red-300': macOSFeedStatus.color === 'red',
+                   'text-gray-700 dark:text-gray-300': macOSFeedStatus.color === 'gray'
+                 }">
+              <span>{{ macOSFeedStatus.status }}</span>
+              <span class="text-xs">{{ macOSFeedStatus.indicator }}</span>
             </div>
             <div class="text-xs text-gray-500 dark:text-gray-400">
-              {{ currentTime.local.time }}
+              {{ macosTime.local.time }}
             </div>
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-1">
-              <component :is="ActivityIcon" class="h-3.5 w-3.5 text-gray-600" />
+              <component :is="ActivityIcon" class="h-3.5 w-3.5"
+                         :class="{
+                           'text-green-600': iOSFeedStatus.color === 'green',
+                           'text-yellow-600': iOSFeedStatus.color === 'yellow',
+                           'text-red-600': iOSFeedStatus.color === 'red',
+                           'text-gray-600': iOSFeedStatus.color === 'gray'
+                         }" />
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">iOS Feed</span>
             </div>
-            <div class="text-lg font-bold text-gray-700 dark:text-gray-300">
-              Live
+            <div class="text-lg font-bold flex items-center gap-1"
+                 :class="{
+                   'text-green-700 dark:text-green-300': iOSFeedStatus.color === 'green',
+                   'text-yellow-700 dark:text-yellow-300': iOSFeedStatus.color === 'yellow',
+                   'text-red-700 dark:text-red-300': iOSFeedStatus.color === 'red',
+                   'text-gray-700 dark:text-gray-300': iOSFeedStatus.color === 'gray'
+                 }">
+              <span>{{ iOSFeedStatus.status }}</span>
+              <span class="text-xs">{{ iOSFeedStatus.indicator }}</span>
             </div>
             <div class="text-xs text-gray-500 dark:text-gray-400">
-              {{ currentTime.local.time }}
+              {{ iosTime.local.time }}
             </div>
           </div>
           <div class="space-y-1">
@@ -513,31 +597,51 @@
               <component :is="ShieldIcon" class="h-3.5 w-3.5 text-gray-600" />
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Hash Check</span>
             </div>
-            <div class="text-lg font-bold text-gray-700 dark:text-gray-300 font-mono text-sm">
-              {{ updateHash.substring(0, 8) }}
-            </div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">
-              Verified
+            <div class="text-sm font-mono text-gray-600 dark:text-gray-400">
+              <div class="flex items-center gap-1">
+                <span class="text-xs">macOS:</span>
+                <span class="font-bold text-gray-700 dark:text-gray-300">{{ macosHashRef ? macosHashRef.substring(0, 8) : '--' }}</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <span class="text-xs">iOS:</span>
+                <span class="font-bold text-gray-700 dark:text-gray-300">{{ iosHashRef ? iosHashRef.substring(0, 8) : '--' }}</span>
+              </div>
             </div>
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-1">
-              <component :is="ServerIcon" class="h-3.5 w-3.5 text-gray-600" />
+              <component :is="ServerIcon" class="h-3.5 w-3.5"
+                         :class="{
+                           'text-green-600': apiStatus.color === 'green',
+                           'text-yellow-600': apiStatus.color === 'yellow',
+                           'text-red-600': apiStatus.color === 'red',
+                           'text-gray-600': apiStatus.color === 'gray'
+                         }" />
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">API Status</span>
             </div>
-            <div class="text-lg font-bold text-green-700 dark:text-green-300">
-              Online
+            <div class="text-lg font-bold"
+                 :class="{
+                   'text-green-700 dark:text-green-300': apiStatus.color === 'green',
+                   'text-yellow-700 dark:text-yellow-300': apiStatus.color === 'yellow',
+                   'text-red-700 dark:text-red-300': apiStatus.color === 'red',
+                   'text-gray-700 dark:text-gray-300': apiStatus.color === 'gray'
+                 }">
+              {{ apiStatus.status }}
             </div>
             <div class="text-xs text-gray-500 dark:text-gray-400">
-              All systems go
+              {{ apiStatus.message }}
             </div>
           </div>
         </div>
+        
         <template #footer>
-          <p class="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
-            <component :is="CheckCircle2Icon" class="h-3 w-3 text-green-500" />
-            All feeds operational
-          </p>
+          <a 
+            href="/how-it-works" 
+            class="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 flex items-center gap-1 transition-colors cursor-pointer"
+          >
+            <component :is="ExternalLinkIcon" class="h-3 w-3" />
+            How it works
+          </a>
         </template>
       </BentoCard>
 
@@ -652,6 +756,84 @@
         </template>
       </BentoCard>
 
+      <!-- V2 Feed Links -->
+      <BentoCard 
+        title="V2 Data Feeds"
+        platform="feeds"
+        :icon="DownloadIcon"
+      >
+        <template #badge>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">Direct Access</span>
+        </template>
+        <div class="space-y-2 flex-grow">
+          <div class="grid grid-cols-1 gap-1.5">
+            <a 
+              href="/data/feeds/v2/macos_data_feed.json" 
+              target="_blank"
+              class="text-xs text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1 transition-colors py-1"
+            >
+              <component :is="FileIcon" class="h-3 w-3" />
+              <span class="flex-grow">macos_data_feed.json</span>
+              <component :is="ExternalLinkIcon" class="h-3 w-3 opacity-50" />
+            </a>
+            <a 
+              href="/data/feeds/v2/ios_data_feed.json" 
+              target="_blank"
+              class="text-xs text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1 transition-colors py-1"
+            >
+              <component :is="FileIcon" class="h-3 w-3" />
+              <span class="flex-grow">ios_data_feed.json</span>
+              <component :is="ExternalLinkIcon" class="h-3 w-3 opacity-50" />
+            </a>
+            <a 
+              href="/data/feeds/v2/tvos_data_feed.json" 
+              target="_blank"
+              class="text-xs text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1 transition-colors py-1"
+            >
+              <component :is="FileIcon" class="h-3 w-3" />
+              <span class="flex-grow">tvos_data_feed.json</span>
+              <component :is="ExternalLinkIcon" class="h-3 w-3 opacity-50" />
+            </a>
+            <a 
+              href="/data/feeds/v2/watchos_data_feed.json" 
+              target="_blank"
+              class="text-xs text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1 transition-colors py-1"
+            >
+              <component :is="FileIcon" class="h-3 w-3" />
+              <span class="flex-grow">watchos_data_feed.json</span>
+              <component :is="ExternalLinkIcon" class="h-3 w-3 opacity-50" />
+            </a>
+            <a 
+              href="/data/feeds/v2/visionos_data_feed.json" 
+              target="_blank"
+              class="text-xs text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1 transition-colors py-1"
+            >
+              <component :is="FileIcon" class="h-3 w-3" />
+              <span class="flex-grow">visionos_data_feed.json</span>
+              <component :is="ExternalLinkIcon" class="h-3 w-3 opacity-50" />
+            </a>
+            <a 
+              href="/data/feeds/v2/safari_data_feed.json" 
+              target="_blank"
+              class="text-xs text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1 transition-colors py-1"
+            >
+              <component :is="FileIcon" class="h-3 w-3" />
+              <span class="flex-grow">safari_data_feed.json</span>
+              <component :is="ExternalLinkIcon" class="h-3 w-3 opacity-50" />
+            </a>
+            <a 
+              href="/data/feeds/v2/feed_metadata.json" 
+              target="_blank"
+              class="text-xs text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1 transition-colors py-1 border-t border-gray-200 dark:border-gray-700 pt-1.5 mt-1"
+            >
+              <component :is="FileIcon" class="h-3 w-3" />
+              <span class="flex-grow font-semibold">feed_metadata.json</span>
+              <component :is="ExternalLinkIcon" class="h-3 w-3 opacity-50" />
+            </a>
+          </div>
+        </div>
+      </BentoCard>
+
       <!-- Apple Beta Releases - Spans 2 columns -->
       <BentoCard 
         title="Apple Beta Releases"
@@ -693,6 +875,88 @@
             <component :is="copiedItem === 'beta-footer' ? CheckCircle2Icon : ClipboardIcon" class="h-3 w-3" :class="copiedItem === 'beta-footer' ? 'text-green-500' : ''" />
             {{ copiedItem === 'beta-footer' ? 'URL Copied!' : 'Copy Beta Feed URL' }}
           </button>
+        </template>
+      </BentoCard>
+
+      <!-- Recent Releases Timeline - Spans 2 columns -->
+      <BentoCard 
+        title="Recent Security Releases"
+        platform="timeline-gradient"
+        :icon="HistoryIcon"
+        class="md:col-span-2 relative"
+      >
+        <template #badge>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">Timeline</span>
+        </template>
+        
+        <!-- Navigation buttons -->
+        <div class="absolute right-4 top-4 flex gap-1 z-10">
+          <button
+            @click="scrollTimeline('left')"
+            :disabled="!canScrollLeft"
+            class="p-1.5 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-150"
+            :class="canScrollLeft ? 'hover:border-green-300 dark:hover:border-green-600 cursor-pointer' : 'opacity-50 cursor-not-allowed'"
+            aria-label="Previous releases"
+          >
+            <component :is="ChevronLeftIcon" class="h-4 w-4 text-gray-600 dark:text-gray-400" />
+          </button>
+          <button
+            @click="scrollTimeline('right')"
+            :disabled="!canScrollRight"
+            class="p-1.5 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-150"
+            :class="canScrollRight ? 'hover:border-green-300 dark:hover:border-green-600 cursor-pointer' : 'opacity-50 cursor-not-allowed'"
+            aria-label="Next releases"
+          >
+            <component :is="ChevronRightIcon" class="h-4 w-4 text-gray-600 dark:text-gray-400" />
+          </button>
+        </div>
+        
+        <div 
+          ref="timelineContainer" 
+          @scroll="checkScrollButtons"
+          class="overflow-x-auto flex-grow scrollbar-hide"
+          style="scroll-behavior: smooth;"
+        >
+          <div class="flex gap-3 pb-2" style="min-width: max-content;">
+            <div v-for="(release, idx) in recentReleases" :key="idx" 
+                 class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150 flex-shrink-0" 
+                 style="width: 200px;">
+              <div class="space-y-1.5">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-gray-500 dark:text-gray-400">{{ release.formattedDate }}</span>
+                  <component :is="CalendarDaysIcon" class="h-3 w-3 text-green-500" />
+                </div>
+                <div>
+                  <div class="text-sm font-bold text-gray-900 dark:text-gray-100 truncate" :title="release.name">
+                    {{ release.name }}
+                  </div>
+                  <div class="text-xs text-gray-600 dark:text-gray-400 mt-0.5">
+                    Version {{ release.version }}
+                  </div>
+                  <a v-if="release.url" :href="release.url" target="_blank" rel="noopener noreferrer" 
+                     class="text-xs text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-1 mt-1">
+                    Details
+                    <component :is="ExternalLinkIcon" class="h-2.5 w-2.5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <template #footer>
+          <div class="flex items-center justify-between">
+            <p class="text-xs text-gray-500 dark:text-gray-400">
+              Showing {{ recentReleases.length }} most recent releases
+            </p>
+            <button 
+              class="inline-flex items-center gap-1 text-xs font-medium text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-colors"
+              @click="scrollTimeline('right')"
+              v-if="canScrollRight"
+            >
+              View more
+              <component :is="ChevronRightIcon" class="h-3 w-3" />
+            </button>
+          </div>
         </template>
       </BentoCard>
 
@@ -748,7 +1012,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, nextTick, watch } from 'vue'
+import { useSOFAData } from '../composables/useSOFAData'
 import BentoGrid from './BentoGrid.vue'
 import BentoCard from './BentoCard.vue' 
 import BentoButton from './BentoButton.vue'
@@ -775,53 +1040,236 @@ import {
   Server as ServerIcon,
   Sparkles as SparklesIcon,
   Heart as HeartIcon,
-  Users as UsersIcon
+  Users as UsersIcon,
+  CalendarDays as CalendarDaysIcon,
+  History as HistoryIcon,
+  ChevronLeft as ChevronLeftIcon,
+  ChevronRight as ChevronRightIcon,
+  Settings as SettingsIcon,
+  ArrowUp as ArrowUpIcon,
+  ArrowDown as ArrowDownIcon,
+  RotateCcw as RotateCcwIcon,
+  FileJson as FileIcon
 } from 'lucide-vue-next'
 
-// Platform navigation data
-const platforms = [
-  { name: 'macos', label: 'Sequoia 15', link: '/macos/sequoia', icon: MonitorIcon, color: 'blue' },
-  { name: 'macos-sonoma', label: 'Sonoma 14', link: '/macos/sonoma', icon: MonitorIcon, color: 'blue' },
-  { name: 'macos-tahoe', label: 'Tahoe 26 Beta', link: '/macos/tahoe26', icon: MonitorIcon, color: 'orange' },
-  { name: 'ios', label: 'iOS/iPadOS 18', link: '/ios/ios18', icon: SmartphoneIcon, color: 'purple' },
-  { name: 'ios-beta', label: 'iOS 26 Beta', link: '/ios/ios26', icon: SmartphoneIcon, color: 'orange' },
-  { name: 'visionos', label: 'visionOS 2', link: '/visionos/visionos2', icon: EyeIcon, color: 'orange' },
-  { name: 'tvos', label: 'tvOS 18', link: '/tvos/tvos18', icon: TvIcon, color: 'green' },
-  { name: 'watchos', label: 'watchOS 11', link: '/watchos/watchos11', icon: WatchIcon, color: 'pink' },
-  { name: 'safari', label: 'Safari 18', link: '/safari/safari18', icon: GlobeIcon, color: 'cyan' }
-]
+// Platform navigation data - computed to handle BASE_URL properly
+const platforms = computed(() => {
+  const base = import.meta.env.BASE_URL || '/'
+  const basePath = base.endsWith('/') ? base.slice(0, -1) : base
+  
+  return [
+    { name: 'macos', label: 'Sequoia 15', link: `${basePath}/macos/sequoia`, icon: MonitorIcon, color: 'blue' },
+    { name: 'macos-sonoma', label: 'Sonoma 14', link: `${basePath}/macos/sonoma`, icon: MonitorIcon, color: 'blue' },
+    { name: 'macos-tahoe', label: 'Tahoe 26 Beta', link: `${basePath}/macos/tahoe26`, icon: MonitorIcon, color: 'orange' },
+    { name: 'ios', label: 'iOS/iPadOS 18', link: `${basePath}/ios/ios18`, icon: SmartphoneIcon, color: 'purple' },
+    { name: 'ios-beta', label: 'iOS 26 Beta', link: `${basePath}/ios/ios26`, icon: SmartphoneIcon, color: 'orange' },
+    { name: 'visionos', label: 'visionOS 2', link: `${basePath}/visionos/visionos2`, icon: EyeIcon, color: 'orange' },
+    { name: 'tvos', label: 'tvOS 18', link: `${basePath}/tvos/tvos18`, icon: TvIcon, color: 'green' },
+    { name: 'watchos', label: 'watchOS 11', link: `${basePath}/watchos/watchos11`, icon: WatchIcon, color: 'pink' },
+    { name: 'safari', label: 'Safari 18', link: `${basePath}/safari/safari18`, icon: GlobeIcon, color: 'cyan' }
+  ]
+})
+
+// Base URL computed property
+const baseUrl = computed(() => {
+  const base = import.meta.env.BASE_URL || '/'
+  return base.endsWith('/') ? base.slice(0, -1) : base
+})
 
 // Real data from JSON feeds
 const macosData = ref({})
 const iosData = ref({})
 const betaDataRaw = ref({})
 const bulletinData = ref({})
+const timestampData = ref({})
 const dataLoaded = ref(false)
+
+// Direct refs for all platform hash and time values
+const macosHashRef = ref('')
+const iosHashRef = ref('')
+const tvosHashRef = ref('')
+const watchosHashRef = ref('')
+const visionosHashRef = ref('')
+const safariHashRef = ref('')
+const macosTimeRef = ref('')
+const iosTimeRef = ref('')
+const tvosTimeRef = ref('')
+const watchosTimeRef = ref('')
+const visionosTimeRef = ref('')
+const safariTimeRef = ref('')
+
+// Timeline navigation refs
+const timelineContainer = ref(null)
+const canScrollLeft = ref(false)
+const canScrollRight = ref(true)
+
+// Preference system for bento order
+const defaultBentoOrder = [
+  'quick-board',
+  'macos',
+  'ios-ipados',
+  'other-platforms',
+  'safari',
+  'community-1',
+  'macos-feed',
+  'ios-feed',
+  'last-updated',
+  'statistics',
+  'beta-releases',
+  'timeline',
+  'community-2'
+]
+
+const bentoOrder = ref([...defaultBentoOrder])
+const showOrderControls = ref(false)
+
+// Load preferences from localStorage
+const loadPreferences = () => {
+  try {
+    const saved = localStorage.getItem('sofa-bento-order')
+    if (saved) {
+      const parsed = JSON.parse(saved)
+      // Validate that all required cards are present
+      if (parsed.length === defaultBentoOrder.length && 
+          defaultBentoOrder.every(id => parsed.includes(id))) {
+        bentoOrder.value = parsed
+      }
+    }
+  } catch (e) {
+    console.error('Failed to load preferences:', e)
+  }
+}
+
+// Save preferences to localStorage
+const savePreferences = () => {
+  try {
+    localStorage.setItem('sofa-bento-order', JSON.stringify(bentoOrder.value))
+  } catch (e) {
+    console.error('Failed to save preferences:', e)
+  }
+}
+
+// Reset to default order
+const resetToDefault = () => {
+  bentoOrder.value = [...defaultBentoOrder]
+  savePreferences()
+}
+
+// Move card in order
+const moveCard = (fromIndex, direction) => {
+  const toIndex = direction === 'up' ? fromIndex - 1 : fromIndex + 1
+  if (toIndex < 0 || toIndex >= bentoOrder.value.length) return
+  
+  const newOrder = [...bentoOrder.value]
+  const [removed] = newOrder.splice(fromIndex, 1)
+  newOrder.splice(toIndex, 0, removed)
+  bentoOrder.value = newOrder
+  savePreferences()
+}
+
+// Get human-readable card name
+const getCardName = (cardId) => {
+  const names = {
+    'quick-board': 'Quick Board',
+    'macos': 'macOS Latest',
+    'ios-ipados': 'iOS & iPadOS',
+    'other-platforms': 'Other Platforms',
+    'safari': 'Safari Updates',
+    'community-1': 'MacAdmins Community (Top)',
+    'macos-feed': 'macOS Data Feed',
+    'ios-feed': 'iOS Data Feed',
+    'last-updated': 'Last Updated Status',
+    'statistics': 'Data Statistics',
+    'beta-releases': 'Apple Beta Releases',
+    'timeline': 'Recent Security Timeline',
+    'community-2': 'MacAdmins Community (Bottom)'
+  }
+  return names[cardId] || cardId
+}
+
+// Create a map of all bento cards for dynamic ordering
+const bentoCards = computed(() => {
+  // This will store all the card configurations
+  // We'll use this in the template to render cards in the preferred order
+  return {
+    'quick-board': { cols: 1, component: 'quick-board' },
+    'macos': { cols: 1, component: 'macos' },
+    'ios-ipados': { cols: 1, component: 'ios-ipados' },
+    'other-platforms': { cols: 1, component: 'other-platforms' },
+    'safari': { cols: 1, component: 'safari' },
+    'community-1': { cols: 1, component: 'community-1' },
+    'macos-feed': { cols: 1, component: 'macos-feed' },
+    'ios-feed': { cols: 1, component: 'ios-feed' },
+    'last-updated': { cols: 1, component: 'last-updated' },
+    'statistics': { cols: 1, component: 'statistics' },
+    'beta-releases': { cols: 1, component: 'beta-releases' },
+    'timeline': { cols: 2, component: 'timeline' }, // Timeline spans 2 columns
+    'community-2': { cols: 1, component: 'community-2' }
+  }
+})
+
+// Use composable for data fetching with proper error handling and fallback
+const bulletin = useSOFAData('resources/bulletin_data.json')
+const macos = useSOFAData('feeds/v2/macos_data_feed.json')
+const ios = useSOFAData('feeds/v2/ios_data_feed.json')
+const beta = useSOFAData('feeds/v1/apple-beta-os-feed.json')
+const metadata = useSOFAData('resources/sofa-status.json', {
+  autoRefresh: true,
+  refreshInterval: 5 * 60 * 1000 // Check every 5 minutes
+})
+
+// Watch for data changes and update local refs
+watch(() => bulletin.data.value, (newData) => {
+  if (newData) {
+    bulletinData.value = newData
+    dataLoaded.value = true
+  }
+})
+
+watch(() => macos.data.value, (newData) => {
+  if (newData) macosData.value = newData
+})
+
+watch(() => ios.data.value, (newData) => {
+  if (newData) iosData.value = newData
+})
+
+watch(() => beta.data.value, (newData) => {
+  if (newData) betaDataRaw.value = newData
+})
+
+watch(() => metadata.data.value, (newData) => {
+  if (newData && newData.pipeline && newData.pipeline.build && newData.pipeline.build.v2) {
+    timestampData.value = newData
+    
+    const platforms = newData.pipeline.build.v2.platforms || {}
+    
+    // Map from sofa-status.json structure to refs
+    macosHashRef.value = platforms.macos?.current_hash || ''
+    iosHashRef.value = platforms.ios?.current_hash || ''
+    tvosHashRef.value = platforms.tvos?.current_hash || ''
+    watchosHashRef.value = platforms.watchos?.current_hash || ''
+    visionosHashRef.value = platforms.visionos?.current_hash || ''
+    safariHashRef.value = platforms.safari?.current_hash || ''
+    
+    // Use last_updated timestamps from the build pipeline
+    macosTimeRef.value = platforms.macos?.last_updated || ''
+    iosTimeRef.value = platforms.ios?.last_updated || ''
+    tvosTimeRef.value = platforms.tvos?.last_updated || ''
+    watchosTimeRef.value = platforms.watchos?.last_updated || ''
+    visionosTimeRef.value = platforms.visionos?.last_updated || ''
+    safariTimeRef.value = platforms.safari?.last_updated || ''
+  }
+})
 
 // Load data on mount
 onMounted(async () => {
-  try {
-    const base = import.meta.env.BASE_URL || '/'
-    
-    // Load bulletin data first - it has all the latest info
-    const bulletinResponse = await fetch(`${base}v1/bulletin_data.json`)
-    if (bulletinResponse.ok) {
-      bulletinData.value = await bulletinResponse.json()
-      dataLoaded.value = true
-    }
-    
-    // Load other feeds for additional details
-    const [macOS, iOS, beta] = await Promise.all([
-      fetch(`${base}v1/macos_data_feed.json`).then(r => r.ok ? r.json() : {}),
-      fetch(`${base}v1/ios_data_feed.json`).then(r => r.ok ? r.json() : {}),
-      fetch(`${base}v1/apple-beta-os-feed.json`).then(r => r.ok ? r.json() : {})
-    ])
-    macosData.value = macOS
-    iosData.value = iOS
-    betaDataRaw.value = beta
-  } catch (e) {
-    console.error('Failed to load dashboard data:', e)
-  }
+  // Load preferences first
+  loadPreferences()
+  
+  // Check scroll buttons after data loads
+  await nextTick()
+  checkScrollButtons()
 })
 
 // Helper function to format dates
@@ -893,21 +1341,25 @@ const betaReleases = computed(() => {
   if (bulletinData.value?.beta_releases) {
     const betas = []
     const betaData = bulletinData.value.beta_releases
-    if (betaData.macos) {
-      betas.push({
-        platform: 'macOS',
-        version: betaData.macos.version,
-        build: betaData.macos.build,
-        releaseDate: formatDate(betaData.macos.released)
-      })
+    const platformMap = {
+      'macos': 'macOS',
+      'ios': 'iOS',
+      'ipados': 'iPadOS',
+      'tvos': 'tvOS',
+      'watchos': 'watchOS',
+      'visionos': 'visionOS'
     }
-    if (betaData.ios) {
-      betas.push({
-        platform: 'iOS',
-        version: betaData.ios.version,
-        build: betaData.ios.build,
-        releaseDate: formatDate(betaData.ios.released)
-      })
+    
+    // Add all platforms from beta_releases
+    for (const [key, platform] of Object.entries(platformMap)) {
+      if (betaData[key]) {
+        betas.push({
+          platform,
+          version: betaData[key].version,
+          build: betaData[key].build,
+          released: formatDate(betaData[key].released)
+        })
+      }
     }
     return betas
   }
@@ -991,33 +1443,179 @@ const visionOSVersion = computed(() => {
   return null
 })
 
-const updateHash = computed(() => {
-  return macosData.value?.UpdateHash || 'a8f47c2d9b3e7f1a4c6d8b2f7e9a1c5d8f3b6a9c2e7d4f1a8b5c9e2d7f6a3c1b8e5'
+const recentReleases = computed(() => {
+  if (!bulletinData.value?.recent_releases) return []
+  
+  // Sort releases by date (newest first) and then by version (highest first)
+  const sorted = [...bulletinData.value.recent_releases].sort((a, b) => {
+    // First sort by date (newest first)
+    const dateA = new Date(a.release_date)
+    const dateB = new Date(b.release_date)
+    const dateDiff = dateB - dateA
+    
+    if (dateDiff !== 0) return dateDiff
+    
+    // If same date, sort by OS priority and version
+    // Priority order: macOS > iOS > visionOS > watchOS > tvOS > Safari
+    const osPriority = {
+      'macOS': 6,
+      'iOS': 5,
+      'visionOS': 4,
+      'watchOS': 3,
+      'tvOS': 2,
+      'Safari': 1
+    }
+    
+    // Extract OS name from release name
+    const getOSName = (name) => {
+      if (name.includes('macOS')) return 'macOS'
+      if (name.includes('iOS')) return 'iOS'
+      if (name.includes('visionOS')) return 'visionOS'
+      if (name.includes('watchOS')) return 'watchOS'
+      if (name.includes('tvOS')) return 'tvOS'
+      if (name.includes('Safari')) return 'Safari'
+      return ''
+    }
+    
+    const osA = getOSName(a.name)
+    const osB = getOSName(b.name)
+    const osPriorityDiff = (osPriority[osB] || 0) - (osPriority[osA] || 0)
+    
+    if (osPriorityDiff !== 0) return osPriorityDiff
+    
+    // If same OS, sort by version number (highest first)
+    const versionA = parseFloat(a.version) || 0
+    const versionB = parseFloat(b.version) || 0
+    return versionB - versionA
+  })
+  
+  // Take the first 10 releases and format them
+  return sorted.slice(0, 10).map(release => ({
+    ...release,
+    formattedDate: formatDate(release.release_date)
+  }))
 })
 
-const currentTime = computed(() => {
-  const now = new Date()
-  return {
-    local: {
-      time: now.toLocaleTimeString('en-US', { 
-        hour: '2-digit', 
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false 
-      }),
-      date: now.toLocaleDateString('en-US', { 
-        month: 'short', 
-        day: 'numeric',
-        year: 'numeric'
-      })
-    },
-    utc: {
-      time: now.toISOString().slice(11, 19) + ' UTC',
-      date: now.toISOString().slice(0, 10),
-      full: now.toISOString().replace('T', ' ').slice(0, 19) + ' UTC'
-    }
+// Timeline navigation functions
+const checkScrollButtons = () => {
+  if (!timelineContainer.value) return
+  
+  const container = timelineContainer.value
+  canScrollLeft.value = container.scrollLeft > 0
+  canScrollRight.value = container.scrollLeft < container.scrollWidth - container.clientWidth - 10
+}
+
+const scrollTimeline = (direction) => {
+  if (!timelineContainer.value) return
+  
+  const container = timelineContainer.value
+  const scrollAmount = 220 // Width of one card plus gap
+  
+  if (direction === 'left') {
+    container.scrollTo({
+      left: Math.max(0, container.scrollLeft - scrollAmount),
+      behavior: 'smooth'
+    })
+  } else {
+    container.scrollTo({
+      left: Math.min(container.scrollWidth, container.scrollLeft + scrollAmount),
+      behavior: 'smooth'
+    })
+  }
+  
+  // Check button states after scrolling
+  setTimeout(checkScrollButtons, 300)
+}
+
+const updateHash = computed(() => {
+  return macosHashRef.value || ''
+})
+
+const iosUpdateHash = computed(() => {
+  return iosHashRef.value || ''
+})
+
+// Helper function to parse timestamp format
+const parseTimestamp = (timestampString) => {
+  if (!timestampString) {
+    return new Date()
+  }
+  // Now using standard ISO format: "2025-08-26T20:55:19Z"
+  return new Date(timestampString)
+}
+
+// Helper function to format time object
+const formatTimeObject = (date) => ({
+  local: {
+    time: date.toLocaleTimeString('en-US', { 
+      hour: '2-digit', 
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false 
+    }),
+    date: date.toLocaleDateString('en-US', { 
+      month: 'short', 
+      day: 'numeric',
+      year: 'numeric'
+    })
+  },
+  utc: {
+    time: date.toISOString().slice(11, 19) + ' UTC',
+    date: date.toISOString().slice(0, 10),
+    full: date.toISOString().replace('T', ' ').slice(0, 19) + ' UTC'
   }
 })
+
+const macosTime = computed(() => {
+  const checkDate = parseTimestamp(macosTimeRef.value)
+  return formatTimeObject(checkDate)
+})
+
+const iosTime = computed(() => {
+  const checkDate = parseTimestamp(iosTimeRef.value)
+  return formatTimeObject(checkDate)
+})
+
+// Keep currentTime for backward compatibility (uses macOS time as default)
+const currentTime = computed(() => macosTime.value)
+
+// Calculate feed freshness
+const getFeedFreshness = (timestamp) => {
+  if (!timestamp) return { status: 'Unknown', color: 'gray' }
+  
+  const feedDate = new Date(timestamp)
+  const now = new Date()
+  const diffMinutes = Math.floor((now - feedDate) / 60000)
+  
+  if (diffMinutes < 60) {
+    return { status: 'Live', color: 'green', indicator: '🟢' }
+  } else if (diffMinutes < 1440) { // 24 hours
+    return { status: 'Recent', color: 'yellow', indicator: '🟡' }
+  } else {
+    return { status: 'Stale', color: 'red', indicator: '🔴' }
+  }
+}
+
+// Computed properties for feed status
+const macOSFeedStatus = computed(() => getFeedFreshness(macosTimeRef.value))
+const iOSFeedStatus = computed(() => getFeedFreshness(iosTimeRef.value))
+
+// Overall API status based on feed loads
+const apiStatus = computed(() => {
+  const hasData = macosHashRef.value && iosHashRef.value
+  const feedsRecent = macOSFeedStatus.value.status !== 'Stale' && iOSFeedStatus.value.status !== 'Stale'
+  
+  if (hasData && feedsRecent) {
+    return { status: 'Online', message: 'All systems operational', color: 'green' }
+  } else if (hasData) {
+    return { status: 'Degraded', message: 'Some feeds outdated', color: 'yellow' }
+  } else {
+    return { status: 'Offline', message: 'Unable to load feeds', color: 'red' }
+  }
+})
+
+// Removed alternating hash display - showing both hashes directly
+
 
 // Track copied items for visual feedback
 const copiedItem = ref<string | null>(null)
@@ -1093,6 +1691,173 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   padding: 0 1.5rem 2rem 1.5rem; /* Remove top padding to use header padding */
   width: 100%;
   overflow: visible; /* Ensure glow is visible */
+}
+
+/* Hide scrollbar for timeline */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Preferences Controls */
+.preferences-control {
+  margin-top: 1rem;
+}
+
+.preferences-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dark .preferences-btn {
+  background: #1f2937;
+  border-color: #374151;
+  color: #9ca3af;
+}
+
+.preferences-btn:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.preferences-btn.active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+}
+
+.preferences-panel {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dark .preferences-panel {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.preferences-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.preferences-header h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.reset-btn:hover {
+  background: #dc2626;
+}
+
+.preferences-info {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+}
+
+.dark .preferences-info {
+  color: #9ca3af;
+}
+
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  transition: background 0.2s;
+}
+
+.dark .order-item {
+  background: #111827;
+  border-color: #374151;
+}
+
+.order-item:hover {
+  background: #f3f4f6;
+}
+
+.dark .order-item:hover {
+  background: #1f2937;
+}
+
+.order-item-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.order-controls {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.move-btn {
+  padding: 0.25rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dark .move-btn {
+  background: #374151;
+  border-color: #4b5563;
+}
+
+.move-btn:hover:not(.disabled) {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+}
+
+.move-btn.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 .sofa-header {

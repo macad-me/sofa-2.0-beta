@@ -1,0 +1,200 @@
+name: Update SOFA Feeds v2
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Every 6 hours
+  workflow_dispatch:
+    inputs:
+      stages:
+        description: 'Pipeline stages to run (comma-separated)'
+        required: false
+        default: 'gather,fetch,build'
+        type: string
+      include_beta:
+        description: 'Include beta feeds'
+        required: false
+        default: false
+        type: boolean
+      include_gdmf:
+        description: 'Force GDMF refresh'
+        required: false
+        default: true
+        type: boolean
+      skip_commit:
+        description: 'Skip committing changes (test mode)'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Python with uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+      
+      - name: Setup binaries for Linux
+        run: |
+          echo "Setting up binaries for Linux environment..."
+          echo "System architecture: $(uname -m)"
+          
+          # Make binaries executable
+          chmod +x bin-linux/sofa-gather bin-linux/sofa-fetch bin-linux/sofa-build bin-linux/sofa-cve
+          
+          # Verify binaries
+          echo "Binary information:"
+          ls -la bin-linux/
+      
+      - name: Run SOFA Pipeline
+        run: |
+          echo "Running SOFA pipeline with custom parameters..."
+          
+          # Parse stages input
+          STAGES="${{ github.event.inputs.stages || 'gather,fetch,build' }}"
+          
+          # Build command arguments
+          ARGS=""
+          if [[ ! -z "$STAGES" ]]; then
+            # Convert comma-separated to space-separated with --stage prefix
+            IFS=',' read -ra STAGE_ARRAY <<< "$STAGES"
+            for stage in "${STAGE_ARRAY[@]}"; do
+              ARGS="$ARGS --stage $stage"
+            done
+          fi
+          
+          # Add optional flags
+          if [[ "${{ github.event.inputs.include_beta }}" == "true" ]]; then
+            echo "Including beta feeds"
+            ARGS="$ARGS --include-beta"
+          fi
+          
+          if [[ "${{ github.event.inputs.include_gdmf }}" == "true" ]]; then
+            echo "Forcing GDMF refresh"
+            ARGS="$ARGS --force-gdmf"
+          fi
+          
+          echo "Pipeline arguments: $ARGS"
+          
+          # Run pipeline from repository root
+          uv run scripts/sofa_pipeline.py run $ARGS || {
+            echo "⚠️ Pipeline failed"
+            exit 1
+          }
+      
+      - name: Generate Manifest
+        run: |
+          echo "Generating data manifest..."
+          python3 scripts/generate_manifest.py
+          
+          # Display manifest summary
+          echo "Manifest summary:"
+          python3 -c "
+          import json
+          with open('data/manifest.json') as f:
+              m = json.load(f)
+              print(f'Version: {m[\"version\"]}')
+              print(f'Health: {m[\"health\"][\"status\"]} ({m[\"health\"][\"score\"]}%)')
+              v2_feeds = m.get('feeds', {}).get('v2', {})
+              available = sum(1 for f in v2_feeds.values() if f.get('status') == 'available')
+              print(f'Feeds: {available}/{len(v2_feeds)} available')
+          "
+      
+      - name: Check and commit changes
+        if: github.event.inputs.skip_commit != 'true'
+        run: |
+          git config user.name "SOFA Bot"
+          git config user.email "sofa-bot@users.noreply.github.com"
+          
+          # Show what files changed
+          echo "Files modified by pipeline:"
+          git status --porcelain data/
+          
+          # Add data files
+          git add data/feeds/v1/*.json 2>/dev/null || true
+          git add data/feeds/v2/*.json 2>/dev/null || true
+          git add data/resources/*.json 2>/dev/null || true
+          git add data/resources/*.ndjson 2>/dev/null || true
+          git add data/manifest.json 2>/dev/null || true
+          
+          if ! git diff --cached --quiet; then
+            # Create detailed commit message
+            TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+            
+            # Extract health info from manifest
+            HEALTH_STATUS=$(python3 -c "import json; m=json.load(open('data/manifest.json')); print(m['health']['status'])" 2>/dev/null || echo "unknown")
+            HEALTH_SCORE=$(python3 -c "import json; m=json.load(open('data/manifest.json')); print(m['health']['score'])" 2>/dev/null || echo "0")
+            
+            git commit -m "Update SOFA feeds [$TIMESTAMP]" \
+              -m "" \
+              -m "Pipeline stages: ${{ github.event.inputs.stages || 'gather,fetch,build' }}" \
+              -m "Health: $HEALTH_STATUS ($HEALTH_SCORE%)" \
+              -m "Beta feeds: ${{ github.event.inputs.include_beta || 'false' }}" \
+              -m "GDMF refresh: ${{ github.event.inputs.include_gdmf || 'true' }}" \
+              -m "" \
+              -m "Automated update via GitHub Actions"
+            
+            git push
+            echo "✅ Changes committed and pushed"
+          else
+            echo "ℹ️ No changes detected"
+          fi
+      
+      - name: Upload manifest artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: data-manifest
+          path: data/manifest.json
+          retention-days: 7
+      
+      - name: Summary
+        if: always()
+        run: |
+          echo "## 📊 SOFA Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f "data/manifest.json" ]; then
+            echo "### Data Health" >> $GITHUB_STEP_SUMMARY
+            python3 -c "
+          import json
+          with open('data/manifest.json') as f:
+              m = json.load(f)
+              print(f'- Status: **{m[\"health\"][\"status\"]}**')
+              print(f'- Score: {m[\"health\"][\"score\"]}%')
+              if m['health'].get('staleness'):
+                  print(f'- Stale feeds: {list(m[\"health\"][\"staleness\"].keys())}')
+            " >> $GITHUB_STEP_SUMMARY
+            
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### Available Feeds" >> $GITHUB_STEP_SUMMARY
+            python3 -c "
+          import json
+          with open('data/manifest.json') as f:
+              m = json.load(f)
+              for version in ['v2', 'v1']:
+                  if version in m.get('feeds', {}):
+                      feeds = m['feeds'][version]
+                      for name, info in feeds.items():
+                          if info.get('status') == 'available':
+                              size = info.get('size', 0)
+                              print(f'- {version}/{name}: {size:,} bytes')
+            " >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ No manifest generated" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Configuration" >> $GITHUB_STEP_SUMMARY
+          echo "- Stages: ${{ github.event.inputs.stages || 'gather,fetch,build' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Beta feeds: ${{ github.event.inputs.include_beta || 'false' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- GDMF refresh: ${{ github.event.inputs.include_gdmf || 'true' }}" >> $GITHUB_STEP_SUMMARY

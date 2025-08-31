@@ -1,6 +1,7 @@
 
 <script setup>
 import { ref, computed, onMounted, watch, nextTick } from 'vue'
+import { useSOFAData } from '../composables/useSOFAData'
 import { useRoute } from 'vitepress'
 
 const macOSData = ref({})
@@ -9,27 +10,6 @@ const tvOSData = ref({})
 const watchOSData = ref({})
 const visionOSData = ref({})
 const safariData = ref({})
-
-onMounted(async () => {
-  try {
-    const [macOS, iOS, tvOS, watchOS, visionOS, safari] = await Promise.all([
-      fetch('/sofa-2.0/v1/macos_data_feed.json').then(r => r.json()),
-      fetch('/sofa-2.0/v1/ios_data_feed.json').then(r => r.json()),
-      fetch('/sofa-2.0/v1/tvos_data_feed.json').then(r => r.json()),
-      fetch('/sofa-2.0/v1/watchos_data_feed.json').then(r => r.json()),
-      fetch('/sofa-2.0/v1/visionos_data_feed.json').then(r => r.json()),
-      fetch('/sofa-2.0/v1/safari_data_feed.json').then(r => r.json())
-    ])
-    macOSData.value = macOS
-    iOSData.value = iOS
-    tvOSData.value = tvOS
-    watchOSData.value = watchOS
-    visionOSData.value = visionOS
-    safariData.value = safari
-  } catch (e) {
-    console.error('Failed to load data feeds:', e)
-  }
-})
 
 const props = defineProps({
   title: {
@@ -62,6 +42,7 @@ const loadSecurityData = async () => {
         data = macOSData.value
         break
       case 'ios':
+      case 'ipados': // Handle iPadOS as iOS since they share the same feed
         data = iOSData.value
         break
       case 'tvos':
@@ -82,22 +63,63 @@ const loadSecurityData = async () => {
 
     const version = props.title.split(' ')[1] // Gets version number
 
-    let releaseData
+    let releaseData = []
+    let latestRelease = null
+    
     if (props.platform.toLowerCase() === 'safari') {
       // Handle Safari data structure
       const appVersionData = data.AppVersions?.find(
         app => app.AppVersion === `Safari ${version}`
       )
-      releaseData = appVersionData?.SecurityReleases
+      releaseData = appVersionData?.SecurityReleases || []
+      latestRelease = appVersionData?.Latest
     } else {
       // Handle OS data structure (macOS, iOS, etc)
+      // For iOS/iPadOS, handle both "iOS 18" and "iPadOS 18" style searches
       const osVersionData = data.OSVersions?.find(
-        os => os.OSVersion.includes(version)
+        os => {
+          // Extract just the version number for iOS/iPadOS
+          if (props.platform.toLowerCase() === 'ios' || props.platform.toLowerCase() === 'ipados') {
+            // Version might be "18" from "iOS 18" or "iPadOS 18" 
+            const versionNum = version.replace(/^(iOS|iPadOS)\s*/i, '')
+            return os.OSVersion.includes(versionNum) || os.OSVersion === `iOS ${versionNum}`
+          }
+          return os.OSVersion.includes(version)
+        }
       )
-      releaseData = osVersionData?.SecurityReleases
+      releaseData = osVersionData?.SecurityReleases || []
+      latestRelease = osVersionData?.Latest
     }
 
-    if (releaseData) {
+    // Check if Latest release should be added to the list
+    if (latestRelease && latestRelease.ProductVersion) {
+      // Check if Latest is already in SecurityReleases
+      const latestInReleases = releaseData.some(
+        release => release.ProductVersion === latestRelease.ProductVersion
+      )
+      
+      if (!latestInReleases) {
+        // Add Latest as the first item if it's not in the releases
+        // Format it to match SecurityReleases structure
+        const latestFormatted = {
+          UpdateName: latestRelease.UpdateName || `${props.platform} ${latestRelease.ProductVersion}`,
+          ProductName: latestRelease.ProductName || props.platform,
+          ProductVersion: latestRelease.ProductVersion,
+          Build: latestRelease.Build,
+          AllBuilds: latestRelease.AllBuilds || [latestRelease.Build],
+          ReleaseDate: latestRelease.ReleaseDate,
+          SecurityInfo: latestRelease.SecurityInfo,
+          SecurityInfoContext: latestRelease.SecurityInfoContext,
+          // Latest typically has no CVEs if it's not in SecurityReleases
+          CVEs: {},
+          ActivelyExploitedCVEs: [],
+          DaysSincePreviousRelease: 0
+        }
+        releaseData = [latestFormatted, ...releaseData]
+      }
+    }
+
+    if (releaseData && releaseData.length > 0) {
       securityUpdates.value = processSecurityData(releaseData)
       
       // Auto-expand the latest version
@@ -168,13 +190,114 @@ const checkAndExpandVersion = async () => {
   }
 }
 
+// Use composable for data fetching
+const macosInfo = useSOFAData('feeds/v2/macos_data_feed.json')
+const iosInfo = useSOFAData('feeds/v2/ios_data_feed.json')
+const tvosInfo = useSOFAData('feeds/v2/tvos_data_feed.json')
+const watchosInfo = useSOFAData('feeds/v2/watchos_data_feed.json')
+const visionosInfo = useSOFAData('feeds/v2/visionos_data_feed.json')
+const safariInfo = useSOFAData('feeds/v2/safari_data_feed.json')
+
+// Track if initial load has happened
+const hasLoadedInitially = ref(false)
+
+// Watch for data changes and update local refs
+watch(() => macosInfo.data.value, async (newData) => {
+  if (newData) {
+    macOSData.value = newData
+    if (props.platform.toLowerCase() === 'macos' && !hasLoadedInitially.value) {
+      hasLoadedInitially.value = true
+      await loadSecurityData()
+      await checkAndExpandVersion()
+    }
+  }
+})
+watch(() => iosInfo.data.value, async (newData) => {
+  if (newData) {
+    iOSData.value = newData
+    if ((props.platform.toLowerCase() === 'ios' || props.platform.toLowerCase() === 'ipados') && !hasLoadedInitially.value) {
+      hasLoadedInitially.value = true
+      await loadSecurityData()
+      await checkAndExpandVersion()
+    }
+  }
+})
+watch(() => tvosInfo.data.value, async (newData) => {
+  if (newData) {
+    tvOSData.value = newData
+    if (props.platform.toLowerCase() === 'tvos' && !hasLoadedInitially.value) {
+      hasLoadedInitially.value = true
+      await loadSecurityData()
+      await checkAndExpandVersion()
+    }
+  }
+})
+watch(() => watchosInfo.data.value, async (newData) => {
+  if (newData) {
+    watchOSData.value = newData
+    if (props.platform.toLowerCase() === 'watchos' && !hasLoadedInitially.value) {
+      hasLoadedInitially.value = true
+      await loadSecurityData()
+      await checkAndExpandVersion()
+    }
+  }
+})
+watch(() => visionosInfo.data.value, async (newData) => {
+  if (newData) {
+    visionOSData.value = newData
+    if (props.platform.toLowerCase() === 'visionos' && !hasLoadedInitially.value) {
+      hasLoadedInitially.value = true
+      await loadSecurityData()
+      await checkAndExpandVersion()
+    }
+  }
+})
+watch(() => safariInfo.data.value, async (newData) => {
+  if (newData) {
+    safariData.value = newData
+    if (props.platform.toLowerCase() === 'safari' && !hasLoadedInitially.value) {
+      hasLoadedInitially.value = true
+      await loadSecurityData()
+      await checkAndExpandVersion()
+    }
+  }
+})
+
+// Combined onMounted to ensure data loads first
 onMounted(async () => {
-  await loadSecurityData()
-  // The saved state is already loaded when the refs are initialized
-  // so the expanded sections will be restored automatically
-  
-  // Check if we need to auto-expand a specific version
-  await checkAndExpandVersion()
+  // Check if data is already available and load immediately
+  if (props.platform.toLowerCase() === 'macos' && macosInfo.data.value) {
+    macOSData.value = macosInfo.data.value
+    hasLoadedInitially.value = true
+    await loadSecurityData()
+    await checkAndExpandVersion()
+  } else if ((props.platform.toLowerCase() === 'ios' || props.platform.toLowerCase() === 'ipados') && iosInfo.data.value) {
+    iOSData.value = iosInfo.data.value
+    hasLoadedInitially.value = true
+    await loadSecurityData()
+    await checkAndExpandVersion()
+  } else if (props.platform.toLowerCase() === 'tvos' && tvosInfo.data.value) {
+    tvOSData.value = tvosInfo.data.value
+    hasLoadedInitially.value = true
+    await loadSecurityData()
+    await checkAndExpandVersion()
+  } else if (props.platform.toLowerCase() === 'watchos' && watchosInfo.data.value) {
+    watchOSData.value = watchosInfo.data.value
+    hasLoadedInitially.value = true
+    await loadSecurityData()
+    await checkAndExpandVersion()
+  } else if (props.platform.toLowerCase() === 'visionos' && visionosInfo.data.value) {
+    visionOSData.value = visionosInfo.data.value
+    hasLoadedInitially.value = true
+    await loadSecurityData()
+    await checkAndExpandVersion()
+  } else if (props.platform.toLowerCase() === 'safari' && safariInfo.data.value) {
+    safariData.value = safariInfo.data.value
+    hasLoadedInitially.value = true
+    await loadSecurityData()
+    await checkAndExpandVersion()
+  }
+  // If data is not available yet, the watchers will handle it
 })
 
 // State for expanded/collapsed sections with persistence
@@ -380,13 +503,14 @@ const areAllCVEGroupsExpanded = (version, groups) => {
 
 // Format CVE data from different possible formats
 const formatCVEData = (cveData) => {
+  const base = import.meta.env.BASE_URL || '/'
   if (typeof cveData === 'string') {
-    return { cve: cveData, link: `/cve-details?cveId=${cveData}` }
+    return { cve: cveData, link: `${base}cve-details?cveId=${cveData}` }
   } else if (typeof cveData === 'object' && cveData !== null) {
     const cveId = cveData.cve || cveData.id || ''
     return {
       cve: cveId,
-      link: cveData.link || cveData.url || `/cve-details?cveId=${cveId}`
+      link: cveData.link || cveData.url || `${base}cve-details?cveId=${cveId}`
     }
   }
   return { cve: '', link: '' }
@@ -394,16 +518,17 @@ const formatCVEData = (cveData) => {
 
 // Process security data to ensure consistent format
 const processSecurityData = (data) => {
+  const base = import.meta.env.BASE_URL || '/'
   return data.map(update => {
     // Process CVEs to ensure consistent format
     const cves = Array.isArray(update.cves) 
       ? update.cves.map(formatCVEData)
-      : Object.keys(update.CVEs || {}).map(cve => ({ cve, link: `/cve-details?cveId=${cve}` }))
+      : Object.keys(update.CVEs || {}).map(cve => ({ cve, link: `${base}cve-details?cveId=${cve}` }))
 
     // Process actively exploited CVEs
     const activelyExploited = Array.isArray(update.activelyExploited)
       ? update.activelyExploited.map(formatCVEData)
-      : (update.ActivelyExploitedCVEs || []).map(cve => ({ cve, link: `/cve-details?cveId=${cve}` }))
+      : (update.ActivelyExploitedCVEs || []).map(cve => ({ cve, link: `${base}cve-details?cveId=${cve}` }))
 
     return {
       version: update.version || update.ProductVersion || '',
@@ -415,7 +540,10 @@ const processSecurityData = (data) => {
         (update.CVEs ? Object.keys(update.CVEs).length : 0) || 0,
       activelyExploited,
       cves,
-      daysToPrevRelease: update.daysToPrevRelease || update.DaysSincePreviousRelease || 0
+      daysToPrevRelease: update.daysToPrevRelease || update.DaysSincePreviousRelease || 0,
+      // v2 fields - note: update_summary has underscore in the data
+      updateSummary: update.update_summary || update.UpdateSummary || null,
+      securityInfoContext: update.SecurityInfoContext || null
     }
   })
 }
@@ -530,6 +658,23 @@ onMounted(async () => {
             </div>
             <div class="expand-icon">
               {{ isVersionExpanded(update.version) ? '−' : '+' }}
+            </div>
+          </div>
+          
+          <!-- v2 Update Summary and Context -->
+          <div v-if="update.updateSummary || update.securityInfoContext" class="update-summary-section">
+            <div v-if="update.updateSummary" class="update-summary">
+              <div v-if="update.updateSummary.summary" class="summary-text">
+                <span class="summary-icon">⚠️</span>
+                {{ update.updateSummary.summary }}
+              </div>
+              <div v-if="update.updateSummary.recommendation" class="recommendation-text">
+                <strong>Recommendation:</strong> {{ update.updateSummary.recommendation }}
+              </div>
+            </div>
+            <div v-if="update.securityInfoContext" class="security-context">
+              <span class="context-icon">ℹ️</span>
+              {{ update.securityInfoContext }}
             </div>
           </div>
           
@@ -927,6 +1072,75 @@ html.dark .security-update-card:hover,
 .dark .expand-icon,
 html.dark .expand-icon {
   color: #9ca3af !important;
+}
+
+/* v2 Update Summary Styles */
+.update-summary-section {
+  padding: 0.75rem 1.25rem;
+  background: rgba(59, 130, 246, 0.05);
+  border-top: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.update-summary {
+  margin-bottom: 0.5rem;
+}
+
+.summary-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #1f2937;
+  margin-bottom: 0.375rem;
+}
+
+.summary-icon {
+  font-size: 1rem;
+}
+
+.recommendation-text {
+  font-size: 0.875rem;
+  color: #dc2626;
+  margin-left: 1.5rem;
+}
+
+.security-context {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.context-icon {
+  font-size: 0.875rem;
+}
+
+/* Dark mode for v2 summary */
+:root.dark .update-summary-section,
+.dark .update-summary-section,
+html.dark .update-summary-section {
+  background: rgba(59, 130, 246, 0.1);
+  border-top-color: rgba(59, 130, 246, 0.2);
+}
+
+:root.dark .summary-text,
+.dark .summary-text,
+html.dark .summary-text {
+  color: #e5e7eb;
+}
+
+:root.dark .recommendation-text,
+.dark .recommendation-text,
+html.dark .recommendation-text {
+  color: #f87171;
+}
+
+:root.dark .security-context,
+.dark .security-context,
+html.dark .security-context {
+  color: #9ca3af;
 }
 
 .update-details {

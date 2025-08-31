@@ -1,93 +1,53 @@
 <template>
-  <div class="sofa-app">
+  <div>
+    <!-- Custom navbar at the top -->
     <CustomNavBar />
-    <div class="layout-container">
-      <!-- Sidebar for non-home pages -->
-      <aside v-if="showSidebar" class="sidebar">
-        <VPSidebar />
-      </aside>
-      
-      <!-- Main content -->
-      <main class="main-content" :class="{ 'with-sidebar': showSidebar }">
-        <Content />
-      </main>
-    </div>
+    
+    <!-- VitePress default layout -->
+    <DefaultTheme.Layout />
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useData, Content } from 'vitepress'
-import { VPSidebar } from 'vitepress/theme'
+import DefaultTheme from 'vitepress/theme'
 import CustomNavBar from './components/CustomNavBar.vue'
-
-const { page, frontmatter } = useData()
-
-const showSidebar = computed(() => {
-  // Don't show sidebar on home page or if explicitly disabled
-  return page.value.relativePath !== 'index.md' && frontmatter.value.sidebar !== false
-})
 </script>
 
-<style scoped>
-.sofa-app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+<style>
+/* Hide default VitePress navbar */
+.VPNav {
+  display: none !important;
 }
 
-.layout-container {
-  flex: 1;
-  display: flex;
+/* Ensure custom navbar stays at top */
+.custom-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 64px;
+  background: var(--vp-c-bg);
+  border-bottom: 1px solid var(--vp-c-divider);
 }
 
-.sidebar {
-  width: 272px;
-  background: var(--vp-c-bg-soft);
-  border-right: 1px solid var(--vp-c-divider);
-  overflow-y: auto;
-  position: sticky;
-  top: 64px;
-  height: calc(100vh - 64px);
+/* Adjust content and sidebar for custom navbar height */
+.VPContent {
+  padding-top: 64px !important;
 }
 
-.main-content {
-  flex: 1;
-  min-width: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+.VPSidebar {
+  top: 64px !important;
+  height: calc(100vh - 64px) !important;
 }
 
-.main-content > * {
-  width: 100%;
+/* Hide sidebar on home page */
+.layout-home .VPSidebar {
+  display: none !important;
 }
 
-.main-content.with-sidebar {
-  max-width: calc(100vw - 272px);
-}
-
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .layout-container {
-    flex-direction: column;
-  }
-  
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: static;
-    border-right: none;
-    border-bottom: 1px solid var(--vp-c-divider);
-  }
-  
-  .main-content.with-sidebar {
-    max-width: 100%;
-  }
-  
-  .main-content {
-    padding: 1rem;
-  }
+/* Ensure doc content doesn't overlap navbar */
+.VPDoc {
+  padding-top: 2rem !important;
 }
 </style>

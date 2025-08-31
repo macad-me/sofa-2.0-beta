@@ -1,6 +1,6 @@
 {
-  "fetch_timestamp": "2025-08-25T14:58:42.511190Z",
-  "fetch_version": "1.0.0",
+  "fetch_timestamp": "2025-08-30T17:39:14.679752Z",
+  "fetch_version": "0.1.0",
   "index_pages": [],
   "detail_pages_count": 0,
   "releases_count": 587,
@@ -18,20 +18,41 @@
       "sha256_hash": null
     }
   ],
-  "execution_time_seconds": 106.639595209,
-  "content_hash": "df17cbf9b6ea30867783047cbe271e6b966bf4be810b325d7f739495d14d330b",
+  "execution_time_seconds": 20.01642125,
+  "content_hash": "bb2a96c51a0f4f8d9d1924617d05746e26b333262c48339d6a6b89752b153925",
   "content_changed": true,
   "change_detection": {
     "enabled": true,
     "method": "sha256_metadata",
-    "cache_hash": "d306643c6fa3a0fe780a0321fb88aded88e8b2ac21296297e7129f9e2d24ca84",
-    "previous_cache_hash": null,
+    "cache_hash": "bbe3226d89a8f2428be1134c57c9cd63c5e6061b28c7e5a6bdae64e949aafa0b",
+    "previous_cache_hash": "728c862db5ddad6f72eaa0073c0fc6c374ec1064cf61d9d03efc3f7a9d92d639",
     "summary": {
-      "files_changed": 0,
-      "files_added": 492,
+      "files_changed": 492,
+      "files_added": 0,
       "files_deleted": 0,
-      "top_changes": [],
-      "history_saved_to": "20250825_150029"
+      "top_changes": [
+        {
+          "file": "html/001ee6cde91b.html",
+          "url": "https://support.apple.com/kb/HT213985"
+        },
+        {
+          "file": "html/0049fbc59b50.html",
+          "url": "https://support.apple.com/kb/HT211214"
+        },
+        {
+          "file": "html/00baebd6a49f.html",
+          "url": "https://support.apple.com/kb/HT213412"
+        },
+        {
+          "file": "html/00f9697e4bb6.html",
+          "url": "https://support.apple.com/kb/HT213480"
+        },
+        {
+          "file": "html/010433b3fb00.html",
+          "url": "https://support.apple.com/kb/HT212003"
+        }
+      ],
+      "history_saved_to": "20250830_173934"
     }
   }
 }

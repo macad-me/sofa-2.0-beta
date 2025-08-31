@@ -210,7 +210,7 @@ onMounted(async () => {
   // Load data first
   try {
     const base = import.meta.env.BASE_URL || '/'
-    const response = await fetch(`${base}v1/macos_data_feed.json`)
+    const response = await fetch(`${base}v2/macos_data_feed.json`)
     macOSData = await response.json()
   } catch (e) {
     console.error('Failed to load installer data:', e)

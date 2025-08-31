@@ -4,10 +4,6 @@ platform: macOS
 layout: doc
 ---
 
-<script setup>
-import BetaFeatures from '../.vitepress/theme/components/BetaFeatures.vue'
-</script>
-
 # macOS Tahoe 26
 
 <BetaFeatures 
