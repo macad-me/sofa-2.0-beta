@@ -125,13 +125,17 @@ jobs:
           echo "    ✅ Extracted files:"
           ls -la bin/
           
-          # Test binaries
-          echo "🧪 Testing binaries..."
+          # Test essential binaries only
+          echo "🧪 Testing essential binaries..."
           cd bin
-          for binary in sofa-*; do
+          ESSENTIAL_BINARIES=("sofa-build" "sofa-cve" "sofa-fetch" "sofa-gather")
+          for binary in "${ESSENTIAL_BINARIES[@]}"; do
             echo "Testing $binary..."
             ./"$binary" --version || echo "⚠️ $binary version check failed"
           done
+          
+          # Clean up non-essential binaries
+          rm -f sofa-init 2>/dev/null || true
           
       - name: Cache SOFA binaries
         uses: actions/cache/save@v3

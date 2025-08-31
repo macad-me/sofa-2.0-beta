@@ -69,20 +69,28 @@ jobs:
           
       - name: Test binary execution
         run: |
-          echo "🧪 Testing SOFA CLI binaries..."
+          echo "🧪 Testing essential SOFA CLI binaries..."
           cd bin
           
-          for binary in sofa-*; do
+          # Only test the binaries we actually need for the pipeline
+          ESSENTIAL_BINARIES=("sofa-build" "sofa-cve" "sofa-fetch" "sofa-gather")
+          
+          for binary in "${ESSENTIAL_BINARIES[@]}"; do
             echo "Testing $binary..."
             if ./"$binary" --version; then
               echo "  ✅ $binary works"
             else
               echo "  ❌ $binary failed"
               echo "## ❌ Binary Test Failed" >> $GITHUB_STEP_SUMMARY
-              echo "Binary \`$binary\` failed to execute" >> $GITHUB_STEP_SUMMARY
+              echo "Essential binary \`$binary\` failed to execute" >> $GITHUB_STEP_SUMMARY
               exit 1
             fi
           done
+          
+          # Remove any non-essential binaries that were extracted
+          echo "🧹 Cleaning up non-essential binaries..."
+          rm -f sofa-init 2>/dev/null || true
+          ls -la
           
       - name: Set up Python and UV
         run: |
