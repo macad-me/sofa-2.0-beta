@@ -24,6 +24,11 @@ const getAPIBase = () => {
   return __API_BASE_DEV__
 }
 
+// GitHub raw URL fallback for real-time data
+const getGitHubRawURL = (feedPath: string) => {
+  return `https://raw.githubusercontent.com/macad-me/sofa-2.0-beta/main/data/${feedPath}`
+}
+
 // Check if data is stale (older than 6 hours)
 const checkStaleness = (timestamp: string | null): boolean => {
   if (!timestamp) return true
@@ -104,27 +109,69 @@ export function useSOFAData<T = any>(
     } catch (primaryError) {
       console.warn(`Primary fetch failed for ${feedPath}:`, primaryError)
       
-      // Try fallback to static data if enabled
-      if (fallbackToStatic && import.meta.env.PROD) {
-        try {
-          const fallbackUrl = `/data/${feedPath}`
-          console.log(`Trying static fallback: ${fallbackUrl}`)
-          
-          const fallbackResponse = await fetch(fallbackUrl)
-          if (fallbackResponse.ok) {
-            const fallbackData = await fallbackResponse.json() as T
-            data.value = fallbackData
-            lastUpdated.value = new Date().toISOString()
-            console.warn(`⚠️ Using static fallback data for ${feedPath}`)
-          } else {
-            throw primaryError
+      // Try GitHub raw URL for real-time data access
+      try {
+        const githubRawUrl = getGitHubRawURL(feedPath)
+        console.log(`Trying GitHub raw URL: ${githubRawUrl}`)
+        
+        const githubResponse = await fetch(githubRawUrl, {
+          cache: 'no-cache', // Always get fresh data from GitHub
+          headers: {
+            'Accept': 'application/json'
           }
-        } catch (fallbackError) {
-          console.error(`Both primary and fallback failed for ${feedPath}`)
+        })
+        
+        if (githubResponse.ok) {
+          const githubData = await githubResponse.json() as T
+          data.value = githubData
+          
+          // Extract timestamp from GitHub data
+          if (githubData && typeof githubData === 'object') {
+            const timestamps = [
+              (githubData as any).LastCheck,
+              (githubData as any).generated,
+              (githubData as any).lastUpdated,
+              (githubData as any).UpdateTimestamp,
+              (githubData as any).generated_at
+            ].filter(Boolean)
+
+            if (timestamps.length > 0) {
+              lastUpdated.value = timestamps[0]
+            } else {
+              lastUpdated.value = new Date().toISOString()
+            }
+          }
+          
+          console.log(`✅ Using GitHub raw data for ${feedPath}`)
+        } else {
+          throw new Error(`GitHub raw fetch failed: ${githubResponse.status}`)
+        }
+        
+      } catch (githubError) {
+        console.warn(`GitHub raw fetch failed for ${feedPath}:`, githubError)
+        
+        // Try fallback to static data if enabled
+        if (fallbackToStatic && import.meta.env.PROD) {
+          try {
+            const fallbackUrl = `/data/${feedPath}`
+            console.log(`Trying static fallback: ${fallbackUrl}`)
+            
+            const fallbackResponse = await fetch(fallbackUrl)
+            if (fallbackResponse.ok) {
+              const fallbackData = await fallbackResponse.json() as T
+              data.value = fallbackData
+              lastUpdated.value = new Date().toISOString()
+              console.warn(`⚠️ Using static fallback data for ${feedPath}`)
+            } else {
+              throw primaryError
+            }
+          } catch (fallbackError) {
+            console.error(`All fetch methods failed for ${feedPath}`)
+            error.value = primaryError as Error
+          }
+        } else {
           error.value = primaryError as Error
         }
-      } else {
-        error.value = primaryError as Error
       }
     } finally {
       loading.value = false
