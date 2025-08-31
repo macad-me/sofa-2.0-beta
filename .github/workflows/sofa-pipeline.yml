@@ -1,0 +1,336 @@
+name: SOFA Data Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      generate_rss:
+        description: 'Generate RSS feeds after pipeline'
+        type: boolean
+        default: true
+      force_run:
+        description: 'Force run even if no changes detected'
+        type: boolean
+        default: false
+      pipeline_stage:
+        description: 'Run specific pipeline stage (all, gather, fetch, build)'
+        type: choice
+        default: 'all'
+        options:
+        - all
+        - gather
+        - fetch
+        - build
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  push:
+    branches: [ main ]
+    paths:
+      - 'scripts/**'
+      - 'config/**'
+      - '.github/workflows/sofa-pipeline.yml'
+
+env:
+  PYTHON_VERSION: '3.13'
+  UV_VERSION: '0.4.15'
+
+jobs:
+  prepare:
+    name: Prepare Pipeline
+    runs-on: ubuntu-latest
+    outputs:
+      run_pipeline: ${{ steps.check.outputs.run_pipeline }}
+      sofa_version: ${{ steps.version.outputs.version }}
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # Need previous commit to check for changes
+          
+      - name: Check for changes
+        id: check
+        run: |
+          if [[ "${{ github.event.inputs.force_run }}" == "true" ]]; then
+            echo "🔄 Force run requested"
+            echo "run_pipeline=true" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "🎯 Manual trigger - running pipeline"
+            echo "run_pipeline=true" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event_name }}" == "schedule" ]]; then
+            echo "⏰ Scheduled run - running pipeline"
+            echo "run_pipeline=true" >> $GITHUB_OUTPUT
+          elif git diff --quiet HEAD~1 HEAD -- scripts/ config/; then
+            echo "⏭️ No pipeline changes detected, skipping run"
+            echo "run_pipeline=false" >> $GITHUB_OUTPUT
+          else
+            echo "📝 Pipeline changes detected, running pipeline"
+            echo "run_pipeline=true" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Get SOFA CLI version
+        id: version
+        run: |
+          if [ -f "bin/.sofa-version" ]; then
+            VERSION=$(cat bin/.sofa-version)
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
+            echo "📦 Using SOFA CLI version: $VERSION"
+          else
+            echo "version=latest" >> $GITHUB_OUTPUT
+            echo "📦 No version file found, will download latest"
+          fi
+
+  download-binaries:
+    name: Download SOFA Binaries  
+    runs-on: ubuntu-latest
+    needs: prepare
+    if: needs.prepare.outputs.run_pipeline == 'true'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Download SOFA binaries
+        run: |
+          mkdir -p bin-linux
+          cd bin-linux
+          
+          VERSION="${{ needs.prepare.outputs.sofa_version }}"
+          if [ "$VERSION" = "latest" ]; then
+            DOWNLOAD_URL="https://github.com/headmin/sofa-core-cli/releases/latest/download"
+          else
+            DOWNLOAD_URL="https://github.com/headmin/sofa-core-cli/releases/download/$VERSION"
+          fi
+          
+          echo "📥 Downloading SOFA CLI binaries from $DOWNLOAD_URL"
+          
+          BINARIES=("sofa-build" "sofa-cve" "sofa-fetch" "sofa-gather")
+          for binary in "${BINARIES[@]}"; do
+            echo "  • Downloading $binary..."
+            curl -L -o "$binary" "$DOWNLOAD_URL/$binary"
+            chmod +x "$binary"
+            echo "    ✅ Downloaded: $binary"
+          done
+          
+          # Test binaries
+          echo "🧪 Testing binaries..."
+          for binary in "${BINARIES[@]}"; do
+            ./"$binary" --version || echo "⚠️ $binary version check failed"
+          done
+          
+      - name: Cache SOFA binaries
+        uses: actions/cache/save@v3
+        with:
+          path: bin-linux/
+          key: sofa-binaries-${{ needs.prepare.outputs.sofa_version }}-${{ runner.os }}
+
+  pipeline:
+    name: Run SOFA Pipeline
+    runs-on: ubuntu-latest
+    needs: [prepare, download-binaries]
+    if: needs.prepare.outputs.run_pipeline == 'true'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Restore SOFA binaries
+        uses: actions/cache/restore@v3
+        with:
+          path: bin-linux/
+          key: sofa-binaries-${{ needs.prepare.outputs.sofa_version }}-${{ runner.os }}
+          
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          
+      - name: Install UV
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+          
+      - name: Verify UV installation
+        run: |
+          uv --version
+          
+      - name: Make binaries executable
+        run: |
+          chmod +x bin-linux/*
+          echo "🔧 Made binaries executable"
+          
+      - name: Run SOFA Pipeline
+        env:
+          SOFA_BIN_PATH: "./bin-linux"
+        run: |
+          echo "🚀 Starting SOFA Pipeline..."
+          echo "Pipeline stage: ${{ github.event.inputs.pipeline_stage || 'all' }}"
+          
+          cd scripts
+          
+          # Run the pipeline with the specified stage
+          STAGE="${{ github.event.inputs.pipeline_stage || 'all' }}"
+          
+          if [ "$STAGE" = "all" ] || [ "$STAGE" = "gather" ]; then
+            echo "📊 Running gather stage..."
+            uv run --script sofa_pipeline.py gather --config ../config/gather.toml
+          fi
+          
+          if [ "$STAGE" = "all" ] || [ "$STAGE" = "fetch" ]; then
+            echo "🔍 Running fetch stage..."
+            uv run --script sofa_pipeline.py fetch --config ../config/fetch.toml
+          fi
+          
+          if [ "$STAGE" = "all" ] || [ "$STAGE" = "build" ]; then
+            echo "🔨 Running build stage..."
+            uv run --script sofa_pipeline.py build --config ../config/build.toml
+          fi
+          
+          echo "✅ Pipeline completed successfully!"
+          
+      - name: Generate pipeline status
+        run: |
+          echo "📊 Pipeline Status Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Stage:** ${{ github.event.inputs.pipeline_stage || 'all' }}" >> $GITHUB_STEP_SUMMARY
+          echo "**SOFA CLI Version:** ${{ needs.prepare.outputs.sofa_version }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Timestamp:** $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Check if data files were generated
+          if [ -d "data/feeds" ]; then
+            echo "### Generated Feeds:" >> $GITHUB_STEP_SUMMARY
+            find data/feeds -name "*.json" | head -10 | while read file; do
+              echo "- \`$file\`" >> $GITHUB_STEP_SUMMARY
+            done
+          fi
+          
+          if [ -d "data/resources" ]; then
+            echo "### Updated Resources:" >> $GITHUB_STEP_SUMMARY
+            find data/resources -name "*.json" -o -name "*.ndjson" | head -10 | while read file; do
+              echo "- \`$file\`" >> $GITHUB_STEP_SUMMARY
+            done
+          fi
+          
+      - name: Upload pipeline artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: sofa-data-${{ github.run_id }}
+          path: |
+            data/feeds/
+            data/resources/
+          retention-days: 7
+
+  generate-rss:
+    name: Generate RSS Feeds
+    runs-on: ubuntu-latest
+    needs: [prepare, pipeline]
+    if: |
+      needs.prepare.outputs.run_pipeline == 'true' && 
+      (github.event.inputs.generate_rss == 'true' || github.event.inputs.generate_rss == '')
+    
+    steps:
+      - name: Checkout repository  
+        uses: actions/checkout@v4
+        
+      - name: Download pipeline artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: sofa-data-${{ github.run_id }}
+          
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          
+      - name: Install UV
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+          
+      - name: Generate RSS feeds
+        run: |
+          echo "📡 Generating RSS feeds..."
+          cd scripts
+          
+          # Generate RSS feeds
+          uv run --script generate_rss.py \
+            --input ../data/resources/bulletin_data.json \
+            --output ../data/feeds/v1/rss_feed.xml \
+            --title "SOFA - Apple Software Updates" \
+            --description "Simple Organized Feed for Apple Software Updates" \
+            --link "https://sofa-beta.macadmin.me"
+            
+          echo "✅ RSS feeds generated successfully!"
+          
+      - name: Upload RSS artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: sofa-rss-${{ github.run_id }}
+          path: data/feeds/v1/rss_feed.xml
+          retention-days: 30
+
+  commit-results:
+    name: Commit Pipeline Results
+    runs-on: ubuntu-latest
+    needs: [prepare, pipeline, generate-rss]
+    if: needs.prepare.outputs.run_pipeline == 'true' && always()
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Download pipeline artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: sofa-data-${{ github.run_id }}
+          
+      - name: Download RSS artifacts (if available)
+        if: needs.generate-rss.result == 'success'
+        uses: actions/download-artifact@v3
+        with:
+          name: sofa-rss-${{ github.run_id }}
+          
+      - name: Check for changes
+        id: changes
+        run: |
+          git add .
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "📝 No changes to commit"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT  
+            echo "📝 Changes detected, will commit"
+          fi
+          
+      - name: Commit and push changes
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "SOFA Pipeline"
+          
+          # Create commit message
+          COMMIT_MSG="Update SOFA data pipeline results
+
+          - Pipeline stage: ${{ github.event.inputs.pipeline_stage || 'all' }}
+          - SOFA CLI version: ${{ needs.prepare.outputs.sofa_version }}
+          - Generated at: $(date -u)
+          - RSS feeds: ${{ needs.generate-rss.result == 'success' && 'included' || 'skipped' }}"
+          
+          git commit -m "$COMMIT_MSG"
+          git push
+          
+          echo "✅ Changes committed and pushed"
+          
+      - name: Pipeline Summary
+        run: |
+          echo "## 🎉 SOFA Pipeline Complete!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Status:** ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Stage:** ${{ github.event.inputs.pipeline_stage || 'all' }}" >> $GITHUB_STEP_SUMMARY
+          echo "**SOFA CLI:** ${{ needs.prepare.outputs.sofa_version }}" >> $GITHUB_STEP_SUMMARY
+          echo "**RSS Generated:** ${{ needs.generate-rss.result == 'success' && '✅ Yes' || '⏭️ Skipped' }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Changes Committed:** ${{ steps.changes.outputs.has_changes == 'true' && '✅ Yes' || '📝 None' }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Duration:** ${{ github.event.created_at }}" >> $GITHUB_STEP_SUMMARY
