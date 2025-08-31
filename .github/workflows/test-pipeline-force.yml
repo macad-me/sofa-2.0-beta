@@ -44,7 +44,7 @@ jobs:
       - name: Download SOFA CLI binaries
         run: |
           echo "📥 Downloading latest SOFA CLI binaries..."
-          mkdir -p bin-linux
+          mkdir -p bin
           
           # Use specific version since latest release is marked as prerelease
           DOWNLOAD_URL="https://github.com/headmin/sofa-core-cli/releases/download/v0.1.0-beta1"
@@ -55,13 +55,13 @@ jobs:
             echo "    ✅ Downloaded: $LINUX_ZIP"
             
             echo "  • Extracting binaries..."
-            unzip -o -j "$LINUX_ZIP" -d bin-linux/
-            chmod +x bin-linux/*
+            unzip -o -j "$LINUX_ZIP" -d bin/
+            chmod +x bin/*
             rm "$LINUX_ZIP"
             
             echo "    ✅ Extracted and made executable"
             echo "  • Extracted files:"
-            ls -la bin-linux/
+            ls -la bin/
           else
             echo "    ❌ Failed to download: $LINUX_ZIP"
             exit 1
@@ -70,7 +70,7 @@ jobs:
       - name: Test binary execution
         run: |
           echo "🧪 Testing SOFA CLI binaries..."
-          cd bin-linux
+          cd bin
           
           for binary in sofa-*; do
             echo "Testing $binary..."
@@ -107,8 +107,8 @@ jobs:
           echo "📊 Testing GATHER stage..."
           cd scripts
           
-          export SOFA_BIN_PATH="../bin-linux"
-          export PATH="../bin-linux:$PATH"
+          export SOFA_BIN_PATH="../bin"
+          export PATH="../bin:$HOME/.local/bin:$PATH"
           
           if [[ "${{ github.event.inputs.debug_mode }}" == "true" ]]; then
             echo "🔍 Debug mode: Showing binary locations..."
@@ -134,8 +134,8 @@ jobs:
           echo "🔍 Testing FETCH stage..."
           cd scripts
           
-          export SOFA_BIN_PATH="../bin-linux"
-          export PATH="../bin-linux:$PATH"
+          export SOFA_BIN_PATH="../bin"
+          export PATH="../bin:$HOME/.local/bin:$PATH"
           
           echo "Running: uv run --script sofa_pipeline.py fetch --config ../config/fetch.toml"
           if uv run --script sofa_pipeline.py fetch --config ../config/fetch.toml; then
@@ -154,8 +154,8 @@ jobs:
           echo "🔨 Testing BUILD stage..."
           cd scripts
           
-          export SOFA_BIN_PATH="../bin-linux"
-          export PATH="../bin-linux:$PATH"
+          export SOFA_BIN_PATH="../bin"
+          export PATH="../bin:$HOME/.local/bin:$PATH"
           
           echo "Running: uv run --script sofa_pipeline.py build --config ../config/build.toml"
           if uv run --script sofa_pipeline.py build --config ../config/build.toml; then

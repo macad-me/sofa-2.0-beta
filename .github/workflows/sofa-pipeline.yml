@@ -101,7 +101,7 @@ jobs:
         
       - name: Download SOFA binaries
         run: |
-          mkdir -p bin-linux
+          mkdir -p bin
           
           VERSION="${{ needs.prepare.outputs.sofa_version }}"
           if [ "$VERSION" = "latest" ]; then
@@ -117,17 +117,17 @@ jobs:
           echo "  • Downloading: $LINUX_ZIP"
           curl -L -f -o "$LINUX_ZIP" "$DOWNLOAD_URL/$LINUX_ZIP"
           
-          echo "  • Extracting binaries to bin-linux/..."
-          unzip -o -j "$LINUX_ZIP" -d bin-linux/
-          chmod +x bin-linux/*
+          echo "  • Extracting binaries to bin/..."
+          unzip -o -j "$LINUX_ZIP" -d bin/
+          chmod +x bin/*
           rm "$LINUX_ZIP"
           
           echo "    ✅ Extracted files:"
-          ls -la bin-linux/
+          ls -la bin/
           
           # Test binaries
           echo "🧪 Testing binaries..."
-          cd bin-linux
+          cd bin
           for binary in sofa-*; do
             echo "Testing $binary..."
             ./"$binary" --version || echo "⚠️ $binary version check failed"
@@ -136,7 +136,7 @@ jobs:
       - name: Cache SOFA binaries
         uses: actions/cache/save@v3
         with:
-          path: bin-linux/
+          path: bin/
           key: sofa-binaries-${{ needs.prepare.outputs.sofa_version }}-${{ runner.os }}
 
   pipeline:
@@ -152,7 +152,7 @@ jobs:
       - name: Restore SOFA binaries
         uses: actions/cache/restore@v3
         with:
-          path: bin-linux/
+          path: bin/
           key: sofa-binaries-${{ needs.prepare.outputs.sofa_version }}-${{ runner.os }}
           
       - name: Set up Python
@@ -171,12 +171,12 @@ jobs:
           
       - name: Make binaries executable
         run: |
-          chmod +x bin-linux/*
+          chmod +x bin/*
           echo "🔧 Made binaries executable"
           
       - name: Run SOFA Pipeline
         env:
-          SOFA_BIN_PATH: "./bin-linux"
+          SOFA_BIN_PATH: "./bin"
         run: |
           echo "🚀 Starting SOFA Pipeline..."
           echo "Pipeline stage: ${{ github.event.inputs.pipeline_stage || 'all' }}"
@@ -300,7 +300,7 @@ jobs:
       - name: Restore SOFA binaries for commit
         uses: actions/cache/restore@v3
         with:
-          path: bin-linux/
+          path: bin/
           key: sofa-binaries-${{ needs.prepare.outputs.sofa_version }}-${{ runner.os }}
           
       - name: Download pipeline artifacts
@@ -318,7 +318,7 @@ jobs:
         id: changes
         run: |
           # Add data directories and any new binaries
-          git add data/feeds/ data/resources/ bin-linux/ || true
+          git add data/feeds/ data/resources/ bin/ || true
           
           if git diff --staged --quiet; then
             echo "has_changes=false" >> $GITHUB_OUTPUT

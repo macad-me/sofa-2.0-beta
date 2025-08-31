@@ -89,7 +89,7 @@ class PipelineConfig(BaseModel):
     v1_dir: Path = Field(default=Path("v1"), description="v1 output directory")
     v2_dir: Path = Field(default=Path("v2"), description="v2 output directory")
     config_dir: Path = Field(default=Path("config"), description="Config directory")
-    bin_dir: Path = Field(default=Path("bin-linux"), description="Binary directory")
+    bin_dir: Path = Field(default=Path("bin"), description="Binary directory")
     
     gather_sources: List[GatherSource] = Field(
         default=[GatherSource.KEV, GatherSource.GDMF, GatherSource.IPSW, GatherSource.XPROTECT, GatherSource.BETA, GatherSource.UMA],
