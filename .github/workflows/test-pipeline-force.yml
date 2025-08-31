@@ -1,0 +1,224 @@
+name: 🧪 Force Test SOFA Pipeline
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      test_stage:
+        description: 'Which stage to test'
+        type: choice
+        default: 'gather'
+        options:
+        - gather
+        - fetch
+        - build
+        - all
+      debug_mode:
+        description: 'Enable verbose debugging'
+        type: boolean
+        default: true
+
+env:
+  PYTHON_VERSION: '3.13'
+
+jobs:
+  test-pipeline:
+    name: Force Test Pipeline
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Show environment info
+        run: |
+          echo "## 🧪 Pipeline Test Environment" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**OS:** $(lsb_release -d | cut -f2)" >> $GITHUB_STEP_SUMMARY
+          echo "**Python:** $(python3 --version)" >> $GITHUB_STEP_SUMMARY
+          echo "**Test Stage:** ${{ github.event.inputs.test_stage }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Debug Mode:** ${{ github.event.inputs.debug_mode }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Timestamp:** $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+      - name: Download SOFA CLI binaries
+        run: |
+          echo "📥 Downloading latest SOFA CLI binaries..."
+          mkdir -p bin-linux
+          cd bin-linux
+          
+          DOWNLOAD_URL="https://github.com/headmin/sofa-core-cli/releases/latest/download"
+          
+          BINARIES=("sofa-build" "sofa-cve" "sofa-fetch" "sofa-gather")
+          for binary in "${BINARIES[@]}"; do
+            echo "  • Downloading $binary..."
+            if curl -L -f -o "$binary" "$DOWNLOAD_URL/$binary"; then
+              chmod +x "$binary"
+              echo "    ✅ Downloaded and made executable: $binary"
+            else
+              echo "    ❌ Failed to download: $binary"
+              exit 1
+            fi
+          done
+          
+      - name: Test binary execution
+        run: |
+          echo "🧪 Testing SOFA CLI binaries..."
+          cd bin-linux
+          
+          for binary in sofa-*; do
+            echo "Testing $binary..."
+            if ./"$binary" --version; then
+              echo "  ✅ $binary works"
+            else
+              echo "  ❌ $binary failed"
+              echo "## ❌ Binary Test Failed" >> $GITHUB_STEP_SUMMARY
+              echo "Binary \`$binary\` failed to execute" >> $GITHUB_STEP_SUMMARY
+              exit 1
+            fi
+          done
+          
+      - name: Set up Python and UV
+        run: |
+          echo "🐍 Setting up Python environment..."
+          python3 --version
+          
+          echo "📦 Installing UV..."
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+          
+          # Verify UV
+          $HOME/.cargo/bin/uv --version
+          
+      - name: Test gather stage
+        if: contains(github.event.inputs.test_stage, 'gather') || github.event.inputs.test_stage == 'all'
+        run: |
+          echo "📊 Testing GATHER stage..."
+          cd scripts
+          
+          export SOFA_BIN_PATH="../bin-linux"
+          export PATH="../bin-linux:$PATH"
+          
+          if [[ "${{ github.event.inputs.debug_mode }}" == "true" ]]; then
+            echo "🔍 Debug mode: Showing binary locations..."
+            ls -la ../bin-linux/
+            echo "🔍 Current PATH: $PATH"
+            echo "🔍 SOFA_BIN_PATH: $SOFA_BIN_PATH"
+          fi
+          
+          echo "Running: uv run --script sofa_pipeline.py gather --config ../config/gather.toml"
+          if uv run --script sofa_pipeline.py gather --config ../config/gather.toml; then
+            echo "✅ GATHER stage completed"
+            echo "## ✅ Gather Stage Success" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ GATHER stage failed"
+            echo "## ❌ Gather Stage Failed" >> $GITHUB_STEP_SUMMARY
+            echo "The gather stage encountered errors. Check logs above." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+          
+      - name: Test fetch stage
+        if: contains(github.event.inputs.test_stage, 'fetch') || github.event.inputs.test_stage == 'all'
+        run: |
+          echo "🔍 Testing FETCH stage..."
+          cd scripts
+          
+          export SOFA_BIN_PATH="../bin-linux"
+          export PATH="../bin-linux:$PATH"
+          
+          echo "Running: uv run --script sofa_pipeline.py fetch --config ../config/fetch.toml"
+          if uv run --script sofa_pipeline.py fetch --config ../config/fetch.toml; then
+            echo "✅ FETCH stage completed"
+            echo "## ✅ Fetch Stage Success" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ FETCH stage failed"
+            echo "## ❌ Fetch Stage Failed" >> $GITHUB_STEP_SUMMARY
+            echo "The fetch stage encountered errors. Check logs above." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+          
+      - name: Test build stage  
+        if: contains(github.event.inputs.test_stage, 'build') || github.event.inputs.test_stage == 'all'
+        run: |
+          echo "🔨 Testing BUILD stage..."
+          cd scripts
+          
+          export SOFA_BIN_PATH="../bin-linux"
+          export PATH="../bin-linux:$PATH"
+          
+          echo "Running: uv run --script sofa_pipeline.py build --config ../config/build.toml"
+          if uv run --script sofa_pipeline.py build --config ../config/build.toml; then
+            echo "✅ BUILD stage completed"
+            echo "## ✅ Build Stage Success" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ BUILD stage failed"
+            echo "## ❌ Build Stage Failed" >> $GITHUB_STEP_SUMMARY
+            echo "The build stage encountered errors. Check logs above." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+          
+      - name: Show generated files
+        run: |
+          echo "📁 Checking generated files..."
+          echo "## 📁 Generated Files" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -d "data/feeds" ]; then
+            echo "### Feeds Directory:" >> $GITHUB_STEP_SUMMARY
+            find data/feeds -type f | head -20 | while read file; do
+              size=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null || echo "unknown")
+              echo "- \`$file\` (${size} bytes)" >> $GITHUB_STEP_SUMMARY
+            done
+          else
+            echo "❌ No data/feeds directory found" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ -d "data/resources" ]; then
+            echo "### Resources Directory:" >> $GITHUB_STEP_SUMMARY
+            find data/resources -type f | head -20 | while read file; do
+              size=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null || echo "unknown")
+              echo "- \`$file\` (${size} bytes)" >> $GITHUB_STEP_SUMMARY
+            done
+          else
+            echo "❌ No data/resources directory found" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+      - name: Test RSS generation
+        run: |
+          echo "📡 Testing RSS generation..."
+          cd scripts
+          
+          if [ -f "../data/resources/bulletin_data.json" ]; then
+            echo "Found bulletin_data.json, testing RSS generation..."
+            if uv run --script generate_rss.py \
+              --input ../data/resources/bulletin_data.json \
+              --output ../data/feeds/v1/rss_feed.xml \
+              --title "SOFA Test - Apple Software Updates" \
+              --description "Test RSS generation" \
+              --link "https://sofa-beta.macadmin.me"; then
+              echo "✅ RSS generation completed"
+              echo "## ✅ RSS Generation Success" >> $GITHUB_STEP_SUMMARY
+              if [ -f "../data/feeds/v1/rss_feed.xml" ]; then
+                rss_size=$(stat -f%z "../data/feeds/v1/rss_feed.xml" 2>/dev/null || stat -c%s "../data/feeds/v1/rss_feed.xml" 2>/dev/null)
+                echo "Generated RSS feed: ${rss_size} bytes" >> $GITHUB_STEP_SUMMARY
+              fi
+            else
+              echo "❌ RSS generation failed"
+              echo "## ❌ RSS Generation Failed" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "⚠️ No bulletin_data.json found, skipping RSS test"
+            echo "## ⚠️ RSS Test Skipped" >> $GITHUB_STEP_SUMMARY
+            echo "No bulletin_data.json found for RSS generation" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+      - name: Final summary
+        if: always()
+        run: |
+          echo "## 🎯 Test Results Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Test Stage:** ${{ github.event.inputs.test_stage }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Status:** ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Completed:** $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Check the step logs above to see exactly where the pipeline succeeded or failed." >> $GITHUB_STEP_SUMMARY
