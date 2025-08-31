@@ -65,35 +65,33 @@ export function useSOFAData<T = any>(
     error.value = null
 
     try {
-      const apiBase = getAPIBase()
-      const primaryUrl = `${apiBase}/${feedPath}`
+      // Try GitHub raw URL first for most current data
+      const githubRawUrl = getGitHubRawURL(feedPath)
+      console.log(`Fetching real-time data from GitHub: ${githubRawUrl}`)
       
-      console.log(`Fetching SOFA data from: ${primaryUrl}`)
-      
-      // Try primary source
-      const response = await fetch(primaryUrl, {
-        // Add cache control headers
-        cache: isStale.value ? 'reload' : 'default',
+      const githubResponse = await fetch(githubRawUrl, {
+        cache: 'no-cache', // Always get fresh data from GitHub
         headers: {
           'Accept': 'application/json'
         }
       })
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+      if (!githubResponse.ok) {
+        throw new Error(`GitHub raw fetch failed: ${githubResponse.status}`)
       }
 
-      const jsonData = await response.json() as T
+      const jsonData = await githubResponse.json() as T
       data.value = jsonData
 
       // Extract last update from data if available
       if (jsonData && typeof jsonData === 'object') {
-        // Check for various timestamp fields
+        // Check for various timestamp fields including generated_at
         const timestamps = [
           (jsonData as any).LastCheck,
           (jsonData as any).generated,
           (jsonData as any).lastUpdated,
-          (jsonData as any).UpdateTimestamp
+          (jsonData as any).UpdateTimestamp,
+          (jsonData as any).generated_at
         ].filter(Boolean)
 
         if (timestamps.length > 0) {
@@ -104,53 +102,55 @@ export function useSOFAData<T = any>(
         }
       }
 
-      console.log(`✅ Successfully loaded ${feedPath}`)
+      console.log(`✅ Successfully loaded ${feedPath} from GitHub`)
       
     } catch (primaryError) {
-      console.warn(`Primary fetch failed for ${feedPath}:`, primaryError)
+      console.warn(`GitHub raw fetch failed for ${feedPath}:`, primaryError)
       
-      // Try GitHub raw URL for real-time data access
+      // Fallback to deployed site
       try {
-        const githubRawUrl = getGitHubRawURL(feedPath)
-        console.log(`Trying GitHub raw URL: ${githubRawUrl}`)
+        const apiBase = getAPIBase()
+        const deployedUrl = `${apiBase}/${feedPath}`
         
-        const githubResponse = await fetch(githubRawUrl, {
-          cache: 'no-cache', // Always get fresh data from GitHub
+        console.log(`Trying deployed site fallback: ${deployedUrl}`)
+        
+        const response = await fetch(deployedUrl, {
+          cache: isStale.value ? 'reload' : 'default',
           headers: {
             'Accept': 'application/json'
           }
         })
-        
-        if (githubResponse.ok) {
-          const githubData = await githubResponse.json() as T
-          data.value = githubData
-          
-          // Extract timestamp from GitHub data
-          if (githubData && typeof githubData === 'object') {
-            const timestamps = [
-              (githubData as any).LastCheck,
-              (githubData as any).generated,
-              (githubData as any).lastUpdated,
-              (githubData as any).UpdateTimestamp,
-              (githubData as any).generated_at
-            ].filter(Boolean)
 
-            if (timestamps.length > 0) {
-              lastUpdated.value = timestamps[0]
-            } else {
-              lastUpdated.value = new Date().toISOString()
-            }
-          }
-          
-          console.log(`✅ Using GitHub raw data for ${feedPath}`)
-        } else {
-          throw new Error(`GitHub raw fetch failed: ${githubResponse.status}`)
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`)
         }
+
+        const jsonData = await response.json() as T
+        data.value = jsonData
+
+        // Extract last update from data if available
+        if (jsonData && typeof jsonData === 'object') {
+          const timestamps = [
+            (jsonData as any).LastCheck,
+            (jsonData as any).generated,
+            (jsonData as any).lastUpdated,
+            (jsonData as any).UpdateTimestamp,
+            (jsonData as any).generated_at
+          ].filter(Boolean)
+
+          if (timestamps.length > 0) {
+            lastUpdated.value = timestamps[0]
+          } else {
+            lastUpdated.value = new Date().toISOString()
+          }
+        }
+
+        console.log(`✅ Successfully loaded ${feedPath} from deployed site`)
         
-      } catch (githubError) {
-        console.warn(`GitHub raw fetch failed for ${feedPath}:`, githubError)
+      } catch (deployedError) {
+        console.warn(`Deployed site failed for ${feedPath}:`, deployedError)
         
-        // Try fallback to static data if enabled
+        // Final fallback to static data if enabled
         if (fallbackToStatic && import.meta.env.PROD) {
           try {
             const fallbackUrl = `/data/${feedPath}`
