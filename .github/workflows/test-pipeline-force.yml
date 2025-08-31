@@ -92,13 +92,22 @@ jobs:
           echo "📦 Installing UV..."
           curl -LsSf https://astral.sh/uv/install.sh | sh
           
-          # UV installs to ~/.local/bin, not ~/.cargo/bin
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          # UV installs to ~/.local/bin
           export PATH="$HOME/.local/bin:$PATH"
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
           
           # Verify UV installation
           echo "🔍 Checking UV installation..."
-          ls -la $HOME/.local/bin/
+          echo "UV install directory contents:"
+          ls -la $HOME/.local/bin/ | grep uv || echo "UV not found in .local/bin"
+          
+          # Test UV directly with full path
+          echo "Testing UV with full path:"
+          $HOME/.local/bin/uv --version
+          
+          # Test UV via PATH
+          echo "Testing UV via PATH:"
+          which uv
           uv --version
           
       - name: Test gather stage
