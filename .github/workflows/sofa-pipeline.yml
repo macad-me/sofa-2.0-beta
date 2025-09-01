@@ -191,11 +191,11 @@ jobs:
             echo "✅ Copied supported_devices.json to resources directory"
           fi
           
-          # Temporarily disable AppleRoot.pem to force --insecure mode for GDMF
-          # This avoids SSL certificate chain issues on Linux runners
+          # AppleRoot.pem certificate is available - let SOFA CLI use it for GDMF
           if [ -f "config/AppleRoot.pem" ]; then
-            mv config/AppleRoot.pem config/AppleRoot.pem.backup
-            echo "⚠️ Temporarily disabled AppleRoot.pem - GDMF will use --insecure mode"
+            echo "✅ Using AppleRoot.pem certificate for GDMF SSL validation"
+          else
+            echo "⚠️ No AppleRoot.pem found - GDMF will use --insecure mode"
           fi
           
           cd scripts
