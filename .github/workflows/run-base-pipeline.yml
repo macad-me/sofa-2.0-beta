@@ -158,7 +158,7 @@ jobs:
 
           
       - name: Test gather stage
-        if: contains(github.event.inputs.test_stage, 'gather') || github.event.inputs.test_stage == 'all'
+        if: github.event_name == 'schedule' || contains(github.event.inputs.test_stage, 'gather') || github.event.inputs.test_stage == 'all'
         run: |
           echo "📊 Testing GATHER stage..."
 
@@ -183,7 +183,7 @@ jobs:
           fi
           
       - name: Test fetch stage
-        if: contains(github.event.inputs.test_stage, 'fetch') || github.event.inputs.test_stage == 'all'
+        if: github.event_name == 'schedule' || contains(github.event.inputs.test_stage, 'fetch') || github.event.inputs.test_stage == 'all'
         run: |
           echo "🔍 Testing FETCH stage..."
 
@@ -205,7 +205,7 @@ jobs:
 
 
       - name: Test build stage
-        if: contains(github.event.inputs.test_stage, 'build') || github.event.inputs.test_stage == 'all'
+        if: github.event_name == 'schedule' || contains(github.event.inputs.test_stage, 'build') || github.event.inputs.test_stage == 'all'
         run: |
           echo "🔨 Testing BUILD stage..."
 
@@ -232,7 +232,7 @@ jobs:
           fi
           
       - name: Show generated files
-        if: success() && (contains(github.event.inputs.test_stage, 'build') || github.event.inputs.test_stage == 'all')
+        if: success() && (github.event_name == 'schedule' || contains(github.event.inputs.test_stage, 'build') || github.event.inputs.test_stage == 'all')
         run: |
           echo "📁 Checking generated files..."
           echo "## 📁 Generated Files" >> $GITHUB_STEP_SUMMARY
@@ -259,7 +259,7 @@ jobs:
           fi
           
       - name: Test RSS generation
-        if: success() && (contains(github.event.inputs.test_stage, 'build') || github.event.inputs.test_stage == 'all')
+        if: success() && (github.event_name == 'schedule' || contains(github.event.inputs.test_stage, 'build') || github.event.inputs.test_stage == 'all')
         run: |
           echo "📡 Testing RSS generation..."
           cd scripts
@@ -287,7 +287,7 @@ jobs:
           fi
           
       - name: Commit test results to repo
-        if: github.event.inputs.test_stage == 'all' || github.event.inputs.test_stage == 'build'
+        if: github.event_name == 'schedule' || github.event.inputs.test_stage == 'all' || github.event.inputs.test_stage == 'build'
         run: |
           echo "💾 Committing generated data back to repository..."
           
