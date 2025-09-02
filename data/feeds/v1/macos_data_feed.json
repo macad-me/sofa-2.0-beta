@@ -1,5 +1,5 @@
 {
-  "UpdateHash": "4aaa7e108622d9fb98a4faa85ff974d2b7a3103dd3b3c3b9319fa9285ecbdb7a",
+  "UpdateHash": "fc047468380940fb03ff8e99bbf87067e02d77b2ef6d93a03b57e362fb0f48e6",
   "Version": "1.1",
   "OSVersions": [
     {
@@ -12532,7 +12532,7 @@
           "AllBuilds": [
             "21H1320"
           ],
-          "ReleaseDate": "2025-09-02T09:10:32.556049170+00:00",
+          "ReleaseDate": "2025-09-02T15:00:00.398282053+00:00",
           "ExpirationDate": "2025-11-29",
           "ReleaseType": "OS",
           "SecurityInfo": "",
