@@ -1,5 +1,5 @@
 {
-  "update_hash": "sha256:80cac6fff1fc3095a8b7cc3dafac8754b66e8ae039ab51abac735ae344697f7e",
+  "update_hash": "sha256:0ae57ff942edf86ccba1a401c9008f5d5e1235c61e825738554b01107c596564",
   "devices": [
     {
       "name": "iPhone 2G",
@@ -1788,14 +1788,475 @@
     }
   ],
   "latest_versions": {
-    "macOS": "14.7.2",
     "tvOS": "17.6.2",
-    "iPadOS": "18.6.2",
     "visionOS": "1.3.2",
     "watchOS": "10.6.2",
-    "iOS": "18.6.2"
+    "iOS": "18.6.2",
+    "iPadOS": "18.6.2",
+    "macOS": "14.7.2"
   },
   "signing_status": {
+    "iPhone15,2": [
+      {
+        "version": "18.6.2",
+        "buildid": "22G100",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/093-20972/EF7B05A9-30C5-45F5-A1E4-EF4026465B85/iPhone15,2_18.6.2_22G100_Restore.ipsw",
+        "filesize": 9335078348
+      },
+      {
+        "version": "18.6.1",
+        "buildid": "22G90",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/093-09333/216FC2CE-2CA3-4162-B6C8-406CF237AB78/iPhone15,2_18.6.1_22G90_Restore.ipsw",
+        "filesize": 9335158104
+      },
+      {
+        "version": "18.6",
+        "buildid": "22G86",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/082-99868/5D43A475-10CD-464F-8EA5-43619889DCB5/iPhone15,2_18.6_22G86_Restore.ipsw",
+        "filesize": 9335165076
+      },
+      {
+        "version": "18.5",
+        "buildid": "22F76",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-47075/EB56E180-67D8-40CE-9C9C-1C5C30F60198/iPhone15,2_18.5_22F76_Restore.ipsw",
+        "filesize": 9334830738
+      },
+      {
+        "version": "18.4.1",
+        "buildid": "22E252",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-31214/7F5845A1-E9B8-4765-BBE0-01D2040A1211/iPhone15,2_18.4.1_22E252_Restore.ipsw",
+        "filesize": 9333418855
+      },
+      {
+        "version": "18.4",
+        "buildid": "22E240",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-15819/37A3D476-CEC3-437E-A2DC-36EB0E1172BB/iPhone15,2_18.4_22E240_Restore.ipsw",
+        "filesize": 9333570311
+      },
+      {
+        "version": "18.3.2",
+        "buildid": "22D82",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/082-03683/CACC3399-3E67-4D3C-9CE4-464E0C636AF7/iPhone15,2_18.3.2_22D82_Restore.ipsw",
+        "filesize": 8997515039
+      },
+      {
+        "version": "18.3.1",
+        "buildid": "22D72",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/072-85567/1BD7FB70-8AE4-4A8D-B845-EF53F2461ED4/iPhone15,2_18.3.1_22D72_Restore.ipsw",
+        "filesize": 8997549116
+      },
+      {
+        "version": "18.3",
+        "buildid": "22D63",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/072-67935/47620506-4506-4D6F-86F1-98BCEDCE166A/iPhone15,2_18.3_22D63_Restore.ipsw",
+        "filesize": 8997424546
+      },
+      {
+        "version": "18.2.1",
+        "buildid": "22C161",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-56690/436E59F3-D2B1-43A8-AAE5-4C0A2B545379/iPhone15,2_18.2.1_22C161_Restore.ipsw",
+        "filesize": 9064147283
+      },
+      {
+        "version": "18.2",
+        "buildid": "22C152",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-43234/FCA97D92-1186-4968-8C34-E8601B03556A/iPhone15,2_18.2_22C152_Restore.ipsw",
+        "filesize": 9064200761
+      },
+      {
+        "version": "18.1.1",
+        "buildid": "22B91",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-30197/0111B114-1EAE-444E-9911-42B30CC95A1B/iPhone15,2_18.1.1_22B91_Restore.ipsw",
+        "filesize": 8721161387
+      },
+      {
+        "version": "18.1",
+        "buildid": "22B83",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-12763/EAC7FCB5-7CD6-4265-8B2C-FE484D4F9DE0/iPhone15,2_18.1_22B83_Restore.ipsw",
+        "filesize": 8721113451
+      },
+      {
+        "version": "18.0.1",
+        "buildid": "22A3370",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-02618/2E61A212-B980-4C6E-97E9-AD2864FBA611/iPhone15,2_18.0.1_22A3370_Restore.ipsw",
+        "filesize": 8687258542
+      },
+      {
+        "version": "18.0",
+        "buildid": "22A3354",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/062-77778/2D0C56D2-7F47-4346-8397-9BBFA1E1DB9D/iPhone15,2_18.0_22A3354_Restore.ipsw",
+        "filesize": 8687210693
+      },
+      {
+        "version": "17.7",
+        "buildid": "21H16",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/062-79094/90CE304F-6C16-402E-96C9-89260D93CA82/iPhone15,2_17.7_21H16_Restore.ipsw",
+        "filesize": 8112953646
+      },
+      {
+        "version": "17.6.1",
+        "buildid": "21G101",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/062-69622/AA2D1221-20CF-41B5-AEBD-EA676D954125/iPhone15,2_17.6.1_21G101_Restore.ipsw",
+        "filesize": 8110947745
+      },
+      {
+        "version": "17.6.1",
+        "buildid": "21G93",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/062-57830/2368BB3F-EC42-48AB-B810-1F4F31951075/iPhone15,2_17.6.1_21G93_Restore.ipsw",
+        "filesize": 8111314205
+      },
+      {
+        "version": "17.6",
+        "buildid": "21G80",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/062-44653/40295144-CB7F-4D77-81D7-71D93D5C2B31/iPhone15,2_17.6_21G80_Restore.ipsw",
+        "filesize": 8109234972
+      },
+      {
+        "version": "17.5.1",
+        "buildid": "21F90",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024SpringFCS/fullrestores/062-06652/B7EAA639-CB1A-4D5D-B4B4-11D4DCECFDE9/iPhone15,2_17.5.1_21F90_Restore.ipsw",
+        "filesize": 8106785134
+      },
+      {
+        "version": "17.5",
+        "buildid": "21F79",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024SpringFCS/fullrestores/052-39335/666EC1C5-1CE4-4454-A00F-35CEEA7516D9/iPhone15,2_17.5_21F79_Restore.ipsw",
+        "filesize": 8106404860
+      },
+      {
+        "version": "17.4.1",
+        "buildid": "21E237",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-79589/F6C80846-14D5-46A8-B0E3-1C7FAD285716/iPhone15,2_17.4.1_21E237_Restore.ipsw",
+        "filesize": 7983316237
+      },
+      {
+        "version": "17.4.1",
+        "buildid": "21E236",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-74196/1E5EE8AA-354A-4133-AD63-94D1E5B7AF48/iPhone15,2_17.4.1_21E236_Restore.ipsw",
+        "filesize": 7982132200
+      },
+      {
+        "version": "17.4",
+        "buildid": "21E219",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-60379/03138099-AF50-4604-B628-EF78A22D9632/iPhone15,2_17.4_21E219_Restore.ipsw",
+        "filesize": 7984016973
+      },
+      {
+        "version": "17.3.1",
+        "buildid": "21D61",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-41828/5878F171-FDD4-4CDF-93B1-FECBA2FEFED2/iPhone15,2_17.3.1_21D61_Restore.ipsw",
+        "filesize": 7924461198
+      },
+      {
+        "version": "17.3",
+        "buildid": "21D50",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/042-81174/16619A78-E8C1-453B-A996-6826E5A4FCB8/iPhone15,2_17.3_21D50_Restore.ipsw",
+        "filesize": 7924600532
+      },
+      {
+        "version": "17.2.1",
+        "buildid": "21C66",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/052-16092/DC604DF3-9E67-493B-8ABD-EF25D087555F/iPhone15,2_17.2.1_21C66_Restore.ipsw",
+        "filesize": 7918973653
+      },
+      {
+        "version": "17.2",
+        "buildid": "21C62",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-36420/CF398F92-21A9-4127-B1AC-AF7B0871FEAC/iPhone15,2_17.2_21C62_Restore.ipsw",
+        "filesize": 7918663622
+      },
+      {
+        "version": "17.1.2",
+        "buildid": "21B101",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/052-10730/8FDE27D7-1A3C-480A-BFB9-C4979C999B07/iPhone15,2_17.1.2_21B101_Restore.ipsw",
+        "filesize": 7996446276
+      },
+      {
+        "version": "17.1.1",
+        "buildid": "21B91",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-96132/3FC00650-4C13-4B65-BACD-002180B5513F/iPhone15,2_17.1.1_21B91_Restore.ipsw",
+        "filesize": 7996682781
+      },
+      {
+        "version": "17.1",
+        "buildid": "21B74",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-07910/35ECC4D8-1EE5-4B73-8C88-0186F6C1ECBC/iPhone15,2_17.1_21B74_Restore.ipsw",
+        "filesize": 7996369797
+      },
+      {
+        "version": "17.0.3",
+        "buildid": "21A360",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-72836/2895EA4A-4448-4F5D-A460-E94A5C5A6570/iPhone15,2_17.0.3_21A360_Restore.ipsw",
+        "filesize": 7971915096
+      },
+      {
+        "version": "17.0.2",
+        "buildid": "21A351",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/042-64967/9E0DBECD-03C1-4887-AB1D-F50116FA4957/iPhone15,2_17.0.2_21A351_Restore.ipsw",
+        "filesize": 7973666521
+      },
+      {
+        "version": "17.0.1",
+        "buildid": "21A340",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-55400/A180BECA-28B6-4593-9879-49947383EEA3/iPhone15,2_17.0.1_21A340_Restore.ipsw",
+        "filesize": 7973660252
+      },
+      {
+        "version": "17.0",
+        "buildid": "21A329",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-49374/D2364202-FFBF-4139-B90F-A872FCCF739F/iPhone15,2_17.0_21A329_Restore.ipsw",
+        "filesize": 7973858109
+      },
+      {
+        "version": "16.6.1",
+        "buildid": "20G81",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/042-44327/EDD9D5D2-E1C0-4B64-B6B1-642E087BB595/iPhone15,2_16.6.1_20G81_Restore.ipsw",
+        "filesize": 6913489639
+      },
+      {
+        "version": "16.6",
+        "buildid": "20G75",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/042-17346/59463897-1563-456F-A804-6CBC6F60A291/iPhone15,2_16.6_20G75_Restore.ipsw",
+        "filesize": 6913876463
+      },
+      {
+        "version": "16.5.1",
+        "buildid": "20F75",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/042-02633/5B7DCCB8-3ED8-49A1-A685-41FA11CBDBD9/iPhone15,2_16.5.1_20F75_Restore.ipsw",
+        "filesize": 6888232333
+      },
+      {
+        "version": "16.5",
+        "buildid": "20F66",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/032-85600/F6B05E06-675E-4435-9777-33AC4EF00A8A/iPhone15,2_16.5_20F66_Restore.ipsw",
+        "filesize": 6887764078
+      },
+      {
+        "version": "16.4.1",
+        "buildid": "20E252",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/032-71111/628F1533-30FD-4E67-A900-97C48DD1F312/iPhone15,2_16.4.1_20E252_Restore.ipsw",
+        "filesize": 6871000523
+      },
+      {
+        "version": "16.4",
+        "buildid": "20E247",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/032-68531/55FC5EAA-3D70-4577-9906-F1A3F1D7BD8F/iPhone15,2_16.4_20E247_Restore.ipsw",
+        "filesize": 6871116311
+      },
+      {
+        "version": "16.3.1",
+        "buildid": "20D67",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023WinterFCS/fullrestores/032-49930/8796A646-1C64-4039-9C97-F063E4B0F788/iPhone15,2_16.3.1_20D67_Restore.ipsw",
+        "filesize": 6712894896
+      },
+      {
+        "version": "16.3",
+        "buildid": "20D47",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023WinterFCS/fullrestores/032-36066/CC05C7DF-B6C7-4495-B63C-6E71118777E1/iPhone15,2_16.3_20D47_Restore.ipsw",
+        "filesize": 6713037763
+      },
+      {
+        "version": "16.2",
+        "buildid": "20C65",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/032-13962/59563D0C-FF2F-4F6B-B1DC-69E27D646224/iPhone15,2_16.2_20C65_Restore.ipsw",
+        "filesize": 6732057788
+      },
+      {
+        "version": "16.1.2",
+        "buildid": "20B110",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/032-11283/8DCE1C5B-37EF-4812-A396-22B2F71CD366/iPhone15,2_16.1.2_20B110_Restore.ipsw",
+        "filesize": 6649075258
+      },
+      {
+        "version": "16.1.1",
+        "buildid": "20B101",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-97046/403BB49C-FDDA-4F08-9AB6-328B87ED92EC/iPhone15,2_16.1.1_20B101_Restore.ipsw",
+        "filesize": 6648688596
+      },
+      {
+        "version": "16.1",
+        "buildid": "20B82",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-93190/098E2B39-3555-46A3-81EA-432C9DC1D3B8/iPhone15,2_16.1_20B82_Restore.ipsw",
+        "filesize": 6648481778
+      },
+      {
+        "version": "16.0.3",
+        "buildid": "20A392",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-73279/3A7D022D-9AC0-4473-B80A-9128617C4348/iPhone15,2_16.0.3_20A392_Restore.ipsw",
+        "filesize": 6634826609
+      },
+      {
+        "version": "16.0.2",
+        "buildid": "20A380",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-72538/58ACC1BF-0C46-4CF9-A450-BAEB361DDC15/iPhone15,2_16.0.2_20A380_Restore.ipsw",
+        "filesize": 6634247397
+      },
+      {
+        "version": "16.0.1",
+        "buildid": "20A371",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-69357/7F866BFA-FCEF-4A01-8597-B345A29F0559/iPhone15,2_16.0.1_20A371_Restore.ipsw",
+        "filesize": 6633593592
+      },
+      {
+        "version": "16.0",
+        "buildid": "20A362",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-66000/78F42B45-7562-4808-83A8-FDF43C4B5FAC/iPhone15,2_16.0_20A362_Restore.ipsw",
+        "filesize": 6634158795
+      }
+    ],
     "iPad13,16": [
       {
         "version": "18.6.2",
@@ -2826,467 +3287,6 @@
         "filesize": 6569169749
       }
     ],
-    "iPhone15,2": [
-      {
-        "version": "18.6.2",
-        "buildid": "22G100",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/093-20972/EF7B05A9-30C5-45F5-A1E4-EF4026465B85/iPhone15,2_18.6.2_22G100_Restore.ipsw",
-        "filesize": 9335078348
-      },
-      {
-        "version": "18.6.1",
-        "buildid": "22G90",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/093-09333/216FC2CE-2CA3-4162-B6C8-406CF237AB78/iPhone15,2_18.6.1_22G90_Restore.ipsw",
-        "filesize": 9335158104
-      },
-      {
-        "version": "18.6",
-        "buildid": "22G86",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/082-99868/5D43A475-10CD-464F-8EA5-43619889DCB5/iPhone15,2_18.6_22G86_Restore.ipsw",
-        "filesize": 9335165076
-      },
-      {
-        "version": "18.5",
-        "buildid": "22F76",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-47075/EB56E180-67D8-40CE-9C9C-1C5C30F60198/iPhone15,2_18.5_22F76_Restore.ipsw",
-        "filesize": 9334830738
-      },
-      {
-        "version": "18.4.1",
-        "buildid": "22E252",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-31214/7F5845A1-E9B8-4765-BBE0-01D2040A1211/iPhone15,2_18.4.1_22E252_Restore.ipsw",
-        "filesize": 9333418855
-      },
-      {
-        "version": "18.4",
-        "buildid": "22E240",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-15819/37A3D476-CEC3-437E-A2DC-36EB0E1172BB/iPhone15,2_18.4_22E240_Restore.ipsw",
-        "filesize": 9333570311
-      },
-      {
-        "version": "18.3.2",
-        "buildid": "22D82",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/082-03683/CACC3399-3E67-4D3C-9CE4-464E0C636AF7/iPhone15,2_18.3.2_22D82_Restore.ipsw",
-        "filesize": 8997515039
-      },
-      {
-        "version": "18.3.1",
-        "buildid": "22D72",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/072-85567/1BD7FB70-8AE4-4A8D-B845-EF53F2461ED4/iPhone15,2_18.3.1_22D72_Restore.ipsw",
-        "filesize": 8997549116
-      },
-      {
-        "version": "18.3",
-        "buildid": "22D63",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/072-67935/47620506-4506-4D6F-86F1-98BCEDCE166A/iPhone15,2_18.3_22D63_Restore.ipsw",
-        "filesize": 8997424546
-      },
-      {
-        "version": "18.2.1",
-        "buildid": "22C161",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-56690/436E59F3-D2B1-43A8-AAE5-4C0A2B545379/iPhone15,2_18.2.1_22C161_Restore.ipsw",
-        "filesize": 9064147283
-      },
-      {
-        "version": "18.2",
-        "buildid": "22C152",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-43234/FCA97D92-1186-4968-8C34-E8601B03556A/iPhone15,2_18.2_22C152_Restore.ipsw",
-        "filesize": 9064200761
-      },
-      {
-        "version": "18.1.1",
-        "buildid": "22B91",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-30197/0111B114-1EAE-444E-9911-42B30CC95A1B/iPhone15,2_18.1.1_22B91_Restore.ipsw",
-        "filesize": 8721161387
-      },
-      {
-        "version": "18.1",
-        "buildid": "22B83",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-12763/EAC7FCB5-7CD6-4265-8B2C-FE484D4F9DE0/iPhone15,2_18.1_22B83_Restore.ipsw",
-        "filesize": 8721113451
-      },
-      {
-        "version": "18.0.1",
-        "buildid": "22A3370",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-02618/2E61A212-B980-4C6E-97E9-AD2864FBA611/iPhone15,2_18.0.1_22A3370_Restore.ipsw",
-        "filesize": 8687258542
-      },
-      {
-        "version": "18.0",
-        "buildid": "22A3354",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/062-77778/2D0C56D2-7F47-4346-8397-9BBFA1E1DB9D/iPhone15,2_18.0_22A3354_Restore.ipsw",
-        "filesize": 8687210693
-      },
-      {
-        "version": "17.7",
-        "buildid": "21H16",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/062-79094/90CE304F-6C16-402E-96C9-89260D93CA82/iPhone15,2_17.7_21H16_Restore.ipsw",
-        "filesize": 8112953646
-      },
-      {
-        "version": "17.6.1",
-        "buildid": "21G101",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/062-69622/AA2D1221-20CF-41B5-AEBD-EA676D954125/iPhone15,2_17.6.1_21G101_Restore.ipsw",
-        "filesize": 8110947745
-      },
-      {
-        "version": "17.6.1",
-        "buildid": "21G93",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/062-57830/2368BB3F-EC42-48AB-B810-1F4F31951075/iPhone15,2_17.6.1_21G93_Restore.ipsw",
-        "filesize": 8111314205
-      },
-      {
-        "version": "17.6",
-        "buildid": "21G80",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/062-44653/40295144-CB7F-4D77-81D7-71D93D5C2B31/iPhone15,2_17.6_21G80_Restore.ipsw",
-        "filesize": 8109234972
-      },
-      {
-        "version": "17.5.1",
-        "buildid": "21F90",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024SpringFCS/fullrestores/062-06652/B7EAA639-CB1A-4D5D-B4B4-11D4DCECFDE9/iPhone15,2_17.5.1_21F90_Restore.ipsw",
-        "filesize": 8106785134
-      },
-      {
-        "version": "17.5",
-        "buildid": "21F79",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024SpringFCS/fullrestores/052-39335/666EC1C5-1CE4-4454-A00F-35CEEA7516D9/iPhone15,2_17.5_21F79_Restore.ipsw",
-        "filesize": 8106404860
-      },
-      {
-        "version": "17.4.1",
-        "buildid": "21E237",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-79589/F6C80846-14D5-46A8-B0E3-1C7FAD285716/iPhone15,2_17.4.1_21E237_Restore.ipsw",
-        "filesize": 7983316237
-      },
-      {
-        "version": "17.4.1",
-        "buildid": "21E236",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-74196/1E5EE8AA-354A-4133-AD63-94D1E5B7AF48/iPhone15,2_17.4.1_21E236_Restore.ipsw",
-        "filesize": 7982132200
-      },
-      {
-        "version": "17.4",
-        "buildid": "21E219",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-60379/03138099-AF50-4604-B628-EF78A22D9632/iPhone15,2_17.4_21E219_Restore.ipsw",
-        "filesize": 7984016973
-      },
-      {
-        "version": "17.3.1",
-        "buildid": "21D61",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-41828/5878F171-FDD4-4CDF-93B1-FECBA2FEFED2/iPhone15,2_17.3.1_21D61_Restore.ipsw",
-        "filesize": 7924461198
-      },
-      {
-        "version": "17.3",
-        "buildid": "21D50",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/042-81174/16619A78-E8C1-453B-A996-6826E5A4FCB8/iPhone15,2_17.3_21D50_Restore.ipsw",
-        "filesize": 7924600532
-      },
-      {
-        "version": "17.2.1",
-        "buildid": "21C66",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/052-16092/DC604DF3-9E67-493B-8ABD-EF25D087555F/iPhone15,2_17.2.1_21C66_Restore.ipsw",
-        "filesize": 7918973653
-      },
-      {
-        "version": "17.2",
-        "buildid": "21C62",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-36420/CF398F92-21A9-4127-B1AC-AF7B0871FEAC/iPhone15,2_17.2_21C62_Restore.ipsw",
-        "filesize": 7918663622
-      },
-      {
-        "version": "17.1.2",
-        "buildid": "21B101",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/052-10730/8FDE27D7-1A3C-480A-BFB9-C4979C999B07/iPhone15,2_17.1.2_21B101_Restore.ipsw",
-        "filesize": 7996446276
-      },
-      {
-        "version": "17.1.1",
-        "buildid": "21B91",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-96132/3FC00650-4C13-4B65-BACD-002180B5513F/iPhone15,2_17.1.1_21B91_Restore.ipsw",
-        "filesize": 7996682781
-      },
-      {
-        "version": "17.1",
-        "buildid": "21B74",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-07910/35ECC4D8-1EE5-4B73-8C88-0186F6C1ECBC/iPhone15,2_17.1_21B74_Restore.ipsw",
-        "filesize": 7996369797
-      },
-      {
-        "version": "17.0.3",
-        "buildid": "21A360",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-72836/2895EA4A-4448-4F5D-A460-E94A5C5A6570/iPhone15,2_17.0.3_21A360_Restore.ipsw",
-        "filesize": 7971915096
-      },
-      {
-        "version": "17.0.2",
-        "buildid": "21A351",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/042-64967/9E0DBECD-03C1-4887-AB1D-F50116FA4957/iPhone15,2_17.0.2_21A351_Restore.ipsw",
-        "filesize": 7973666521
-      },
-      {
-        "version": "17.0.1",
-        "buildid": "21A340",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-55400/A180BECA-28B6-4593-9879-49947383EEA3/iPhone15,2_17.0.1_21A340_Restore.ipsw",
-        "filesize": 7973660252
-      },
-      {
-        "version": "17.0",
-        "buildid": "21A329",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-49374/D2364202-FFBF-4139-B90F-A872FCCF739F/iPhone15,2_17.0_21A329_Restore.ipsw",
-        "filesize": 7973858109
-      },
-      {
-        "version": "16.6.1",
-        "buildid": "20G81",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/042-44327/EDD9D5D2-E1C0-4B64-B6B1-642E087BB595/iPhone15,2_16.6.1_20G81_Restore.ipsw",
-        "filesize": 6913489639
-      },
-      {
-        "version": "16.6",
-        "buildid": "20G75",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/042-17346/59463897-1563-456F-A804-6CBC6F60A291/iPhone15,2_16.6_20G75_Restore.ipsw",
-        "filesize": 6913876463
-      },
-      {
-        "version": "16.5.1",
-        "buildid": "20F75",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/042-02633/5B7DCCB8-3ED8-49A1-A685-41FA11CBDBD9/iPhone15,2_16.5.1_20F75_Restore.ipsw",
-        "filesize": 6888232333
-      },
-      {
-        "version": "16.5",
-        "buildid": "20F66",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/032-85600/F6B05E06-675E-4435-9777-33AC4EF00A8A/iPhone15,2_16.5_20F66_Restore.ipsw",
-        "filesize": 6887764078
-      },
-      {
-        "version": "16.4.1",
-        "buildid": "20E252",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/032-71111/628F1533-30FD-4E67-A900-97C48DD1F312/iPhone15,2_16.4.1_20E252_Restore.ipsw",
-        "filesize": 6871000523
-      },
-      {
-        "version": "16.4",
-        "buildid": "20E247",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/032-68531/55FC5EAA-3D70-4577-9906-F1A3F1D7BD8F/iPhone15,2_16.4_20E247_Restore.ipsw",
-        "filesize": 6871116311
-      },
-      {
-        "version": "16.3.1",
-        "buildid": "20D67",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023WinterFCS/fullrestores/032-49930/8796A646-1C64-4039-9C97-F063E4B0F788/iPhone15,2_16.3.1_20D67_Restore.ipsw",
-        "filesize": 6712894896
-      },
-      {
-        "version": "16.3",
-        "buildid": "20D47",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023WinterFCS/fullrestores/032-36066/CC05C7DF-B6C7-4495-B63C-6E71118777E1/iPhone15,2_16.3_20D47_Restore.ipsw",
-        "filesize": 6713037763
-      },
-      {
-        "version": "16.2",
-        "buildid": "20C65",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/032-13962/59563D0C-FF2F-4F6B-B1DC-69E27D646224/iPhone15,2_16.2_20C65_Restore.ipsw",
-        "filesize": 6732057788
-      },
-      {
-        "version": "16.1.2",
-        "buildid": "20B110",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/032-11283/8DCE1C5B-37EF-4812-A396-22B2F71CD366/iPhone15,2_16.1.2_20B110_Restore.ipsw",
-        "filesize": 6649075258
-      },
-      {
-        "version": "16.1.1",
-        "buildid": "20B101",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-97046/403BB49C-FDDA-4F08-9AB6-328B87ED92EC/iPhone15,2_16.1.1_20B101_Restore.ipsw",
-        "filesize": 6648688596
-      },
-      {
-        "version": "16.1",
-        "buildid": "20B82",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-93190/098E2B39-3555-46A3-81EA-432C9DC1D3B8/iPhone15,2_16.1_20B82_Restore.ipsw",
-        "filesize": 6648481778
-      },
-      {
-        "version": "16.0.3",
-        "buildid": "20A392",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-73279/3A7D022D-9AC0-4473-B80A-9128617C4348/iPhone15,2_16.0.3_20A392_Restore.ipsw",
-        "filesize": 6634826609
-      },
-      {
-        "version": "16.0.2",
-        "buildid": "20A380",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-72538/58ACC1BF-0C46-4CF9-A450-BAEB361DDC15/iPhone15,2_16.0.2_20A380_Restore.ipsw",
-        "filesize": 6634247397
-      },
-      {
-        "version": "16.0.1",
-        "buildid": "20A371",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-69357/7F866BFA-FCEF-4A01-8597-B345A29F0559/iPhone15,2_16.0.1_20A371_Restore.ipsw",
-        "filesize": 6633593592
-      },
-      {
-        "version": "16.0",
-        "buildid": "20A362",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-66000/78F42B45-7562-4808-83A8-FDF43C4B5FAC/iPhone15,2_16.0_20A362_Restore.ipsw",
-        "filesize": 6634158795
-      }
-    ],
     "MacBookPro18,1": [
       {
         "version": "15.6.1",
@@ -3736,7 +3736,7 @@
     "build": "24G90",
     "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/093-10809/CFD6DD38-DAF0-40DA-854F-31AAD1294C6F/UniversalMac_15.6.1_24G90_Restore.ipsw",
     "apple_slug": "093-10809",
-    "fetch_timestamp": "2025-09-02T05:33:10.844439943Z"
+    "fetch_timestamp": "2025-09-02T09:09:56.725010284Z"
   },
   "total_devices": 255,
   "total_firmwares": 214
