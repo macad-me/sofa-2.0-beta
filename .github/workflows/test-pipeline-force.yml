@@ -57,26 +57,51 @@ jobs:
         run: |
           echo "📥 Downloading latest SOFA CLI binaries..."
           mkdir -p bin
-          
+
           # Use specific version since latest release is marked as prerelease
           DOWNLOAD_URL="https://github.com/headmin/sofa-core-cli/releases/download/v0.1.0-beta1"
           LINUX_ZIP="sofa-core-cli-x86_64-linux-binaries.zip"
-          
+
           echo "  • Downloading Linux binaries: $LINUX_ZIP"
           if curl -L -f -o "$LINUX_ZIP" "$DOWNLOAD_URL/$LINUX_ZIP"; then
             echo "    ✅ Downloaded: $LINUX_ZIP"
-            
+
             echo "  • Extracting binaries..."
             unzip -o -j "$LINUX_ZIP" -d bin/
             chmod +x bin/*
             rm "$LINUX_ZIP"
-            
+
             echo "    ✅ Extracted and made executable"
             echo "  • Extracted files:"
             ls -la bin/
           else
             echo "    ❌ Failed to download: $LINUX_ZIP"
             exit 1
+          fi
+
+      - name: Inspect directory structure after checkout and binary download
+        run: |
+          echo "🔍 Detailed directory inspection after checkout and binary download..."
+          echo "Working directory: $(pwd)"
+          echo ""
+          echo "Root directory contents:"
+          ls -la
+          echo ""
+          echo "bin/ directory (downloaded binaries):"
+          ls -la bin/ || echo "bin/ directory not found"
+          echo ""
+          echo "config/ directory (checked out with code):"
+          ls -la config/ || echo "config/ directory not found"
+          echo ""
+          echo "Relative path check - bin relative to config:"
+          echo "bin path from root: $(realpath bin 2>/dev/null || echo 'bin not found')"
+          echo "config path from root: $(realpath config 2>/dev/null || echo 'config not found')"
+          echo ""
+          echo "AppleRoot.pem check:"
+          if [ -f "config/AppleRoot.pem" ]; then
+            echo "✅ config/AppleRoot.pem exists ($(stat -c%s config/AppleRoot.pem 2>/dev/null || stat -f%z config/AppleRoot.pem 2>/dev/null) bytes)"
+          else
+            echo "❌ config/AppleRoot.pem missing"
           fi
           
       - name: Test binary execution
@@ -148,17 +173,56 @@ jobs:
           echo "Testing UV via PATH:"
           which uv
           uv --version
+
+      - name: Test GDMF fetch with AppleRoot.pem
+        run: |
+          echo "🧪 Testing GDMF fetch using config/AppleRoot.pem..."
+          cd scripts
+
+          export PATH="../bin:$HOME/.local/bin:$PATH"
+
+          echo "Running GDMF test script..."
+          if uv run test_gdmf_fetch.py; then
+            echo "✅ GDMF test completed successfully"
+            echo "## ✅ GDMF Test Success" >> $GITHUB_STEP_SUMMARY
+            echo "GDMF fetch with AppleRoot.pem worked correctly" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ GDMF test failed"
+            echo "## ❌ GDMF Test Failed" >> $GITHUB_STEP_SUMMARY
+            echo "GDMF fetch with AppleRoot.pem encountered errors" >> $GITHUB_STEP_SUMMARY
+            # Don't exit - this is just a diagnostic test
+          fi
+
+          # Show cache contents if created
+          if [ -f "../data/cache/gdmf_cached.json" ]; then
+            echo "Cache file created:"
+            ls -la ../data/cache/gdmf_cached.json
+          fi
           
       - name: Test gather stage
         if: contains(github.event.inputs.test_stage, 'gather') || github.event.inputs.test_stage == 'all'
         run: |
           echo "📊 Testing GATHER stage..."
-          
+
           cd scripts
-          
+
           export SOFA_BIN_PATH="../bin"
           export PATH="../bin:$HOME/.local/bin:$PATH"
-          
+
+          echo "🔍 Pre-gather directory verification from scripts/ directory:"
+          echo "Current working directory: $(pwd)"
+          echo "bin/ directory (should be ../bin from here):"
+          ls -la ../bin/ || echo "❌ ../bin/ not found from scripts/"
+          echo "config/ directory (should be ../config from here):"
+          ls -la ../config/ || echo "❌ ../config/ not found from scripts/"
+          echo "AppleRoot.pem check from scripts/:"
+          if [ -f "../config/AppleRoot.pem" ]; then
+            echo "✅ ../config/AppleRoot.pem accessible from scripts/"
+          else
+            echo "❌ ../config/AppleRoot.pem not accessible from scripts/"
+          fi
+          echo ""
+
           if [[ "${{ github.event.inputs.debug_mode }}" == "true" ]]; then
             echo "🔍 Debug mode: Showing binary locations..."
             ls -la ../bin/
@@ -235,10 +299,19 @@ jobs:
           pwd
           echo "Root directory contents:"
           ls -la
+          echo "bin/ directory (downloaded binaries):"
+          ls -la bin/ 2>/dev/null || echo "No bin/ directory"
+          echo "config/ directory (checked out with code):"
+          ls -la config/ 2>/dev/null || echo "No config/ directory"
           echo "Data directory contents:"
           ls -la data/ 2>/dev/null || echo "No data/ directory"
           echo "Scripts directory contents:"
           ls -la scripts/ 2>/dev/null || echo "No scripts/ directory"
+          echo ""
+          echo "Final verification - bin/ and config/ still co-located:"
+          echo "bin/ exists: $([ -d bin ] && echo 'YES' || echo 'NO')"
+          echo "config/ exists: $([ -d config ] && echo 'YES' || echo 'NO')"
+          echo "AppleRoot.pem exists: $([ -f config/AppleRoot.pem ] && echo 'YES' || echo 'NO')"
           
           if [ -d "data/feeds" ]; then
             echo "### Feeds Directory:" >> $GITHUB_STEP_SUMMARY
