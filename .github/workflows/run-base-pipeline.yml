@@ -232,6 +232,7 @@ jobs:
           fi
           
       - name: Show generated files
+        if: success() && (contains(github.event.inputs.test_stage, 'build') || github.event.inputs.test_stage == 'all')
         run: |
           echo "📁 Checking generated files..."
           echo "## 📁 Generated Files" >> $GITHUB_STEP_SUMMARY
@@ -258,6 +259,7 @@ jobs:
           fi
           
       - name: Test RSS generation
+        if: success() && (contains(github.event.inputs.test_stage, 'build') || github.event.inputs.test_stage == 'all')
         run: |
           echo "📡 Testing RSS generation..."
           cd scripts
@@ -326,7 +328,7 @@ jobs:
           echo "Check the step logs above to see exactly where the pipeline succeeded or failed." >> $GITHUB_STEP_SUMMARY
 
       - name: Schedule fast track run
-        if: github.event.inputs.fast_track == 'true'
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.fast_track == 'true'
         run: |
           echo "⚡ Fast track requested - will trigger another run in 5 minutes..."
 
