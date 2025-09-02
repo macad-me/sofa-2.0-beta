@@ -1,5 +1,5 @@
 {
-  "UpdateHash": "cef69ec99aeab0b276608fd5b41dfd9af7a3226ef4eebd850473db2eda5aace1",
+  "UpdateHash": "dc7e7de20b09ead4ff728bd3913001055c947639001962d51b21fb417bac4953",
   "Version": "1.1",
   "OSVersions": [
     {
@@ -12532,11 +12532,11 @@
           "AllBuilds": [
             "21H1320"
           ],
-          "ReleaseDate": "2025-08-31T07:00:15.712844+00:00",
+          "ReleaseDate": "2025-09-02T05:33:57.669892997+00:00",
           "ExpirationDate": "2025-11-29",
           "ReleaseType": "OS",
           "SecurityInfo": "",
-          "SecurityInfoContext": "macOS 12.0 was released on Aug 31, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
+          "SecurityInfoContext": "macOS 12.0 was released on Sep 02, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -12713,109 +12713,7 @@
     "com.apple.XprotectFramework.PluginService": "74",
     "ReleaseDate": "2025-08-26T17:09:23Z"
   },
-  "Models": {
-    "Mac14,15": {
-      "MarketingName": "MacBook Air (15-inch, M2, 2023)",
-      "OSVersions": [
-        13,
-        14,
-        15,
-        26
-      ],
-      "SupportedOS": [
-        "Tahoe 26",
-        "Sequoia 15",
-        "Sonoma 14",
-        "Ventura 13"
-      ]
-    },
-    "Mac14,2": {
-      "MarketingName": "MacBook Air (M2, 2022)",
-      "OSVersions": [
-        12,
-        13,
-        14,
-        15,
-        26
-      ],
-      "SupportedOS": [
-        "Monterey 12",
-        "Tahoe 26",
-        "Sequoia 15",
-        "Sonoma 14",
-        "Ventura 13"
-      ]
-    },
-    "Mac15,12": {
-      "MarketingName": "MacBook Air (13-inch, M3, 2024)",
-      "OSVersions": [
-        14,
-        15,
-        26
-      ],
-      "SupportedOS": [
-        "Tahoe 26",
-        "Sequoia 15",
-        "Sonoma 14"
-      ]
-    },
-    "Mac15,13": {
-      "MarketingName": "MacBook Air (15-inch, M3, 2024)",
-      "OSVersions": [
-        14,
-        15,
-        26
-      ],
-      "SupportedOS": [
-        "Tahoe 26",
-        "Sequoia 15",
-        "Sonoma 14"
-      ]
-    },
-    "MacBookAir10,1": {
-      "MarketingName": "MacBook Air (M1, 2020)",
-      "OSVersions": [
-        12,
-        13,
-        14,
-        15,
-        26
-      ],
-      "SupportedOS": [
-        "Monterey 12",
-        "Tahoe 26",
-        "Sequoia 15",
-        "Sonoma 14",
-        "Ventura 13"
-      ]
-    },
-    "MacBookAir7,2": {
-      "MarketingName": "MacBook Air (13-inch, Early 2015)",
-      "OSVersions": [
-        12
-      ],
-      "SupportedOS": [
-        "Monterey 12"
-      ]
-    },
-    "MacBookAir9,1": {
-      "MarketingName": "MacBook Air (Retina, 13-inch, 2020)",
-      "OSVersions": [
-        12,
-        13,
-        14,
-        15,
-        26
-      ],
-      "SupportedOS": [
-        "Monterey 12",
-        "Tahoe 26",
-        "Sequoia 15",
-        "Sonoma 14",
-        "Ventura 13"
-      ]
-    }
-  },
+  "Models": {},
   "InstallationApps": {
     "LatestUMA": {
       "title": "macOS Sequoia",
