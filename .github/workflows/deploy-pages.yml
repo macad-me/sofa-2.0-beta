@@ -16,9 +16,35 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  check-deployment:
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'push' &&
+      (contains(github.event.head_commit.message, 'CVE data update') ||
+       contains(github.event.head_commit.author.name, 'GitHub Action'))
+    steps:
+      - name: Skip deployment for automated commits
+        run: |
+          echo "⏭️ Skipping deployment for automated CVE data update"
+          echo "Commit: ${{ github.event.head_commit.message }}"
+          echo "Author: ${{ github.event.head_commit.author.name }}"
+          echo "This is an automated data update - no deployment needed"
   build:
     runs-on: ubuntu-latest
+    # Skip deployment for automated CVE data commits
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' &&
+       !contains(github.event.head_commit.message, 'CVE data update') &&
+       !contains(github.event.head_commit.author.name, 'GitHub Action'))
     steps:
+      - name: Check deployment trigger
+        run: |
+          echo "🚀 Deploying to GitHub Pages"
+          echo "Event: ${{ github.event_name }}"
+          echo "Commit message: ${{ github.event.head_commit.message }}"
+          echo "Commit author: ${{ github.event.head_commit.author.name }}"
+
       - name: Checkout
         uses: actions/checkout@v4
       
