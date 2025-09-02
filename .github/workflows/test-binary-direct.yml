@@ -118,23 +118,43 @@ jobs:
       - name: Test with explicit config path
         run: |
           echo "🔧 Testing with explicit config paths..."
-          
+
           # Test 4: Try with --config flag if it exists
           echo "=== TEST 4: Check for config options ==="
           echo "Checking sofa-gather help for config options:"
           ./bin/sofa-gather --help | grep -i config || echo "No config options found in help"
           echo ""
-          
-          # Test 5: Try setting working directory explicitly
-          echo "=== TEST 5: Test with different approaches ==="
-          
-          # Create a simple test to see what paths the binary is looking for
-          echo "Testing path resolution..."
-          
-          # Try with absolute path to config
-          if [ -f "config/AppleRoot.pem" ]; then
-            ABS_CONFIG_PATH=$(realpath config/AppleRoot.pem)
+
+          # Test 5: Try with explicit config from scripts/ directory
+          echo "=== TEST 5: GDMF from scripts/ with --config flag ==="
+          cd scripts
+          echo "Current working directory: $(pwd)"
+          echo "Running: ../bin/sofa-gather --config ../config/gather.toml gdmf"
+          if ../bin/sofa-gather --config ../config/gather.toml gdmf; then
+            echo "✅ GDMF gather succeeded from scripts/ with --config flag"
+            echo "## ✅ GDMF Success with --config Flag" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ GDMF gather failed from scripts/ even with --config flag"
+            echo "## ❌ GDMF Failed with --config Flag" >> $GITHUB_STEP_SUMMARY
+          fi
+          cd ..
+          echo ""
+
+          # Test 6: Try with absolute config path
+          echo "=== TEST 6: Test with absolute config path ==="
+          if [ -f "config/gather.toml" ]; then
+            ABS_CONFIG_PATH=$(realpath config/gather.toml)
             echo "Absolute config path: $ABS_CONFIG_PATH"
+            cd scripts
+            echo "Running: ../bin/sofa-gather --config $ABS_CONFIG_PATH gdmf"
+            if ../bin/sofa-gather --config "$ABS_CONFIG_PATH" gdmf; then
+              echo "✅ GDMF gather succeeded with absolute config path"
+              echo "## ✅ GDMF Success with Absolute Config" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "❌ GDMF gather failed with absolute config path"
+              echo "## ❌ GDMF Failed with Absolute Config" >> $GITHUB_STEP_SUMMARY
+            fi
+            cd ..
           fi
           
       - name: Check generated files
