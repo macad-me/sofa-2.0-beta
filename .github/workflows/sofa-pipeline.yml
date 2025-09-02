@@ -31,7 +31,7 @@ on:
         - build
   schedule:
     # Run every 6 hours
-    - cron: '0 */6 * * *'
+    # - cron: '0 */6 * * *'
   push:
     branches: [ main ]
     paths:
