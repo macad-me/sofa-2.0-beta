@@ -1,0 +1,159 @@
+name: 🔬 Direct Binary Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      debug_mode:
+        description: 'Enable verbose debugging'
+        type: boolean
+        default: true
+
+env:
+  PYTHON_VERSION: '3.13'
+
+jobs:
+  test-binary-direct:
+    name: Direct Binary Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Show environment info
+        run: |
+          echo "## 🔬 Direct Binary Test Environment" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**OS:** $(lsb_release -d | cut -f2)" >> $GITHUB_STEP_SUMMARY
+          echo "**Architecture:** $(uname -m)" >> $GITHUB_STEP_SUMMARY
+          echo "**Working Directory:** $(pwd)" >> $GITHUB_STEP_SUMMARY
+          echo "**Timestamp:** $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+      - name: Download SOFA CLI binaries
+        run: |
+          echo "📥 Downloading latest SOFA CLI binaries..."
+          mkdir -p bin
+          
+          DOWNLOAD_URL="https://github.com/headmin/sofa-core-cli/releases/download/v0.1.0-beta1"
+          LINUX_ZIP="sofa-core-cli-x86_64-linux-binaries.zip"
+          
+          echo "  • Downloading Linux binaries: $LINUX_ZIP"
+          curl -L -f -o "$LINUX_ZIP" "$DOWNLOAD_URL/$LINUX_ZIP"
+          unzip -o -j "$LINUX_ZIP" -d bin/
+          chmod +x bin/*
+          rm "$LINUX_ZIP"
+          
+          echo "  • Downloaded binaries:"
+          ls -la bin/
+          
+      - name: Inspect directory structure
+        run: |
+          echo "🔍 Directory structure inspection..."
+          echo "Working directory: $(pwd)"
+          echo ""
+          echo "Root directory contents:"
+          ls -la
+          echo ""
+          echo "bin/ directory:"
+          ls -la bin/
+          echo ""
+          echo "config/ directory:"
+          ls -la config/
+          echo ""
+          echo "AppleRoot.pem check:"
+          if [ -f "config/AppleRoot.pem" ]; then
+            echo "✅ config/AppleRoot.pem exists ($(stat -c%s config/AppleRoot.pem) bytes)"
+            echo "File content preview:"
+            head -3 config/AppleRoot.pem
+            echo "..."
+            tail -3 config/AppleRoot.pem
+          else
+            echo "❌ config/AppleRoot.pem missing"
+          fi
+          
+      - name: Test sofa-gather binary directly
+        run: |
+          echo "🧪 Testing sofa-gather binary directly..."
+          echo "Current working directory: $(pwd)"
+          echo ""
+          
+          # Test 1: Run from repo root (where config/ is accessible)
+          echo "=== TEST 1: Run from repo root ==="
+          echo "Running: ./bin/sofa-gather --help"
+          ./bin/sofa-gather --help || echo "Help command failed"
+          echo ""
+          
+          echo "Running: ./bin/sofa-gather --version"
+          ./bin/sofa-gather --version || echo "Version command failed"
+          echo ""
+          
+          # Test 2: Try GDMF specifically from repo root
+          echo "=== TEST 2: GDMF from repo root ==="
+          echo "Running: ./bin/sofa-gather gdmf"
+          if ./bin/sofa-gather gdmf; then
+            echo "✅ GDMF gather succeeded from repo root"
+            echo "## ✅ GDMF Success from Repo Root" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ GDMF gather failed from repo root"
+            echo "## ❌ GDMF Failed from Repo Root" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo ""
+          
+          # Test 3: Try from scripts/ directory (like pipeline does)
+          echo "=== TEST 3: GDMF from scripts/ directory ==="
+          cd scripts
+          echo "Current working directory: $(pwd)"
+          echo "Running: ../bin/sofa-gather gdmf"
+          if ../bin/sofa-gather gdmf; then
+            echo "✅ GDMF gather succeeded from scripts/"
+            echo "## ✅ GDMF Success from Scripts Dir" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ GDMF gather failed from scripts/"
+            echo "## ❌ GDMF Failed from Scripts Dir" >> $GITHUB_STEP_SUMMARY
+          fi
+          cd ..
+          echo ""
+          
+      - name: Test with explicit config path
+        run: |
+          echo "🔧 Testing with explicit config paths..."
+          
+          # Test 4: Try with --config flag if it exists
+          echo "=== TEST 4: Check for config options ==="
+          echo "Checking sofa-gather help for config options:"
+          ./bin/sofa-gather --help | grep -i config || echo "No config options found in help"
+          echo ""
+          
+          # Test 5: Try setting working directory explicitly
+          echo "=== TEST 5: Test with different approaches ==="
+          
+          # Create a simple test to see what paths the binary is looking for
+          echo "Testing path resolution..."
+          
+          # Try with absolute path to config
+          if [ -f "config/AppleRoot.pem" ]; then
+            ABS_CONFIG_PATH=$(realpath config/AppleRoot.pem)
+            echo "Absolute config path: $ABS_CONFIG_PATH"
+          fi
+          
+      - name: Check generated files
+        run: |
+          echo "📁 Checking what files were generated..."
+          echo ""
+          echo "data/ directory contents:"
+          find data/ -type f 2>/dev/null | head -20 || echo "No data/ files found"
+          echo ""
+          echo "Any GDMF files created:"
+          find . -name "*gdmf*" -type f 2>/dev/null || echo "No GDMF files found"
+          echo ""
+          
+      - name: Final summary
+        if: always()
+        run: |
+          echo "## 🎯 Direct Binary Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Test completed:** $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "This test bypassed the Python pipeline entirely and called sofa-gather directly." >> $GITHUB_STEP_SUMMARY
+          echo "Check the step logs above to see exactly where the binary succeeds or fails." >> $GITHUB_STEP_SUMMARY
