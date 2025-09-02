@@ -1,5 +1,5 @@
 {
-  "update_hash": "sha256:cb174e2f51af9e3ab63a1fe8f150b1695d4f918ea1d2aed837c67e51720e29c1",
+  "update_hash": "sha256:24cc5875abac76a9d9c74e6b7c503d1f589e19bd050783a6c8e32f8fec36d216",
   "devices": [
     {
       "name": "iPhone 2G",
@@ -1789,13 +1789,465 @@
   ],
   "latest_versions": {
     "tvOS": "17.6.2",
-    "macOS": "14.7.2",
-    "iPadOS": "18.6.2",
     "visionOS": "1.3.2",
     "iOS": "18.6.2",
+    "macOS": "14.7.2",
+    "iPadOS": "18.6.2",
     "watchOS": "10.6.2"
   },
   "signing_status": {
+    "iPad13,16": [
+      {
+        "version": "18.6.2",
+        "buildid": "22G100",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/093-20908/B8AEDA5B-61B5-4E0D-844C-8BF36B2918F9/iPad_Spring_2022_18.6.2_22G100_Restore.ipsw",
+        "filesize": 8916698270
+      },
+      {
+        "version": "18.6",
+        "buildid": "22G86",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/082-98922/A1C6BAE0-B6AF-4688-BD55-74FF2B9DB1C8/iPad_Spring_2022_18.6_22G86_Restore.ipsw",
+        "filesize": 8916771650
+      },
+      {
+        "version": "18.5",
+        "buildid": "22F76",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-46468/B56009B2-A37F-41BF-9B16-C52443CCB2B1/iPad_Spring_2022_18.5_22F76_Restore.ipsw",
+        "filesize": 8983630492
+      },
+      {
+        "version": "18.4.1",
+        "buildid": "22E252",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-30196/16255A3B-8C18-4C3A-86F2-C75C31C693A4/iPad_Spring_2022_18.4.1_22E252_Restore.ipsw",
+        "filesize": 8915168564
+      },
+      {
+        "version": "18.4",
+        "buildid": "22E240",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-15432/57F536BB-DE69-4136-80DF-BEECE789DF49/iPad_Spring_2022_18.4_22E240_Restore.ipsw",
+        "filesize": 8915314543
+      },
+      {
+        "version": "18.3.2",
+        "buildid": "22D82",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/082-02156/2113B0A0-A84C-49CF-8A46-69AF9B61FE6B/iPad_Spring_2022_18.3.2_22D82_Restore.ipsw",
+        "filesize": 8555395725
+      },
+      {
+        "version": "18.3.1",
+        "buildid": "22D72",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/072-84431/0E785D2B-2D18-4331-8DD0-5776AA6EF59B/iPad_Spring_2022_18.3.1_22D72_Restore.ipsw",
+        "filesize": 8555430202
+      },
+      {
+        "version": "18.3",
+        "buildid": "22D63",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/072-67894/B8070664-BC51-4A5B-AC47-017FBC7940F6/iPad_Spring_2022_18.3_22D63_Restore.ipsw",
+        "filesize": 8555311362
+      },
+      {
+        "version": "18.2.1",
+        "buildid": "22C161",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-55636/AC744BA8-8A44-43A7-B4AB-6050AB5233E0/iPad_Spring_2022_18.2.1_22C161_Restore.ipsw",
+        "filesize": 8554913606
+      },
+      {
+        "version": "18.2",
+        "buildid": "22C152",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-42162/5DCC2909-0F7F-4E4E-8FA6-F2293B38C05A/iPad_Spring_2022_18.2_22C152_Restore.ipsw",
+        "filesize": 8554967120
+      },
+      {
+        "version": "18.1.1",
+        "buildid": "22B91",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-33649/9062CF71-BFFF-4072-986E-C5369C83BE58/iPad_Spring_2022_18.1.1_22B91_Restore.ipsw",
+        "filesize": 8245706226
+      },
+      {
+        "version": "18.1",
+        "buildid": "22B83",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-12660/1199426D-DDEC-4F4C-84E2-43A1C3F28ACE/iPad_Spring_2022_18.1_22B83_Restore.ipsw",
+        "filesize": 8245657977
+      },
+      {
+        "version": "18.0.1",
+        "buildid": "22A3370",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-01882/820C8288-3CC3-4018-9EB4-24CED27F0D3B/iPad_Spring_2022_18.0.1_22A3370_Restore.ipsw",
+        "filesize": 8178094760
+      },
+      {
+        "version": "18.0",
+        "buildid": "22A3354",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/062-77810/DF15A161-2D95-4FBE-8D31-7B907BA0BDD2/iPad_Spring_2022_18.0_22A3354_Restore.ipsw",
+        "filesize": 8178050341
+      },
+      {
+        "version": "17.7",
+        "buildid": "21H16",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/062-78905/4162C120-710C-4628-983B-EF44C8A58B2A/iPad_Spring_2022_17.7_21H16_Restore.ipsw",
+        "filesize": 7640520576
+      },
+      {
+        "version": "17.6.1",
+        "buildid": "21G101",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/062-69594/1F8CE9F3-BB37-426E-8BEE-B232BA8FA617/iPad_Spring_2022_17.6.1_21G101_Restore.ipsw",
+        "filesize": 7639790063
+      },
+      {
+        "version": "17.6.1",
+        "buildid": "21G93",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/062-57911/5A63118F-4F77-49B1-9667-FD8D971910FF/iPad_Spring_2022_17.6.1_21G93_Restore.ipsw",
+        "filesize": 7639857093
+      },
+      {
+        "version": "17.6",
+        "buildid": "21G80",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/062-44771/4617492E-D4B6-47C3-95F8-D80DE2B3FF90/iPad_Spring_2022_17.6_21G80_Restore.ipsw",
+        "filesize": 7641431368
+      },
+      {
+        "version": "17.5.1",
+        "buildid": "21F90",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024SpringFCS/fullrestores/062-06596/FA236300-641F-4972-AAFF-856D9718C27D/iPad_Spring_2022_17.5.1_21F90_Restore.ipsw",
+        "filesize": 7643197101
+      },
+      {
+        "version": "17.5",
+        "buildid": "21F79",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024SpringFCS/fullrestores/052-39305/9AC32474-4250-4537-BA6D-E5342D788B53/iPad_Spring_2022_17.5_21F79_Restore.ipsw",
+        "filesize": 7641483046
+      },
+      {
+        "version": "17.4.1",
+        "buildid": "21E237",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-78966/CD1225BB-82E2-40F4-8DD1-A45C1A0A3835/iPad_Spring_2022_17.4.1_21E237_Restore.ipsw",
+        "filesize": 7520101066
+      },
+      {
+        "version": "17.4.1",
+        "buildid": "21E236",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-72520/5AF17DED-40FC-4C7E-84D9-E39F8DF0A3F1/iPad_Spring_2022_17.4.1_21E236_Restore.ipsw",
+        "filesize": 7523619083
+      },
+      {
+        "version": "17.4",
+        "buildid": "21E219",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-61412/B590433F-3EE0-4939-A75C-927FEC123E1A/iPad_Spring_2022_17.4_21E219_Restore.ipsw",
+        "filesize": 7523688223
+      },
+      {
+        "version": "17.3.1",
+        "buildid": "21D61",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-41997/6F26C12B-FB7B-4E01-9B2C-1E9BF57C7CEF/iPad_Spring_2022_17.3.1_21D61_Restore.ipsw",
+        "filesize": 7461308557
+      },
+      {
+        "version": "17.3",
+        "buildid": "21D50",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/042-81153/3841852E-E7AC-4B42-9687-664A92AFD7DE/iPad_Spring_2022_17.3_21D50_Restore.ipsw",
+        "filesize": 7461370235
+      },
+      {
+        "version": "17.2",
+        "buildid": "21C62",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-36575/B47AF197-6AE1-4F03-AA06-7580CA75F712/iPad_Spring_2022_17.2_21C62_Restore.ipsw",
+        "filesize": 7456357129
+      },
+      {
+        "version": "17.1.2",
+        "buildid": "21B101",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/052-09767/C5A3AE1B-E086-4D59-96AB-9C09FE55AFAC/iPad_Spring_2022_17.1.2_21B101_Restore.ipsw",
+        "filesize": 7527332488
+      },
+      {
+        "version": "17.1.1",
+        "buildid": "21B91",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-96720/F1584902-A454-4B41-AD21-F448CF4D1F85/iPad_Spring_2022_17.1.1_21B91_Restore.ipsw",
+        "filesize": 7527794029
+      },
+      {
+        "version": "17.1",
+        "buildid": "21B74",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-07628/DD9B73F9-A978-49F8-92F8-92375D972B8B/iPad_Spring_2022_17.1_21B74_Restore.ipsw",
+        "filesize": 7527873552
+      },
+      {
+        "version": "17.0.3",
+        "buildid": "21A360",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-72733/43194EFA-E428-466D-859E-AF6709D23F88/iPad_Spring_2022_17.0.3_21A360_Restore.ipsw",
+        "filesize": 7488899390
+      },
+      {
+        "version": "17.0.2",
+        "buildid": "21A351",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/042-65001/A1053C3D-C62B-4877-A34B-F389AFECC5AB/iPad_Spring_2022_17.0.2_21A351_Restore.ipsw",
+        "filesize": 7489817488
+      },
+      {
+        "version": "17.0.1",
+        "buildid": "21A340",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-55388/30FC1930-B700-4BDA-883C-41A0F2747FAC/iPad_Spring_2022_17.0.1_21A340_Restore.ipsw",
+        "filesize": 7490512741
+      },
+      {
+        "version": "17.0",
+        "buildid": "21A329",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-49488/9F6E23D3-0127-4A2C-9BAC-369037D10BB1/iPad_Spring_2022_17.0_21A329_Restore.ipsw",
+        "filesize": 7490295869
+      },
+      {
+        "version": "16.6.1",
+        "buildid": "20G81",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/042-43796/8D36D83D-C210-41B9-9BD9-FAB278C2D7DC/iPad_Spring_2022_16.6.1_20G81_Restore.ipsw",
+        "filesize": 6215101201
+      },
+      {
+        "version": "16.6",
+        "buildid": "20G75",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/042-17561/5848AC7B-2084-4127-8DEE-52D599C068EB/iPad_Spring_2022_16.6_20G75_Restore.ipsw",
+        "filesize": 6215595722
+      },
+      {
+        "version": "16.5.1",
+        "buildid": "20F75",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/042-02726/C2588E30-2B79-4B46-8953-882B8D177682/iPad_Spring_2022_16.5.1_20F75_Restore.ipsw",
+        "filesize": 6212646063
+      },
+      {
+        "version": "16.5",
+        "buildid": "20F66",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/032-85625/80ACA4C7-8683-41C6-BD04-520607D8F76B/iPad_Spring_2022_16.5_20F66_Restore.ipsw",
+        "filesize": 6212798199
+      },
+      {
+        "version": "16.4.1",
+        "buildid": "20E252",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/032-71233/F9F84D8F-D91B-414E-9F76-6D05DC1FBBB7/iPad_Spring_2022_16.4.1_20E252_Restore.ipsw",
+        "filesize": 6198726615
+      },
+      {
+        "version": "16.4",
+        "buildid": "20E246",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023WinterSeed/fullrestores/032-66059/325ADC04-6D77-492F-B0DB-D5D68D5BD8EA/iPad_Spring_2022_16.4_20E246_Restore.ipsw",
+        "filesize": 6198003958
+      },
+      {
+        "version": "16.3.1",
+        "buildid": "20D67",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023WinterFCS/fullrestores/032-49908/FEE47B4A-C37D-4CE7-90AF-48E7FE9B9706/iPad_Spring_2022_16.3.1_20D67_Restore.ipsw",
+        "filesize": 5964596299
+      },
+      {
+        "version": "16.3",
+        "buildid": "20D47",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023WinterFCS/fullrestores/032-35790/0C8FBD72-AFAB-417C-8AFE-8EAD463565A6/iPad_Spring_2022_16.3_20D47_Restore.ipsw",
+        "filesize": 5965005989
+      },
+      {
+        "version": "16.2",
+        "buildid": "20C65",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/032-14001/0F1B3030-6418-43D3-A6DC-972F78216153/iPad_Spring_2022_16.2_20C65_Restore.ipsw",
+        "filesize": 5956587401
+      },
+      {
+        "version": "16.1.1",
+        "buildid": "20B101",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-97077/DF56AF85-00A6-4C2E-B8AE-B12DF9E015C9/iPad_Spring_2022_16.1.1_20B101_Restore.ipsw",
+        "filesize": 5883725498
+      },
+      {
+        "version": "16.1",
+        "buildid": "20B82",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-92864/9E09645F-7818-4C27-8701-FCD74B7FA85F/iPad_Spring_2022_16.1_20B82_Restore.ipsw",
+        "filesize": 5883736675
+      },
+      {
+        "version": "15.7",
+        "buildid": "19H12",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-39002/DC6A4935-518D-44C6-81C4-27196AC25500/iPad_Spring_2022_15.7_19H12_Restore.ipsw",
+        "filesize": 5848518018
+      },
+      {
+        "version": "15.6.1",
+        "buildid": "19G82",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022SummerFCS/fullrestores/012-52227/D93D9970-02CA-4FAA-A535-798D31BB293C/iPad_Spring_2022_15.6.1_19G82_Restore.ipsw",
+        "filesize": 5841031076
+      },
+      {
+        "version": "15.6",
+        "buildid": "19G71",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022SummerFCS/fullrestores/012-41758/FACD41CF-F317-4C04-8EBA-EC475FB14A15/iPad_Spring_2022_15.6_19G71_Restore.ipsw",
+        "filesize": 5840747712
+      },
+      {
+        "version": "15.5",
+        "buildid": "19F77",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022SpringFCS/fullrestores/012-07658/5B71688D-8913-47C4-AC07-EFEE858A80EA/iPad_Spring_2021_15.5_19F77_Restore.ipsw",
+        "filesize": 5851471922
+      },
+      {
+        "version": "15.4.1",
+        "buildid": "19E258",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FCSWinter/fullrestores/002-81466/A1664F0D-82B3-4367-BC5E-55B70B63C2CA/iPad_Spring_2021_15.4.1_19E258_Restore.ipsw",
+        "filesize": 5825195509
+      },
+      {
+        "version": "15.4",
+        "buildid": "19E241",
+        "signed": false,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FCSWinter/fullrestores/071-09868/7ED57F78-ABD2-4689-9DE2-64B524337CDD/iPad_Spring_2021_15.4_19E241_Restore.ipsw",
+        "filesize": 5824668850
+      }
+    ],
     "iPhone15,2": [
       {
         "version": "18.6.2",
@@ -2257,456 +2709,447 @@
         "filesize": 6634158795
       }
     ],
-    "iPad13,16": [
+    "MacBookPro18,1": [
       {
-        "version": "18.6.2",
-        "buildid": "22G100",
+        "version": "15.6.1",
+        "buildid": "24G90",
         "signed": true,
         "signing_started": null,
         "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/093-20908/B8AEDA5B-61B5-4E0D-844C-8BF36B2918F9/iPad_Spring_2022_18.6.2_22G100_Restore.ipsw",
-        "filesize": 8916698270
-      },
-      {
-        "version": "18.6",
-        "buildid": "22G86",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/082-98922/A1C6BAE0-B6AF-4688-BD55-74FF2B9DB1C8/iPad_Spring_2022_18.6_22G86_Restore.ipsw",
-        "filesize": 8916771650
-      },
-      {
-        "version": "18.5",
-        "buildid": "22F76",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-46468/B56009B2-A37F-41BF-9B16-C52443CCB2B1/iPad_Spring_2022_18.5_22F76_Restore.ipsw",
-        "filesize": 8983630492
-      },
-      {
-        "version": "18.4.1",
-        "buildid": "22E252",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-30196/16255A3B-8C18-4C3A-86F2-C75C31C693A4/iPad_Spring_2022_18.4.1_22E252_Restore.ipsw",
-        "filesize": 8915168564
-      },
-      {
-        "version": "18.4",
-        "buildid": "22E240",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-15432/57F536BB-DE69-4136-80DF-BEECE789DF49/iPad_Spring_2022_18.4_22E240_Restore.ipsw",
-        "filesize": 8915314543
-      },
-      {
-        "version": "18.3.2",
-        "buildid": "22D82",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/082-02156/2113B0A0-A84C-49CF-8A46-69AF9B61FE6B/iPad_Spring_2022_18.3.2_22D82_Restore.ipsw",
-        "filesize": 8555395725
-      },
-      {
-        "version": "18.3.1",
-        "buildid": "22D72",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/072-84431/0E785D2B-2D18-4331-8DD0-5776AA6EF59B/iPad_Spring_2022_18.3.1_22D72_Restore.ipsw",
-        "filesize": 8555430202
-      },
-      {
-        "version": "18.3",
-        "buildid": "22D63",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/072-67894/B8070664-BC51-4A5B-AC47-017FBC7940F6/iPad_Spring_2022_18.3_22D63_Restore.ipsw",
-        "filesize": 8555311362
-      },
-      {
-        "version": "18.2.1",
-        "buildid": "22C161",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-55636/AC744BA8-8A44-43A7-B4AB-6050AB5233E0/iPad_Spring_2022_18.2.1_22C161_Restore.ipsw",
-        "filesize": 8554913606
-      },
-      {
-        "version": "18.2",
-        "buildid": "22C152",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-42162/5DCC2909-0F7F-4E4E-8FA6-F2293B38C05A/iPad_Spring_2022_18.2_22C152_Restore.ipsw",
-        "filesize": 8554967120
-      },
-      {
-        "version": "18.1.1",
-        "buildid": "22B91",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-33649/9062CF71-BFFF-4072-986E-C5369C83BE58/iPad_Spring_2022_18.1.1_22B91_Restore.ipsw",
-        "filesize": 8245706226
-      },
-      {
-        "version": "18.1",
-        "buildid": "22B83",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-12660/1199426D-DDEC-4F4C-84E2-43A1C3F28ACE/iPad_Spring_2022_18.1_22B83_Restore.ipsw",
-        "filesize": 8245657977
-      },
-      {
-        "version": "18.0.1",
-        "buildid": "22A3370",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-01882/820C8288-3CC3-4018-9EB4-24CED27F0D3B/iPad_Spring_2022_18.0.1_22A3370_Restore.ipsw",
-        "filesize": 8178094760
-      },
-      {
-        "version": "18.0",
-        "buildid": "22A3354",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/062-77810/DF15A161-2D95-4FBE-8D31-7B907BA0BDD2/iPad_Spring_2022_18.0_22A3354_Restore.ipsw",
-        "filesize": 8178050341
-      },
-      {
-        "version": "17.7",
-        "buildid": "21H16",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/062-78905/4162C120-710C-4628-983B-EF44C8A58B2A/iPad_Spring_2022_17.7_21H16_Restore.ipsw",
-        "filesize": 7640520576
-      },
-      {
-        "version": "17.6.1",
-        "buildid": "21G101",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/062-69594/1F8CE9F3-BB37-426E-8BEE-B232BA8FA617/iPad_Spring_2022_17.6.1_21G101_Restore.ipsw",
-        "filesize": 7639790063
-      },
-      {
-        "version": "17.6.1",
-        "buildid": "21G93",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/062-57911/5A63118F-4F77-49B1-9667-FD8D971910FF/iPad_Spring_2022_17.6.1_21G93_Restore.ipsw",
-        "filesize": 7639857093
-      },
-      {
-        "version": "17.6",
-        "buildid": "21G80",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/062-44771/4617492E-D4B6-47C3-95F8-D80DE2B3FF90/iPad_Spring_2022_17.6_21G80_Restore.ipsw",
-        "filesize": 7641431368
-      },
-      {
-        "version": "17.5.1",
-        "buildid": "21F90",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024SpringFCS/fullrestores/062-06596/FA236300-641F-4972-AAFF-856D9718C27D/iPad_Spring_2022_17.5.1_21F90_Restore.ipsw",
-        "filesize": 7643197101
-      },
-      {
-        "version": "17.5",
-        "buildid": "21F79",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024SpringFCS/fullrestores/052-39305/9AC32474-4250-4537-BA6D-E5342D788B53/iPad_Spring_2022_17.5_21F79_Restore.ipsw",
-        "filesize": 7641483046
-      },
-      {
-        "version": "17.4.1",
-        "buildid": "21E237",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-78966/CD1225BB-82E2-40F4-8DD1-A45C1A0A3835/iPad_Spring_2022_17.4.1_21E237_Restore.ipsw",
-        "filesize": 7520101066
-      },
-      {
-        "version": "17.4.1",
-        "buildid": "21E236",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-72520/5AF17DED-40FC-4C7E-84D9-E39F8DF0A3F1/iPad_Spring_2022_17.4.1_21E236_Restore.ipsw",
-        "filesize": 7523619083
-      },
-      {
-        "version": "17.4",
-        "buildid": "21E219",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-61412/B590433F-3EE0-4939-A75C-927FEC123E1A/iPad_Spring_2022_17.4_21E219_Restore.ipsw",
-        "filesize": 7523688223
-      },
-      {
-        "version": "17.3.1",
-        "buildid": "21D61",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-41997/6F26C12B-FB7B-4E01-9B2C-1E9BF57C7CEF/iPad_Spring_2022_17.3.1_21D61_Restore.ipsw",
-        "filesize": 7461308557
-      },
-      {
-        "version": "17.3",
-        "buildid": "21D50",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/042-81153/3841852E-E7AC-4B42-9687-664A92AFD7DE/iPad_Spring_2022_17.3_21D50_Restore.ipsw",
-        "filesize": 7461370235
-      },
-      {
-        "version": "17.2",
-        "buildid": "21C62",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-36575/B47AF197-6AE1-4F03-AA06-7580CA75F712/iPad_Spring_2022_17.2_21C62_Restore.ipsw",
-        "filesize": 7456357129
-      },
-      {
-        "version": "17.1.2",
-        "buildid": "21B101",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/052-09767/C5A3AE1B-E086-4D59-96AB-9C09FE55AFAC/iPad_Spring_2022_17.1.2_21B101_Restore.ipsw",
-        "filesize": 7527332488
-      },
-      {
-        "version": "17.1.1",
-        "buildid": "21B91",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-96720/F1584902-A454-4B41-AD21-F448CF4D1F85/iPad_Spring_2022_17.1.1_21B91_Restore.ipsw",
-        "filesize": 7527794029
-      },
-      {
-        "version": "17.1",
-        "buildid": "21B74",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-07628/DD9B73F9-A978-49F8-92F8-92375D972B8B/iPad_Spring_2022_17.1_21B74_Restore.ipsw",
-        "filesize": 7527873552
-      },
-      {
-        "version": "17.0.3",
-        "buildid": "21A360",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-72733/43194EFA-E428-466D-859E-AF6709D23F88/iPad_Spring_2022_17.0.3_21A360_Restore.ipsw",
-        "filesize": 7488899390
-      },
-      {
-        "version": "17.0.2",
-        "buildid": "21A351",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/042-65001/A1053C3D-C62B-4877-A34B-F389AFECC5AB/iPad_Spring_2022_17.0.2_21A351_Restore.ipsw",
-        "filesize": 7489817488
-      },
-      {
-        "version": "17.0.1",
-        "buildid": "21A340",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-55388/30FC1930-B700-4BDA-883C-41A0F2747FAC/iPad_Spring_2022_17.0.1_21A340_Restore.ipsw",
-        "filesize": 7490512741
-      },
-      {
-        "version": "17.0",
-        "buildid": "21A329",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-49488/9F6E23D3-0127-4A2C-9BAC-369037D10BB1/iPad_Spring_2022_17.0_21A329_Restore.ipsw",
-        "filesize": 7490295869
-      },
-      {
-        "version": "16.6.1",
-        "buildid": "20G81",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/042-43796/8D36D83D-C210-41B9-9BD9-FAB278C2D7DC/iPad_Spring_2022_16.6.1_20G81_Restore.ipsw",
-        "filesize": 6215101201
-      },
-      {
-        "version": "16.6",
-        "buildid": "20G75",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/042-17561/5848AC7B-2084-4127-8DEE-52D599C068EB/iPad_Spring_2022_16.6_20G75_Restore.ipsw",
-        "filesize": 6215595722
-      },
-      {
-        "version": "16.5.1",
-        "buildid": "20F75",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/042-02726/C2588E30-2B79-4B46-8953-882B8D177682/iPad_Spring_2022_16.5.1_20F75_Restore.ipsw",
-        "filesize": 6212646063
-      },
-      {
-        "version": "16.5",
-        "buildid": "20F66",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/032-85625/80ACA4C7-8683-41C6-BD04-520607D8F76B/iPad_Spring_2022_16.5_20F66_Restore.ipsw",
-        "filesize": 6212798199
-      },
-      {
-        "version": "16.4.1",
-        "buildid": "20E252",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/032-71233/F9F84D8F-D91B-414E-9F76-6D05DC1FBBB7/iPad_Spring_2022_16.4.1_20E252_Restore.ipsw",
-        "filesize": 6198726615
-      },
-      {
-        "version": "16.4",
-        "buildid": "20E246",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023WinterSeed/fullrestores/032-66059/325ADC04-6D77-492F-B0DB-D5D68D5BD8EA/iPad_Spring_2022_16.4_20E246_Restore.ipsw",
-        "filesize": 6198003958
-      },
-      {
-        "version": "16.3.1",
-        "buildid": "20D67",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023WinterFCS/fullrestores/032-49908/FEE47B4A-C37D-4CE7-90AF-48E7FE9B9706/iPad_Spring_2022_16.3.1_20D67_Restore.ipsw",
-        "filesize": 5964596299
-      },
-      {
-        "version": "16.3",
-        "buildid": "20D47",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023WinterFCS/fullrestores/032-35790/0C8FBD72-AFAB-417C-8AFE-8EAD463565A6/iPad_Spring_2022_16.3_20D47_Restore.ipsw",
-        "filesize": 5965005989
-      },
-      {
-        "version": "16.2",
-        "buildid": "20C65",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/032-14001/0F1B3030-6418-43D3-A6DC-972F78216153/iPad_Spring_2022_16.2_20C65_Restore.ipsw",
-        "filesize": 5956587401
-      },
-      {
-        "version": "16.1.1",
-        "buildid": "20B101",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-97077/DF56AF85-00A6-4C2E-B8AE-B12DF9E015C9/iPad_Spring_2022_16.1.1_20B101_Restore.ipsw",
-        "filesize": 5883725498
-      },
-      {
-        "version": "16.1",
-        "buildid": "20B82",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-92864/9E09645F-7818-4C27-8701-FCD74B7FA85F/iPad_Spring_2022_16.1_20B82_Restore.ipsw",
-        "filesize": 5883736675
-      },
-      {
-        "version": "15.7",
-        "buildid": "19H12",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-39002/DC6A4935-518D-44C6-81C4-27196AC25500/iPad_Spring_2022_15.7_19H12_Restore.ipsw",
-        "filesize": 5848518018
-      },
-      {
-        "version": "15.6.1",
-        "buildid": "19G82",
-        "signed": false,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022SummerFCS/fullrestores/012-52227/D93D9970-02CA-4FAA-A535-798D31BB293C/iPad_Spring_2022_15.6.1_19G82_Restore.ipsw",
-        "filesize": 5841031076
+        "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/093-10809/CFD6DD38-DAF0-40DA-854F-31AAD1294C6F/UniversalMac_15.6.1_24G90_Restore.ipsw",
+        "filesize": 16814137790
       },
       {
         "version": "15.6",
-        "buildid": "19G71",
-        "signed": false,
+        "buildid": "24G84",
+        "signed": true,
         "signing_started": null,
         "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022SummerFCS/fullrestores/012-41758/FACD41CF-F317-4C04-8EBA-EC475FB14A15/iPad_Spring_2022_15.6_19G71_Restore.ipsw",
-        "filesize": 5840747712
+        "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/082-08674/51294E4D-A273-44BE-A280-A69FC347FB87/UniversalMac_15.6_24G84_Restore.ipsw",
+        "filesize": 16814076831
       },
       {
         "version": "15.5",
-        "buildid": "19F77",
-        "signed": false,
+        "buildid": "24F74",
+        "signed": true,
         "signing_started": null,
         "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022SpringFCS/fullrestores/012-07658/5B71688D-8913-47C4-AC07-EFEE858A80EA/iPad_Spring_2021_15.5_19F77_Restore.ipsw",
-        "filesize": 5851471922
+        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-44534/CE6C1054-99A3-4F67-A823-3EE9E6510CDE/UniversalMac_15.5_24F74_Restore.ipsw",
+        "filesize": 16879691985
       },
       {
         "version": "15.4.1",
-        "buildid": "19E258",
-        "signed": false,
+        "buildid": "24E263",
+        "signed": true,
         "signing_started": null,
         "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FCSWinter/fullrestores/002-81466/A1664F0D-82B3-4367-BC5E-55B70B63C2CA/iPad_Spring_2021_15.4.1_19E258_Restore.ipsw",
-        "filesize": 5825195509
+        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-23340/61923341-EE73-4C6E-BB3E-DAB3069548BF/UniversalMac_15.4.1_24E263_Restore.ipsw",
+        "filesize": 16808445859
       },
       {
         "version": "15.4",
-        "buildid": "19E241",
-        "signed": false,
+        "buildid": "24E248",
+        "signed": true,
         "signing_started": null,
         "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FCSWinter/fullrestores/071-09868/7ED57F78-ABD2-4689-9DE2-64B524337CDD/iPad_Spring_2021_15.4_19E241_Restore.ipsw",
-        "filesize": 5824668850
+        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-16517/AACDDC33-9683-4431-98AF-F04EF7C15EE3/UniversalMac_15.4_24E248_Restore.ipsw",
+        "filesize": 16808408047
+      },
+      {
+        "version": "15.3.2",
+        "buildid": "24D81",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/082-01504/828B8EF9-8134-49D5-B24A-0BA504FC5ECC/UniversalMac_15.3.2_24D81_Restore.ipsw",
+        "filesize": 16532705221
+      },
+      {
+        "version": "15.3.1",
+        "buildid": "24D70",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/072-70618/42F1A8CC-7E07-4329-958A-757FF600C303/UniversalMac_15.3.1_24D70_Restore.ipsw",
+        "filesize": 16532837554
+      },
+      {
+        "version": "15.3",
+        "buildid": "24D60",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/072-08269/7CAAB9F7-E970-428D-8764-4CD7BCD105CD/UniversalMac_15.3_24D60_Restore.ipsw",
+        "filesize": 16532796141
+      },
+      {
+        "version": "15.2",
+        "buildid": "24C101",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-44245/E811A1B0-28A9-4FCD-AE32-322E796F0EB8/UniversalMac_15.2_24C101_Restore.ipsw",
+        "filesize": 16532456817
+      },
+      {
+        "version": "15.1.1",
+        "buildid": "24B91",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-30094/44BD016F-6EE3-4EE5-8890-6F9AA008C537/UniversalMac_15.1.1_24B91_Restore.ipsw",
+        "filesize": 15755042223
+      },
+      {
+        "version": "15.1",
+        "buildid": "24B83",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-12340/78D28AC4-CCFC-45D2-BD27-1E5D915E43F9/UniversalMac_15.1_24B83_Restore.ipsw",
+        "filesize": 15738221177
+      },
+      {
+        "version": "15.0.1",
+        "buildid": "24A348",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-01423/566E5B4E-1100-4643-91B3-131247351844/UniversalMac_15.0.1_24A348_Restore.ipsw",
+        "filesize": 15737037399
+      },
+      {
+        "version": "15.0",
+        "buildid": "24A335",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/062-78489/BDA44327-C79E-4608-A7E0-455A7E91911F/UniversalMac_15.0_24A335_Restore.ipsw",
+        "filesize": 15736994120
+      },
+      {
+        "version": "14.6.1",
+        "buildid": "23G93",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/062-52859/932E0A8F-6644-4759-82DA-F8FA8DEA806A/UniversalMac_14.6.1_23G93_Restore.ipsw",
+        "filesize": 14790601661
+      },
+      {
+        "version": "14.6",
+        "buildid": "23G80",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/052-69922/F5DA2B64-25EB-4370-9E89-FA5689859796/UniversalMac_14.6_23G80_Restore.ipsw",
+        "filesize": 14790718754
+      },
+      {
+        "version": "14.5",
+        "buildid": "23F79",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024SpringFCS/fullrestores/062-01897/C874907B-9F82-4109-87EB-6B3C9BF1507D/UniversalMac_14.5_23F79_Restore.ipsw",
+        "filesize": 14801044197
+      },
+      {
+        "version": "14.4.1",
+        "buildid": "23E224",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-77579/4569734E-120C-4F31-AD08-FC1FF825D059/UniversalMac_14.4.1_23E224_Restore.ipsw",
+        "filesize": 14744062393
+      },
+      {
+        "version": "14.4",
+        "buildid": "23E214",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-61990/47F0DD06-1106-4F2E-9CD6-AE6B361A0EC6/UniversalMac_14.4_23E214_Restore.ipsw",
+        "filesize": 14744505377
+      },
+      {
+        "version": "14.3.1",
+        "buildid": "23D60",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-40770/72916BCC-D357-422D-A4A2-EF1DEDF6968C/UniversalMac_14.3.1_23D60_Restore.ipsw",
+        "filesize": 14503964718
+      },
+      {
+        "version": "14.3",
+        "buildid": "23D56",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/042-78241/B45074EB-2891-4C05-BCA4-7463F3AC0982/UniversalMac_14.3_23D56_Restore.ipsw",
+        "filesize": 14505910832
+      },
+      {
+        "version": "14.2.1",
+        "buildid": "23C71",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/052-22662/ECE59A41-DACC-4CA5-AB23-FDED1A4567DE/UniversalMac_14.2.1_23C71_Restore.ipsw",
+        "filesize": 14489499738
+      },
+      {
+        "version": "14.2",
+        "buildid": "23C64",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/052-15117/DC2EE605-ABF3-41AE-9652-D137A8AA5907/UniversalMac_14.2_23C64_Restore.ipsw",
+        "filesize": 14488791535
+      },
+      {
+        "version": "14.1.2",
+        "buildid": "23B92",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/052-09443/E8752548-0B80-480C-9FB4-67246672C1B5/UniversalMac_14.1.2_23B92_Restore.ipsw",
+        "filesize": 13980816431
+      },
+      {
+        "version": "14.1.1",
+        "buildid": "23B81",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-89681/55BD14DB-5535-4203-9359-E2C070E43FBE/UniversalMac_14.1.1_23B81_Restore.ipsw",
+        "filesize": 13981156491
+      },
+      {
+        "version": "14.1",
+        "buildid": "23B74",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-86430/DBE44960-58A6-4715-948B-D64F33F769BD/UniversalMac_14.1_23B74_Restore.ipsw",
+        "filesize": 13981550665
+      },
+      {
+        "version": "14.0",
+        "buildid": "23A344",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-54934/0E101AD6-3117-4B63-9BF1-143B6DB9270A/UniversalMac_14.0_23A344_Restore.ipsw",
+        "filesize": 13905898651
+      },
+      {
+        "version": "13.6",
+        "buildid": "22G120",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-55833/C0830847-A2F8-458F-B680-967991820931/UniversalMac_13.6_22G120_Restore.ipsw",
+        "filesize": 12893555341
+      },
+      {
+        "version": "13.5.2",
+        "buildid": "22G91",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/042-43686/945D434B-DA5D-48DB-A558-F6D18D11AD69/UniversalMac_13.5.2_22G91_Restore.ipsw",
+        "filesize": 12892043230
+      },
+      {
+        "version": "13.5.1",
+        "buildid": "22G90",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/042-25658/2D6BE8DB-5549-4F85-8C54-39FC23BABC68/UniversalMac_13.5.1_22G90_Restore.ipsw",
+        "filesize": 12892897195
+      },
+      {
+        "version": "13.5",
+        "buildid": "22G74",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/032-69606/D3E05CDF-E105-434C-A4A1-4E3DC7668DD0/UniversalMac_13.5_22G74_Restore.ipsw",
+        "filesize": 12893195726
+      },
+      {
+        "version": "13.4.1",
+        "buildid": "22F82",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/042-01877/2F49A9FE-7033-41D0-9D0C-64EFCE6B4C22/UniversalMac_13.4.1_22F82_Restore.ipsw",
+        "filesize": 12739802320
+      },
+      {
+        "version": "13.4",
+        "buildid": "22F66",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/032-84884/F97A22EE-9B5E-4FD5-94C1-B39DCEE8D80F/UniversalMac_13.4_22F66_Restore.ipsw",
+        "filesize": 12739995153
+      },
+      {
+        "version": "13.3.1",
+        "buildid": "22E261",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023WinterFCS/fullrestores/032-66602/418BC37A-FCD9-400A-B4FA-022A19576CD4/UniversalMac_13.3.1_22E261_Restore.ipsw",
+        "filesize": 12726460903
+      },
+      {
+        "version": "13.3",
+        "buildid": "22E252",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023WinterSeed/fullrestores/002-75537/8250FA0E-0962-46D6-8A90-57A390B9FFD7/UniversalMac_13.3_22E252_Restore.ipsw",
+        "filesize": 12727918028
+      },
+      {
+        "version": "13.2.1",
+        "buildid": "22D68",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023WinterFCS/fullrestores/032-48346/EFF99C1E-C408-4E7A-A448-12E1468AF06C/UniversalMac_13.2.1_22D68_Restore.ipsw",
+        "filesize": 12494476408
+      },
+      {
+        "version": "13.2",
+        "buildid": "22D49",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2023WinterFCS/fullrestores/032-35688/0350BB21-2B4B-4850-BF77-70B830283B28/UniversalMac_13.2_22D49_Restore.ipsw",
+        "filesize": 12494248692
+      },
+      {
+        "version": "13.1",
+        "buildid": "22C65",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-60270/0A7F49BA-FC31-4AD9-8E45-49B1FB9128A6/UniversalMac_13.1_22C65_Restore.ipsw",
+        "filesize": 12279576859
+      },
+      {
+        "version": "13.0.1",
+        "buildid": "22A400",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-93802/A7270B0F-05F8-43D1-A9AD-40EF5699E82C/UniversalMac_13.0.1_22A400_Restore.ipsw",
+        "filesize": 12197932579
+      },
+      {
+        "version": "13.0",
+        "buildid": "22A380",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-92188/2C38BCD1-2BFF-4A10-B358-94E8E28BE805/UniversalMac_13.0_22A380_Restore.ipsw",
+        "filesize": 12197669257
+      },
+      {
+        "version": "12.6",
+        "buildid": "21G115",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-40537/0EC7C669-13E9-49FB-BD64-9EECC1D174B2/UniversalMac_12.6_21G115_Restore.ipsw",
+        "filesize": 14081739387
+      },
+      {
+        "version": "12.5.1",
+        "buildid": "21G83",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022SummerFCS/fullrestores/012-51674/A7019DDB-3355-470F-A355-4162A187AB6C/UniversalMac_12.5.1_21G83_Restore.ipsw",
+        "filesize": 14088266331
+      },
+      {
+        "version": "12.5",
+        "buildid": "21G72",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022SummerFCS/fullrestores/012-42731/BD9917E0-262C-41C5-A69F-AC316A534A39/UniversalMac_12.5_21G72_Restore.ipsw",
+        "filesize": 14084058716
+      },
+      {
+        "version": "12.4",
+        "buildid": "21F79",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022SpringFCS/fullrestores/012-06874/9CECE956-D945-45E2-93E9-4FFDC81BB49A/UniversalMac_12.4_21F79_Restore.ipsw",
+        "filesize": 13837340777
+      },
+      {
+        "version": "12.3.1",
+        "buildid": "21E258",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022SpringFCS/fullrestores/002-79219/851BEDF0-19DB-4040-B765-0F4089D1530D/UniversalMac_12.3.1_21E258_Restore.ipsw",
+        "filesize": 13875260060
+      },
+      {
+        "version": "12.3",
+        "buildid": "21E230",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022SpringFCS/fullrestores/071-08757/74A4F2A1-C747-43F9-A22A-C0AD5FB4ECB6/UniversalMac_12.3_21E230_Restore.ipsw",
+        "filesize": 13872566478
+      },
+      {
+        "version": "12.2.1",
+        "buildid": "21D62",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-66272/FB0B40F5-49EB-421B-81EC-8B56B8468D3C/UniversalMac_12.2.1_21D62_Restore.ipsw",
+        "filesize": 14139692117
+      },
+      {
+        "version": "12.2",
+        "buildid": "21D49",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-57044/F1C9CC9E-28BE-49E2-82F9-C7BBBBCC42F8/UniversalMac_12.2_21D49_Restore.ipsw",
+        "filesize": 14140430556
+      },
+      {
+        "version": "12.1",
+        "buildid": "21C52",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2021FCSWinter/fullrestores/002-42433/F3F6D5CD-67FE-449C-9212-F7409808B6C4/UniversalMac_12.1_21C52_Restore.ipsw",
+        "filesize": 14141114913
+      },
+      {
+        "version": "12.0.1",
+        "buildid": "21A559",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2021FCSFall/fullrestores/002-23780/D3417F21-41BD-4DDF-9135-FA5A129AF6AF/UniversalMac_12.0.1_21A559_Restore.ipsw",
+        "filesize": 14102871779
       }
     ],
     "iPhone14,2": [
@@ -3286,449 +3729,6 @@
         "url": "https://updates.cdn-apple.com/2021FallFCS/fullrestores/002-02399/F59733EA-9918-42A6-ACC8-DE5AA24C74AD/iPhone14,2_15.0_19A346_Restore.ipsw",
         "filesize": 6569169749
       }
-    ],
-    "MacBookPro18,1": [
-      {
-        "version": "15.6.1",
-        "buildid": "24G90",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/093-10809/CFD6DD38-DAF0-40DA-854F-31AAD1294C6F/UniversalMac_15.6.1_24G90_Restore.ipsw",
-        "filesize": 16814137790
-      },
-      {
-        "version": "15.6",
-        "buildid": "24G84",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/082-08674/51294E4D-A273-44BE-A280-A69FC347FB87/UniversalMac_15.6_24G84_Restore.ipsw",
-        "filesize": 16814076831
-      },
-      {
-        "version": "15.5",
-        "buildid": "24F74",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-44534/CE6C1054-99A3-4F67-A823-3EE9E6510CDE/UniversalMac_15.5_24F74_Restore.ipsw",
-        "filesize": 16879691985
-      },
-      {
-        "version": "15.4.1",
-        "buildid": "24E263",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-23340/61923341-EE73-4C6E-BB3E-DAB3069548BF/UniversalMac_15.4.1_24E263_Restore.ipsw",
-        "filesize": 16808445859
-      },
-      {
-        "version": "15.4",
-        "buildid": "24E248",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/082-16517/AACDDC33-9683-4431-98AF-F04EF7C15EE3/UniversalMac_15.4_24E248_Restore.ipsw",
-        "filesize": 16808408047
-      },
-      {
-        "version": "15.3.2",
-        "buildid": "24D81",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/082-01504/828B8EF9-8134-49D5-B24A-0BA504FC5ECC/UniversalMac_15.3.2_24D81_Restore.ipsw",
-        "filesize": 16532705221
-      },
-      {
-        "version": "15.3.1",
-        "buildid": "24D70",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/072-70618/42F1A8CC-7E07-4329-958A-757FF600C303/UniversalMac_15.3.1_24D70_Restore.ipsw",
-        "filesize": 16532837554
-      },
-      {
-        "version": "15.3",
-        "buildid": "24D60",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2025WinterFCS/fullrestores/072-08269/7CAAB9F7-E970-428D-8764-4CD7BCD105CD/UniversalMac_15.3_24D60_Restore.ipsw",
-        "filesize": 16532796141
-      },
-      {
-        "version": "15.2",
-        "buildid": "24C101",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-44245/E811A1B0-28A9-4FCD-AE32-322E796F0EB8/UniversalMac_15.2_24C101_Restore.ipsw",
-        "filesize": 16532456817
-      },
-      {
-        "version": "15.1.1",
-        "buildid": "24B91",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-30094/44BD016F-6EE3-4EE5-8890-6F9AA008C537/UniversalMac_15.1.1_24B91_Restore.ipsw",
-        "filesize": 15755042223
-      },
-      {
-        "version": "15.1",
-        "buildid": "24B83",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-12340/78D28AC4-CCFC-45D2-BD27-1E5D915E43F9/UniversalMac_15.1_24B83_Restore.ipsw",
-        "filesize": 15738221177
-      },
-      {
-        "version": "15.0.1",
-        "buildid": "24A348",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/072-01423/566E5B4E-1100-4643-91B3-131247351844/UniversalMac_15.0.1_24A348_Restore.ipsw",
-        "filesize": 15737037399
-      },
-      {
-        "version": "15.0",
-        "buildid": "24A335",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024FallFCS/fullrestores/062-78489/BDA44327-C79E-4608-A7E0-455A7E91911F/UniversalMac_15.0_24A335_Restore.ipsw",
-        "filesize": 15736994120
-      },
-      {
-        "version": "14.6.1",
-        "buildid": "23G93",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/062-52859/932E0A8F-6644-4759-82DA-F8FA8DEA806A/UniversalMac_14.6.1_23G93_Restore.ipsw",
-        "filesize": 14790601661
-      },
-      {
-        "version": "14.6",
-        "buildid": "23G80",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024SummerFCS/fullrestores/052-69922/F5DA2B64-25EB-4370-9E89-FA5689859796/UniversalMac_14.6_23G80_Restore.ipsw",
-        "filesize": 14790718754
-      },
-      {
-        "version": "14.5",
-        "buildid": "23F79",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024SpringFCS/fullrestores/062-01897/C874907B-9F82-4109-87EB-6B3C9BF1507D/UniversalMac_14.5_23F79_Restore.ipsw",
-        "filesize": 14801044197
-      },
-      {
-        "version": "14.4.1",
-        "buildid": "23E224",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-77579/4569734E-120C-4F31-AD08-FC1FF825D059/UniversalMac_14.4.1_23E224_Restore.ipsw",
-        "filesize": 14744062393
-      },
-      {
-        "version": "14.4",
-        "buildid": "23E214",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-61990/47F0DD06-1106-4F2E-9CD6-AE6B361A0EC6/UniversalMac_14.4_23E214_Restore.ipsw",
-        "filesize": 14744505377
-      },
-      {
-        "version": "14.3.1",
-        "buildid": "23D60",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/052-40770/72916BCC-D357-422D-A4A2-EF1DEDF6968C/UniversalMac_14.3.1_23D60_Restore.ipsw",
-        "filesize": 14503964718
-      },
-      {
-        "version": "14.3",
-        "buildid": "23D56",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2024WinterFCS/fullrestores/042-78241/B45074EB-2891-4C05-BCA4-7463F3AC0982/UniversalMac_14.3_23D56_Restore.ipsw",
-        "filesize": 14505910832
-      },
-      {
-        "version": "14.2.1",
-        "buildid": "23C71",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/052-22662/ECE59A41-DACC-4CA5-AB23-FDED1A4567DE/UniversalMac_14.2.1_23C71_Restore.ipsw",
-        "filesize": 14489499738
-      },
-      {
-        "version": "14.2",
-        "buildid": "23C64",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/052-15117/DC2EE605-ABF3-41AE-9652-D137A8AA5907/UniversalMac_14.2_23C64_Restore.ipsw",
-        "filesize": 14488791535
-      },
-      {
-        "version": "14.1.2",
-        "buildid": "23B92",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/052-09443/E8752548-0B80-480C-9FB4-67246672C1B5/UniversalMac_14.1.2_23B92_Restore.ipsw",
-        "filesize": 13980816431
-      },
-      {
-        "version": "14.1.1",
-        "buildid": "23B81",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-89681/55BD14DB-5535-4203-9359-E2C070E43FBE/UniversalMac_14.1.1_23B81_Restore.ipsw",
-        "filesize": 13981156491
-      },
-      {
-        "version": "14.1",
-        "buildid": "23B74",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-86430/DBE44960-58A6-4715-948B-D64F33F769BD/UniversalMac_14.1_23B74_Restore.ipsw",
-        "filesize": 13981550665
-      },
-      {
-        "version": "14.0",
-        "buildid": "23A344",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-54934/0E101AD6-3117-4B63-9BF1-143B6DB9270A/UniversalMac_14.0_23A344_Restore.ipsw",
-        "filesize": 13905898651
-      },
-      {
-        "version": "13.6",
-        "buildid": "22G120",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-55833/C0830847-A2F8-458F-B680-967991820931/UniversalMac_13.6_22G120_Restore.ipsw",
-        "filesize": 12893555341
-      },
-      {
-        "version": "13.5.2",
-        "buildid": "22G91",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/042-43686/945D434B-DA5D-48DB-A558-F6D18D11AD69/UniversalMac_13.5.2_22G91_Restore.ipsw",
-        "filesize": 12892043230
-      },
-      {
-        "version": "13.5.1",
-        "buildid": "22G90",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/042-25658/2D6BE8DB-5549-4F85-8C54-39FC23BABC68/UniversalMac_13.5.1_22G90_Restore.ipsw",
-        "filesize": 12892897195
-      },
-      {
-        "version": "13.5",
-        "buildid": "22G74",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SummerFCS/fullrestores/032-69606/D3E05CDF-E105-434C-A4A1-4E3DC7668DD0/UniversalMac_13.5_22G74_Restore.ipsw",
-        "filesize": 12893195726
-      },
-      {
-        "version": "13.4.1",
-        "buildid": "22F82",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/042-01877/2F49A9FE-7033-41D0-9D0C-64EFCE6B4C22/UniversalMac_13.4.1_22F82_Restore.ipsw",
-        "filesize": 12739802320
-      },
-      {
-        "version": "13.4",
-        "buildid": "22F66",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023SpringFCS/fullrestores/032-84884/F97A22EE-9B5E-4FD5-94C1-B39DCEE8D80F/UniversalMac_13.4_22F66_Restore.ipsw",
-        "filesize": 12739995153
-      },
-      {
-        "version": "13.3.1",
-        "buildid": "22E261",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023WinterFCS/fullrestores/032-66602/418BC37A-FCD9-400A-B4FA-022A19576CD4/UniversalMac_13.3.1_22E261_Restore.ipsw",
-        "filesize": 12726460903
-      },
-      {
-        "version": "13.3",
-        "buildid": "22E252",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023WinterSeed/fullrestores/002-75537/8250FA0E-0962-46D6-8A90-57A390B9FFD7/UniversalMac_13.3_22E252_Restore.ipsw",
-        "filesize": 12727918028
-      },
-      {
-        "version": "13.2.1",
-        "buildid": "22D68",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023WinterFCS/fullrestores/032-48346/EFF99C1E-C408-4E7A-A448-12E1468AF06C/UniversalMac_13.2.1_22D68_Restore.ipsw",
-        "filesize": 12494476408
-      },
-      {
-        "version": "13.2",
-        "buildid": "22D49",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2023WinterFCS/fullrestores/032-35688/0350BB21-2B4B-4850-BF77-70B830283B28/UniversalMac_13.2_22D49_Restore.ipsw",
-        "filesize": 12494248692
-      },
-      {
-        "version": "13.1",
-        "buildid": "22C65",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-60270/0A7F49BA-FC31-4AD9-8E45-49B1FB9128A6/UniversalMac_13.1_22C65_Restore.ipsw",
-        "filesize": 12279576859
-      },
-      {
-        "version": "13.0.1",
-        "buildid": "22A400",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-93802/A7270B0F-05F8-43D1-A9AD-40EF5699E82C/UniversalMac_13.0.1_22A400_Restore.ipsw",
-        "filesize": 12197932579
-      },
-      {
-        "version": "13.0",
-        "buildid": "22A380",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-92188/2C38BCD1-2BFF-4A10-B358-94E8E28BE805/UniversalMac_13.0_22A380_Restore.ipsw",
-        "filesize": 12197669257
-      },
-      {
-        "version": "12.6",
-        "buildid": "21G115",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022FallFCS/fullrestores/012-40537/0EC7C669-13E9-49FB-BD64-9EECC1D174B2/UniversalMac_12.6_21G115_Restore.ipsw",
-        "filesize": 14081739387
-      },
-      {
-        "version": "12.5.1",
-        "buildid": "21G83",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022SummerFCS/fullrestores/012-51674/A7019DDB-3355-470F-A355-4162A187AB6C/UniversalMac_12.5.1_21G83_Restore.ipsw",
-        "filesize": 14088266331
-      },
-      {
-        "version": "12.5",
-        "buildid": "21G72",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022SummerFCS/fullrestores/012-42731/BD9917E0-262C-41C5-A69F-AC316A534A39/UniversalMac_12.5_21G72_Restore.ipsw",
-        "filesize": 14084058716
-      },
-      {
-        "version": "12.4",
-        "buildid": "21F79",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022SpringFCS/fullrestores/012-06874/9CECE956-D945-45E2-93E9-4FFDC81BB49A/UniversalMac_12.4_21F79_Restore.ipsw",
-        "filesize": 13837340777
-      },
-      {
-        "version": "12.3.1",
-        "buildid": "21E258",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022SpringFCS/fullrestores/002-79219/851BEDF0-19DB-4040-B765-0F4089D1530D/UniversalMac_12.3.1_21E258_Restore.ipsw",
-        "filesize": 13875260060
-      },
-      {
-        "version": "12.3",
-        "buildid": "21E230",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022SpringFCS/fullrestores/071-08757/74A4F2A1-C747-43F9-A22A-C0AD5FB4ECB6/UniversalMac_12.3_21E230_Restore.ipsw",
-        "filesize": 13872566478
-      },
-      {
-        "version": "12.2.1",
-        "buildid": "21D62",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-66272/FB0B40F5-49EB-421B-81EC-8B56B8468D3C/UniversalMac_12.2.1_21D62_Restore.ipsw",
-        "filesize": 14139692117
-      },
-      {
-        "version": "12.2",
-        "buildid": "21D49",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2022WinterFCS/fullrestores/002-57044/F1C9CC9E-28BE-49E2-82F9-C7BBBBCC42F8/UniversalMac_12.2_21D49_Restore.ipsw",
-        "filesize": 14140430556
-      },
-      {
-        "version": "12.1",
-        "buildid": "21C52",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2021FCSWinter/fullrestores/002-42433/F3F6D5CD-67FE-449C-9212-F7409808B6C4/UniversalMac_12.1_21C52_Restore.ipsw",
-        "filesize": 14141114913
-      },
-      {
-        "version": "12.0.1",
-        "buildid": "21A559",
-        "signed": true,
-        "signing_started": null,
-        "signing_stopped": null,
-        "url": "https://updates.cdn-apple.com/2021FCSFall/fullrestores/002-23780/D3417F21-41BD-4DDF-9135-FA5A129AF6AF/UniversalMac_12.0.1_21A559_Restore.ipsw",
-        "filesize": 14102871779
-      }
     ]
   },
   "macos_ipsw": {
@@ -3736,7 +3736,7 @@
     "build": "24G90",
     "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/093-10809/CFD6DD38-DAF0-40DA-854F-31AAD1294C6F/UniversalMac_15.6.1_24G90_Restore.ipsw",
     "apple_slug": "093-10809",
-    "fetch_timestamp": "2025-09-02T19:15:14.203127905Z"
+    "fetch_timestamp": "2025-09-02T20:20:16.688945849Z"
   },
   "total_devices": 255,
   "total_firmwares": 214
