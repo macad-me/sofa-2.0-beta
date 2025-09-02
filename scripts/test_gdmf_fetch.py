@@ -139,6 +139,14 @@ def main() -> int:
     print(f"PEM exists: {PEM_FILE.exists()} at {PEM_FILE.resolve()}")
     print(f"Cache path: {CACHE_FILE.resolve()}")
 
+    # Show the key insight: where we are vs where the PEM is
+    print(f"")
+    print(f"🔍 Path Analysis:")
+    print(f"  Current working dir: {Path.cwd()}")
+    print(f"  Looking for PEM at:  {PEM_FILE.resolve()}")
+    print(f"  PEM actually at:     {Path('../config/AppleRoot.pem').resolve()}")
+    print(f"  PEM accessible:      {Path('../config/AppleRoot.pem').exists()}")
+
     # Check if gather.toml exists and show its certificate path
     gather_toml = Path("../config/gather.toml")
     if gather_toml.exists():

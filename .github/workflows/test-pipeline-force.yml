@@ -261,39 +261,52 @@ jobs:
             exit 1
           fi
           
-      - name: Fix config paths for sofa-gather
+      - name: Fix pipeline to run binaries from repo root
         run: |
-          echo "🔧 Fixing config paths for sofa-gather binary..."
+          echo "🔧 Fixing pipeline to run binaries from correct working directory..."
 
-          # The sofa-gather binary looks for config/AppleRoot.pem relative to working directory
-          # Since we run from scripts/, we need to update the gather.toml to use ../config/AppleRoot.pem
-          if [ -f "config/gather.toml" ]; then
-            echo "Original gather.toml certificate path:"
-            grep "apple_root_cert" config/gather.toml || echo "No apple_root_cert found"
+          # The real issue: sofa-gather should run from repo root, not scripts/
+          # This way it can find config/AppleRoot.pem correctly
 
-            # Update the path to be relative to scripts/ directory
-            sed -i 's|apple_root_cert = "config/AppleRoot.pem"|apple_root_cert = "../config/AppleRoot.pem"|g' config/gather.toml
+          cd scripts
 
-            echo "Updated gather.toml certificate path:"
-            grep "apple_root_cert" config/gather.toml || echo "No apple_root_cert found"
+          # Create a backup
+          cp sofa_pipeline.py sofa_pipeline.py.backup
+
+          # Fix the gather stage subprocess call to use repo root as working directory
+          # Use a simpler sed approach to add cwd parameter
+
+          # Find and replace the gather subprocess call (Linux sed syntax)
+          sed -i 's/cmd, capture_output=True, text=True, timeout=300/cmd, capture_output=True, text=True, timeout=300, cwd=Path("..")/g' sofa_pipeline.py
+
+          # Also need to import Path at the top if not already imported
+          if ! grep -q "from pathlib import Path" sofa_pipeline.py; then
+            sed -i '1i from pathlib import Path' sofa_pipeline.py
           fi
 
-      - name: Test GDMF fetch after config fix
+          echo "✅ Pipeline patched to run gather binary from repo root"
+          echo "Checking the change:"
+          grep -n -A 3 -B 1 "cwd=Path" sofa_pipeline.py || echo "Pattern not found, trying different approach..."
+
+      - name: Test GDMF fetch after pipeline fix
         run: |
-          echo "🧪 Testing GDMF fetch after config path fix..."
+          echo "🧪 Testing GDMF fetch after pipeline working directory fix..."
           cd scripts
 
           export PATH="../bin:$HOME/.local/bin:$PATH"
 
-          echo "Running GDMF test script after config fix..."
+          echo "Checking if pipeline was patched correctly:"
+          grep -n "cwd=Path" sofa_pipeline.py || echo "No cwd=Path found"
+
+          echo "Running GDMF test script after pipeline fix..."
           if uv run test_gdmf_fetch.py; then
-            echo "✅ GDMF test completed successfully after config fix"
-            echo "## ✅ GDMF Test Success (After Config Fix)" >> $GITHUB_STEP_SUMMARY
-            echo "GDMF fetch with AppleRoot.pem worked correctly after fixing config path" >> $GITHUB_STEP_SUMMARY
+            echo "✅ GDMF test completed successfully after pipeline fix"
+            echo "## ✅ GDMF Test Success (After Pipeline Fix)" >> $GITHUB_STEP_SUMMARY
+            echo "GDMF fetch with AppleRoot.pem worked correctly after fixing pipeline working directory" >> $GITHUB_STEP_SUMMARY
           else
-            echo "❌ GDMF test still failed after config fix"
-            echo "## ❌ GDMF Test Still Failed (After Config Fix)" >> $GITHUB_STEP_SUMMARY
-            echo "GDMF fetch with AppleRoot.pem still has issues after config fix" >> $GITHUB_STEP_SUMMARY
+            echo "❌ GDMF test still failed after pipeline fix"
+            echo "## ❌ GDMF Test Still Failed (After Pipeline Fix)" >> $GITHUB_STEP_SUMMARY
+            echo "GDMF fetch with AppleRoot.pem still has issues after pipeline fix" >> $GITHUB_STEP_SUMMARY
             # Don't exit - this is just a diagnostic test
           fi
 
