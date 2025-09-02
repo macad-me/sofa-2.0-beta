@@ -139,6 +139,21 @@ def main() -> int:
     print(f"PEM exists: {PEM_FILE.exists()} at {PEM_FILE.resolve()}")
     print(f"Cache path: {CACHE_FILE.resolve()}")
 
+    # Check if gather.toml exists and show its certificate path
+    gather_toml = Path("../config/gather.toml")
+    if gather_toml.exists():
+        print(f"gather.toml exists at: {gather_toml.resolve()}")
+        try:
+            with open(gather_toml, 'r') as f:
+                content = f.read()
+                for line in content.split('\n'):
+                    if 'apple_root_cert' in line:
+                        print(f"gather.toml certificate config: {line.strip()}")
+        except Exception as e:
+            print(f"Error reading gather.toml: {e}")
+    else:
+        print("gather.toml not found")
+
     data = fetch_gdmf_data()
     ok = isinstance(data, dict) and bool(data)
     print(f"Result: {'SUCCESS' if ok else 'FAILURE'} - keys: {list(data.keys())[:10] if isinstance(data, dict) else 'n/a'}")

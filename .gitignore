@@ -147,3 +147,4 @@ docs/.jekyll-metadata
 
 # Keep .gitkeep files for directory structure
 !**/.gitkeep
+run-check.txt

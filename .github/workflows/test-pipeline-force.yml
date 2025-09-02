@@ -174,9 +174,9 @@ jobs:
           which uv
           uv --version
 
-      - name: Test GDMF fetch with AppleRoot.pem
+      - name: Test GDMF fetch with AppleRoot.pem (before config fix)
         run: |
-          echo "🧪 Testing GDMF fetch using config/AppleRoot.pem..."
+          echo "🧪 Testing GDMF fetch using config/AppleRoot.pem (before config fix)..."
           cd scripts
 
           export PATH="../bin:$HOME/.local/bin:$PATH"
@@ -184,12 +184,12 @@ jobs:
           echo "Running GDMF test script..."
           if uv run test_gdmf_fetch.py; then
             echo "✅ GDMF test completed successfully"
-            echo "## ✅ GDMF Test Success" >> $GITHUB_STEP_SUMMARY
+            echo "## ✅ GDMF Test Success (Before Config Fix)" >> $GITHUB_STEP_SUMMARY
             echo "GDMF fetch with AppleRoot.pem worked correctly" >> $GITHUB_STEP_SUMMARY
           else
-            echo "❌ GDMF test failed"
-            echo "## ❌ GDMF Test Failed" >> $GITHUB_STEP_SUMMARY
-            echo "GDMF fetch with AppleRoot.pem encountered errors" >> $GITHUB_STEP_SUMMARY
+            echo "❌ GDMF test failed (expected before config fix)"
+            echo "## ❌ GDMF Test Failed (Before Config Fix)" >> $GITHUB_STEP_SUMMARY
+            echo "GDMF fetch with AppleRoot.pem encountered errors (expected)" >> $GITHUB_STEP_SUMMARY
             # Don't exit - this is just a diagnostic test
           fi
 
@@ -261,15 +261,60 @@ jobs:
             exit 1
           fi
           
-      - name: Test build stage  
+      - name: Fix config paths for sofa-gather
+        run: |
+          echo "🔧 Fixing config paths for sofa-gather binary..."
+
+          # The sofa-gather binary looks for config/AppleRoot.pem relative to working directory
+          # Since we run from scripts/, we need to update the gather.toml to use ../config/AppleRoot.pem
+          if [ -f "config/gather.toml" ]; then
+            echo "Original gather.toml certificate path:"
+            grep "apple_root_cert" config/gather.toml || echo "No apple_root_cert found"
+
+            # Update the path to be relative to scripts/ directory
+            sed -i 's|apple_root_cert = "config/AppleRoot.pem"|apple_root_cert = "../config/AppleRoot.pem"|g' config/gather.toml
+
+            echo "Updated gather.toml certificate path:"
+            grep "apple_root_cert" config/gather.toml || echo "No apple_root_cert found"
+          fi
+
+      - name: Test GDMF fetch after config fix
+        run: |
+          echo "🧪 Testing GDMF fetch after config path fix..."
+          cd scripts
+
+          export PATH="../bin:$HOME/.local/bin:$PATH"
+
+          echo "Running GDMF test script after config fix..."
+          if uv run test_gdmf_fetch.py; then
+            echo "✅ GDMF test completed successfully after config fix"
+            echo "## ✅ GDMF Test Success (After Config Fix)" >> $GITHUB_STEP_SUMMARY
+            echo "GDMF fetch with AppleRoot.pem worked correctly after fixing config path" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ GDMF test still failed after config fix"
+            echo "## ❌ GDMF Test Still Failed (After Config Fix)" >> $GITHUB_STEP_SUMMARY
+            echo "GDMF fetch with AppleRoot.pem still has issues after config fix" >> $GITHUB_STEP_SUMMARY
+            # Don't exit - this is just a diagnostic test
+          fi
+
+      - name: Test build stage
         if: contains(github.event.inputs.test_stage, 'build') || github.event.inputs.test_stage == 'all'
         run: |
           echo "🔨 Testing BUILD stage..."
-          
-          # Ensure models file is available in resources directory for SOFA CLI
+
+          # Ensure models file is available in BOTH resources and models directories for SOFA CLI
           if [ -f "data/models/supported_devices.json" ]; then
             cp data/models/supported_devices.json data/resources/
             echo "✅ Copied supported_devices.json to resources directory"
+          else
+            echo "⚠️ data/models/supported_devices.json not found"
+          fi
+
+          # Also ensure it exists in models directory (v1 builder checks both locations)
+          mkdir -p data/models
+          if [ -f "data/resources/supported_devices.json" ]; then
+            cp data/resources/supported_devices.json data/models/
+            echo "✅ Copied supported_devices.json to models directory for v1 builder"
           fi
           
           cd scripts
