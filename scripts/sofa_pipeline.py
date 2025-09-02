@@ -48,6 +48,48 @@ from rich.text import Text
 
 # Initialize Rich console
 console = Console()
+
+
+def detect_paths():
+    """Detect correct paths based on where the script is run from"""
+    cwd = Path.cwd()
+    script_dir = Path(__file__).parent
+
+    # Check if we're running from repo root (has bin/ and config/ directories)
+    if (cwd / "bin").exists() and (cwd / "config").exists():
+        # Running from repo root
+        return {
+            "base_dir": cwd,
+            "bin_dir": cwd / "bin",
+            "config_dir": cwd / "config",
+            "data_dir": cwd / "data",
+            "subprocess_cwd": cwd
+        }
+    # Check if we're running from scripts/ directory
+    elif (cwd.parent / "bin").exists() and (cwd.parent / "config").exists():
+        # Running from scripts/ directory
+        repo_root = cwd.parent
+        return {
+            "base_dir": repo_root,
+            "bin_dir": repo_root / "bin",
+            "config_dir": repo_root / "config",
+            "data_dir": repo_root / "data",
+            "subprocess_cwd": repo_root
+        }
+    else:
+        # Fallback: assume script is in scripts/ and repo structure exists
+        repo_root = script_dir.parent
+        return {
+            "base_dir": repo_root,
+            "bin_dir": repo_root / "bin",
+            "config_dir": repo_root / "config",
+            "data_dir": repo_root / "data",
+            "subprocess_cwd": repo_root
+        }
+
+
+# Detect paths once at startup
+PATHS = detect_paths()
 app = typer.Typer(help=f"SOFA Pipeline Orchestrator v{__version__}")
 
 
@@ -84,12 +126,12 @@ class Product(str, Enum):
 
 class PipelineConfig(BaseModel):
     """Pipeline configuration model"""
-    base_dir: Path = Field(default=Path("."), description="Base directory")
-    data_dir: Path = Field(default=Path("../data"), description="Data directory")
+    base_dir: Path = Field(default_factory=lambda: PATHS["base_dir"], description="Base directory")
+    data_dir: Path = Field(default_factory=lambda: PATHS["data_dir"], description="Data directory")
     v1_dir: Path = Field(default=Path("v1"), description="v1 output directory")
     v2_dir: Path = Field(default=Path("v2"), description="v2 output directory")
-    config_dir: Path = Field(default=Path("../config"), description="Config directory")
-    bin_dir: Path = Field(default=Path("../bin"), description="Binary directory")
+    config_dir: Path = Field(default_factory=lambda: PATHS["config_dir"], description="Config directory")
+    bin_dir: Path = Field(default_factory=lambda: PATHS["bin_dir"], description="Binary directory")
     
     gather_sources: List[GatherSource] = Field(
         default=[GatherSource.KEV, GatherSource.GDMF, GatherSource.IPSW, GatherSource.XPROTECT, GatherSource.BETA, GatherSource.UMA],
@@ -241,19 +283,17 @@ class SOFAPipeline:
             for source in self.config.gather_sources:
                 progress.update(task, description=f"Gathering {source}...")
                 
-                # Use sofa-gather binary from bin or bin
+                # Use sofa-gather binary
                 binary = self.config.bin_dir / "sofa-gather"
                 if not binary.exists():
-                    binary = Path("../bin/sofa-gather")
-                if not binary.exists():
-                    self.log(f"Binary not found: sofa-gather", "error")
-                    errors.append(f"{source}: Binary sofa-gather not found")
+                    self.log(f"Binary not found: sofa-gather at {binary}", "error")
+                    errors.append(f"{source}: Binary sofa-gather not found at {binary}")
                     continue
                 
                 cmd = [str(binary), source.value]
                 
                 # Add output dir if not using default
-                if output_dir != Path("../data/resources"):
+                if output_dir != Path("data/resources"):
                     cmd.extend(["--output", str(output_dir / f"{source.value}_catalog.json")])
                 
                 # Add --insecure flag for GDMF if needed
@@ -268,7 +308,7 @@ class SOFAPipeline:
                 
                 try:
                     result = subprocess.run(
-                        cmd, capture_output=True, text=True, timeout=300, cwd=Path("..")
+                        cmd, capture_output=True, text=True, timeout=300, cwd=PATHS["subprocess_cwd"]
                     )
                     
                     self.log(f"Gather {source} result - return code: {result.returncode}")
@@ -337,7 +377,7 @@ class SOFAPipeline:
             # Use sofa-fetch binary
             binary = self.config.bin_dir / "sofa-fetch"
             if not binary.exists():
-                binary = Path("../bin/sofa-fetch")
+                binary = Path("bin/sofa-fetch")
             
             cmd = [
                 str(binary),
@@ -360,7 +400,7 @@ class SOFAPipeline:
             
             try:
                 result = subprocess.run(
-                    cmd, capture_output=True, text=True, timeout=600, cwd=Path("..")
+                    cmd, capture_output=True, text=True, timeout=600, cwd=PATHS["subprocess_cwd"]
                 )
                 
                 if result.returncode == 0:
@@ -430,7 +470,7 @@ class SOFAPipeline:
                 
                 binary = self.config.bin_dir / "sofa-build"
                 if not binary.exists():
-                    binary = Path("../bin/sofa-build")
+                    binary = Path("bin/sofa-build")
                 
                 # Build all products at once with --legacy flag
                 cmd = [
@@ -444,7 +484,7 @@ class SOFAPipeline:
                 
                 try:
                     result = subprocess.run(
-                        cmd, capture_output=True, text=True, timeout=600, cwd=Path("..")
+                        cmd, capture_output=True, text=True, timeout=600, cwd=PATHS["subprocess_cwd"]
                     )
                     
                     if result.returncode == 0:
@@ -480,7 +520,7 @@ class SOFAPipeline:
                     # sofa-build uses default data directories
                     binary = self.config.bin_dir / "sofa-build"
                     if not binary.exists():
-                        binary = Path("../bin/sofa-build")
+                        binary = Path("bin/sofa-build")
                     
                     # Build command with product subcommand
                     output_file = output_dir / f"{product.value}_data_feed.json"
@@ -496,7 +536,7 @@ class SOFAPipeline:
                     
                     try:
                         result = subprocess.run(
-                            cmd, capture_output=True, text=True, timeout=300, cwd=Path("..")
+                            cmd, capture_output=True, text=True, timeout=300, cwd=PATHS["subprocess_cwd"]
                         )
                         
                         if result.returncode == 0:
@@ -550,7 +590,7 @@ class SOFAPipeline:
             # Use sofa-build binary with bulletin subcommand
             binary = self.config.bin_dir / "sofa-build"
             if not binary.exists():
-                binary = Path("../bin/sofa-build")
+                binary = Path("bin/sofa-build")
             
             if not binary.exists():
                 error_msg = "sofa-build binary not found"
@@ -576,7 +616,7 @@ class SOFAPipeline:
             
             try:
                 result = subprocess.run(
-                    cmd, capture_output=True, text=True, timeout=60, cwd=Path("..")
+                    cmd, capture_output=True, text=True, timeout=60, cwd=PATHS["subprocess_cwd"]
                 )
                 
                 if result.returncode == 0:
@@ -672,7 +712,7 @@ class SOFAPipeline:
             
             try:
                 result = subprocess.run(
-                    cmd, capture_output=True, text=True, timeout=30, cwd=Path("..")
+                    cmd, capture_output=True, text=True, timeout=30, cwd=PATHS["subprocess_cwd"]
                 )
                 
                 if result.returncode == 0:
@@ -736,7 +776,7 @@ class SOFAPipeline:
         console.print("📤 Extracting CVEs from Apple security releases...")
         binary = self.config.bin_dir / "sofa-cve"
         if not binary.exists():
-            binary = Path("../bin/sofa-cve")
+            binary = Path("bin/sofa-cve")
         
         if not binary.exists():
             error_msg = "sofa-cve binary not found"
@@ -751,7 +791,7 @@ class SOFAPipeline:
         # Extract CVEs
         cmd = [str(binary), "extract"]
         try:
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=60, cwd=Path(".."))
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=60, cwd=PATHS["subprocess_cwd"])
             if result.returncode == 0:
                 console.print("✅ CVE extraction complete", style="green")
                 outputs["extract"] = "✅"
@@ -775,7 +815,7 @@ class SOFAPipeline:
                 timeout = 300  # 5 min for light enrichment
             
             try:
-                result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, cwd=Path(".."))
+                result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, cwd=PATHS["subprocess_cwd"])
                 if result.returncode == 0:
                     mode_text = "full" if full_mode else "lightweight"
                     console.print(f"✅ CVE {mode_text} enrichment complete", style="green")
@@ -793,7 +833,7 @@ class SOFAPipeline:
             console.print("📑 Indexing CVE data...")
             cmd = [str(binary), "index"]
             try:
-                result = subprocess.run(cmd, capture_output=True, text=True, timeout=60, cwd=Path(".."))
+                result = subprocess.run(cmd, capture_output=True, text=True, timeout=60, cwd=PATHS["subprocess_cwd"])
                 if result.returncode == 0:
                     console.print("✅ CVE indexing complete", style="green")
                     outputs["index"] = "✅"
@@ -939,15 +979,9 @@ class SOFAPipeline:
         # Check for our binaries
         binaries = ["sofa-gather", "sofa-fetch", "sofa-build", "sofa-cve"]
         
-        # Check bin directory first, then base_dir
-        bin_dir = Path("../bin")
-        
         console.print("[bold]Binary paths and timestamps:[/bold]")
         for binary_name in binaries:
-            # Try bin/ first, then bin/
             bin_path = self.config.bin_dir / binary_name
-            if not bin_path.exists():
-                bin_path = Path("bin") / binary_name
             
             if bin_path.exists():
                 stat = bin_path.stat()
@@ -1030,6 +1064,7 @@ class SOFAPipeline:
         
         # No starter pack needed - binaries have embedded defaults
         console.print("✅ Using embedded defaults in binaries", style="green")
+        console.print(f"🔍 Detected paths: bin={PATHS['bin_dir']}, config={PATHS['config_dir']}, data={PATHS['data_dir']}", style="cyan")
         
         # Stage 2: Setup directories
         self.setup_directories()
