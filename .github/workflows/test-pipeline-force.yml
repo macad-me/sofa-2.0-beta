@@ -154,13 +154,6 @@ jobs:
         run: |
           echo "📊 Testing GATHER stage..."
           
-          # AppleRoot.pem certificate is now clean - let SOFA CLI try to use it
-          if [ -f "config/AppleRoot.pem" ]; then
-            echo "✅ Using AppleRoot.pem certificate for GDMF SSL validation"
-          else
-            echo "⚠️ No AppleRoot.pem found - GDMF will use --insecure mode"
-          fi
-          
           cd scripts
           
           export SOFA_BIN_PATH="../bin"
@@ -213,13 +206,6 @@ jobs:
           if [ -f "data/models/supported_devices.json" ]; then
             cp data/models/supported_devices.json data/resources/
             echo "✅ Copied supported_devices.json to resources directory"
-          fi
-          
-          # AppleRoot.pem certificate is now clean - let SOFA CLI try to use it
-          if [ -f "config/AppleRoot.pem" ]; then
-            echo "✅ Using AppleRoot.pem certificate for GDMF SSL validation"
-          else
-            echo "⚠️ No AppleRoot.pem found - GDMF will use --insecure mode"
           fi
           
           cd scripts
