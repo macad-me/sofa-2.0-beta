@@ -261,47 +261,70 @@ jobs:
             exit 1
           fi
           
-      - name: Fix pipeline to use --config flag
+      - name: Apply final pipeline fix
         run: |
-          echo "🔧 Fixing pipeline to use --config flag for sofa-gather..."
-
-          # The clean solution: use --config flag instead of changing working directory
-          # This way sofa-gather can find the config file from any directory
+          echo "🔧 Applying final fix: Run sofa-gather from repo root..."
+          echo ""
+          echo "📋 Problem Analysis:"
+          echo "  ❌ sofa-gather from scripts/ → Uses default config → TLS fails"
+          echo "  ✅ sofa-gather from repo root → Uses gather.toml → TLS works"
+          echo ""
+          echo "🛠️ Solution: Add cwd=Path('..') to subprocess.run calls"
+          echo ""
 
           cd scripts
 
-          # Create a backup
+          # Create backup
           cp sofa_pipeline.py sofa_pipeline.py.backup
+          echo "✅ Created backup: sofa_pipeline.py.backup"
 
-          # Fix the gather command to include --config flag
-          # Find the line where cmd is built and add --config parameter
-          sed -i 's/cmd = \[str(binary), source.value\]/cmd = [str(binary), "--config", "..\/config\/gather.toml", source.value]/g' sofa_pipeline.py
+          # Apply the fix: Add cwd=Path("..") to gather subprocess calls
+          sed -i 's/cmd, capture_output=True, text=True, timeout=300/cmd, capture_output=True, text=True, timeout=300, cwd=Path("..")/g' sofa_pipeline.py
 
-          echo "✅ Pipeline patched to use --config flag"
-          echo "Checking the change:"
-          grep -n -A 2 -B 2 "config.*gather.toml" sofa_pipeline.py || echo "Pattern not found, checking cmd construction..."
-          grep -n -A 2 -B 2 'cmd = \[str(binary)' sofa_pipeline.py
+          # Ensure Path is imported
+          if ! grep -q "from pathlib import Path" sofa_pipeline.py; then
+            sed -i '1i from pathlib import Path' sofa_pipeline.py
+            echo "✅ Added Path import"
+          else
+            echo "✅ Path already imported"
+          fi
 
-      - name: Test GDMF fetch after pipeline fix
+          # Verify the fix was applied
+          echo ""
+          echo "🔍 Verifying fix was applied:"
+          if grep -q "cwd=Path" sofa_pipeline.py; then
+            echo "✅ Fix applied successfully"
+            grep -n "cwd=Path" sofa_pipeline.py
+          else
+            echo "❌ Fix not applied - checking original pattern..."
+            grep -n -A 2 -B 2 "timeout=300" sofa_pipeline.py
+          fi
+
+      - name: Verify fix with direct test
         run: |
-          echo "🧪 Testing GDMF fetch after pipeline --config fix..."
+          echo "🧪 Verifying the fix works..."
           cd scripts
 
           export PATH="../bin:$HOME/.local/bin:$PATH"
 
-          echo "Checking if pipeline was patched correctly:"
-          grep -n "gather.toml" sofa_pipeline.py || echo "No gather.toml config found"
-
-          echo "Running GDMF test script after pipeline fix..."
-          if uv run test_gdmf_fetch.py; then
-            echo "✅ GDMF test completed successfully after pipeline fix"
-            echo "## ✅ GDMF Test Success (After --config Fix)" >> $GITHUB_STEP_SUMMARY
-            echo "GDMF fetch with AppleRoot.pem worked correctly after adding --config flag" >> $GITHUB_STEP_SUMMARY
+          echo "📋 Fix verification:"
+          if grep -q "cwd=Path" sofa_pipeline.py; then
+            echo "✅ Pipeline patched correctly"
+            echo "   Found: $(grep "cwd=Path" sofa_pipeline.py | head -1 | xargs)"
           else
-            echo "❌ GDMF test still failed after pipeline fix"
-            echo "## ❌ GDMF Test Still Failed (After --config Fix)" >> $GITHUB_STEP_SUMMARY
-            echo "GDMF fetch with AppleRoot.pem still has issues after --config fix" >> $GITHUB_STEP_SUMMARY
-            # Don't exit - this is just a diagnostic test
+            echo "❌ Pipeline patch not found"
+          fi
+          echo ""
+
+          echo "🧪 Testing GDMF fetch with our test script..."
+          if uv run test_gdmf_fetch.py; then
+            echo "✅ GDMF test succeeded - fix is working!"
+            echo "## ✅ Pipeline Fix Successful" >> $GITHUB_STEP_SUMMARY
+            echo "The working directory fix resolved the GDMF TLS certificate issue." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ GDMF test still failed - need to investigate further"
+            echo "## ❌ Pipeline Fix Needs More Work" >> $GITHUB_STEP_SUMMARY
+            echo "The working directory fix did not resolve the issue." >> $GITHUB_STEP_SUMMARY
           fi
 
       - name: Test build stage
