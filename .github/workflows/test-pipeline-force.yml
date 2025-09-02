@@ -79,30 +79,7 @@ jobs:
             exit 1
           fi
 
-      - name: Inspect directory structure after checkout and binary download
-        run: |
-          echo "🔍 Detailed directory inspection after checkout and binary download..."
-          echo "Working directory: $(pwd)"
-          echo ""
-          echo "Root directory contents:"
-          ls -la
-          echo ""
-          echo "bin/ directory (downloaded binaries):"
-          ls -la bin/ || echo "bin/ directory not found"
-          echo ""
-          echo "config/ directory (checked out with code):"
-          ls -la config/ || echo "config/ directory not found"
-          echo ""
-          echo "Relative path check - bin relative to config:"
-          echo "bin path from root: $(realpath bin 2>/dev/null || echo 'bin not found')"
-          echo "config path from root: $(realpath config 2>/dev/null || echo 'config not found')"
-          echo ""
-          echo "AppleRoot.pem check:"
-          if [ -f "config/AppleRoot.pem" ]; then
-            echo "✅ config/AppleRoot.pem exists ($(stat -c%s config/AppleRoot.pem 2>/dev/null || stat -f%z config/AppleRoot.pem 2>/dev/null) bytes)"
-          else
-            echo "❌ config/AppleRoot.pem missing"
-          fi
+
           
       - name: Test binary execution
         run: |
@@ -174,70 +151,30 @@ jobs:
           which uv
           uv --version
 
-      - name: Test GDMF fetch with AppleRoot.pem (before config fix)
-        run: |
-          echo "🧪 Testing GDMF fetch using config/AppleRoot.pem (before config fix)..."
-          cd scripts
 
-          export PATH="../bin:$HOME/.local/bin:$PATH"
-
-          echo "Running GDMF test script..."
-          if uv run test_gdmf_fetch.py; then
-            echo "✅ GDMF test completed successfully"
-            echo "## ✅ GDMF Test Success (Before Config Fix)" >> $GITHUB_STEP_SUMMARY
-            echo "GDMF fetch with AppleRoot.pem worked correctly" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ GDMF test failed (expected before config fix)"
-            echo "## ❌ GDMF Test Failed (Before Config Fix)" >> $GITHUB_STEP_SUMMARY
-            echo "GDMF fetch with AppleRoot.pem encountered errors (expected)" >> $GITHUB_STEP_SUMMARY
-            # Don't exit - this is just a diagnostic test
-          fi
-
-          # Show cache contents if created
-          if [ -f "../data/cache/gdmf_cached.json" ]; then
-            echo "Cache file created:"
-            ls -la ../data/cache/gdmf_cached.json
-          fi
           
       - name: Test gather stage
         if: contains(github.event.inputs.test_stage, 'gather') || github.event.inputs.test_stage == 'all'
         run: |
           echo "📊 Testing GATHER stage..."
 
-          cd scripts
+          # KEY FIX: Run from repo root where sofa-gather can find config/
+          export SOFA_BIN_PATH="./bin"
+          export PATH="./bin:$HOME/.local/bin:$PATH"
 
-          export SOFA_BIN_PATH="../bin"
-          export PATH="../bin:$HOME/.local/bin:$PATH"
-
-          echo "🔍 Pre-gather directory verification from scripts/ directory:"
-          echo "Current working directory: $(pwd)"
-          echo "bin/ directory (should be ../bin from here):"
-          ls -la ../bin/ || echo "❌ ../bin/ not found from scripts/"
-          echo "config/ directory (should be ../config from here):"
-          ls -la ../config/ || echo "❌ ../config/ not found from scripts/"
-          echo "AppleRoot.pem check from scripts/:"
-          if [ -f "../config/AppleRoot.pem" ]; then
-            echo "✅ ../config/AppleRoot.pem accessible from scripts/"
-          else
-            echo "❌ ../config/AppleRoot.pem not accessible from scripts/"
+          # Quick validation
+          if [ ! -f "config/AppleRoot.pem" ]; then
+            echo "❌ config/AppleRoot.pem not found"
+            exit 1
           fi
-          echo ""
 
-          if [[ "${{ github.event.inputs.debug_mode }}" == "true" ]]; then
-            echo "🔍 Debug mode: Showing binary locations..."
-            ls -la ../bin/
-            echo "🔍 Current PATH: $PATH"
-            echo "🔍 SOFA_BIN_PATH: $SOFA_BIN_PATH"
-          fi
-          
-          echo "Running: uv run --script sofa_pipeline.py run --stage gather"
-          if uv run --script sofa_pipeline.py run --stage gather; then
+          echo "Running: uv run --script scripts/sofa_pipeline.py run --stage gather"
+          if uv run --script scripts/sofa_pipeline.py run --stage gather; then
             echo "✅ GATHER stage completed"
             echo "## ✅ Gather Stage Success" >> $GITHUB_STEP_SUMMARY
           else
             echo "❌ GATHER stage failed"
             echo "## ❌ Gather Stage Failed" >> $GITHUB_STEP_SUMMARY
-            echo "The gather stage encountered errors. Check logs above." >> $GITHUB_STEP_SUMMARY
             exit 1
           fi
           
@@ -245,121 +182,48 @@ jobs:
         if: contains(github.event.inputs.test_stage, 'fetch') || github.event.inputs.test_stage == 'all'
         run: |
           echo "🔍 Testing FETCH stage..."
-          cd scripts
-          
-          export SOFA_BIN_PATH="../bin"
-          export PATH="../bin:$HOME/.local/bin:$PATH"
-          
-          echo "Running: uv run --script sofa_pipeline.py run --stage fetch"
-          if uv run --script sofa_pipeline.py run --stage fetch; then
+
+          export SOFA_BIN_PATH="./bin"
+          export PATH="./bin:$HOME/.local/bin:$PATH"
+
+          echo "Running: uv run --script scripts/sofa_pipeline.py run --stage fetch"
+          if uv run --script scripts/sofa_pipeline.py run --stage fetch; then
             echo "✅ FETCH stage completed"
             echo "## ✅ Fetch Stage Success" >> $GITHUB_STEP_SUMMARY
           else
             echo "❌ FETCH stage failed"
             echo "## ❌ Fetch Stage Failed" >> $GITHUB_STEP_SUMMARY
-            echo "The fetch stage encountered errors. Check logs above." >> $GITHUB_STEP_SUMMARY
             exit 1
           fi
           
-      - name: Apply final pipeline fix
-        run: |
-          echo "🔧 Applying final fix: Run sofa-gather from repo root..."
-          echo ""
-          echo "📋 Problem Analysis:"
-          echo "  ❌ sofa-gather from scripts/ → Uses default config → TLS fails"
-          echo "  ✅ sofa-gather from repo root → Uses gather.toml → TLS works"
-          echo ""
-          echo "🛠️ Solution: Add cwd=Path('..') to subprocess.run calls"
-          echo ""
 
-          cd scripts
 
-          # Create backup
-          cp sofa_pipeline.py sofa_pipeline.py.backup
-          echo "✅ Created backup: sofa_pipeline.py.backup"
 
-          # Apply the fix: Add cwd=Path("..") to gather subprocess calls
-          sed -i 's/cmd, capture_output=True, text=True, timeout=300/cmd, capture_output=True, text=True, timeout=300, cwd=Path("..")/g' sofa_pipeline.py
-
-          # Ensure Path is imported
-          if ! grep -q "from pathlib import Path" sofa_pipeline.py; then
-            sed -i '1i from pathlib import Path' sofa_pipeline.py
-            echo "✅ Added Path import"
-          else
-            echo "✅ Path already imported"
-          fi
-
-          # Verify the fix was applied
-          echo ""
-          echo "🔍 Verifying fix was applied:"
-          if grep -q "cwd=Path" sofa_pipeline.py; then
-            echo "✅ Fix applied successfully"
-            grep -n "cwd=Path" sofa_pipeline.py
-          else
-            echo "❌ Fix not applied - checking original pattern..."
-            grep -n -A 2 -B 2 "timeout=300" sofa_pipeline.py
-          fi
-
-      - name: Verify fix with direct test
-        run: |
-          echo "🧪 Verifying the fix works..."
-          cd scripts
-
-          export PATH="../bin:$HOME/.local/bin:$PATH"
-
-          echo "📋 Fix verification:"
-          if grep -q "cwd=Path" sofa_pipeline.py; then
-            echo "✅ Pipeline patched correctly"
-            echo "   Found: $(grep "cwd=Path" sofa_pipeline.py | head -1 | xargs)"
-          else
-            echo "❌ Pipeline patch not found"
-          fi
-          echo ""
-
-          echo "🧪 Testing GDMF fetch with our test script..."
-          if uv run test_gdmf_fetch.py; then
-            echo "✅ GDMF test succeeded - fix is working!"
-            echo "## ✅ Pipeline Fix Successful" >> $GITHUB_STEP_SUMMARY
-            echo "The working directory fix resolved the GDMF TLS certificate issue." >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ GDMF test still failed - need to investigate further"
-            echo "## ❌ Pipeline Fix Needs More Work" >> $GITHUB_STEP_SUMMARY
-            echo "The working directory fix did not resolve the issue." >> $GITHUB_STEP_SUMMARY
-          fi
 
       - name: Test build stage
         if: contains(github.event.inputs.test_stage, 'build') || github.event.inputs.test_stage == 'all'
         run: |
           echo "🔨 Testing BUILD stage..."
 
-          # Ensure models file is available in BOTH resources and models directories for SOFA CLI
+          # Ensure supported_devices.json is in both required locations
           if [ -f "data/models/supported_devices.json" ]; then
             cp data/models/supported_devices.json data/resources/
-            echo "✅ Copied supported_devices.json to resources directory"
-          else
-            echo "⚠️ data/models/supported_devices.json not found"
           fi
-
-          # Also ensure it exists in models directory (v1 builder checks both locations)
           mkdir -p data/models
           if [ -f "data/resources/supported_devices.json" ]; then
             cp data/resources/supported_devices.json data/models/
-            echo "✅ Copied supported_devices.json to models directory for v1 builder"
           fi
-          
-          cd scripts
-          
-          export SOFA_BIN_PATH="../bin"
-          export PATH="../bin:$HOME/.local/bin:$PATH"
-          
-          echo "Running: uv run --script sofa_pipeline.py run --stage build"
-          if uv run --script sofa_pipeline.py run --stage build; then
+
+          export SOFA_BIN_PATH="./bin"
+          export PATH="./bin:$HOME/.local/bin:$PATH"
+
+          echo "Running: uv run --script scripts/sofa_pipeline.py run --stage build"
+          if uv run --script scripts/sofa_pipeline.py run --stage build; then
             echo "✅ BUILD stage completed"
             echo "## ✅ Build Stage Success" >> $GITHUB_STEP_SUMMARY
           else
             echo "❌ BUILD stage failed"
             echo "## ❌ Build Stage Failed" >> $GITHUB_STEP_SUMMARY
-            echo "The build stage encountered errors. Check logs above." >> $GITHUB_STEP_SUMMARY
             exit 1
           fi
           
@@ -368,25 +232,6 @@ jobs:
           echo "📁 Checking generated files..."
           echo "## 📁 Generated Files" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          
-          # Debug: Show actual directory structure on runner
-          echo "🔍 Runner directory structure:"
-          pwd
-          echo "Root directory contents:"
-          ls -la
-          echo "bin/ directory (downloaded binaries):"
-          ls -la bin/ 2>/dev/null || echo "No bin/ directory"
-          echo "config/ directory (checked out with code):"
-          ls -la config/ 2>/dev/null || echo "No config/ directory"
-          echo "Data directory contents:"
-          ls -la data/ 2>/dev/null || echo "No data/ directory"
-          echo "Scripts directory contents:"
-          ls -la scripts/ 2>/dev/null || echo "No scripts/ directory"
-          echo ""
-          echo "Final verification - bin/ and config/ still co-located:"
-          echo "bin/ exists: $([ -d bin ] && echo 'YES' || echo 'NO')"
-          echo "config/ exists: $([ -d config ] && echo 'YES' || echo 'NO')"
-          echo "AppleRoot.pem exists: $([ -f config/AppleRoot.pem ] && echo 'YES' || echo 'NO')"
           
           if [ -d "data/feeds" ]; then
             echo "### Feeds Directory:" >> $GITHUB_STEP_SUMMARY

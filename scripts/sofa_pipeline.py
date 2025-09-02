@@ -268,7 +268,7 @@ class SOFAPipeline:
                 
                 try:
                     result = subprocess.run(
-                        cmd, capture_output=True, text=True, timeout=300
+                        cmd, capture_output=True, text=True, timeout=300, cwd=Path("..")
                     )
                     
                     self.log(f"Gather {source} result - return code: {result.returncode}")
@@ -360,7 +360,7 @@ class SOFAPipeline:
             
             try:
                 result = subprocess.run(
-                    cmd, capture_output=True, text=True, timeout=600
+                    cmd, capture_output=True, text=True, timeout=600, cwd=Path("..")
                 )
                 
                 if result.returncode == 0:
@@ -444,7 +444,7 @@ class SOFAPipeline:
                 
                 try:
                     result = subprocess.run(
-                        cmd, capture_output=True, text=True, timeout=600
+                        cmd, capture_output=True, text=True, timeout=600, cwd=Path("..")
                     )
                     
                     if result.returncode == 0:
@@ -496,7 +496,7 @@ class SOFAPipeline:
                     
                     try:
                         result = subprocess.run(
-                            cmd, capture_output=True, text=True, timeout=300
+                            cmd, capture_output=True, text=True, timeout=300, cwd=Path("..")
                         )
                         
                         if result.returncode == 0:
@@ -576,7 +576,7 @@ class SOFAPipeline:
             
             try:
                 result = subprocess.run(
-                    cmd, capture_output=True, text=True, timeout=60
+                    cmd, capture_output=True, text=True, timeout=60, cwd=Path("..")
                 )
                 
                 if result.returncode == 0:
@@ -672,7 +672,7 @@ class SOFAPipeline:
             
             try:
                 result = subprocess.run(
-                    cmd, capture_output=True, text=True, timeout=30
+                    cmd, capture_output=True, text=True, timeout=30, cwd=Path("..")
                 )
                 
                 if result.returncode == 0:
@@ -751,7 +751,7 @@ class SOFAPipeline:
         # Extract CVEs
         cmd = [str(binary), "extract"]
         try:
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=60, cwd=Path(".."))
             if result.returncode == 0:
                 console.print("✅ CVE extraction complete", style="green")
                 outputs["extract"] = "✅"
@@ -775,7 +775,7 @@ class SOFAPipeline:
                 timeout = 300  # 5 min for light enrichment
             
             try:
-                result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+                result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, cwd=Path(".."))
                 if result.returncode == 0:
                     mode_text = "full" if full_mode else "lightweight"
                     console.print(f"✅ CVE {mode_text} enrichment complete", style="green")
@@ -793,7 +793,7 @@ class SOFAPipeline:
             console.print("📑 Indexing CVE data...")
             cmd = [str(binary), "index"]
             try:
-                result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+                result = subprocess.run(cmd, capture_output=True, text=True, timeout=60, cwd=Path(".."))
                 if result.returncode == 0:
                     console.print("✅ CVE indexing complete", style="green")
                     outputs["index"] = "✅"
