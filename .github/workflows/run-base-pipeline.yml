@@ -226,9 +226,9 @@ jobs:
           echo "📊 Before gather - existing data:"
           ls -la data/resources/ || echo "No resources directory"
           
-          # The Python script will auto-detect processing folder setup
-          echo "Running: uv run --script scripts/sofa_pipeline.py run --stage gather"
-          if uv run --script scripts/sofa_pipeline.py run --stage gather; then
+          # Use the clean, simple pipeline script  
+          echo "Running: uv run --script scripts/sofa_pipeline_clean.py run gather"
+          if uv run --script scripts/sofa_pipeline_clean.py run gather; then
             echo "✅ Pipeline GATHER stage completed"
             echo "## ✅ Gather Stage Success" >> $GITHUB_STEP_SUMMARY
             
@@ -353,8 +353,8 @@ jobs:
           export SOFA_BIN_PATH="./bin"
           export PATH="./bin:$HOME/.local/bin:$PATH"
 
-          echo "Running: uv run --script scripts/sofa_pipeline.py run --stage fetch"
-          if uv run --script scripts/sofa_pipeline.py run --stage fetch; then
+          echo "Running: uv run --script scripts/sofa_pipeline_clean.py run fetch"
+          if uv run --script scripts/sofa_pipeline_clean.py run fetch; then
             echo "✅ FETCH stage completed"
             echo "## ✅ Fetch Stage Success" >> $GITHUB_STEP_SUMMARY
           else
@@ -385,8 +385,8 @@ jobs:
           export SOFA_BIN_PATH="./bin"
           export PATH="./bin:$HOME/.local/bin:$PATH"
 
-          echo "Running: uv run --script scripts/sofa_pipeline.py run --stage build"
-          if uv run --script scripts/sofa_pipeline.py run --stage build; then
+          echo "Running: uv run --script scripts/sofa_pipeline_clean.py run build"
+          if uv run --script scripts/sofa_pipeline_clean.py run build; then
             echo "✅ BUILD stage completed"
             echo "## ✅ Build Stage Success" >> $GITHUB_STEP_SUMMARY
           else
