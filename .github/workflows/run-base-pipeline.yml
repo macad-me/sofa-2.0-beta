@@ -212,6 +212,16 @@ jobs:
           if uv run --script scripts/sofa_pipeline.py run --stage gather; then
             echo "✅ GATHER stage completed"
             echo "## ✅ Gather Stage Success" >> $GITHUB_STEP_SUMMARY
+            
+            echo ""
+            echo "🔍 Verifying gathered data files..."
+            if ./scripts/verify_gathered_data.sh; then
+              echo "✅ All gathered data verified successfully"
+              echo "## ✅ Data Verification Passed" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "⚠️ Some data verification issues found (see logs above)"
+              echo "## ⚠️ Data Verification Issues" >> $GITHUB_STEP_SUMMARY
+            fi
           else
             echo "❌ GATHER stage failed"
             echo "## ❌ Gather Stage Failed" >> $GITHUB_STEP_SUMMARY
