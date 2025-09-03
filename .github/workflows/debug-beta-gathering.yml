@@ -73,7 +73,7 @@ jobs:
           echo "📥 Downloading SOFA CLI binaries for debugging..."
           mkdir -p bin
           
-          DOWNLOAD_URL="https://github.com/headmin/sofa-core-cli/releases/download/v0.1.0-beta1"
+          DOWNLOAD_URL="https://github.com/headmin/sofa-core-cli/releases/download/v0.1.0-beta3"
           LINUX_ZIP="sofa-core-cli-x86_64-linux-binaries.zip"
           
           echo "Downloading: $DOWNLOAD_URL/$LINUX_ZIP"
