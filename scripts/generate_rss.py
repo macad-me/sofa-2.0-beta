@@ -187,26 +187,29 @@ def load_beta_releases(data_dir: str = "../data/resources") -> List[Dict]:
 
     releases = []
     for item in data["items"]:
-        if "title" in item and "pubDate" in item:
-            # Extract version from title if possible
+        if "title" in item and "released" in item:  # Fixed: use "released" not "pubDate"
+            # Use the provided title and version
             title = item["title"]
-            version = "Beta"
-            if "beta" in title.lower():
-                # Try to extract beta version
-                import re
-
-                match = re.search(r"beta\s*(\d+)", title, re.IGNORECASE)
-                if match:
-                    version = f"Beta {match.group(1)}"
+            version = item.get("version", "Beta")
+            platform = item.get("platform", "Unknown")
+            build = item.get("build", "")
+            
+            # Create meaningful description
+            description = f"{platform} {version}"
+            if build:
+                description += f" ({build})"
+            description += " beta release"
 
             releases.append(
                 {
                     "name": title,
                     "version": version,
-                    "date": item["pubDate"],
-                    "url": item.get("link", ""),
+                    "date": item["released"],  # Fixed: use "released" field
+                    "url": item.get("release_notes_url", item.get("downloads_url", "")),
                     "type": "beta",
-                    "description": f"Beta release: {title}",
+                    "description": description,
+                    "platform": platform,
+                    "build": build
                 }
             )
 
