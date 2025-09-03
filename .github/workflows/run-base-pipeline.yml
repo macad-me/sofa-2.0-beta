@@ -1,4 +1,4 @@
-name: 🧪 Run basse SOFA Pipeline
+name: 🧪 Run base SOFA Pipeline v0.1.1
 
 on:
   # Allows you to run this workflow manually from the Actions tab

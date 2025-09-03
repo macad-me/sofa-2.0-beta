@@ -1,4 +1,4 @@
-name: 🐛 Debug Beta Gathering - Streamlined Analysis
+name: 🐛 Debug Beta Gathering v.0.1.1
 
 on:
   workflow_dispatch:
