@@ -349,13 +349,20 @@ jobs:
           git config --local user.email "test@github.com"
           git config --local user.name "Pipeline Test"
           
-          # Explicitly add individual gather source files
-          echo "📁 Adding gather source files explicitly:"
+          # Explicitly add EVERY resource file (based on successful test run)
+          echo "📁 Adding ALL expected resource files explicitly:"
           git add data/resources/apple_beta_feed.json && echo "✅ Added apple_beta_feed.json" || echo "❌ apple_beta_feed.json not found or unchanged"
-          git add data/resources/apple_beta_os_history.json && echo "✅ Added apple_beta_os_history.json" || echo "❌ apple_beta_os_history.json not found or unchanged" 
+          git add data/resources/apple_beta_os_history.json && echo "✅ Added apple_beta_os_history.json" || echo "❌ apple_beta_os_history.json not found or unchanged"
+          git add data/resources/apple_cves_with_context.ndjson && echo "✅ Added apple_cves_with_context.ndjson" || echo "❌ apple_cves_with_context.ndjson not found or unchanged"
+          git add data/resources/apple_security_releases.json && echo "✅ Added apple_security_releases.json" || echo "❌ apple_security_releases.json not found or unchanged"
+          git add data/resources/apple_security_releases.ndjson && echo "✅ Added apple_security_releases.ndjson" || echo "❌ apple_security_releases.ndjson not found or unchanged"
+          git add data/resources/gdmf_history.ndjson && echo "✅ Added gdmf_history.ndjson" || echo "❌ gdmf_history.ndjson not found or unchanged"
           git add data/resources/gdmf_cached.json && echo "✅ Added gdmf_cached.json" || echo "❌ gdmf_cached.json not found or unchanged"
-          git add data/resources/kev_catalog.json && echo "✅ Added kev_catalog.json" || echo "❌ kev_catalog.json not found or unchanged"
+          git add data/resources/gdmf_log.json && echo "✅ Added gdmf_log.json" || echo "❌ gdmf_log.json not found or unchanged"
           git add data/resources/ipsw.json && echo "✅ Added ipsw.json" || echo "❌ ipsw.json not found or unchanged"
+          git add data/resources/kev_catalog.json && echo "✅ Added kev_catalog.json" || echo "❌ kev_catalog.json not found or unchanged"
+          git add data/resources/mac_models_mapping.json && echo "✅ Added mac_models_mapping.json" || echo "❌ mac_models_mapping.json not found or unchanged"
+          git add data/resources/sofa-status.json && echo "✅ Added sofa-status.json" || echo "❌ sofa-status.json not found or unchanged"
           git add data/resources/uma_catalog.json && echo "✅ Added uma_catalog.json" || echo "❌ uma_catalog.json not found or unchanged"
           git add data/resources/xprotect.json && echo "✅ Added xprotect.json" || echo "❌ xprotect.json not found or unchanged"
           
