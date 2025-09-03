@@ -12705,13 +12705,13 @@
     }
   ],
   "XProtectPlistConfigData": {
-    "com.apple.XProtect": "5312",
-    "ReleaseDate": "2025-08-26T17:09:23Z"
+    "com.apple.XProtect": "5313",
+    "ReleaseDate": "2025-09-03T17:01:27Z"
   },
   "XProtectPayloads": {
     "com.apple.XProtectFramework.XProtect": "153",
     "com.apple.XprotectFramework.PluginService": "74",
-    "ReleaseDate": "2025-08-26T17:09:23Z"
+    "ReleaseDate": "2025-09-03T17:01:27Z"
   },
   "Models": {},
   "InstallationApps": {
