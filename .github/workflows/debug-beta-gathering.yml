@@ -118,16 +118,13 @@ jobs:
           echo "   Repository root: $REPO_ROOT"
           echo "   Data directory: $DATA_DIR"
           
-          # Create a temporary gather.toml with absolute paths
+          # Create proper gather.toml with absolute paths (copy from existing but fix paths)
           mkdir -p config
-          echo '[general]' > config/gather.toml
-          echo 'output_dir = "/home/runner/work/sofa-2.0-beta/sofa-2.0-beta/data/resources"' >> config/gather.toml
-          echo 'cache_dir = "/home/runner/work/sofa-2.0-beta/sofa-2.0-beta/data/cache"' >> config/gather.toml
-          echo '' >> config/gather.toml
-          echo '[sources.beta]' >> config/gather.toml
-          echo 'enabled = true' >> config/gather.toml
-          echo 'output_file = "/home/runner/work/sofa-2.0-beta/sofa-2.0-beta/data/resources/apple_beta_feed.json"' >> config/gather.toml
-          echo 'history_dir = "/home/runner/work/sofa-2.0-beta/sofa-2.0-beta/data/resources/history"' >> config/gather.toml
+          cp config/gather.toml config/gather.toml.backup
+          
+          # Fix the directory paths to be absolute
+          sed 's|directory = "../data/resources"|directory = "/home/runner/work/sofa-2.0-beta/sofa-2.0-beta/data/resources"|g' config/gather.toml.backup | \
+          sed 's|directory = "../data/cache"|directory = "/home/runner/work/sofa-2.0-beta/sofa-2.0-beta/data/cache"|g' > config/gather.toml
 
           echo "📋 Using gather config:"
           cat config/gather.toml
