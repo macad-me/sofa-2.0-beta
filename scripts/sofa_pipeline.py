@@ -914,7 +914,7 @@ class SOFAPipeline:
         # Enhanced verification with jq validation for JSON files
         gather_files = [
             ("kev_catalog.json", "KEV entries", ".vulnerabilities | length"),
-            ("gdmf_cached.json", "GDMF entries", ".PublicAssetSets | keys | length"), 
+            ("gdmf_cached.json", "GDMF entries", ".PublicAssetSets // {} | keys | length"), 
             ("ipsw.json", "IPSW devices", "keys | length"),
             ("apple_beta_feed.json", "Beta releases", ".items | length"),
             ("uma_catalog.json", "UMA entries", "keys | length"),
