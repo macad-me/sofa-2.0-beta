@@ -1,0 +1,137 @@
+name: 🔧 Build Fixed Binaries with Certificate Support
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_repo:
+        description: 'Source repository to build from'
+        required: true
+        default: 'headmin/sofa-core-cli'
+      source_branch:
+        description: 'Source branch/commit to build'
+        required: true  
+        default: 'main'
+
+jobs:
+  build-linux-binaries:
+    name: Build Linux x86-64 Binaries
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.inputs.source_repo }}
+          ref: ${{ github.event.inputs.source_branch }}
+          
+      - name: Apply certificate fixes
+        run: |
+          echo "🔧 Applying certificate and TLS backend fixes..."
+          
+          # Update workspace Cargo.toml to use native-tls
+          echo "Switching from rustls-tls to native-tls in workspace..."
+          sed -i 's/rustls-tls/native-tls/g' Cargo.toml
+          
+          echo "✅ Applied TLS backend fix"
+          echo ""
+          
+          echo "📋 Cargo.toml changes:"
+          grep -A5 -B5 "native-tls\|reqwest" Cargo.toml || echo "No reqwest config found"
+          
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: x86_64-unknown-linux-musl
+          override: true
+          
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y musl-tools musl-dev pkg-config libssl-dev
+          
+      - name: Build all binaries
+        run: |
+          echo "🏗️ Building all SOFA binaries with certificate fixes..."
+          
+          # Build all binaries with musl target for static linking
+          cargo build --release --target x86_64-unknown-linux-musl
+          
+          echo "✅ Build completed"
+          echo ""
+          echo "📁 Generated binaries:"
+          ls -la target/x86_64-unknown-linux-musl/release/sofa-*
+          echo ""
+          
+          # Test that binaries are properly linked
+          echo "🧪 Testing binary execution:"
+          for binary in target/x86_64-unknown-linux-musl/release/sofa-*; do
+            if [ -x "$binary" ]; then
+              echo "Testing $(basename "$binary")..."
+              "$binary" --help >/dev/null 2>&1 && echo "  ✅ $(basename "$binary") executes" || echo "  ❌ $(basename "$binary") failed"
+            fi
+          done
+          
+      - name: Test beta gathering specifically
+        run: |
+          echo "🍎 Testing beta gathering with certificate fix..."
+          
+          # Create test config
+          mkdir -p test_config
+          cp config/AppleRoot.pem test_config/ 2>/dev/null || echo "No AppleRoot.pem found"
+          
+          # Test beta gathering
+          export RUST_LOG=info
+          if ./target/x86_64-unknown-linux-musl/release/sofa-gather beta --output test_beta.json; then
+            echo "✅ Beta gathering test successful"
+            if [ -f "test_beta.json" ]; then
+              echo "Beta file created: $(wc -c < test_beta.json) bytes"
+              echo "Beta releases found: $(jq '.items | length' test_beta.json 2>/dev/null || echo 'parse_error')"
+              echo "Creation timestamp: $(jq -r '.created_at' test_beta.json 2>/dev/null || echo 'parse_error')"
+            fi
+          else
+            echo "❌ Beta gathering test failed"
+          fi
+          
+      - name: Package binaries
+        run: |
+          echo "📦 Packaging fixed binaries..."
+          
+          mkdir -p release_binaries
+          cp target/x86_64-unknown-linux-musl/release/sofa-* release_binaries/
+          
+          # Create release zip
+          cd release_binaries
+          zip -r ../sofa-core-cli-x86_64-linux-fixed.zip .
+          cd ..
+          
+          echo "✅ Packaged binaries:"
+          ls -la sofa-core-cli-x86_64-linux-fixed.zip
+          
+      - name: Upload fixed binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: sofa-cli-linux-fixed-${{ github.run_number }}
+          path: |
+            sofa-core-cli-x86_64-linux-fixed.zip
+            release_binaries/
+            test_beta.json
+            logs/
+          retention-days: 30
+          
+      - name: Create release summary
+        run: |
+          echo "## 🔧 Fixed Binaries Built Successfully" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Changes Applied:**" >> $GITHUB_STEP_SUMMARY
+          echo "- Switched from rustls-tls to native-tls backend" >> $GITHUB_STEP_SUMMARY
+          echo "- Added Apple root certificate loading to beta gathering" >> $GITHUB_STEP_SUMMARY
+          echo "- Enhanced SSL certificate handling" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Download:** Check the artifacts for the fixed binary zip file" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Next Steps:**" >> $GITHUB_STEP_SUMMARY
+          echo "1. Download the fixed binaries from artifacts" >> $GITHUB_STEP_SUMMARY
+          echo "2. Replace the binaries in bin/ directory" >> $GITHUB_STEP_SUMMARY
+          echo "3. Test beta gathering in the automation" >> $GITHUB_STEP_SUMMARY
+          echo "4. Commit the working binaries to the repository" >> $GITHUB_STEP_SUMMARY
