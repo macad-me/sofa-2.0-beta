@@ -1,391 +1,297 @@
-name: 🐛 Debug Beta Gathering - Complete Analysis
+name: 🐛 Debug Beta Gathering - Streamlined Analysis
 
 on:
   workflow_dispatch:
     inputs:
-      verbose_output:
-        description: 'Enable maximum verbosity'
-        type: boolean
-        default: true
-      compare_with_pipeline:
-        description: 'Compare with full pipeline method'
+      commit_results:
+        description: 'Commit fresh data to repository'
         type: boolean
         default: true
 
 jobs:
   debug-beta-gather:
-    name: Complete Beta Gathering Debug
+    name: Beta Gathering Debug & Update
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         
-      - name: System info and setup
+      - name: System setup
         run: |
-          echo "🖥️ System Information:"
-          uname -a
-          echo "📅 Current time (UTC): $(date -u)"
-          echo "🌐 Network connectivity test:"
-          ping -c 3 google.com || echo "Network issues detected"
+          echo "🖥️ System: $(uname -a)"
+          echo "📅 Time: $(date -u)"
           
-      - name: Install Apple Root Certificates
-        run: |
-          echo "🔐 Installing Apple root certificates..."
+          # Install requirements
           sudo apt-get update
           sudo apt-get install -y ca-certificates curl jq
           
-          # Download Apple Root CA-G3
-          echo "📥 Downloading Apple Root CA-G3..."
+          # Install Apple root certificates
+          echo "🔐 Installing Apple root certificates..."
           sudo curl -f -o /usr/local/share/ca-certificates/apple-root-ca-g3.crt \
             "https://www.apple.com/certificateauthority/AppleRootCA-G3.cer"
-          
-          # Download Apple Root CA (legacy)
-          echo "📥 Downloading Apple Root CA (legacy)..."
           sudo curl -f -o /usr/local/share/ca-certificates/apple-root-ca.crt \
             "https://www.apple.com/certificateauthority/AppleComputerRootCertificate.cer"
-          
-          # Update system certificate store
           sudo update-ca-certificates
-          
-          echo "✅ Apple certificates installed"
           
       - name: Download SOFA CLI beta3 binaries
         run: |
           echo "📥 Downloading SOFA CLI beta3 binaries..."
-          mkdir -p bin
+          mkdir -p bin logs
           
           DOWNLOAD_URL="https://github.com/headmin/sofa-core-cli/releases/download/v0.1.0-beta3"
           LINUX_ZIP="sofa-core-cli-x86_64-linux-binaries.zip"
           
-          echo "Downloading: $DOWNLOAD_URL/$LINUX_ZIP"
+          curl -L -f -o "$LINUX_ZIP" "$DOWNLOAD_URL/$LINUX_ZIP"
+          unzip -o -j "$LINUX_ZIP" -d bin/
+          chmod +x bin/*
+          rm "$LINUX_ZIP"
           
-          if curl -L -f -o "$LINUX_ZIP" "$DOWNLOAD_URL/$LINUX_ZIP"; then
-            echo "✅ Downloaded successfully"
-            unzip -o -j "$LINUX_ZIP" -d bin/
-            chmod +x bin/*
-            rm "$LINUX_ZIP"
-            
-            echo "📁 Downloaded binaries:"
-            ls -la bin/
-            
-            echo "🔍 Binary details:"
-            for binary in bin/sofa-*; do
-              if [ -f "$binary" ]; then
-                echo "  $(basename $binary): $(file $binary)"
-              fi
-            done
-            
-            echo "✅ Testing binary execution:"
-            if ./bin/sofa-gather --version; then
-              echo "✅ sofa-gather binary works"
-            else
-              echo "❌ sofa-gather binary failed"
-            fi
-          else
-            echo "❌ Download failed"
-            exit 1
-          fi
+          echo "✅ Binary ready: $(./bin/sofa-gather --version 2>/dev/null || echo 'version failed')"
 
-      - name: Setup directories and check current state
+      - name: Check current beta data state
         run: |
-          echo "📂 Setting up directories..."
-          mkdir -p data/resources data/cache logs config
+          echo "📊 Current beta data in repository:"
           
-          echo "📊 Current directory structure:"
-          find . -name "data" -o -name "bin" -o -name "config" -type d | head -10
-          
-          echo "📋 Current state of beta files:"
           if [ -f "data/resources/apple_beta_feed.json" ]; then
             echo "✅ apple_beta_feed.json exists:"
-            ls -la data/resources/apple_beta_feed.json
-            echo "   Current hash: $(sha256sum data/resources/apple_beta_feed.json | cut -d' ' -f1)"
             echo "   Size: $(wc -c < data/resources/apple_beta_feed.json) bytes"
             echo "   Modified: $(stat -c %Y data/resources/apple_beta_feed.json) ($(date -d @$(stat -c %Y data/resources/apple_beta_feed.json)))"
-            FEED_COUNT=$(jq -r '.items | length' data/resources/apple_beta_feed.json 2>/dev/null || echo "parse_error")
-            echo "   Beta count: $FEED_COUNT"
+            echo "   Items: $(jq -r '.items | length' data/resources/apple_beta_feed.json 2>/dev/null || echo 'parse_error')"
+            echo "   Hash: $(jq -r '.UpdateHash // "none"' data/resources/apple_beta_feed.json 2>/dev/null)"
+            echo "   Created: $(jq -r '.created_at // "none"' data/resources/apple_beta_feed.json 2>/dev/null)"
+            
+            echo "   Latest beta items:"
+            jq -r '.items[0:3] | .[] | "   - \(.platform) \(.version) (\(.build)) - \(.released)"' data/resources/apple_beta_feed.json 2>/dev/null || echo "   Could not parse items"
           else
             echo "❌ apple_beta_feed.json does not exist"
           fi
           
           if [ -f "data/resources/apple_beta_os_history.json" ]; then
             echo "✅ apple_beta_os_history.json exists:"
-            ls -la data/resources/apple_beta_os_history.json
-            echo "   Current hash: $(sha256sum data/resources/apple_beta_os_history.json | cut -d' ' -f1)"
             echo "   Size: $(wc -c < data/resources/apple_beta_os_history.json) bytes"
             echo "   Modified: $(stat -c %Y data/resources/apple_beta_os_history.json) ($(date -d @$(stat -c %Y data/resources/apple_beta_os_history.json)))"
+            echo "   Entries: $(jq -r 'length' data/resources/apple_beta_os_history.json 2>/dev/null || echo 'parse_error')"
           else
             echo "❌ apple_beta_os_history.json does not exist"
           fi
 
-      - name: Test individual beta gathering (Method 1)
+      - name: Test Apple developer site access
         run: |
-          echo "🧪 Method 1: Individual beta gathering (sofa-gather beta)"
+          echo "🍎 Testing Apple developer site connectivity..."
+          BETA_RSS_URL="https://developer.apple.com/rss/betas.rss"
           
-          export RUST_LOG=debug
-          export RUST_BACKTRACE=full
-          
-          # Test in completely isolated environment
-          BETA_OUTPUT="debug_individual_beta.json"
-          rm -f "$BETA_OUTPUT"
-          
-          echo "🧹 Clearing any cache that might interfere..."
-          rm -rf ~/.cache/sofa* /tmp/sofa* 2>/dev/null || true
-          
-          echo "Running: ./bin/sofa-gather beta --output $BETA_OUTPUT"
-          
-          if timeout 120 ./bin/sofa-gather beta --output "$BETA_OUTPUT" 2>&1 | tee logs/individual_beta.log; then
-            echo "✅ Individual beta gathering completed"
-            
-            if [ -f "$BETA_OUTPUT" ]; then
-              echo "📊 Individual beta output:"
-              ls -la "$BETA_OUTPUT"
-              echo "   Hash: $(sha256sum $BETA_OUTPUT | cut -d' ' -f1)"
-              echo "   Size: $(wc -c < $BETA_OUTPUT) bytes"
-              ITEMS=$(jq -r '.items | length' "$BETA_OUTPUT" 2>/dev/null || echo "parse_error")
-              echo "   Items: $ITEMS"
-              
-              if [ "$ITEMS" != "parse_error" ] && [ "$ITEMS" -gt 0 ]; then
-                echo "   Sample item:"
-                jq -r '.items[0] | {title, version, build}' "$BETA_OUTPUT" 2>/dev/null | head -5
-              fi
-            else
-              echo "❌ No individual beta output file created"
-            fi
+          if curl -I -s --max-time 30 "$BETA_RSS_URL"; then
+            echo "✅ Can reach Apple developer RSS"
+            echo "📊 RSS content sample:"
+            curl -s --max-time 30 "$BETA_RSS_URL" | head -10
           else
-            echo "❌ Individual beta gathering failed"
-            echo "Error log:"
-            tail -20 logs/individual_beta.log || echo "No log file"
+            echo "❌ Cannot reach Apple developer RSS"
           fi
 
-      - name: Test pipeline method (Method 2)
+      - name: Run sofa-gather all and analyze results
         run: |
-          echo "🧪 Method 2: Pipeline method (sofa-gather all)"
+          echo "🧪 Running sofa-gather all to update repository data..."
           
-          export RUST_LOG=debug
-          export RUST_BACKTRACE=full
+          # Setup environment
+          export RUST_LOG=info
+          mkdir -p data/resources data/cache
           
-          # COMPLETELY clear data directory and recreate fresh
-          echo "🧹 Clearing all existing data to test fresh generation..."
-          rm -rf data/
-          mkdir -p data/resources data/cache logs
-          
-          echo "📊 Confirming data directory is empty:"
-          ls -la data/resources/ 2>/dev/null || echo "No resources directory (as expected)"
-          find data/ -name "*.json" 2>/dev/null || echo "No JSON files found (as expected)"
-          
-          echo "Running: ./bin/sofa-gather all --continue-on-error"
-          
-          # Show exactly what gets created and when
-          echo "📊 Directory state BEFORE running gather:"
-          find data/ -name "*.json" -ls 2>/dev/null || echo "No JSON files before gather"
+          # Create before snapshot
+          echo "📊 Files before gather:"
+          find data/resources -name "*.json" -ls 2>/dev/null || echo "No JSON files"
           
           BEFORE_TIME=$(date +%s)
           
-          if timeout 300 ./bin/sofa-gather all --continue-on-error 2>&1 | tee logs/pipeline_all.log; then
-            echo "✅ Pipeline 'all' gathering completed"
+          # Run the gather command
+          if timeout 300 ./bin/sofa-gather all --continue-on-error 2>&1 | tee logs/gather_all.log; then
+            echo "✅ sofa-gather all completed"
             
-            AFTER_TIME=$(date +%s)
-            echo "📊 Directory state AFTER running gather:"
-            find data/ -name "*.json" -ls 2>/dev/null || echo "No JSON files after gather"
+            # Create after snapshot  
+            echo "📊 Files after gather:"
+            find data/resources -name "*.json" -ls 2>/dev/null || echo "No JSON files"
             
-            echo "📊 Files created during this run (newer than $BEFORE_TIME):"
-            find data/ -name "*.json" -newermt "@$BEFORE_TIME" -ls 2>/dev/null || echo "No files created during this run"
+            echo "📊 Files modified during this run:"
+            find data/resources -name "*.json" -newermt "@$BEFORE_TIME" -ls 2>/dev/null || echo "No files modified"
             
-            echo "📊 All resources after pipeline run:"
-            ls -la data/resources/ 2>/dev/null || echo "No resources directory"
+            # Focus on beta files specifically
+            echo ""
+            echo "🔍 Beta file analysis:"
             
-            # Check specifically for beta files
             if [ -f "data/resources/apple_beta_feed.json" ]; then
-              echo "✅ Pipeline created apple_beta_feed.json:"
-              ls -la data/resources/apple_beta_feed.json
-              echo "   Hash: $(sha256sum data/resources/apple_beta_feed.json | cut -d' ' -f1)"
-              ITEMS=$(jq -r '.items | length' data/resources/apple_beta_feed.json 2>/dev/null || echo "parse_error")
-              echo "   Items: $ITEMS"
+              NEW_SIZE=$(wc -c < data/resources/apple_beta_feed.json)
+              NEW_ITEMS=$(jq -r '.items | length' data/resources/apple_beta_feed.json 2>/dev/null || echo 'parse_error')
+              NEW_HASH=$(jq -r '.UpdateHash // "none"' data/resources/apple_beta_feed.json 2>/dev/null)
+              NEW_CREATED=$(jq -r '.created_at // "none"' data/resources/apple_beta_feed.json 2>/dev/null)
+              
+              echo "✅ apple_beta_feed.json after gather:"
+              echo "   Size: $NEW_SIZE bytes"
+              echo "   Items: $NEW_ITEMS"
+              echo "   Hash: $NEW_HASH"  
+              echo "   Created: $NEW_CREATED"
+              echo "   Modified: $(stat -c %Y data/resources/apple_beta_feed.json) ($(date -d @$(stat -c %Y data/resources/apple_beta_feed.json)))"
+              
+              if [ "$NEW_ITEMS" != "parse_error" ] && [ "$NEW_ITEMS" -gt 0 ]; then
+                echo "   Recent betas:"
+                jq -r '.items[0:5] | .[] | "   - \(.platform) \(.version) (\(.build)) - \(.released)"' data/resources/apple_beta_feed.json 2>/dev/null || echo "   Could not parse recent items"
+              fi
+              
+              # Check if file was updated during this run
+              FILE_MTIME=$(stat -c %Y data/resources/apple_beta_feed.json)
+              if [ $FILE_MTIME -ge $BEFORE_TIME ]; then
+                echo "   🔄 File was UPDATED during this gather run"
+              else
+                echo "   📋 File was NOT modified during this gather run"
+              fi
             else
-              echo "❌ Pipeline did not create apple_beta_feed.json"
+              echo "❌ apple_beta_feed.json still missing after gather"
             fi
             
             if [ -f "data/resources/apple_beta_os_history.json" ]; then
-              echo "✅ Pipeline created apple_beta_os_history.json:"
-              ls -la data/resources/apple_beta_os_history.json
-              echo "   Hash: $(sha256sum data/resources/apple_beta_os_history.json | cut -d' ' -f1)"
-            else
-              echo "❌ Pipeline did not create apple_beta_os_history.json"
-            fi
-          else
-            echo "❌ Pipeline 'all' gathering failed"
-            echo "Error log:"
-            tail -30 logs/pipeline_all.log || echo "No log file"
-          fi
-
-      - name: Compare methods and analyze differences
-        if: always()
-        run: |
-          echo "🔍 Comparing methods and analyzing results..."
-          
-          echo "📊 File comparison:"
-          
-          # Individual method file
-          if [ -f "debug_individual_beta.json" ]; then
-            IND_HASH=$(sha256sum debug_individual_beta.json | cut -d' ' -f1)
-            IND_SIZE=$(wc -c < debug_individual_beta.json)
-            IND_ITEMS=$(jq -r '.items | length' debug_individual_beta.json 2>/dev/null || echo "parse_error")
-            echo "Individual method: $IND_SIZE bytes, $IND_ITEMS items, hash: $IND_HASH"
-          else
-            echo "Individual method: NO FILE CREATED"
-          fi
-          
-          # Pipeline method file
-          if [ -f "data/resources/apple_beta_feed.json" ]; then
-            PIPE_HASH=$(sha256sum data/resources/apple_beta_feed.json | cut -d' ' -f1)
-            PIPE_SIZE=$(wc -c < data/resources/apple_beta_feed.json)
-            PIPE_ITEMS=$(jq -r '.items | length' data/resources/apple_beta_feed.json 2>/dev/null || echo "parse_error")
-            echo "Pipeline method:   $PIPE_SIZE bytes, $PIPE_ITEMS items, hash: $PIPE_HASH"
-          else
-            echo "Pipeline method: NO FILE CREATED"
-          fi
-          
-          # Compare if both exist
-          if [ -f "debug_individual_beta.json" ] && [ -f "data/resources/apple_beta_feed.json" ]; then
-            if cmp -s debug_individual_beta.json data/resources/apple_beta_feed.json; then
-              echo "✅ Files are identical"
-            else
-              echo "🔄 Files differ - analyzing differences..."
+              HISTORY_SIZE=$(wc -c < data/resources/apple_beta_os_history.json)
+              HISTORY_ENTRIES=$(jq -r 'length' data/resources/apple_beta_os_history.json 2>/dev/null || echo 'parse_error')
+              HISTORY_MTIME=$(stat -c %Y data/resources/apple_beta_os_history.json)
               
-              # Show differences if both are valid JSON
-              if jq empty debug_individual_beta.json 2>/dev/null && jq empty data/resources/apple_beta_feed.json 2>/dev/null; then
-                echo "Individual UpdateHash: $(jq -r '.UpdateHash // "none"' debug_individual_beta.json)"
-                echo "Pipeline UpdateHash:   $(jq -r '.UpdateHash // "none"' data/resources/apple_beta_feed.json)"
-                
-                echo "Individual created_at: $(jq -r '.created_at // "none"' debug_individual_beta.json)"
-                echo "Pipeline created_at:   $(jq -r '.created_at // "none"' data/resources/apple_beta_feed.json)"
+              echo "✅ apple_beta_os_history.json after gather:"
+              echo "   Size: $HISTORY_SIZE bytes"
+              echo "   Entries: $HISTORY_ENTRIES"
+              echo "   Modified: $HISTORY_MTIME ($(date -d @$HISTORY_MTIME))"
+              
+              if [ $HISTORY_MTIME -ge $BEFORE_TIME ]; then
+                echo "   🔄 File was UPDATED during this gather run"
+              else
+                echo "   📋 File was NOT modified during this gather run"
               fi
+            else
+              echo "❌ apple_beta_os_history.json still missing after gather"
+            fi
+            
+          else
+            echo "❌ sofa-gather all failed"
+            echo "📋 Error log:"
+            tail -20 logs/gather_all.log || echo "No log available"
+          fi
+
+      - name: Analyze gather logs for beta-specific issues
+        if: always()
+        run: |
+          echo "🔍 Analyzing gather logs for beta-related issues..."
+          
+          if [ -f "logs/gather_all.log" ]; then
+            echo "📊 Full log summary:"
+            echo "   Lines: $(wc -l < logs/gather_all.log)"
+            echo "   Size: $(wc -c < logs/gather_all.log) bytes"
+            
+            echo ""
+            echo "🔍 Beta-specific log entries:"
+            grep -i "beta\|Apple Beta" logs/gather_all.log || echo "   No beta mentions found"
+            
+            echo ""
+            echo "❌ Error/warning entries:"
+            grep -iE "error|warning|failed|panic|timeout" logs/gather_all.log || echo "   No errors/warnings found"
+            
+            echo ""
+            echo "✅ Success entries:"
+            grep -iE "success|✓|completed" logs/gather_all.log || echo "   No success messages found"
+            
+            echo ""
+            echo "🌐 Network-related entries:"
+            grep -iE "ssl|tls|certificate|connection|network" logs/gather_all.log || echo "   No network issues found"
+          else
+            echo "❌ No gather log found"
+          fi
+
+      - name: Commit fresh data to repository
+        if: github.event.inputs.commit_results == 'true'
+        run: |
+          echo "📝 Checking for changes to commit..."
+          
+          # Configure git
+          git config --local user.email "action@github.com"
+          git config --local user.name "Linux Beta Debug"
+          
+          # Add all resource files that may have been updated
+          git add data/resources/
+          
+          # Check if there are changes
+          if git diff --staged --quiet; then
+            echo "ℹ️ No changes to commit - data is identical"
+          else
+            echo "📝 Changes detected, creating commit..."
+            
+            # Show what changed
+            echo "Changed files:"
+            git diff --staged --name-only
+            
+            # Create commit with details
+            TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+            git commit -m "🐧 Update SOFA data from Linux beta3 debug run - $TIMESTAMP
+
+Linux debug workflow gathered fresh data using beta3 binaries.
+
+Changes detected in data/resources/ after running sofa-gather all.
+This preserves any fresh beta data generated on Linux CI runner."
+            
+            # Push changes
+            git push
+            echo "✅ Fresh data committed and pushed to repository"
+          fi
+
+      - name: Create debug summary
+        if: always()
+        run: |
+          echo "## 🐛 Beta Gathering Debug Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          echo "### 📊 Key Findings" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Check beta file status
+          if [ -f "data/resources/apple_beta_feed.json" ]; then
+            SIZE=$(wc -c < data/resources/apple_beta_feed.json)
+            ITEMS=$(jq -r '.items | length' data/resources/apple_beta_feed.json 2>/dev/null || echo 'parse_error')
+            CREATED=$(jq -r '.created_at // "unknown"' data/resources/apple_beta_feed.json 2>/dev/null)
+            
+            echo "- **apple_beta_feed.json**: ✅ $SIZE bytes, $ITEMS items" >> $GITHUB_STEP_SUMMARY
+            echo "- **Created**: $CREATED" >> $GITHUB_STEP_SUMMARY
+            
+            if [ "$ITEMS" != "parse_error" ] && [ "$ITEMS" -gt 5 ]; then
+              echo "- **Status**: ✅ Good data with multiple beta entries" >> $GITHUB_STEP_SUMMARY
+            elif [ "$ITEMS" != "parse_error" ] && [ "$ITEMS" -gt 0 ]; then
+              echo "- **Status**: ⚠️ Limited beta data ($ITEMS items)" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "- **Status**: ❌ Invalid or empty beta data" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "- **apple_beta_feed.json**: ❌ Missing" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # Check for gather success/failure
+          if [ -f "logs/gather_all.log" ]; then
+            if grep -q "✓ Apple Beta feed fetched successfully" logs/gather_all.log; then
+              echo "- **Beta gathering**: ✅ Reported success in logs" >> $GITHUB_STEP_SUMMARY
+            elif grep -q -i "beta.*error\|beta.*failed" logs/gather_all.log; then
+              echo "- **Beta gathering**: ❌ Errors reported in logs" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "- **Beta gathering**: ⚠️ Unclear status - check logs" >> $GITHUB_STEP_SUMMARY
             fi
           fi
-
-      - name: Test direct Apple RSS access
-        if: always()
-        run: |
-          echo "🍎 Testing direct Apple Beta RSS access..."
           
-          BETA_RSS_URL="https://developer.apple.com/rss/betas.rss"
-          echo "URL: $BETA_RSS_URL"
-          
-          if curl -I -s --max-time 30 "$BETA_RSS_URL"; then
-            echo "✅ Can access beta RSS feed"
-            echo "📄 RSS content sample:"
-            curl -s --max-time 30 "$BETA_RSS_URL" | head -20
-            
-            echo "🔍 Recent beta mentions:"
-            curl -s --max-time 30 "$BETA_RSS_URL" | grep -i "beta\|rc" | head -10 || echo "No betas found"
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔍 Next Steps" >> $GITHUB_STEP_SUMMARY
+          if grep -q "✓ Apple Beta feed fetched successfully" logs/gather_all.log 2>/dev/null && [ -f "data/resources/apple_beta_feed.json" ]; then
+            echo "✅ **Success**: Beta gathering appears to be working on Linux!" >> $GITHUB_STEP_SUMMARY
           else
-            echo "❌ Cannot access beta RSS feed"
+            echo "🔍 **Investigation needed**: Check uploaded logs for specific beta gathering failures." >> $GITHUB_STEP_SUMMARY
           fi
 
-      - name: Environment and process analysis
-        if: always()
-        run: |
-          echo "🔧 Environment Analysis:"
-          echo "RUST_LOG: ${RUST_LOG:-not set}"
-          echo "RUST_BACKTRACE: ${RUST_BACKTRACE:-not set}"
-          echo "PATH: $PATH"
-          echo "PWD: $(pwd)"
-          echo "USER: $(whoami)"
-          echo "HOME: $HOME"
-          
-          echo "📊 Process analysis during gathering:"
-          echo "Network connections during beta gathering:"
-          netstat -tuln | head -10 || ss -tuln | head -10 || echo "No network info"
-          
-          echo "🔍 SSL/TLS verification test:"
-          echo | openssl s_client -connect developer.apple.com:443 -servername developer.apple.com 2>/dev/null | grep -A5 -B5 "Verification" || echo "SSL test failed"
-
-      - name: Log analysis and summary
-        if: always()
-        run: |
-          echo "📋 Log Analysis Summary:"
-          
-          echo "=== INDIVIDUAL BETA LOG ==="
-          if [ -f "logs/individual_beta.log" ]; then
-            echo "Last 30 lines of individual beta log:"
-            tail -30 logs/individual_beta.log
-            echo ""
-            echo "Errors/warnings in individual log:"
-            grep -i "error\|warning\|failed\|panic" logs/individual_beta.log || echo "No errors found"
-          else
-            echo "No individual beta log found"
-          fi
-          
-          echo ""
-          echo "=== PIPELINE ALL LOG ==="
-          if [ -f "logs/pipeline_all.log" ]; then
-            echo "Last 30 lines of pipeline all log:"
-            tail -30 logs/pipeline_all.log
-            echo ""
-            echo "Errors/warnings in pipeline log:"
-            grep -i "error\|warning\|failed\|panic" logs/pipeline_all.log || echo "No errors found"
-            echo ""
-            echo "Beta-specific mentions in pipeline log:"
-            grep -i "beta" logs/pipeline_all.log || echo "No beta mentions"
-          else
-            echo "No pipeline all log found"
-          fi
-
-      - name: Upload all debug artifacts
+      - name: Upload debug artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: complete-beta-debug-${{ github.run_number }}
+          name: beta-debug-streamlined-${{ github.run_number }}
           path: |
             logs/
-            debug_individual_beta.json
-            data/resources/
-            *.json
+            data/resources/apple_beta*.json
           retention-days: 7
           if-no-files-found: warn
-
-      - name: Create comprehensive debug summary
-        if: always()
-        run: |
-          echo "## 🐛 Complete Beta Gathering Debug Results" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          
-          echo "### 📊 Method Comparison" >> $GITHUB_STEP_SUMMARY
-          
-          if [ -f "debug_individual_beta.json" ]; then
-            IND_SIZE=$(wc -c < debug_individual_beta.json)
-            IND_ITEMS=$(jq -r '.items | length' debug_individual_beta.json 2>/dev/null || echo "parse_error")
-            echo "- **Individual method**: ✅ $IND_SIZE bytes, $IND_ITEMS items" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "- **Individual method**: ❌ No output file" >> $GITHUB_STEP_SUMMARY
-          fi
-          
-          if [ -f "data/resources/apple_beta_feed.json" ]; then
-            PIPE_SIZE=$(wc -c < data/resources/apple_beta_feed.json)
-            PIPE_ITEMS=$(jq -r '.items | length' data/resources/apple_beta_feed.json 2>/dev/null || echo "parse_error")
-            echo "- **Pipeline method**: ✅ $PIPE_SIZE bytes, $PIPE_ITEMS items" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "- **Pipeline method**: ❌ No output file" >> $GITHUB_STEP_SUMMARY
-          fi
-          
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### 🔍 Key Findings" >> $GITHUB_STEP_SUMMARY
-          
-          # Determine which method worked better
-          if [ -f "debug_individual_beta.json" ] && [ -f "data/resources/apple_beta_feed.json" ]; then
-            if cmp -s debug_individual_beta.json data/resources/apple_beta_feed.json; then
-              echo "- ✅ Both methods produced identical results" >> $GITHUB_STEP_SUMMARY
-            else
-              echo "- 🔄 Methods produced different results - check artifacts for details" >> $GITHUB_STEP_SUMMARY
-            fi
-          elif [ -f "debug_individual_beta.json" ]; then
-            echo "- ⚠️ Only individual method succeeded" >> $GITHUB_STEP_SUMMARY
-          elif [ -f "data/resources/apple_beta_feed.json" ]; then
-            echo "- ⚠️ Only pipeline method succeeded" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "- ❌ Both methods failed - check logs for errors" >> $GITHUB_STEP_SUMMARY
-          fi
-          
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "🔍 **Next Steps**: Download artifacts to analyze logs and compare file contents in detail." >> $GITHUB_STEP_SUMMARY
