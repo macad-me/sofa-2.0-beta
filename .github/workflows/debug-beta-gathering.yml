@@ -97,13 +97,21 @@ jobs:
           export RUST_LOG=info
           mkdir -p data/resources data/cache
           
+          # Show working directory debugging
+          echo "🔍 Working directory debugging:"
+          echo "   PWD: $(pwd)"
+          echo "   Repository root: $(git rev-parse --show-toplevel)"
+          echo "   Binary location: $(readlink -f ./bin/sofa-gather)"
+          echo "   Expected data dir: $(readlink -f ./data/resources)"
+          
           # Create before snapshot
           echo "📊 Files before gather:"
           find data/resources -name "*.json" -ls 2>/dev/null || echo "No JSON files"
           
           BEFORE_TIME=$(date +%s)
           
-          # Run the gather command
+          # Run the gather command from repository root
+          echo "🧪 Running sofa-gather from repository root: $(pwd)"
           if timeout 300 ./bin/sofa-gather all --continue-on-error 2>&1 | tee logs/gather_all.log; then
             echo "✅ sofa-gather all completed"
             
@@ -113,6 +121,11 @@ jobs:
             
             echo "📊 Files modified during this run:"
             find data/resources -name "*.json" -newermt "@$BEFORE_TIME" -ls 2>/dev/null || echo "No files modified"
+            
+            # Check for files in wrong location (due to relative path bug)
+            echo "🔍 Checking for files in parent directory (relative path bug):"
+            find ../data/resources -name "*beta*.json" -newermt "@$BEFORE_TIME" -ls 2>/dev/null || echo "No files in parent directory"
+            find ../data -name "*beta*.json" -newermt "@$BEFORE_TIME" -ls 2>/dev/null || echo "No beta files in ../data"
             
             # Focus on beta files specifically
             echo ""
