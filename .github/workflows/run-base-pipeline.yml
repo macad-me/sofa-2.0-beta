@@ -254,6 +254,103 @@ jobs:
               echo "⚠️ Some data verification issues found (see logs above)"
               echo "## ⚠️ Data Verification Issues" >> $GITHUB_STEP_SUMMARY
             fi
+            
+            echo ""
+            echo "🍎 Beta Files Validation..."
+            echo "## 📊 Beta Data Status" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
+            # Check beta feed file
+            if [ -f "data/resources/apple_beta_feed.json" ]; then
+              FEED_SIZE=$(stat -c%s "data/resources/apple_beta_feed.json" 2>/dev/null || stat -f%z "data/resources/apple_beta_feed.json" 2>/dev/null)
+              FEED_MTIME=$(stat -c%Y "data/resources/apple_beta_feed.json" 2>/dev/null || stat -f%m "data/resources/apple_beta_feed.json" 2>/dev/null)
+              FEED_AGE=$(($(date +%s) - FEED_MTIME))
+              FEED_AGE_HOURS=$((FEED_AGE / 3600))
+              
+              echo "✅ apple_beta_feed.json: ${FEED_SIZE} bytes, ${FEED_AGE_HOURS}h old"
+              echo "- **apple_beta_feed.json**: ✅ ${FEED_SIZE} bytes, ${FEED_AGE_HOURS}h old" >> $GITHUB_STEP_SUMMARY
+              
+              # Validate JSON structure
+              if BETA_COUNT=$(jq -r '.items | length' "data/resources/apple_beta_feed.json" 2>/dev/null); then
+                FEED_HASH=$(jq -r '.UpdateHash // "unknown"' "data/resources/apple_beta_feed.json" 2>/dev/null)
+                echo "  📊 Contains ${BETA_COUNT} beta releases, hash: ${FEED_HASH:0:16}..."
+                echo "  - Contains **${BETA_COUNT}** beta releases" >> $GITHUB_STEP_SUMMARY
+                echo "  - Hash: \`${FEED_HASH:0:16}...\`" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "  ❌ Invalid JSON structure"
+                echo "  - ❌ **Invalid JSON structure**" >> $GITHUB_STEP_SUMMARY
+              fi
+            else
+              echo "❌ apple_beta_feed.json: NOT FOUND"
+              echo "- **apple_beta_feed.json**: ❌ NOT FOUND" >> $GITHUB_STEP_SUMMARY
+            fi
+            
+            # Check beta history file
+            if [ -f "data/resources/apple_beta_os_history.json" ]; then
+              HISTORY_SIZE=$(stat -c%s "data/resources/apple_beta_os_history.json" 2>/dev/null || stat -f%z "data/resources/apple_beta_os_history.json" 2>/dev/null)
+              HISTORY_MTIME=$(stat -c%Y "data/resources/apple_beta_os_history.json" 2>/dev/null || stat -f%m "data/resources/apple_beta_os_history.json" 2>/dev/null)
+              HISTORY_AGE=$(($(date +%s) - HISTORY_MTIME))
+              HISTORY_AGE_HOURS=$((HISTORY_AGE / 3600))
+              
+              echo "✅ apple_beta_os_history.json: ${HISTORY_SIZE} bytes, ${HISTORY_AGE_HOURS}h old"
+              echo "- **apple_beta_os_history.json**: ✅ ${HISTORY_SIZE} bytes, ${HISTORY_AGE_HOURS}h old" >> $GITHUB_STEP_SUMMARY
+              
+              # Validate JSON structure
+              if HISTORY_COUNT=$(jq -r 'length' "data/resources/apple_beta_os_history.json" 2>/dev/null); then
+                echo "  📊 Contains ${HISTORY_COUNT} historical beta entries"
+                echo "  - Contains **${HISTORY_COUNT}** historical beta entries" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "  ❌ Invalid JSON structure"
+                echo "  - ❌ **Invalid JSON structure**" >> $GITHUB_STEP_SUMMARY
+              fi
+            else
+              echo "❌ apple_beta_os_history.json: NOT FOUND"
+              echo "- **apple_beta_os_history.json**: ❌ NOT FOUND" >> $GITHUB_STEP_SUMMARY
+            fi
+            
+            # Test direct beta gathering with new binary
+            echo ""
+            echo "🧪 Testing direct beta gathering with beta3 binary..."
+            export RUST_LOG=info
+            BETA_TEST_OUTPUT="/tmp/beta_test_$(date +%s).json"
+            
+            if timeout 120 ./bin/sofa-gather beta --output "$BETA_TEST_OUTPUT" 2>&1 | tee logs/beta_gather_test.log; then
+              if [ -f "$BETA_TEST_OUTPUT" ]; then
+                TEST_SIZE=$(stat -c%s "$BETA_TEST_OUTPUT" 2>/dev/null || stat -f%z "$BETA_TEST_OUTPUT" 2>/dev/null)
+                TEST_COUNT=$(jq -r '.items | length' "$BETA_TEST_OUTPUT" 2>/dev/null || echo "parse_error")
+                echo "✅ Direct beta gathering successful: ${TEST_SIZE} bytes, ${TEST_COUNT} items"
+                echo "- **Direct beta3 test**: ✅ ${TEST_SIZE} bytes, ${TEST_COUNT} items" >> $GITHUB_STEP_SUMMARY
+                
+                # Compare with existing file
+                if [ -f "data/resources/apple_beta_feed.json" ]; then
+                  if cmp -s "$BETA_TEST_OUTPUT" "data/resources/apple_beta_feed.json"; then
+                    echo "  📋 Content identical to existing file"
+                    echo "  - Content matches existing file" >> $GITHUB_STEP_SUMMARY
+                  else
+                    echo "  🔄 Content differs from existing file - new data available"
+                    echo "  - **🔄 New beta data available**" >> $GITHUB_STEP_SUMMARY
+                    # Replace existing file with fresh data
+                    cp "$BETA_TEST_OUTPUT" "data/resources/apple_beta_feed.json"
+                    echo "  ✅ Updated apple_beta_feed.json with fresh data"
+                    echo "  - Updated apple_beta_feed.json with fresh data" >> $GITHUB_STEP_SUMMARY
+                  fi
+                fi
+                
+                rm -f "$BETA_TEST_OUTPUT"
+              else
+                echo "❌ Direct beta gathering produced no output file"
+                echo "- **Direct beta3 test**: ❌ No output file" >> $GITHUB_STEP_SUMMARY
+              fi
+            else
+              echo "❌ Direct beta gathering failed or timed out"
+              echo "- **Direct beta3 test**: ❌ Failed or timed out" >> $GITHUB_STEP_SUMMARY
+              if [ -f "logs/beta_gather_test.log" ]; then
+                echo "Error log:"
+                tail -10 "logs/beta_gather_test.log"
+              fi
+            fi
+            
+            echo "" >> $GITHUB_STEP_SUMMARY
           else
             echo "❌ GATHER stage failed"
             echo "## ❌ Gather Stage Failed" >> $GITHUB_STEP_SUMMARY
