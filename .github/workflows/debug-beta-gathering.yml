@@ -110,8 +110,30 @@ jobs:
           
           BEFORE_TIME=$(date +%s)
           
-          # Run the gather command from repository root
-          echo "🧪 Running sofa-gather from repository root: $(pwd)"
+          # Fix path resolution by using absolute paths for output
+          REPO_ROOT=$(pwd)
+          DATA_DIR="$REPO_ROOT/data/resources"
+          
+          echo "🧪 Running sofa-gather with explicit output paths:"
+          echo "   Repository root: $REPO_ROOT"
+          echo "   Data directory: $DATA_DIR"
+          
+          # Create a temporary gather.toml with absolute paths
+          mkdir -p config
+          cat > config/gather.toml << EOF
+[general]
+output_dir = "$DATA_DIR"
+cache_dir = "$REPO_ROOT/data/cache"
+
+[sources.beta]
+enabled = true
+output_file = "$DATA_DIR/apple_beta_feed.json"
+history_dir = "$DATA_DIR/history"
+EOF
+
+          echo "📋 Using gather config:"
+          cat config/gather.toml
+          
           if timeout 300 ./bin/sofa-gather all --continue-on-error 2>&1 | tee logs/gather_all.log; then
             echo "✅ sofa-gather all completed"
             
