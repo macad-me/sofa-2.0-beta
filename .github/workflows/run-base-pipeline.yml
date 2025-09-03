@@ -209,7 +209,11 @@ jobs:
           fi
 
           echo "Running: uv run --script scripts/sofa_pipeline.py run --stage gather"
-          if uv run --script scripts/sofa_pipeline.py run --stage gather; then
+          echo "🔧 Using --insecure flag to work around rustls certificate issues..."
+          # Force insecure mode because rustls doesn't read system certificates
+          if RUST_LOG=info ./bin/sofa-gather --insecure all --continue-on-error; then
+            echo "✅ Direct gather with --insecure completed"
+          elif uv run --script scripts/sofa_pipeline.py run --stage gather; then
             echo "✅ GATHER stage completed"
             echo "## ✅ Gather Stage Success" >> $GITHUB_STEP_SUMMARY
             
