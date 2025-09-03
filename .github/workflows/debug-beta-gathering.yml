@@ -1,0 +1,299 @@
+name: 🐛 Debug Beta Gathering
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_all_sources:
+        description: 'Test all gather sources (not just beta)'
+        type: boolean
+        default: false
+      verbose_output:
+        description: 'Enable maximum verbosity'
+        type: boolean
+        default: true
+
+jobs:
+  debug-beta-gather:
+    name: Debug Beta Data Gathering
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Show system info
+        run: |
+          echo "🖥️ System Information:"
+          uname -a
+          echo ""
+          echo "📅 Current time (UTC): $(date -u)"
+          echo "📅 Current time (local): $(date)"
+          echo ""
+          echo "🌐 Network connectivity test:"
+          ping -c 3 google.com || echo "Network issues detected"
+          
+      - name: Download SOFA CLI binaries
+        run: |
+          echo "📥 Downloading SOFA CLI binaries for debugging..."
+          mkdir -p bin
+          
+          DOWNLOAD_URL="https://github.com/headmin/sofa-core-cli/releases/download/v0.1.0-beta1"
+          LINUX_ZIP="sofa-core-cli-x86_64-linux-binaries.zip"
+          
+          echo "Downloading: $DOWNLOAD_URL/$LINUX_ZIP"
+          
+          if curl -L -f -o "$LINUX_ZIP" "$DOWNLOAD_URL/$LINUX_ZIP"; then
+            echo "✅ Downloaded successfully"
+            
+            echo "📦 Extracting binaries..."
+            unzip -o -j "$LINUX_ZIP" -d bin/
+            chmod +x bin/*
+            rm "$LINUX_ZIP"
+            
+            echo "✅ Extraction complete"
+            echo ""
+            echo "📁 Downloaded binaries:"
+            ls -la bin/
+            echo ""
+            echo "🔍 Binary details:"
+            file bin/sofa-gather
+            
+            echo ""
+            echo "✅ Testing binary execution:"
+            if ./bin/sofa-gather --help >/dev/null 2>&1; then
+              echo "✅ sofa-gather binary executes successfully"
+            else
+              echo "❌ sofa-gather binary execution failed"
+              echo "Trying direct execution test:"
+              ./bin/sofa-gather --help || echo "Direct test also failed"
+            fi
+          else
+            echo "❌ Download failed"
+            exit 1
+          fi
+
+      - name: Test Apple Beta RSS access
+        run: |
+          echo "🍎 Testing direct access to Apple Beta RSS feed..."
+          echo ""
+          
+          BETA_RSS_URL="https://developer.apple.com/rss/betas.rss"
+          echo "URL: $BETA_RSS_URL"
+          echo ""
+          
+          echo "📡 Testing connectivity to Apple Developer site..."
+          if ping -c 3 developer.apple.com; then
+            echo "✅ Can reach developer.apple.com"
+          else
+            echo "⚠️ Issues reaching developer.apple.com"
+          fi
+          echo ""
+          
+          echo "🔍 Testing HTTPS access to beta RSS feed..."
+          if curl -I -s --max-time 30 "$BETA_RSS_URL"; then
+            echo ""
+            echo "✅ Can access beta RSS feed"
+            echo ""
+            echo "📄 First 50 lines of beta RSS content:"
+            curl -s --max-time 30 "$BETA_RSS_URL" | head -50
+            echo ""
+            echo "🔍 Looking for recent beta releases:"
+            curl -s --max-time 30 "$BETA_RSS_URL" | grep -i "beta.*9\|beta.*8" | head -5 || echo "No recent betas found in RSS"
+          else
+            echo "❌ Cannot access beta RSS feed"
+            echo "Testing with verbose curl:"
+            curl -v --max-time 30 "$BETA_RSS_URL" || echo "Verbose curl also failed"
+          fi
+
+      - name: Test beta gathering with maximum debugging
+        run: |
+          echo "🧪 Testing sofa-gather beta with maximum verbosity..."
+          echo ""
+          
+          # Set up environment
+          export RUST_LOG=debug
+          export RUST_BACKTRACE=full
+          
+          # Create output directory
+          mkdir -p debug_output
+          
+          echo "🔧 Environment variables:"
+          echo "RUST_LOG=$RUST_LOG"
+          echo "RUST_BACKTRACE=$RUST_BACKTRACE"
+          echo ""
+          
+          echo "📂 Testing different output methods:"
+          echo ""
+          
+          # Test 1: Default output location
+          echo "Test 1: Default output (should go to data/resources/)"
+          mkdir -p data/resources
+          if timeout 120 ./bin/sofa-gather beta; then
+            echo "✅ Test 1 completed successfully"
+            if [ -f "data/resources/apple_beta_feed.json" ]; then
+              echo "✅ Beta feed file created:"
+              ls -la data/resources/apple_beta_feed.json
+              echo "File size: $(wc -c < data/resources/apple_beta_feed.json) bytes"
+              echo "First few lines:"
+              head -10 data/resources/apple_beta_feed.json || echo "Could not read file"
+            else
+              echo "❌ No beta feed file created in default location"
+              echo "Files in data/resources/:"
+              ls -la data/resources/ || echo "Directory doesn't exist"
+            fi
+          else
+            echo "❌ Test 1 failed or timed out"
+          fi
+          echo ""
+          
+          # Test 2: Custom output location
+          echo "Test 2: Custom output location"
+          if timeout 120 ./bin/sofa-gather beta --output debug_output/beta_test.json; then
+            echo "✅ Test 2 completed successfully"
+            if [ -f "debug_output/beta_test.json" ]; then
+              echo "✅ Beta feed file created in custom location:"
+              ls -la debug_output/beta_test.json
+              echo "Content preview:"
+              head -10 debug_output/beta_test.json || echo "Could not read file"
+            else
+              echo "❌ No beta feed file created in custom location"
+            fi
+          else
+            echo "❌ Test 2 failed or timed out"
+          fi
+          echo ""
+          
+          # Test 3: Verbose output with stderr capture
+          echo "Test 3: Maximum verbosity with error capture"
+          if timeout 120 ./bin/sofa-gather beta --output debug_output/beta_verbose.json 2>debug_output/beta_errors.log; then
+            echo "✅ Test 3 completed"
+          else
+            echo "❌ Test 3 failed or timed out"
+          fi
+          
+          echo ""
+          echo "📋 Error log contents:"
+          if [ -f "debug_output/beta_errors.log" ]; then
+            echo "Error log size: $(wc -c < debug_output/beta_errors.log) bytes"
+            if [ -s "debug_output/beta_errors.log" ]; then
+              echo "Error log contents:"
+              cat debug_output/beta_errors.log
+            else
+              echo "Error log is empty (this is good!)"
+            fi
+          else
+            echo "No error log created"
+          fi
+          
+          echo ""
+          echo "📁 All generated files:"
+          find . -name "*beta*" -type f -newer /tmp 2>/dev/null || echo "No beta files found"
+
+      - name: Compare with other gather sources (if enabled)
+        if: github.event.inputs.test_all_sources == 'true'
+        run: |
+          echo "🔍 Testing other gather sources for comparison..."
+          echo ""
+          
+          SOURCES=("kev" "gdmf" "ipsw" "uma" "xprotect")
+          
+          for source in "${SOURCES[@]}"; do
+            echo "Testing source: $source"
+            if timeout 60 ./bin/sofa-gather "$source" --output "debug_output/${source}_test.json" 2>"debug_output/${source}_errors.log"; then
+              if [ -f "debug_output/${source}_test.json" ]; then
+                size=$(wc -c < "debug_output/${source}_test.json")
+                echo "✅ $source: Success ($size bytes)"
+              else
+                echo "❌ $source: No output file created"
+              fi
+            else
+              echo "❌ $source: Command failed or timed out"
+            fi
+            
+            # Show errors if any
+            if [ -f "debug_output/${source}_errors.log" ] && [ -s "debug_output/${source}_errors.log" ]; then
+              echo "⚠️ $source errors:"
+              head -5 "debug_output/${source}_errors.log"
+            fi
+            echo ""
+          done
+
+      - name: Test with config file
+        run: |
+          echo "⚙️ Testing with gather.toml configuration..."
+          echo ""
+          
+          if [ -f "config/gather.toml" ]; then
+            echo "✅ gather.toml found"
+            echo "Configuration preview:"
+            head -20 config/gather.toml
+            echo ""
+            
+            echo "🧪 Testing beta gathering with config file context..."
+            # Run from repo root where config can be found
+            if timeout 120 ./bin/sofa-gather beta --output debug_output/beta_with_config.json; then
+              echo "✅ Config-based test completed"
+              if [ -f "debug_output/beta_with_config.json" ]; then
+                echo "Output file created: $(wc -c < debug_output/beta_with_config.json) bytes"
+              fi
+            else
+              echo "❌ Config-based test failed"
+            fi
+          else
+            echo "❌ No gather.toml found"
+            echo "Available config files:"
+            ls -la config/ 2>/dev/null || echo "No config directory"
+          fi
+
+      - name: Final summary and file upload prep
+        run: |
+          echo "📊 Final Summary"
+          echo "==============="
+          echo ""
+          echo "Generated files:"
+          find debug_output/ -type f 2>/dev/null | while read -r file; do
+            size=$(wc -c < "$file" 2>/dev/null || echo "0")
+            echo "  $file ($size bytes)"
+          done
+          echo ""
+          
+          echo "Data directory contents:"
+          ls -la data/resources/ 2>/dev/null || echo "No data/resources directory"
+          echo ""
+          
+          echo "🎯 Key findings will be in the uploaded artifacts"
+          
+      - name: Upload debug artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: beta-debug-${{ github.run_number }}
+          path: |
+            debug_output/
+            data/resources/apple_beta_feed.json
+            data/resources/apple_beta_os_history.json
+            config/gather.toml
+          retention-days: 7
+          if-no-files-found: warn
+
+      - name: Create debug summary
+        if: always()
+        run: |
+          echo "## 🐛 Beta Gathering Debug Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f "debug_output/beta_test.json" ] || [ -f "data/resources/apple_beta_feed.json" ]; then
+            echo "✅ **SUCCESS**: Beta gathering appears to be working" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Generated files:" >> $GITHUB_STEP_SUMMARY
+            find . -name "*beta*" -type f 2>/dev/null | while read -r file; do
+              size=$(wc -c < "$file" 2>/dev/null || echo "0")
+              echo "- \`$file\` ($size bytes)" >> $GITHUB_STEP_SUMMARY
+            done
+          else
+            echo "❌ **FAILURE**: Beta gathering did not produce expected output" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Check the artifacts for detailed logs and error information." >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🔍 **Next Steps**: Review the uploaded artifacts for detailed debugging information." >> $GITHUB_STEP_SUMMARY
