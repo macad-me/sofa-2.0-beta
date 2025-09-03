@@ -900,13 +900,38 @@ class SOFAPipeline:
         
         # Check resources directory (main data location)
         resources_tree = data_tree.add("📂 resources/")
-        for file in ["kev_catalog.json", "gdmf_cached.json", "ipsw.json", "xprotect.json"]:
-            path = self.config.data_dir / "resources" / file
+        
+        # Enhanced verification with jq validation for JSON files
+        gather_files = [
+            ("kev_catalog.json", "KEV entries", ".vulnerabilities | length"),
+            ("gdmf_cached.json", "GDMF entries", ".PublicAssetSets | keys | length"), 
+            ("ipsw.json", "IPSW devices", "keys | length"),
+            ("apple_beta_feed.json", "Beta releases", ".items | length"),
+            ("uma_catalog.json", "UMA entries", "keys | length"),
+            ("xprotect.json", "XProtect data", "keys | length")
+        ]
+        
+        for file_name, description, jq_query in gather_files:
+            path = self.config.data_dir / "resources" / file_name
             if path.exists():
                 size = path.stat().st_size
-                resources_tree.add(f"✅ {file} ({size:,} bytes)")
+                
+                # Use jq to validate and count entries
+                try:
+                    import subprocess
+                    result = subprocess.run(
+                        ["jq", "-r", jq_query, str(path)],
+                        capture_output=True, text=True, timeout=10
+                    )
+                    if result.returncode == 0 and result.stdout.strip().isdigit():
+                        count = int(result.stdout.strip())
+                        resources_tree.add(f"✅ {file_name} ({size:,} bytes, {count:,} {description})")
+                    else:
+                        resources_tree.add(f"✅ {file_name} ({size:,} bytes, validation failed)")
+                except Exception:
+                    resources_tree.add(f"✅ {file_name} ({size:,} bytes)")
             else:
-                resources_tree.add(f"❌ {file}")
+                resources_tree.add(f"❌ {file_name}")
         
         # Check for fetched data in resources
         fetch_file = self.config.data_dir / "resources" / "apple_security_releases.json"
