@@ -57,6 +57,42 @@ jobs:
           uname -a
           lscpu | head -5 || echo "lscpu not available"
           
+      - name: Install Apple Root Certificates
+        run: |
+          echo "🔐 Installing Apple root certificates for SSL validation..."
+          
+          # Update package database
+          sudo apt-get update
+          
+          # Install ca-certificates if not present
+          sudo apt-get install -y ca-certificates curl
+          
+          # Download and install Apple Root CA-G3 (current primary root)
+          echo "📥 Downloading Apple Root CA-G3..."
+          sudo curl -f -o /usr/local/share/ca-certificates/apple-root-ca-g3.crt \
+            "https://www.apple.com/certificateauthority/AppleRootCA-G3.cer"
+          
+          # Download and install Apple Root CA (legacy support)
+          echo "📥 Downloading Apple Root CA (legacy)..."
+          sudo curl -f -o /usr/local/share/ca-certificates/apple-root-ca.crt \
+            "https://www.apple.com/certificateauthority/AppleComputerRootCertificate.cer"
+          
+          # Update system certificate store
+          echo "🔄 Updating system certificate store..."
+          sudo update-ca-certificates
+          
+          # Verify installation
+          echo "✅ Apple certificates installed:"
+          ls -la /usr/local/share/ca-certificates/apple-*
+          
+          # Test SSL connection to Apple Developer
+          echo "🧪 Testing SSL connection to developer.apple.com..."
+          if curl -I --max-time 10 "https://developer.apple.com/news/releases/" >/dev/null 2>&1; then
+            echo "✅ SSL connection to Apple Developer successful"
+          else
+            echo "⚠️ SSL connection test failed - but continuing anyway"
+          fi
+          
       - name: Download SOFA CLI binaries
         run: |
           echo "📥 Downloading latest SOFA CLI binaries..."
