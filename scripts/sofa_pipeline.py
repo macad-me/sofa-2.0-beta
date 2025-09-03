@@ -260,7 +260,7 @@ class SOFAPipeline:
     # Binary copying removed - pipeline now uses binaries in place
     
     def run_gather(self) -> PipelineResult:
-        """Run gather stage"""
+        """Run gather stage using 'sofa-gather all' for consistency"""
         start_time = datetime.now()
         errors = []
         outputs = {}
@@ -271,81 +271,94 @@ class SOFAPipeline:
         output_dir = self.config.data_dir / "resources"
         output_dir.mkdir(parents=True, exist_ok=True)
         
+        # Use sofa-gather binary
+        binary = self.config.bin_dir / "sofa-gather"
+        if not binary.exists():
+            error_msg = f"Binary not found: sofa-gather at {binary}"
+            self.log(error_msg, "error")
+            errors.append(error_msg)
+            return PipelineResult("gather", start_time, datetime.now(), False, errors, outputs)
+        
         with Progress(
             SpinnerColumn(),
             TextColumn("[progress.description]{task.description}"),
             console=console,
         ) as progress:
-            task = progress.add_task(
-                "Gathering data...", 
-                total=len(self.config.gather_sources)
-            )
+            task = progress.add_task("Gathering all data sources...", total=1)
             
-            for source in self.config.gather_sources:
-                progress.update(task, description=f"Gathering {source}...")
+            # Build command for 'sofa-gather all'
+            cmd = [str(binary), "all"]
+            
+            # Add global --insecure flag if Apple certificates are missing
+            apple_root = self.config.config_dir / "AppleRoot.pem"
+            if not apple_root.exists():
+                cmd.insert(-1, "--insecure")  # Insert before 'all' subcommand
+                self.log("Using global --insecure flag (no AppleRoot.pem found)", "warning")
+            
+            # Add continue-on-error flag to prevent single source failures from stopping everything
+            cmd.append("--continue-on-error")
+            
+            self.log(f"Running gather command: {' '.join(cmd)}")
+            
+            try:
+                result = subprocess.run(
+                    cmd, capture_output=True, text=True, timeout=600, cwd=PATHS["subprocess_cwd"]
+                )
                 
-                # Use sofa-gather binary
-                binary = self.config.bin_dir / "sofa-gather"
-                if not binary.exists():
-                    self.log(f"Binary not found: sofa-gather at {binary}", "error")
-                    errors.append(f"{source}: Binary sofa-gather not found at {binary}")
-                    continue
+                self.log(f"Gather all result - return code: {result.returncode}")
+                if result.stdout:
+                    self.log(f"Gather all stdout: {result.stdout}")
+                if result.stderr:
+                    self.log(f"Gather all stderr: {result.stderr}")
                 
-                cmd = [str(binary), source.value]
-                
-                # Add output dir if not using default
-                if output_dir != Path("data/resources"):
-                    cmd.extend(["--output", str(output_dir / f"{source.value}_catalog.json")])
-                
-                # Add --insecure flag for GDMF if needed
-                if source == GatherSource.GDMF:
-                    # Check if we should use insecure mode
-                    apple_root = self.config.config_dir / "AppleRoot.pem"
-                    if not apple_root.exists():
-                        cmd.append("--insecure")
-                        self.log("Using --insecure for GDMF (no AppleRoot.pem found)", "warning")
-                
-                self.log(f"Running gather command: {' '.join(cmd)}")
-                
-                try:
-                    result = subprocess.run(
-                        cmd, capture_output=True, text=True, timeout=300, cwd=PATHS["subprocess_cwd"]
-                    )
+                if result.returncode == 0:
+                    # Success - check what files were actually created
+                    outputs["all_sources"] = "✅"
                     
-                    self.log(f"Gather {source} result - return code: {result.returncode}")
-                    if result.stdout:
-                        self.log(f"Gather {source} stdout: {result.stdout}")
+                    # Verify expected output files exist
+                    expected_files = [
+                        "kev_catalog.json",
+                        "gdmf_cached.json", 
+                        "ipsw.json",
+                        "apple_beta_feed.json",
+                        "uma_catalog.json",
+                        "xprotect.json"
+                    ]
+                    
+                    for file_name in expected_files:
+                        file_path = output_dir / file_name
+                        if file_path.exists():
+                            outputs[file_name] = "✅"
+                        else:
+                            outputs[file_name] = "❌ (missing)"
+                            
+                else:
+                    outputs["all_sources"] = "❌"
+                    error_msg = f"sofa-gather all: return code {result.returncode}"
                     if result.stderr:
-                        self.log(f"Gather {source} stderr: {result.stderr}")
-                    
-                    if result.returncode == 0:
-                        outputs[source] = "✅"
-                    else:
-                        outputs[source] = "❌"
-                        error_msg = f"{source}: return code {result.returncode}"
-                        if result.stderr:
-                            error_msg += f", stderr: {result.stderr[:500]}"
-                        if result.stdout:
-                            error_msg += f", stdout: {result.stdout[:500]}"
-                        errors.append(error_msg)
-                except Exception as e:
-                    outputs[source] = "❌"
-                    error_msg = f"{source}: Exception: {str(e)}"
+                        error_msg += f", stderr: {result.stderr[:500]}"
+                    if result.stdout:
+                        error_msg += f", stdout: {result.stdout[:500]}"
                     errors.append(error_msg)
-                    self.log(error_msg, "error")
-                
-                progress.advance(task)
+                    
+            except Exception as e:
+                outputs["all_sources"] = "❌"
+                error_msg = f"sofa-gather all: Exception: {str(e)}"
+                errors.append(error_msg)
+                self.log(error_msg, "error")
+            
+            progress.advance(task)
         
         duration = (datetime.now() - start_time).total_seconds()
         success = len(errors) == 0
         
         # Display results table
         table = Table(title="Gather Results")
-        table.add_column("Source", style="cyan")
+        table.add_column("File", style="cyan")
         table.add_column("Status", style="green")
         
-        for source, status in outputs.items():
-            table.add_row(source, status)
+        for file_name, status in outputs.items():
+            table.add_row(file_name, status)
         
         console.print(table)
         
