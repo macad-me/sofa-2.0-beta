@@ -125,7 +125,12 @@ jobs:
           export RUST_LOG=debug
           export RUST_BACKTRACE=full
           
+          # Test in completely isolated environment
           BETA_OUTPUT="debug_individual_beta.json"
+          rm -f "$BETA_OUTPUT"
+          
+          echo "🧹 Clearing any cache that might interfere..."
+          rm -rf ~/.cache/sofa* /tmp/sofa* 2>/dev/null || true
           
           echo "Running: ./bin/sofa-gather beta --output $BETA_OUTPUT"
           
@@ -160,13 +165,32 @@ jobs:
           export RUST_LOG=debug
           export RUST_BACKTRACE=full
           
-          # Clear any existing files to see what gets created fresh
-          rm -f data/resources/apple_beta_*.json
+          # COMPLETELY clear data directory and recreate fresh
+          echo "🧹 Clearing all existing data to test fresh generation..."
+          rm -rf data/
+          mkdir -p data/resources data/cache logs
+          
+          echo "📊 Confirming data directory is empty:"
+          ls -la data/resources/ 2>/dev/null || echo "No resources directory (as expected)"
+          find data/ -name "*.json" 2>/dev/null || echo "No JSON files found (as expected)"
           
           echo "Running: ./bin/sofa-gather all --continue-on-error"
           
+          # Show exactly what gets created and when
+          echo "📊 Directory state BEFORE running gather:"
+          find data/ -name "*.json" -ls 2>/dev/null || echo "No JSON files before gather"
+          
+          BEFORE_TIME=$(date +%s)
+          
           if timeout 300 ./bin/sofa-gather all --continue-on-error 2>&1 | tee logs/pipeline_all.log; then
             echo "✅ Pipeline 'all' gathering completed"
+            
+            AFTER_TIME=$(date +%s)
+            echo "📊 Directory state AFTER running gather:"
+            find data/ -name "*.json" -ls 2>/dev/null || echo "No JSON files after gather"
+            
+            echo "📊 Files created during this run (newer than $BEFORE_TIME):"
+            find data/ -name "*.json" -newermt "@$BEFORE_TIME" -ls 2>/dev/null || echo "No files created during this run"
             
             echo "📊 All resources after pipeline run:"
             ls -la data/resources/ 2>/dev/null || echo "No resources directory"
