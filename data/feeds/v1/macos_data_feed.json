@@ -1,5 +1,5 @@
 {
-  "UpdateHash": "bfcf3c42a561eb6e53a60939bd51b86502d3934836d028604981350ae8cb8d44",
+  "UpdateHash": "2c59f46e97eff561e3dd1887325c8e4beea190bb8df76c277213c12653c53815",
   "Version": "1.1",
   "OSVersions": [
     {
@@ -12532,11 +12532,11 @@
           "AllBuilds": [
             "21H1320"
           ],
-          "ReleaseDate": "2025-09-02T20:38:33.383962592+00:00",
+          "ReleaseDate": "2025-09-03T01:37:40.406194770+00:00",
           "ExpirationDate": "2025-11-29",
           "ReleaseType": "OS",
           "SecurityInfo": "",
-          "SecurityInfoContext": "macOS 12.0 was released on Sep 02, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
+          "SecurityInfoContext": "macOS 12.0 was released on Sep 03, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
