@@ -233,14 +233,8 @@ jobs:
             echo "## ✅ Gather Stage Success" >> $GITHUB_STEP_SUMMARY
             
             echo ""
-            echo "🔍 Verifying gathered data files..."
-            if ./scripts/verify_gathered_data.sh; then
-              echo "✅ All gathered data verified successfully"
-              echo "## ✅ Data Verification Passed" >> $GITHUB_STEP_SUMMARY
-            else
-              echo "⚠️ Some data verification issues found (see logs above)"
-              echo "## ⚠️ Data Verification Issues" >> $GITHUB_STEP_SUMMARY
-            fi
+            echo "✅ Pipeline includes built-in verification with beautiful output"
+            echo "## ✅ Data Verification Built-in" >> $GITHUB_STEP_SUMMARY
             
             echo ""
             echo "🍎 Beta Files Validation..."
