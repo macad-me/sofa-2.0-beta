@@ -36,8 +36,15 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout repository
+      - name: Setup processing directory
+        run: |
+          echo "🏗️ Setting up processing environment..."
+          mkdir -p processing
+          
+      - name: Checkout repository to processing folder
         uses: actions/checkout@v4
+        with:
+          path: processing
         
       - name: Show environment info
         run: |
@@ -56,6 +63,11 @@ jobs:
           echo "🖥️ Runner Architecture Details:"
           uname -a
           lscpu | head -5 || echo "lscpu not available"
+          
+          echo "📍 Working from processing directory:"
+          cd processing
+          pwd
+          ls -la
           
       - name: Install Apple Root Certificates
         run: |
@@ -96,6 +108,7 @@ jobs:
       - name: Download SOFA CLI binaries
         run: |
           echo "📥 Downloading latest SOFA CLI binaries..."
+          cd processing
           mkdir -p bin
 
           # Use specific version since latest release is marked as prerelease
@@ -124,7 +137,7 @@ jobs:
       - name: Test binary execution
         run: |
           echo "🧪 Testing essential SOFA CLI binaries..."
-          cd bin
+          cd processing/bin
           
           # Only test the binaries we actually need for the pipeline
           ESSENTIAL_BINARIES=("sofa-build" "sofa-cve" "sofa-fetch" "sofa-gather")
@@ -197,34 +210,23 @@ jobs:
         if: github.event_name == 'schedule' || contains(github.event.inputs.test_stage, 'gather') || github.event.inputs.test_stage == 'all'
         run: |
           echo "📊 Testing GATHER stage..."
-
-          # KEY FIX: Run from repo root and fix path resolution
+          cd processing
+          
+          echo "📍 Working from processing directory: $(pwd)"
+          echo "📊 Directory structure:"
+          ls -la
+          
+          # Setup environment for processing folder
           export SOFA_BIN_PATH="./bin"
           export PATH="./bin:$HOME/.local/bin:$PATH"
           
-          # Fix path resolution by modifying existing gather.toml with absolute paths
-          REPO_ROOT=$(pwd)
-          mkdir -p config
+          # Directory paths are now relative to processing folder (no absolute paths needed!)
+          mkdir -p data/resources data/cache logs
           
-          # Copy and modify the existing gather.toml to use absolute paths
-          if [ -f "config/gather.toml" ]; then
-            cp config/gather.toml config/gather.toml.backup
-            sed 's|directory = "../data/resources"|directory = "/home/runner/work/sofa-2.0-beta/sofa-2.0-beta/data/resources"|g' config/gather.toml.backup | \
-            sed 's|directory = "../data/cache"|directory = "/home/runner/work/sofa-2.0-beta/sofa-2.0-beta/data/cache"|g' > config/gather.toml
-            echo "🔧 Modified gather.toml with absolute paths"
-          else
-            echo "❌ No gather.toml found - binaries may use defaults"
-          fi
-
-          echo "🔧 Created gather.toml with absolute paths:"
-          cat config/gather.toml
-
-          # Quick validation
-          if [ ! -f "config/AppleRoot.pem" ]; then
-            echo "⚠️ config/AppleRoot.pem not found - will use --insecure mode"
-          fi
-
-          # Run gather stage directly with proper configuration
+          echo "📊 Before gather - existing data:"
+          ls -la data/resources/ || echo "No resources directory"
+          
+          # The Python script will auto-detect processing folder setup
           echo "Running: uv run --script scripts/sofa_pipeline.py run --stage gather"
           if uv run --script scripts/sofa_pipeline.py run --stage gather; then
             echo "✅ Pipeline GATHER stage completed"
@@ -346,6 +348,7 @@ jobs:
         if: github.event_name == 'schedule' || contains(github.event.inputs.test_stage, 'fetch') || github.event.inputs.test_stage == 'all'
         run: |
           echo "🔍 Testing FETCH stage..."
+          cd processing
 
           export SOFA_BIN_PATH="./bin"
           export PATH="./bin:$HOME/.local/bin:$PATH"
@@ -368,6 +371,7 @@ jobs:
         if: github.event_name == 'schedule' || contains(github.event.inputs.test_stage, 'build') || github.event.inputs.test_stage == 'all'
         run: |
           echo "🔨 Testing BUILD stage..."
+          cd processing
 
           # Ensure supported_devices.json is in both required locations
           if [ -f "data/models/supported_devices.json" ]; then
@@ -418,23 +422,59 @@ jobs:
             echo "❌ No data/resources directory found" >> $GITHUB_STEP_SUMMARY
           fi
           
-      - name: Test RSS generation
+      - name: Test RSS generation with beta validation
         if: success() && (github.event_name == 'schedule' || contains(github.event.inputs.test_stage, 'build') || github.event.inputs.test_stage == 'all')
         run: |
-          echo "📡 Testing RSS generation..."
-          cd scripts
+          echo "📡 Testing RSS generation with beta validation..."
+          cd processing
           
-          if [ -f "../data/resources/bulletin_data.json" ]; then
-            echo "Found bulletin_data.json, testing RSS generation..."
-            if uv run --script generate_rss.py \
-              --data-dir ../data/resources \
-              --output ../data/feeds/v1/rss_feed.xml \
-              --include-xprotect; then
+          # Check for required input files
+          echo "📊 RSS input files:"
+          ls -la data/resources/bulletin_data.json || echo "❌ bulletin_data.json missing"
+          ls -la data/resources/apple_beta_feed.json || echo "❌ apple_beta_feed.json missing" 
+          
+          if [ -f "data/resources/bulletin_data.json" ]; then
+            echo "✅ Found bulletin_data.json, generating RSS with beta inclusion..."
+            
+            # Generate RSS with beta releases included for validation
+            if uv run --script scripts/generate_rss.py \
+              --data-dir data/resources \
+              --output data/feeds/v1/rss_feed.xml \
+              --include-xprotect \
+              --include-beta \
+              --verbose; then
+              
               echo "✅ RSS generation completed"
               echo "## ✅ RSS Generation Success" >> $GITHUB_STEP_SUMMARY
-              if [ -f "../data/feeds/v1/rss_feed.xml" ]; then
-                rss_size=$(stat -f%z "../data/feeds/v1/rss_feed.xml" 2>/dev/null || stat -c%s "../data/feeds/v1/rss_feed.xml" 2>/dev/null)
+              
+              if [ -f "data/feeds/v1/rss_feed.xml" ]; then
+                rss_size=$(stat -f%z "data/feeds/v1/rss_feed.xml" 2>/dev/null || stat -c%s "data/feeds/v1/rss_feed.xml" 2>/dev/null)
                 echo "Generated RSS feed: ${rss_size} bytes" >> $GITHUB_STEP_SUMMARY
+                
+                # VALIDATE BETA CONTENT IN RSS
+                echo ""
+                echo "🔍 Validating beta content in RSS feed..."
+                
+                if grep -q "beta 9" data/feeds/v1/rss_feed.xml; then
+                  echo "✅ Found beta 9 releases in RSS feed"
+                  echo "- **Beta 9 Validation**: ✅ Found in RSS feed" >> $GITHUB_STEP_SUMMARY
+                  
+                  # Show specific beta entries
+                  echo "📊 Beta entries in RSS:"
+                  grep -A2 -B2 "beta 9" data/feeds/v1/rss_feed.xml || echo "Could not extract beta entries"
+                else
+                  echo "❌ Beta 9 releases NOT found in RSS feed"
+                  echo "- **Beta 9 Validation**: ❌ Missing from RSS feed" >> $GITHUB_STEP_SUMMARY
+                  
+                  # Check what betas are actually in the RSS
+                  echo "🔍 Beta content in RSS:"
+                  grep -i "beta" data/feeds/v1/rss_feed.xml | head -5 || echo "No beta content found"
+                fi
+                
+                # Check total item count in RSS
+                RSS_ITEMS=$(grep -c "<item>" data/feeds/v1/rss_feed.xml || echo "0")
+                echo "📊 Total RSS items: $RSS_ITEMS"
+                echo "- **Total RSS Items**: $RSS_ITEMS" >> $GITHUB_STEP_SUMMARY
               fi
             else
               echo "❌ RSS generation failed"
@@ -450,6 +490,7 @@ jobs:
         if: github.event_name == 'schedule' || github.event.inputs.test_stage == 'all' || github.event.inputs.test_stage == 'build'
         run: |
           echo "💾 Committing generated data back to repository..."
+          cd processing
           
           # Show what data was generated
           echo "🔍 Generated data structure:"
@@ -501,8 +542,9 @@ jobs:
         with:
           name: pipeline-debug-${{ github.run_number }}
           path: |
-            logs/
-            data/resources/
+            processing/logs/
+            processing/data/resources/
+            processing/data/feeds/
           retention-days: 7
           if-no-files-found: warn
           

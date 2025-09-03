@@ -56,8 +56,18 @@ def detect_paths():
     cwd = Path.cwd()
     script_dir = Path(__file__).parent
 
-    # Check if we're running from repo root (has bin/ and config/ directories)
-    if (cwd / "bin").exists() and (cwd / "config").exists():
+    # Priority 1: Check if we're in a "processing" directory setup (CI/workflow environment)
+    if cwd.name == "processing" and (cwd / "bin").exists() and (cwd / "config").exists():
+        # Running from processing directory (CI workflow)
+        return {
+            "base_dir": cwd,
+            "bin_dir": cwd / "bin",
+            "config_dir": cwd / "config", 
+            "data_dir": cwd / "data",
+            "subprocess_cwd": cwd
+        }
+    # Priority 2: Check if we're running from repo root (has bin/ and config/ directories)
+    elif (cwd / "bin").exists() and (cwd / "config").exists():
         # Running from repo root
         return {
             "base_dir": cwd,
@@ -66,7 +76,7 @@ def detect_paths():
             "data_dir": cwd / "data",
             "subprocess_cwd": cwd
         }
-    # Check if we're running from scripts/ directory
+    # Priority 3: Check if we're running from scripts/ directory
     elif (cwd.parent / "bin").exists() and (cwd.parent / "config").exists():
         # Running from scripts/ directory
         repo_root = cwd.parent

@@ -33,12 +33,12 @@ def load_json_file(filepath: Path) -> Optional[Dict]:
         return None
 
 
-def load_security_releases() -> List[Dict]:
+def load_security_releases(data_dir: str = "../data/resources") -> List[Dict]:
     """Load Apple security releases data from multiple sources"""
     releases = []
     
     # First, load from bulletin_data.json which has better dates
-    bulletin_file = Path("../data/resources/bulletin_data.json")
+    bulletin_file = Path(data_dir) / "bulletin_data.json"
     bulletin_data = load_json_file(bulletin_file)
     
     if bulletin_data and "recent_releases" in bulletin_data:
@@ -55,7 +55,7 @@ def load_security_releases() -> List[Dict]:
             })
     
     # Then load from apple_security_releases.json for comprehensive list
-    releases_file = Path("../data/resources/apple_security_releases.json")
+    releases_file = Path(data_dir) / "apple_security_releases.json"
     releases_data = load_json_file(releases_file)
     
     if releases_data:
@@ -99,9 +99,9 @@ def load_security_releases() -> List[Dict]:
     return releases
 
 
-def load_kev_catalog() -> Set[str]:
+def load_kev_catalog(data_dir: str = "../data/resources") -> Set[str]:
     """Load CISA KEV catalog to identify exploited CVEs"""
-    kev_file = Path("../data/resources/kev_catalog.json")
+    kev_file = Path(data_dir) / "kev_catalog.json"
     data = load_json_file(kev_file)
 
     if not data or "vulnerabilities" not in data:
@@ -110,14 +110,14 @@ def load_kev_catalog() -> Set[str]:
     return {vuln["cveID"] for vuln in data["vulnerabilities"] if "cveID" in vuln}
 
 
-def load_xprotect_updates() -> List[Dict]:
+def load_xprotect_updates(data_dir: str = "../data/resources") -> List[Dict]:
     """Load XProtect update information
 
     Note: XProtect components update independently. Each component
     (Config, Remediator, Gatekeeper, MRT, Plugin Service) may have
     different update frequencies and dates.
     """
-    xprotect_file = Path("../data/resources/xprotect.json")
+    xprotect_file = Path(data_dir) / "xprotect.json"
     data = load_json_file(xprotect_file)
 
     if not data:
@@ -177,9 +177,9 @@ def load_xprotect_updates() -> List[Dict]:
     return updates
 
 
-def load_beta_releases() -> List[Dict]:
+def load_beta_releases(data_dir: str = "../data/resources") -> List[Dict]:
     """Load Apple beta releases"""
-    beta_file = Path("../data/resources/apple_beta_feed.json")
+    beta_file = Path(data_dir) / "apple_beta_feed.json"
     data = load_json_file(beta_file)
 
     if not data or "items" not in data:
@@ -213,10 +213,10 @@ def load_beta_releases() -> List[Dict]:
     return releases
 
 
-def extract_cves(release: Dict) -> Dict[str, bool]:
+def extract_cves(release: Dict, data_dir: str = "../data/resources") -> Dict[str, bool]:
     """Extract CVEs from a release and identify exploited ones"""
     cves = {}
-    kev_catalog = load_kev_catalog()
+    kev_catalog = load_kev_catalog(data_dir)
 
     # Handle various CVE data formats
     if "cves" in release:
@@ -277,7 +277,7 @@ def format_release_date(date_str: str) -> str:
 
 
 def create_feed_item(
-    release: Dict, seen_items: Set[str], previous_releases: Dict[str, datetime] = None
+    release: Dict, seen_items: Set[str], previous_releases: Dict[str, datetime] = None, data_dir: str = "../data/resources"
 ) -> Optional[Element]:
     """Create an RSS item element for a release"""
     # Create unique identifier
@@ -336,7 +336,7 @@ def create_feed_item(
     else:
         # Security release description with CVE info
         # Extract and count CVEs
-        cves = extract_cves(release)
+        cves = extract_cves(release, data_dir)
         unique_cve_count = len(cves)
         exploited_count = sum(1 for is_exploited in cves.values() if is_exploited)
 
@@ -384,7 +384,7 @@ def create_feed_item(
     return item
 
 
-def write_data_to_rss(all_releases: List[Dict], output_file: Path) -> None:
+def write_data_to_rss(all_releases: List[Dict], output_file: Path, data_dir: str = "../data/resources") -> None:
     """Write RSS feed from combined releases data (matching legacy function name)"""
     # Create root RSS element
     rss = Element("rss")
@@ -448,7 +448,7 @@ def write_data_to_rss(all_releases: List[Dict], output_file: Path) -> None:
     # Add items to feed
     items_added = 0
     for release in sorted_releases:
-        item = create_feed_item(release, seen_items, previous_releases)
+        item = create_feed_item(release, seen_items, previous_releases, data_dir)
         if item is not None:
             channel.append(item)
             items_added += 1
@@ -569,7 +569,7 @@ def main():
     if args.verbose:
         print("Loading Apple security releases...")
 
-    releases = load_security_releases()
+    releases = load_security_releases(args.data_dir)
     if releases:
         all_releases.extend(releases)
         if args.verbose:
@@ -581,7 +581,7 @@ def main():
     if args.include_xprotect:
         if args.verbose:
             print("Loading XProtect updates...")
-        xprotect = load_xprotect_updates()
+        xprotect = load_xprotect_updates(args.data_dir)
         if xprotect:
             all_releases.extend(xprotect)
             if args.verbose:
@@ -594,7 +594,7 @@ def main():
     if args.include_beta:
         if args.verbose:
             print("Loading beta releases...")
-        betas = load_beta_releases()
+        betas = load_beta_releases(args.data_dir)
         if betas:
             all_releases.extend(betas)
             if args.verbose:
@@ -617,12 +617,12 @@ def main():
 
     # Generate RSS feed
     output_path = Path(args.output)
-    write_data_to_rss(all_releases, output_path)
+    write_data_to_rss(all_releases, output_path, args.data_dir)
 
     # Also generate at the standard location for web serving
     standard_path = Path("v1/rss_feed.xml")
     if output_path != standard_path:
-        write_data_to_rss(all_releases, standard_path)
+        write_data_to_rss(all_releases, standard_path, args.data_dir)
         print(f"✅ Also generated at: {standard_path}")
 
 
