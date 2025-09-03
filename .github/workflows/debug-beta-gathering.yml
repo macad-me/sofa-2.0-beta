@@ -227,10 +227,9 @@ jobs:
             TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
             git commit -m "🐧 Update SOFA data from Linux beta3 debug run - $TIMESTAMP
 
-Linux debug workflow gathered fresh data using beta3 binaries.
-
-Changes detected in data/resources/ after running sofa-gather all.
-This preserves any fresh beta data generated on Linux CI runner."
+            Linux debug workflow gathered fresh data using beta3 binaries.
+            Changes detected in data/resources/ after running sofa-gather all.
+            This preserves any fresh beta data generated on Linux CI runner."
             
             # Push changes
             git push
