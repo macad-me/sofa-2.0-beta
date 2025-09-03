@@ -205,16 +205,14 @@ jobs:
           # Fix path resolution by creating gather.toml with absolute paths
           REPO_ROOT=$(pwd)
           mkdir -p config
-          cat > config/gather.toml << EOF
-[general]
-output_dir = "$REPO_ROOT/data/resources"
-cache_dir = "$REPO_ROOT/data/cache"
-
-[sources.beta]
-enabled = true
-output_file = "$REPO_ROOT/data/resources/apple_beta_feed.json"
-history_dir = "$REPO_ROOT/data/resources/history"
-EOF
+          echo '[general]' > config/gather.toml
+          echo 'output_dir = "/home/runner/work/sofa-2.0-beta/sofa-2.0-beta/data/resources"' >> config/gather.toml
+          echo 'cache_dir = "/home/runner/work/sofa-2.0-beta/sofa-2.0-beta/data/cache"' >> config/gather.toml
+          echo '' >> config/gather.toml
+          echo '[sources.beta]' >> config/gather.toml
+          echo 'enabled = true' >> config/gather.toml
+          echo 'output_file = "/home/runner/work/sofa-2.0-beta/sofa-2.0-beta/data/resources/apple_beta_feed.json"' >> config/gather.toml
+          echo 'history_dir = "/home/runner/work/sofa-2.0-beta/sofa-2.0-beta/data/resources/history"' >> config/gather.toml
 
           echo "🔧 Created gather.toml with absolute paths:"
           cat config/gather.toml
