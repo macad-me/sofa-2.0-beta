@@ -208,13 +208,41 @@ jobs:
             exit 1
           fi
 
+          echo "🧪 DEBUGGING: Testing individual gather sources..."
+          echo ""
+          
+          # Test each source individually with maximum debugging
+          export RUST_LOG=debug
+          export RUST_BACKTRACE=full
+          
+          # Test sources one by one to isolate failures
+          echo "Testing KEV..."
+          ./bin/sofa-gather --insecure kev --output data/resources/kev_catalog.json 2>&1 | tee logs/kev_debug.log || echo "KEV failed"
+          
+          echo "Testing GDMF..."
+          ./bin/sofa-gather --insecure gdmf --output data/resources/gdmf_cached.json 2>&1 | tee logs/gdmf_debug.log || echo "GDMF failed"
+          
+          echo "Testing IPSW..."
+          ./bin/sofa-gather --insecure ipsw --output data/resources/ipsw.json 2>&1 | tee logs/ipsw_debug.log || echo "IPSW failed"
+          
+          echo "Testing BETA..."
+          ./bin/sofa-gather --insecure beta --output data/resources/apple_beta_feed.json 2>&1 | tee logs/beta_debug.log || echo "BETA failed"
+          
+          echo "Testing UMA..."
+          ./bin/sofa-gather --insecure uma --output data/resources/uma_catalog.json 2>&1 | tee logs/uma_debug.log || echo "UMA failed"
+          
+          echo "Testing XProtect..."
+          ./bin/sofa-gather --insecure xprotect --output data/resources/xprotect.json 2>&1 | tee logs/xprotect_debug.log || echo "XProtect failed"
+          
+          echo ""
+          echo "📊 Gather Results Summary:"
+          ls -la data/resources/ || echo "No resources directory"
+          echo ""
+          
+          # Now try the pipeline gather as fallback
           echo "Running: uv run --script scripts/sofa_pipeline.py run --stage gather"
-          echo "🔧 Using --insecure flag to work around rustls certificate issues..."
-          # Force insecure mode because rustls doesn't read system certificates
-          if RUST_LOG=info ./bin/sofa-gather --insecure all --continue-on-error; then
-            echo "✅ Direct gather with --insecure completed"
-          elif uv run --script scripts/sofa_pipeline.py run --stage gather; then
-            echo "✅ GATHER stage completed"
+          if uv run --script scripts/sofa_pipeline.py run --stage gather; then
+            echo "✅ Pipeline GATHER stage completed"
             echo "## ✅ Gather Stage Success" >> $GITHUB_STEP_SUMMARY
             
             echo ""
@@ -384,6 +412,17 @@ jobs:
             git push
             echo "✅ Pipeline data committed to repository"
           fi
+          
+      - name: Upload debug artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-debug-${{ github.run_number }}
+          path: |
+            logs/
+            data/resources/
+          retention-days: 7
+          if-no-files-found: warn
           
       - name: Final summary
         if: always()
