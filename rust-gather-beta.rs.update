@@ -1,0 +1,437 @@
+use anyhow::Result;
+use serde::{Deserialize, Serialize};
+use std::path::Path;
+use chrono::Utc;
+use rss::Channel;
+use std::fs;
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AppleBetaFeed {
+    #[serde(rename = "UpdateHash")]
+    pub update_hash: String,
+    pub created_at: String,
+    pub items: Vec<BetaRelease>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct BetaRelease {
+    pub title: String,
+    pub platform: String,
+    pub version: String,
+    pub build: String,
+    pub released: String,
+    pub release_notes_url: Option<String>,
+    pub downloads_url: Option<String>,
+    pub source_card_url: Option<String>,
+}
+
+pub async fn fetch_apple_releases_page(url: &str) -> Result<AppleBetaFeed> {
+    fetch_apple_releases_page_with_options(url, false).await
+}
+
+pub async fn fetch_apple_releases_page_with_options(url: &str, insecure: bool) -> Result<AppleBetaFeed> {
+    tracing::info!("Scraping Apple releases page from {} (insecure: {})", url, insecure);
+    
+    let mut client_builder = reqwest::Client::builder()
+        .timeout(std::time::Duration::from_secs(30))
+        .user_agent("sofa-rust-fetcher/1.0");
+    
+    if insecure {
+        tracing::warn!("Using insecure mode - skipping certificate validation for Apple Developer site");
+        client_builder = client_builder.danger_accept_invalid_certs(true);
+    }
+    
+    let client = client_builder.build()?;
+    
+    let response = client.get(url)
+        .send()
+        .await?;
+    
+    if !response.status().is_success() {
+        anyhow::bail!("Failed to fetch releases page: {}", response.status());
+    }
+    
+    let html = response.text().await?;
+    parse_releases_html(&html, url)
+}
+
+fn parse_releases_html(html: &str, source_url: &str) -> Result<AppleBetaFeed> {
+    use scraper::{Html, Selector};
+    
+    let document = Html::parse_document(html);
+    let mut items = Vec::new();
+    
+    // Selectors for the article structure
+    let article_selector = Selector::parse("section.article-content-container").unwrap();
+    let title_selector = Selector::parse("a.article-title h2").unwrap();
+    let date_selector = Selector::parse("p.article-date").unwrap();
+    
+    // Regex to parse titles like "iOS 18.2 beta 4 (22C5131e)" or "Xcode 16.2 beta 3 (16C5036e)"
+    let title_regex = regex::Regex::new(
+        r"^(?P<platform>iOS|iPadOS|macOS|tvOS|watchOS|visionOS|Xcode)\s+(?P<version>[^\(]+?)\s*\((?P<build>[^)]+)\)\s*$"
+    ).unwrap();
+    
+    // Process each article section
+    for article in document.select(&article_selector) {
+        // Get the title from h2 within the article
+        let title = article.select(&title_selector)
+            .next()
+            .map(|h2| h2.text().collect::<String>().trim().to_string())
+            .unwrap_or_default();
+        
+        // Only process if it matches our expected format
+        if let Some(caps) = title_regex.captures(&title) {
+            let platform = caps.name("platform").map(|m| m.as_str().to_string()).unwrap_or_default();
+            let version = caps.name("version").map(|m| m.as_str().trim().to_string()).unwrap_or_default();
+            let build = caps.name("build").map(|m| m.as_str().to_string()).unwrap_or_default();
+            
+            // Find the release date within the same article section
+            let released = article.select(&date_selector)
+                .next()
+                .map(|date_elem| date_elem.text().collect::<String>().trim().to_string())
+                .and_then(|date_str| parse_date_string(&date_str))
+                .unwrap_or_else(|| {
+                    tracing::warn!("No date found for release: {}", title);
+                    chrono::Utc::now().format("%Y-%m-%d").to_string()
+                });
+            
+            // Include beta/RC releases and Xcode releases
+            if version.contains("beta") || version.contains("RC") || 
+               platform == "Xcode" ||
+               build.chars().last().map(|c| c.is_lowercase()).unwrap_or(false) {
+                
+                // Find links for this release within the article
+                let link_selector = scraper::Selector::parse("a.more").unwrap();
+                let mut downloads_url = None;
+                let mut release_notes_url = None;
+                
+                for link in article.select(&link_selector) {
+                    if let Some(href) = link.value().attr("href") {
+                        let link_text = link.text().collect::<String>().to_lowercase();
+                        if link_text.contains("download") {
+                            downloads_url = Some(if href.starts_with("http") {
+                                href.to_string()
+                            } else {
+                                format!("https://developer.apple.com{}", href)
+                            });
+                        } else if link_text.contains("release notes") {
+                            release_notes_url = Some(if href.starts_with("http") {
+                                href.to_string()
+                            } else {
+                                format!("https://developer.apple.com{}", href)
+                            });
+                        }
+                    }
+                }
+                
+                // Default download URL if not found
+                if downloads_url.is_none() {
+                    downloads_url = Some("https://developer.apple.com/download".to_string());
+                }
+                
+                items.push(BetaRelease {
+                    title: title.clone(),
+                    platform,
+                    version,
+                    build,
+                    released,
+                    release_notes_url,
+                    downloads_url,
+                    source_card_url: Some(source_url.to_string()),
+                });
+            }
+        }
+    }
+    
+    // Calculate hash
+    let mut hasher = sha2::Sha256::new();
+    use sha2::Digest;
+    for item in &items {
+        hasher.update(format!("{}{}{}", item.title, item.build, item.released).as_bytes());
+    }
+    let hash = format!("{:x}", hasher.finalize());
+    
+    tracing::info!("Scraped {} beta releases from releases page", items.len());
+    
+    Ok(AppleBetaFeed {
+        update_hash: hash,
+        created_at: chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Micros, true),
+        items,
+    })
+}
+
+fn parse_date_string(date_str: &str) -> Option<String> {
+    // Try to parse dates like "December 16, 2024" to "2024-12-16"
+    use chrono::NaiveDate;
+    
+    // Try various date formats
+    let formats = [
+        "%B %d, %Y",  // December 16, 2024
+        "%b %d, %Y",  // Dec 16, 2024
+        "%Y-%m-%d",   // 2024-12-16
+    ];
+    
+    for format in &formats {
+        if let Ok(date) = NaiveDate::parse_from_str(date_str, format) {
+            return Some(date.format("%Y-%m-%d").to_string());
+        }
+    }
+    
+    None
+}
+
+pub async fn fetch_apple_beta_rss(url: &str) -> Result<AppleBetaFeed> {
+    tracing::info!("Fetching Apple beta RSS feed from {}", url);
+    
+    let client = reqwest::Client::builder()
+        .timeout(std::time::Duration::from_secs(30))
+        .build()?;
+    
+    let response = client.get(url)
+        .send()
+        .await?;
+    
+    if !response.status().is_success() {
+        anyhow::bail!("Failed to fetch RSS feed: {}", response.status());
+    }
+    
+    let content = response.bytes().await?;
+    let channel = Channel::read_from(&content[..])?;
+    
+    let mut items = Vec::new();
+    
+    for item in channel.items() {
+        if let Some(title) = item.title() {
+            let release = parse_beta_release(item, title)?;
+            items.push(release);
+        }
+    }
+    
+    // Calculate hash for change detection
+    let mut hasher = sha2::Sha256::new();
+    use sha2::Digest;
+    for item in &items {
+        hasher.update(format!("{}{}{}", item.title, item.build, item.released).as_bytes());
+    }
+    let hash = format!("{:x}", hasher.finalize());
+    
+    tracing::info!("Parsed {} beta releases from RSS feed", items.len());
+    
+    Ok(AppleBetaFeed {
+        update_hash: hash,
+        created_at: chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Micros, true),
+        items,
+    })
+}
+
+fn parse_beta_release(item: &rss::Item, title: &str) -> Result<BetaRelease> {
+    // Parse platform from title (e.g., "iOS 18.2 beta 3")
+    let platform = if title.contains("iOS") {
+        "iOS"
+    } else if title.contains("iPadOS") {
+        "iPadOS"
+    } else if title.contains("macOS") {
+        "macOS"
+    } else if title.contains("watchOS") {
+        "watchOS"
+    } else if title.contains("tvOS") {
+        "tvOS"
+    } else if title.contains("visionOS") {
+        "visionOS"
+    } else if title.contains("Xcode") {
+        "Xcode"
+    } else {
+        "Unknown"
+    };
+    
+    // Extract version and build from title
+    let (version, build) = extract_version_build(title);
+    
+    // Get release date
+    let released = item.pub_date()
+        .map(|d| d.to_string())
+        .unwrap_or_else(|| Utc::now().to_rfc2822());
+    
+    Ok(BetaRelease {
+        title: title.to_string(),
+        platform: platform.to_string(),
+        version,
+        build,
+        released,
+        release_notes_url: item.link().map(|s| s.to_string()),
+        downloads_url: extract_download_url(item.description()),
+        source_card_url: Some("https://developer.apple.com/rss/betas.rss".to_string()),
+    })
+}
+
+fn extract_version_build(title: &str) -> (String, String) {
+    // Try to extract version and build from title
+    // Example: "iOS 18.2 beta 3 (22C5125e)"
+    let version_regex = regex::Regex::new(r"(\d+\.?\d*\.?\d*)\s*(beta|rc|RC)?\s*(\d+)?").unwrap();
+    let build_regex = regex::Regex::new(r"\(([A-Za-z0-9]+)\)").unwrap();
+    
+    let version = version_regex.captures(title)
+        .map(|caps| {
+            let mut v = caps[1].to_string();
+            if let Some(beta) = caps.get(2) {
+                v.push_str(&format!(" {}", beta.as_str()));
+            }
+            if let Some(num) = caps.get(3) {
+                v.push_str(&format!(" {}", num.as_str()));
+            }
+            v
+        })
+        .unwrap_or_default();
+    
+    let build = build_regex.captures(title)
+        .map(|caps| caps[1].to_string())
+        .unwrap_or_default();
+    
+    (version, build)
+}
+
+fn extract_download_url(description: Option<&str>) -> Option<String> {
+    description.and_then(|desc| {
+        if desc.contains("developer.apple.com/download") {
+            Some("https://developer.apple.com/download".to_string())
+        } else {
+            None
+        }
+    })
+}
+
+fn cleanup_old_history_files(dir: &Path, prefix: &str, keep_count: usize) -> Result<()> {
+    let mut history_files: Vec<_> = fs::read_dir(dir)?
+        .filter_map(|entry| entry.ok())
+        .filter(|entry| {
+            entry.file_name()
+                .to_str()
+                .map(|name| name.starts_with(prefix) && name.ends_with(".json"))
+                .unwrap_or(false)
+        })
+        .collect();
+    
+    // Sort by modification time (newest first)
+    history_files.sort_by_key(|entry| {
+        entry.metadata()
+            .and_then(|m| m.modified())
+            .unwrap_or(std::time::SystemTime::UNIX_EPOCH)
+    });
+    history_files.reverse();
+    
+    // Remove old files if we have more than keep_count
+    if history_files.len() > keep_count {
+        for entry in history_files.iter().skip(keep_count) {
+            if let Ok(path) = entry.path().canonicalize() {
+                tracing::debug!("Removing old history file: {:?}", path);
+                let _ = fs::remove_file(path);
+            }
+        }
+    }
+    
+    Ok(())
+}
+
+// History preservation functions
+pub async fn save_beta_feed_with_history(feed: &AppleBetaFeed, output_dir: &Path) -> Result<()> {
+    // Ensure output directory exists
+    std::fs::create_dir_all(output_dir)?;
+    
+    // Save current feed (latest releases from Apple)
+    let current_path = output_dir.join("apple_beta_feed.json");
+    let json = serde_json::to_string_pretty(feed)?;
+    std::fs::write(&current_path, &json)?;
+    
+    // Also save a timestamped copy for history
+    let timestamp = chrono::Utc::now().format("%Y%m%d_%H%M%S");
+    let history_dir = Path::new("data/resources/history");
+    std::fs::create_dir_all(history_dir)?;
+    let history_path = history_dir.join(format!("apple_beta_feed_{}.json", timestamp));
+    std::fs::write(&history_path, &json)?;
+    
+    // Clean up old history files - keep only 5 most recent
+    cleanup_old_history_files(history_dir, "apple_beta_feed_", 5)?;
+    
+    // Update the main history file in-place
+    update_beta_history_json(feed, output_dir).await?;
+    
+    tracing::info!("Saved beta feed to {:?} with history", current_path);
+    Ok(())
+}
+
+async fn update_beta_history_json(feed: &AppleBetaFeed, output_dir: &Path) -> Result<()> {
+    let history_path = output_dir.join("apple_beta_os_history.json");
+    
+    // Load existing history or create new one
+    let mut history = if history_path.exists() {
+        let content = std::fs::read_to_string(&history_path)?;
+        serde_json::from_str::<serde_json::Value>(&content)?
+    } else {
+        serde_json::json!({
+            "UpdateHash": "",
+            "created_at": chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Micros, true),
+            "description": "Historical archive of Apple OS releases including betas removed from current feed",
+            "items": []
+        })
+    };
+    
+    // Build set of existing builds for deduplication
+    let mut known_builds = std::collections::HashSet::new();
+    if let Some(items) = history["items"].as_array() {
+        for item in items {
+            if let Some(build) = item["build"].as_str() {
+                known_builds.insert(build.to_string());
+            }
+        }
+    }
+    
+    // Collect new releases that aren't already in history
+    let mut new_items = Vec::new();
+    for release in &feed.items {
+        if !known_builds.contains(&release.build) {
+            new_items.push(serde_json::to_value(release)?);
+            known_builds.insert(release.build.clone());
+        }
+    }
+    
+    let added_count = new_items.len();
+    
+    if added_count > 0 {
+        // Add new items to history
+        if let Some(items) = history["items"].as_array_mut() {
+            items.extend(new_items);
+            
+            // Sort items by release date (newest first) then by platform
+            items.sort_by(|a, b| {
+                let date_a = a["released"].as_str().unwrap_or("");
+                let date_b = b["released"].as_str().unwrap_or("");
+                let platform_a = a["platform"].as_str().unwrap_or("");
+                let platform_b = b["platform"].as_str().unwrap_or("");
+                
+                match date_b.cmp(date_a) {
+                    std::cmp::Ordering::Equal => platform_a.cmp(platform_b),
+                    other => other,
+                }
+            });
+        }
+        
+        // Update metadata
+        history["UpdateHash"] = serde_json::Value::String(feed.update_hash.clone());
+        history["last_updated"] = serde_json::Value::String(
+            chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Micros, true)
+        );
+        
+        // Write updated history
+        let json = serde_json::to_string_pretty(&history)?;
+        std::fs::write(&history_path, json)?;
+        
+        let total_items = history["items"].as_array().map(|a| a.len()).unwrap_or(0);
+        tracing::info!("Added {} new beta releases to history (total: {})", added_count, total_items);
+    } else {
+        tracing::info!("No new beta releases to add to history");
+    }
+    
+    Ok(())
+}
+
+

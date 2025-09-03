@@ -1,0 +1,667 @@
+use anyhow::Result;
+use clap::{Parser, Subcommand};
+use std::path::{Path, PathBuf};
+use std::io::Write;
+
+use rust_gather::{config::Config, kev, gdmf, beta, ipsw, uma, xprotect};
+use rust_manifest::{SofaStatus, create_source_info, calculate_file_hash};
+
+#[derive(Parser)]
+#[command(name = "sofa-gather")]
+#[command(author = env!("CARGO_PKG_AUTHORS"))]
+#[command(about = "Gather external security data sources", version)]
+#[command(long_about = "Gather external security data sources
+
+Default directory structure:
+  data/
+  ├── resources/   (output: gathered data)
+  │   ├── gdmf_cached.json
+  │   ├── kev_catalog.json
+  │   ├── xprotect.json
+  │   └── uma_catalog.json
+  └── cache/       (temporary cache)
+
+Examples:
+  sofa-gather all                     # Fetch all data sources
+  sofa-gather gdmf --insecure         # Fetch GDMF with insecure SSL (if cert issues)
+  sofa-gather gdmf -o gdmf.json       # Fetch GDMF to specific file
+
+Note: Use --insecure flag if you encounter SSL certificate validation errors with Apple endpoints")]
+struct Cli {
+    #[arg(short, long, help = "Configuration file path")]
+    config: Option<PathBuf>,
+    
+    #[arg(short, long, help = "Output directory")]
+    output_dir: Option<PathBuf>,
+    
+    #[arg(short, long, help = "Verbose logging")]
+    verbose: bool,
+    
+    #[arg(long, help = "Allow insecure SSL connections (skip certificate validation)")]
+    insecure: bool,
+    
+    #[command(subcommand)]
+    command: Commands,
+}
+
+#[derive(Subcommand)]
+enum Commands {
+    /// Fetch CISA KEV (Known Exploited Vulnerabilities) catalog
+    Kev {
+        /// Output file path
+        #[arg(short, long)]
+        output: Option<PathBuf>,
+    },
+    /// Fetch Apple GDMF feed
+    Gdmf {
+        /// Output file path
+        #[arg(short, long)]
+        output: Option<PathBuf>,
+        
+        /// Allow insecure SSL connections (skip certificate validation)
+        #[arg(long)]
+        insecure: bool,
+    },
+    /// Fetch IPSW.me data
+    Ipsw {
+        /// Output file path
+        #[arg(short, long)]
+        output: Option<PathBuf>,
+    },
+    /// Fetch Apple Beta RSS feed
+    Beta {
+        /// Output file path
+        #[arg(short, long)]
+        output: Option<PathBuf>,
+        
+        /// RSS feed URL override
+        #[arg(long)]
+        url: Option<String>,
+    },
+    /// Fetch UMA (Universal Mac App) catalog
+    Uma {
+        /// Output file path
+        #[arg(short, long)]
+        output: Option<PathBuf>,
+    },
+    /// Fetch XProtect security definitions
+    Xprotect {
+        /// Output file path
+        #[arg(short, long)]
+        output: Option<PathBuf>,
+    },
+    /// Fetch all data sources
+    All {
+        /// Don't stop on first error
+        #[arg(long)]
+        continue_on_error: bool,
+    },
+    /// Validate gathered data integrity
+    Validate {
+        /// Data directory to validate
+        #[arg(long, default_value = "data/resources")]
+        data_dir: PathBuf,
+        
+        /// Exit with error code if validation fails
+        #[arg(long)]
+        strict: bool,
+    },
+    /// Initialize directory structure and configuration
+    Init {
+        /// Force overwrite existing files
+        #[arg(long)]
+        force: bool,
+    },
+    /// Clean up gathered data files
+    Clean {
+        /// Dry run - show what would be deleted without actually deleting
+        #[arg(long)]
+        dry_run: bool,
+    },
+}
+
+async fn run_clean(dry_run: bool) -> Result<()> {
+    println!("🧹 Cleaning sofa-gather data...\n");
+    
+    let resources_dir = PathBuf::from("data/resources");
+    if !resources_dir.exists() {
+        println!("✅ Nothing to clean - data/resources directory doesn't exist");
+        return Ok(());
+    }
+    
+    // List of files to remove (gather outputs only)
+    let files_to_remove = vec![
+        "xprotect.json",
+        "uma_catalog.json",
+        "apple_beta_feed.json",
+        "gdmf_cached.json",
+        "ipsw.json",
+    ];
+    
+    let mut files_to_delete = Vec::new();
+    
+    // Check which files exist
+    for filename in &files_to_remove {
+        let path = resources_dir.join(filename);
+        if path.exists() {
+            files_to_delete.push(path);
+        }
+    }
+    
+    // Display what will be deleted
+    if files_to_delete.is_empty() {
+        println!("✅ Nothing to clean up!");
+        return Ok(());
+    }
+    
+    println!("Files to delete:");
+    for file in &files_to_delete {
+        if let Ok(metadata) = std::fs::metadata(file) {
+            let size = metadata.len();
+            println!("  📄 {} ({:.2} MB)", file.display(), size as f64 / 1_048_576.0);
+        } else {
+            println!("  📄 {}", file.display());
+        }
+    }
+    
+    println!("\nFiles that will be kept:");
+    println!("  ✓ supported_devices.json");
+    println!("  ✓ gather-timestamp.json");
+    println!("  ✓ gdmf_history.ndjson");
+    println!("  ✓ gdmf_log.json");
+    println!("  ✓ apple_beta_os_history.json");
+    println!("  ✓ history/ folder (all timestamped files)");
+    
+    if dry_run {
+        println!("\n🔍 Dry run mode - no files were deleted");
+        return Ok(());
+    }
+    
+    // Confirm deletion
+    println!("\n⚠️  This will permanently delete the files listed above.");
+    print!("Continue? (y/N): ");
+    std::io::stdout().flush()?;
+    
+    let mut input = String::new();
+    std::io::stdin().read_line(&mut input)?;
+    
+    if input.trim().to_lowercase() != "y" {
+        println!("❌ Cleanup cancelled");
+        return Ok(());
+    }
+    
+    // Delete files
+    let mut deleted_count = 0;
+    for file in files_to_delete {
+        if let Err(e) = std::fs::remove_file(&file) {
+            eprintln!("  ❌ Failed to delete {}: {}", file.display(), e);
+        } else {
+            deleted_count += 1;
+        }
+    }
+    
+    println!("\n✅ Cleanup complete!");
+    println!("  • Deleted {} file(s)", deleted_count);
+    
+    Ok(())
+}
+
+#[tokio::main]
+async fn main() -> Result<()> {
+    let cli = Cli::parse();
+    
+    // Initialize tracing
+    let log_level = if cli.verbose { 
+        "sofa_gather=debug,info" 
+    } else { 
+        "sofa_gather=info,warn" 
+    };
+    
+    tracing_subscriber::fmt()
+        .with_env_filter(tracing_subscriber::EnvFilter::try_from_default_env()
+            .unwrap_or_else(|_| tracing_subscriber::EnvFilter::new(log_level)))
+        .with_target(false)
+        .with_file(false)
+        .with_line_number(false)
+        .with_thread_ids(false)
+        .with_thread_names(false)
+        .compact()
+        .init();
+    
+    // Load configuration (prefer TOML over JSON)
+    let config = if let Some(config_path) = cli.config {
+        tracing::info!("Loading config from {:?}", config_path);
+        Config::from_file(&config_path)?
+    } else if PathBuf::from("config/gather.toml").exists() {
+        tracing::info!("Using gather.toml from config directory");
+        Config::from_file(&PathBuf::from("config/gather.toml"))?
+    } else if PathBuf::from("config/gather.json").exists() {
+        tracing::info!("Using gather.json from config directory");
+        Config::from_file(&PathBuf::from("config/gather.json"))?
+    } else {
+        tracing::info!("Using default configuration");
+        Config::default()
+    };
+    
+    // Set output directory
+    let output_dir = cli.output_dir.unwrap_or_else(|| config.output.directory.clone());
+    std::fs::create_dir_all(&output_dir)?;
+    
+    match cli.command {
+        Commands::Kev { output } => {
+            let output_path = output.unwrap_or_else(|| output_dir.join("kev_catalog.json"));
+            tracing::info!("Fetching CISA KEV catalog to {:?}", output_path);
+            kev::fetch_and_save_kev(&output_path).await?;
+            
+            // Update unified SOFA status
+            if let Err(e) = update_sofa_status(&output_dir, "kev", &output_path).await {
+                tracing::warn!("Failed to update sofa-status.json: {}", e);
+            }
+        }
+        
+        Commands::Gdmf { output, insecure } => {
+            let output_path = output.unwrap_or_else(|| output_dir.join("gdmf_cached.json"));
+            tracing::info!("Fetching Apple GDMF feed to {:?}", output_path);
+            // Use global insecure flag if set, otherwise use command-specific flag
+            let use_insecure = cli.insecure || insecure;
+            gdmf::fetch_and_save_gdmf(&output_path, use_insecure).await?;
+            
+            // GDMF log is now handled in gdmf::update_gdmf_log()
+            // Commenting out to avoid overwriting with incorrect format
+            // if let Ok(data) = std::fs::read(&output_path) {
+            //     let gdmf_log_path = output_dir.join("gdmf_log.json");
+            //     let mut gdmf_log = GDMFLog::load(&gdmf_log_path).unwrap_or_default();
+            //     gdmf_log.add_entry(&data, 200);
+            //     if let Err(e) = gdmf_log.save(&gdmf_log_path) {
+            //         tracing::warn!("Failed to save gdmf_log.json: {}", e);
+            //     }
+            // }
+                
+            // Update unified SOFA status
+            if let Err(e) = update_sofa_status(&output_dir, "gdmf", &output_path).await {
+                tracing::warn!("Failed to update sofa-status.json: {}", e);
+            }
+        }
+        
+        Commands::Ipsw { output } => {
+            let output_path = output.unwrap_or_else(|| output_dir.join("ipsw.json"));
+            tracing::info!("Fetching IPSW.me data to {:?}", output_path);
+            ipsw::fetch_and_save_ipsw(&config, &output_path).await?;
+        }
+        
+        Commands::Beta { output, url } => {
+            let output_path = output.unwrap_or_else(|| output_dir.join("apple_beta_feed.json"));
+            let feed_url = url.unwrap_or_else(|| config.urls.apple_developer_releases.clone());
+            
+            tracing::info!("Fetching Apple Beta releases to {:?}", output_path);
+            
+            // Try to scrape new data, but if it fails or returns empty, use existing history
+            match beta::fetch_apple_releases_page_with_options(&feed_url, cli.insecure).await {
+                Ok(feed) if !feed.items.is_empty() => {
+                    tracing::info!("Successfully scraped {} beta releases", feed.items.len());
+                    beta::save_beta_feed_with_history(&feed, &output_dir).await?;
+                }
+                Ok(_) => {
+                    tracing::warn!("Scraping returned no items, checking for existing history");
+                    // Try to load from existing history
+                    let history_path = output_dir.join("apple_beta_os_history.json");
+                    if history_path.exists() {
+                        tracing::info!("Loading beta data from existing history");
+                        let content = std::fs::read_to_string(&history_path)?;
+                        if let Ok(history_data) = serde_json::from_str::<serde_json::Value>(&content) {
+                            // Create a new feed from history with current timestamp
+                            let items = history_data["items"].as_array()
+                                .map(|arr| arr.iter().take(20).cloned().collect::<Vec<_>>())
+                                .unwrap_or_default();
+                            
+                            let feed = beta::AppleBetaFeed {
+                                update_hash: history_data["UpdateHash"].as_str().unwrap_or("").to_string(),
+                                created_at: chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Micros, true),
+                                items: serde_json::from_value(serde_json::Value::Array(items))?,
+                            };
+                            
+                            let json = serde_json::to_string_pretty(&feed)?;
+                            std::fs::write(&output_path, json)?;
+                            tracing::info!("Created beta feed from history with {} items", feed.items.len());
+                        }
+                    } else {
+                        tracing::warn!("No beta history found, feed will be empty");
+                        let empty_feed = beta::AppleBetaFeed {
+                            update_hash: "".to_string(),
+                            created_at: chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Micros, true),
+                            items: vec![],
+                        };
+                        let json = serde_json::to_string_pretty(&empty_feed)?;
+                        std::fs::write(&output_path, json)?;
+                    }
+                }
+                Err(e) => {
+                    tracing::error!("Failed to scrape releases: {}", e);
+                    return Err(e);
+                }
+            }
+        }
+        
+        Commands::Uma { output } => {
+            let output_path = output.unwrap_or_else(|| output_dir.join("uma_catalog.json"));
+            tracing::info!("Fetching UMA catalog to {:?}", output_path);
+            uma::fetch_and_save_uma(&config, &output_path).await?;
+            
+            // Update unified SOFA status
+            if let Err(e) = update_sofa_status(&output_dir, "uma", &output_path).await {
+                tracing::warn!("Failed to update sofa-status.json: {}", e);
+            }
+        }
+        
+        Commands::Xprotect { output } => {
+            let output_path = output.unwrap_or_else(|| output_dir.join("xprotect.json"));
+            tracing::info!("Fetching XProtect data to {:?}", output_path);
+            xprotect::fetch_and_save_xprotect(&output_path).await?;
+            
+            // Update unified SOFA status
+            if let Err(e) = update_sofa_status(&output_dir, "xprotect", &output_path).await {
+                tracing::warn!("Failed to update sofa-status.json: {}", e);
+            }
+        }
+        
+        Commands::All { continue_on_error } => {
+            tracing::info!("🚀 Starting to fetch all data sources to {:?}", output_dir);
+            tracing::info!("{}", "=".repeat(60));
+            
+            let mut errors = Vec::new();
+            let mut _successful = 0;
+            let total_sources = 6; // KEV, GDMF, IPSW, Beta, UMA, XProtect
+            
+            // Fetch KEV
+            tracing::info!("[1/{}] Fetching CISA KEV catalog...", total_sources);
+            let kev_path = output_dir.join("kev_catalog.json");
+            match kev::fetch_and_save_kev(&kev_path).await {
+                Ok(_) => {
+                    _successful += 1;
+                    // Update unified SOFA status
+                    if let Err(e) = update_sofa_status(&output_dir, "kev", &kev_path).await {
+                        tracing::warn!("Failed to update sofa-status.json: {}", e);
+                    } else {
+                        tracing::info!("✓ KEV catalog fetched successfully");
+                    }
+                }
+                Err(e) => {
+                    tracing::error!("✗ Failed to fetch KEV: {}", e);
+                    if !continue_on_error {
+                        return Err(e);
+                    }
+                    errors.push(format!("KEV: {}", e));
+                }
+            }
+            
+            // Fetch GDMF
+            tracing::info!("[2/{}] Fetching Apple GDMF data...", total_sources);
+            let gdmf_path = output_dir.join("gdmf_cached.json");
+            // GDMF log is handled in gdmf::update_gdmf_log() now
+            match gdmf::fetch_and_save_gdmf(&gdmf_path, cli.insecure).await {
+                Ok(_) => {
+                    _successful += 1;
+                    // Update unified SOFA status
+                    if let Err(e) = update_sofa_status(&output_dir, "gdmf", &gdmf_path).await {
+                        tracing::warn!("Failed to update sofa-status.json: {}", e);
+                    } else {
+                        tracing::info!("✓ GDMF data fetched successfully");
+                    }
+                }
+                Err(e) => {
+                    tracing::error!("✗ Failed to fetch GDMF: {}", e);
+                    
+                    if !continue_on_error {
+                        return Err(e);
+                    }
+                    errors.push(format!("GDMF: {}", e));
+                }
+            }
+            
+            // Fetch IPSW
+            tracing::info!("[3/{}] Fetching IPSW.me data...", total_sources);
+            let ipsw_path = output_dir.join("ipsw.json");
+            match ipsw::fetch_and_save_ipsw(&config, &ipsw_path).await {
+                Ok(_) => {
+                    _successful += 1;
+                    // Update unified SOFA status
+                    if let Err(e) = update_sofa_status(&output_dir, "ipsw", &ipsw_path).await {
+                        tracing::warn!("Failed to update sofa-status.json: {}", e);
+                    } else {
+                        tracing::info!("✓ IPSW data fetched successfully");
+                    }
+                }
+                Err(e) => {
+                    tracing::error!("✗ Failed to fetch IPSW: {}", e);
+                    if !continue_on_error {
+                        return Err(e);
+                    }
+                    errors.push(format!("IPSW: {}", e));
+                }
+            }
+            
+            // Fetch Beta (if enabled)
+            if config.features.fetch_beta {
+                let beta_path = output_dir.join("apple_beta_feed.json");
+                // Note: RSS feed returns 401, so we'll scrape the releases page instead
+                match beta::fetch_apple_releases_page_with_options(&config.urls.apple_developer_releases, cli.insecure).await {
+                    Ok(feed) => {
+                        match beta::save_beta_feed_with_history(&feed, &output_dir).await {
+                            Ok(_) => {
+                                // Update unified SOFA status
+                                if let Err(e) = update_sofa_status(&output_dir, "beta", &beta_path).await {
+                                    tracing::warn!("Failed to update sofa-status.json: {}", e);
+                                } else {
+                                    tracing::info!("✓ Apple Beta feed fetched successfully");
+                                }
+                            }
+                            Err(e) => {
+                                tracing::error!("✗ Failed to save Beta feed: {}", e);
+                                if !continue_on_error {
+                                    return Err(e);
+                                }
+                                errors.push(format!("Beta feed save: {}", e));
+                            }
+                        }
+                    }
+                    Err(e) => {
+                        tracing::warn!("✗ Beta feed fetch failed (non-critical): {}", e);
+                        // Don't fail on beta fetch errors since it's optional
+                        errors.push(format!("Beta feed: {}", e));
+                    }
+                }
+            } else {
+                tracing::info!("⊘ Beta feed fetch disabled in config");
+            }
+            
+            // Fetch UMA
+            let uma_path = output_dir.join("uma_catalog.json");
+            match uma::fetch_and_save_uma(&config, &uma_path).await {
+                Ok(_) => {
+                    // Update unified SOFA status
+                    if let Err(e) = update_sofa_status(&output_dir, "uma", &uma_path).await {
+                        tracing::warn!("Failed to update sofa-status.json: {}", e);
+                    } else {
+                        tracing::info!("✓ UMA catalog fetched successfully");
+                    }
+                }
+                Err(e) => {
+                    tracing::error!("✗ Failed to fetch UMA: {}", e);
+                    if !continue_on_error {
+                        return Err(e);
+                    }
+                    errors.push(format!("UMA: {}", e));
+                }
+            }
+            
+            // Fetch XProtect
+            let xprotect_path = output_dir.join("xprotect.json");
+            match xprotect::fetch_and_save_xprotect(&xprotect_path).await {
+                Ok(_) => {
+                    // Update unified SOFA status
+                    if let Err(e) = update_sofa_status(&output_dir, "xprotect", &xprotect_path).await {
+                        tracing::warn!("Failed to update sofa-status.json: {}", e);
+                    } else {
+                        tracing::info!("✓ XProtect data fetched successfully");
+                    }
+                }
+                Err(e) => {
+                    tracing::error!("✗ Failed to fetch XProtect: {}", e);
+                    if !continue_on_error {
+                        return Err(e);
+                    }
+                    errors.push(format!("XProtect: {}", e));
+                }
+            }
+            
+            // Summary
+            if errors.is_empty() {
+                tracing::info!("All data sources fetched successfully!");
+                // Load status to show summary
+                if let Ok(status) = SofaStatus::load_or_create(&output_dir) {
+                    if let Some(gather_status) = &status.pipeline.gather {
+                        if !gather_status.changes_detected.is_empty() {
+                            tracing::info!("Summary: Changes in: {}", gather_status.changes_detected.join(", "));
+                        }
+                    }
+                }
+            } else {
+                tracing::warn!("Completed with {} errors:", errors.len());
+                for error in errors {
+                    tracing::warn!("  - {}", error);
+                }
+            }
+        }
+        
+        Commands::Validate { data_dir, strict } => {
+            tracing::info!("Validating gathered data in {:?}", data_dir);
+            
+            let report = rust_gather::validation::validate_gather_outputs(&data_dir)?;
+            
+            // Print report
+            println!("\n📊 Validation Report");
+            println!("━━━━━━━━━━━━━━━━━━━━");
+            
+            if report.errors.is_empty() && report.warnings.is_empty() {
+                println!("✅ All checks passed!");
+            } else {
+                if !report.errors.is_empty() {
+                    println!("\n❌ Errors:");
+                    for error in &report.errors {
+                        println!("  • {}", error);
+                    }
+                }
+                
+                if !report.warnings.is_empty() {
+                    println!("\n⚠️  Warnings:");
+                    for warning in &report.warnings {
+                        println!("  • {}", warning);
+                    }
+                }
+            }
+            
+            println!("\n📁 File Checks:");
+            for (filename, check) in &report.file_checks {
+                let status = if check.exists && check.is_valid { "✓" } else { "✗" };
+                let size_str = if check.exists {
+                    format!("{:.1} KB", check.size as f64 / 1024.0)
+                } else {
+                    "N/A".to_string()
+                };
+                let items_str = check.item_count
+                    .map(|c| format!("{} items", c))
+                    .unwrap_or_else(|| "-".to_string());
+                    
+                println!("  {} {} ({}, {})", status, filename, size_str, items_str);
+            }
+            
+            if strict && !report.passed {
+                std::process::exit(1);
+            }
+        }
+        
+        Commands::Init { force } => {
+            println!("🚀 Initializing sofa-gather environment...\n");
+            
+            // Create directory structure
+            let dirs = vec![
+                "data/resources",
+                "data/cache",
+                "config",
+            ];
+            
+            for dir in dirs {
+                if !std::path::Path::new(dir).exists() {
+                    std::fs::create_dir_all(dir)?;
+                    println!("  📁 Created directory: {}", dir);
+                } else {
+                    println!("  ✓ Directory exists: {}", dir);
+                }
+            }
+            
+            // Create default config
+            let config_path = PathBuf::from("config/gather.toml");
+            if !config_path.exists() || force {
+                let default_config = Config::default();
+                default_config.save(&config_path)?;
+                println!("  📝 Created config file: config/gather.toml");
+            } else {
+                println!("  ✓ Config exists: config/gather.toml");
+            }
+            
+            println!("\n✅ Initialization complete!");
+            println!("\n📖 Next steps:");
+            println!("  1. Review config/gather.toml");
+            println!("  2. Run: sofa-gather all");
+        }
+        
+        Commands::Clean { dry_run } => {
+            return run_clean(dry_run).await;
+        }
+    }
+    
+    Ok(())
+}
+
+/// Update unified SOFA status manifest with gather source information
+async fn update_sofa_status(
+    resources_dir: &Path,
+    source_name: &str,
+    file_path: &Path,
+) -> Result<()> {
+    // Load existing status or create new
+    tracing::debug!("Loading SOFA status from: {:?}", resources_dir);
+    let mut status = SofaStatus::load_or_create(resources_dir)?;
+    
+    // Calculate current hash
+    let current_hash = calculate_file_hash(file_path)?;
+    
+    // Get previous hash if available
+    let previous_hash = status.pipeline.gather
+        .as_ref()
+        .and_then(|g| g.sources.get(source_name))
+        .map(|s| s.current_hash.clone());
+    
+    // Create source info with change detection
+    let source_info = create_source_info(current_hash, previous_hash);
+    
+    if source_info.changed {
+        tracing::info!("{} data changed since last fetch", source_name.to_uppercase());
+    }
+    
+    // Update the gather status
+    let mut sources = status.pipeline.gather
+        .as_ref()
+        .map(|g| g.sources.clone())
+        .unwrap_or_default();
+    
+    sources.insert(source_name.to_string(), source_info);
+    status.update_gather(sources);
+    
+    // Save updated status
+    tracing::debug!("Saving SOFA status to: {:?}/sofa-status.json", resources_dir);
+    status.save(resources_dir)?;
+    tracing::debug!("Successfully saved SOFA status");
+    
+    Ok(())
+}
