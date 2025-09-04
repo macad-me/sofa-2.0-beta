@@ -291,9 +291,10 @@ jobs:
           fi
           
       - name: Show generated files
-        if: success() && (github.event_name == 'schedule' || contains(github.event.inputs.test_stage, 'build') || github.event.inputs.test_stage == 'all')
+        if: success() && (github.event_name == 'schedule' || contains(github.event.inputs.pipeline_stage, 'build') || github.event.inputs.pipeline_stage == 'all')
         run: |
           echo "📁 Checking generated files..."
+          cd processing
           echo "## 📁 Generated Files" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           
