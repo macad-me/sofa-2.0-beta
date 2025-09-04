@@ -152,30 +152,56 @@ def run_build(version: str) -> StageResult:
         TextColumn("[progress.description]{task.description}"),
         console=console,
     ) as progress:
-        task = progress.add_task(f"Building {version} feeds...", total=len(products))
-        
         build_results = {}
         start_time = datetime.now()
         
-        for product in products:
-            progress.update(task, description=f"Building {product} {version}...")
+        if version == "v1":
+            # Use --legacy flag for v1 to build all products at once (more stable)
+            task = progress.add_task(f"Building all {version} feeds with legacy mode...", total=1)
             
             cmd = [
-                "./bin/sofa-build", product,
+                "./bin/sofa-build", "all",
                 "-i", "data/resources",
-                "-f", f"data/feeds/{version}/{product}_data_feed.json", 
-                "--type", version
+                "-o", f"data/feeds/{version}",
+                "--type", version,
+                "--legacy"
             ]
             
-            result = run_binary_command(cmd, f"build_{version}_{product}", 120)
+            result = run_binary_command(cmd, f"build_{version}_all", 300)
             
-            if result.success:
-                build_results[product] = "✅"
-            else:
-                build_results[product] = "❌"
-                console.print(f"❌ {product} {version} failed: {result.message}")
-            
+            # Check which files were created
+            for product in products:
+                feed_file = Path(f"data/feeds/{version}/{product}_data_feed.json")
+                if feed_file.exists():
+                    build_results[product] = "✅"
+                else:
+                    build_results[product] = "❌"
+                    
             progress.advance(task)
+            
+        else:
+            # Use individual product builds for v2 (current approach)
+            task = progress.add_task(f"Building {version} feeds...", total=len(products))
+            
+            for product in products:
+                progress.update(task, description=f"Building {product} {version}...")
+                
+                cmd = [
+                    "./bin/sofa-build", product,
+                    "-i", "data/resources",
+                    "-f", f"data/feeds/{version}/{product}_data_feed.json", 
+                    "--type", version
+                ]
+                
+                result = run_binary_command(cmd, f"build_{version}_{product}", 120)
+                
+                if result.success:
+                    build_results[product] = "✅"
+                else:
+                    build_results[product] = "❌"
+                    console.print(f"❌ {product} {version} failed: {result.message}")
+                
+                progress.advance(task)
     
     # Display results table
     table = Table(title=f"Build {version} Results")
