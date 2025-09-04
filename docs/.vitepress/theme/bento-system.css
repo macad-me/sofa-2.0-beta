@@ -23,6 +23,9 @@
   width: 100% !important;
   justify-self: center !important;
   box-sizing: border-box;
+  /* Edge browser compatibility */
+  -ms-grid-columns: 1fr;
+  overflow: hidden;
 }
 
 /* Enable custom ordering for bento cards */
@@ -33,12 +36,71 @@
 @media (min-width: 768px) {
   .bento-grid {
     grid-template-columns: repeat(2, 1fr);
+    /* Edge browser compatibility */
+    -ms-grid-columns: 1fr 1.5rem 1fr;
   }
 }
 
 @media (min-width: 1024px) {
   .bento-grid {
     grid-template-columns: repeat(3, 1fr);
+    /* Edge browser compatibility */
+    -ms-grid-columns: 1fr 1.5rem 1fr 1.5rem 1fr;
+  }
+}
+
+/* Additional Edge-specific overflow prevention */
+@supports (-ms-ime-align: auto) {
+  .bento-grid {
+    overflow: hidden !important;
+    max-width: calc(100vw - 2rem) !important;
+    width: calc(100vw - 2rem) !important;
+  }
+  
+  .bento-card {
+    max-width: calc(100vw - 4rem) !important;
+    overflow: hidden !important;
+    min-width: 0 !important;
+  }
+  
+  .dashboard-container {
+    overflow: hidden !important;
+    max-width: 100vw !important;
+  }
+}
+
+/* Edge browser CSS Grid fallback - most aggressive fix */
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+  .bento-grid {
+    display: block !important;
+    max-width: calc(100vw - 1rem) !important;
+    overflow: hidden !important;
+  }
+  
+  .bento-card {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 1.5rem !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  
+  @media (min-width: 768px) {
+    .bento-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      -ms-grid-columns: 1fr 1.5rem 1fr !important;
+      gap: 1.5rem !important;
+      max-width: calc(100vw - 1rem) !important;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .bento-grid {
+      grid-template-columns: 1fr 1fr 1fr !important;
+      -ms-grid-columns: 1fr 1.5rem 1fr 1.5rem 1fr !important;
+    }
   }
 }
 
@@ -77,6 +139,11 @@
   backdrop-filter: blur(10px);
   box-sizing: border-box;
   max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  /* Edge browser specific fixes */
+  -ms-grid-row-align: stretch;
+  width: 100%;
 }
 
 .bento-card-content {
@@ -574,29 +641,51 @@ h3.bento-card-title {
   }
 }
 
-/* Very narrow screens - reduce gap to prevent overflow */
+/* Very narrow screens - reduce gap to prevent overflow (Edge browser compatible) */
 @media (max-width: 480px) {
   .bento-grid {
     @apply gap-4;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
   }
   
   .dashboard-container .bento-grid {
     gap: 1rem !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  
+  .bento-card {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
   }
 }
 
-/* Extra narrow screens - further reduce gap */
+/* Extra narrow screens - further reduce gap (Edge browser compatible) */
 @media (max-width: 360px) {
   .bento-grid {
     @apply gap-3;
+    max-width: calc(100vw - 1rem) !important;
+    overflow: hidden !important;
   }
   
   .dashboard-container .bento-grid {
     gap: 0.75rem !important;
+    max-width: calc(100vw - 1rem) !important;
+    overflow: hidden !important;
+  }
+  
+  .bento-card {
+    max-width: calc(100vw - 2rem) !important;
+    overflow: hidden !important;
   }
   
   .bento-card-content {
     @apply p-3;
+    overflow: hidden !important;
+    word-wrap: break-word !important;
   }
 }
 
