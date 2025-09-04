@@ -4,12 +4,14 @@
   "description": "Apple Security Data Platform",
   "type": "module",
   "scripts": {
-    "dev": "vitepress dev site",
-    "build": "vitepress build site",
-    "preview": "vitepress preview site",
-    "setup": "npm install && chmod +x bin/* && echo '✅ Setup complete!'",
+    "dev": "cd docs && pnpm run dev",
+    "build": "cd docs && pnpm run build", 
+    "preview": "cd docs && pnpm run preview",
+    "setup": "cd docs && pnpm install && cd .. && chmod +x bin/* && chmod +x *.sh && echo '✅ Setup complete!'",
     "test": "node scripts/test-data.js",
-    "update": "gh workflow run update-data.yml"
+    "update": "gh workflow run update-data.yml",
+    "install": "cd docs && pnpm install",
+    "clean": "cd docs && rm -rf node_modules .vitepress/cache && pnpm install"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
