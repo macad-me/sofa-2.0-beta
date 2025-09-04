@@ -277,22 +277,7 @@ jobs:
             cp data/resources/supported_devices.json data/models/
           fi
           
-          # Fix build.toml paths for processing folder
-          echo "🔧 Updating build.toml paths for processing folder..."
-          PROC_DIR=$(pwd)
-          sed "s|directory = \"../../data/resources\"|directory = \"$PROC_DIR/data/resources\"|g" config/build.toml | \
-          sed "s|models_directory = \"../../data/models\"|models_directory = \"$PROC_DIR/data/models\"|g" | \
-          sed "s|directory = \"../../data/feeds\"|directory = \"$PROC_DIR/data/feeds\"|g" > config/build_fixed.toml
-          
-          mv config/build_fixed.toml config/build.toml
-          echo "✅ Fixed build.toml paths"
-          
-          # Ensure .ndjson file exists (required by build.toml)
-          if [ -f "data/resources/apple_security_releases.json" ] && [ ! -f "data/resources/apple_security_releases.ndjson" ]; then
-            echo "🔧 Creating required .ndjson file from .json..."
-            cp data/resources/apple_security_releases.json data/resources/apple_security_releases.ndjson
-            echo "✅ Created apple_security_releases.ndjson"
-          fi
+          echo "✅ build.toml configured with correct relative paths"
 
           export SOFA_BIN_PATH="./bin"
           export PATH="./bin:$HOME/.local/bin:$PATH"

@@ -2,13 +2,13 @@
 
 # Input configuration
 [input]
-directory = "../../data/resources"
-models_directory = "../../data/models"
-required_files = ["apple_security_releases.ndjson"]
+directory = "data/resources"
+models_directory = "data/models"
+required_files = ["apple_security_releases.json"]
 
 # Output configuration  
 [output]
-directory = "../../data/feeds"
+directory = "data/feeds"
 preserve_history = false
 max_history_files = 10
 
