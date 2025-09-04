@@ -112,6 +112,7 @@
         title="Quick Board"
         platform="quickboard"
         :icon="ShieldIcon"
+        :style="{ '--bento-order': bentoOrder.indexOf('quick-board') }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Beta</span>
@@ -157,6 +158,7 @@
         title="macOS"
         platform="macos"
         :icon="MonitorIcon"
+        :style="{ '--bento-order': bentoOrder.indexOf('macos') }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">Latest</span>
