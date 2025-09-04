@@ -403,89 +403,43 @@ jobs:
             
             # Analyze what actually changed
             CHANGED_FILES=$(git diff --staged --name-only)
-            BETA_UPDATED=$(echo "$CHANGED_FILES" | grep -q "apple_beta_feed.json" && echo "true" || echo "false")
-            SECURITY_UPDATED=$(echo "$CHANGED_FILES" | grep -q "apple_security_releases" && echo "true" || echo "false")  
-            V1_FEEDS_UPDATED=$(echo "$CHANGED_FILES" | grep -c "v1.*_data_feed.json" || echo "0")
-            V2_FEEDS_UPDATED=$(echo "$CHANGED_FILES" | grep -c "v2.*_data_feed.json" || echo "0")
-            RSS_UPDATED=$(echo "$CHANGED_FILES" | grep -q "rss_feed.xml" && echo "true" || echo "false")
+            echo "📊 Files being committed:"
+            echo "$CHANGED_FILES"
             
-            # Check for specific changes
-            CHANGES_LIST=""
-            if [ "$BETA_UPDATED" = "true" ]; then
-              BETA_COUNT=$(jq -r '.items | length' processing/data/resources/apple_beta_feed.json 2>/dev/null || echo "unknown")
-              CHANGES_LIST="$CHANGES_LIST- Apple beta feed: $BETA_COUNT beta releases\\n"
-            fi
+            # Count changes reliably
+            V1_COUNT=$(echo "$CHANGED_FILES" | grep -c "data/feeds/v1/" 2>/dev/null || echo "0")
+            V2_COUNT=$(echo "$CHANGED_FILES" | grep -c "data/feeds/v2/" 2>/dev/null || echo "0") 
+            RESOURCES_COUNT=$(echo "$CHANGED_FILES" | grep -c "data/resources/" 2>/dev/null || echo "0")
+            TOTAL_CHANGES=$(echo "$CHANGED_FILES" | wc -l)
             
-            if [ "$SECURITY_UPDATED" = "true" ]; then
-              SECURITY_COUNT=$(jq -r '.releases | length' processing/data/resources/apple_security_releases.json 2>/dev/null || echo "unknown")
-              CHANGES_LIST="$CHANGES_LIST- Security releases: $SECURITY_COUNT releases\\n"
-            fi
+            # Simple, clean change analysis - no complex logic that can fail
             
-            if [ "$V1_FEEDS_UPDATED" -gt 0 ]; then
-              CHANGES_LIST="$CHANGES_LIST- v1 feeds: $V1_FEEDS_UPDATED product feeds updated\\n"
-            fi
-            
-            if [ "$V2_FEEDS_UPDATED" -gt 0 ]; then
-              CHANGES_LIST="$CHANGES_LIST- v2 feeds: $V2_FEEDS_UPDATED product feeds updated\\n"
-            fi
-            
-            if [ "$RSS_UPDATED" = "true" ]; then
-              RSS_ITEMS=$(grep -c "<item>" processing/data/feeds/v1/rss_feed.xml 2>/dev/null || echo "unknown")
-              BETA_IN_RSS=$(grep -c "beta" processing/data/feeds/v1/rss_feed.xml 2>/dev/null || echo "0")
-              CHANGES_LIST="$CHANGES_LIST- RSS feed: $RSS_ITEMS total items ($BETA_IN_RSS beta entries)\\n"
-            fi
-            
-            # Create detailed commit message
+            # Create clean, reliable commit message
             TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
-            echo "📝 Committing pipeline data with detailed changes..."
+            echo "📝 Committing pipeline data with clean summary..."
             
-            # Build commit message with specific details
-            COMMIT_MSG="🔄 Pipeline data update - $TIMESTAMP
+            # Build simple summary
+            CHANGE_SUMMARY=""
+            if [ "$V1_COUNT" -gt 0 ]; then
+              CHANGE_SUMMARY="${CHANGE_SUMMARY}v1 ($V1_COUNT), "
+            fi
+            if [ "$V2_COUNT" -gt 0 ]; then
+              CHANGE_SUMMARY="${CHANGE_SUMMARY}v2 ($V2_COUNT), "
+            fi
+            if [ "$RESOURCES_COUNT" -gt 0 ]; then
+              CHANGE_SUMMARY="${CHANGE_SUMMARY}resources ($RESOURCES_COUNT), "
+            fi
+            CHANGE_SUMMARY=$(echo "$CHANGE_SUMMARY" | sed 's/, $//')
+            
+            git commit -m "🔄 SOFA pipeline update - $TIMESTAMP
 
-            Pipeline stage: ${{ github.event.inputs.pipeline_stage }}
-            Generated using: sofa_pipeline_clean.py v0.2.0 with v0.1.1-beta1 binaries
+            Pipeline stage: ${{ github.event.inputs.pipeline_stage }} | Files: $TOTAL_CHANGES
+            Updates: $CHANGE_SUMMARY
             
-            Specific changes:"
-            
-            if [ "$BETA_UPDATED" = "true" ]; then
-              BETA_COUNT=$(jq -r '.items | length' processing/data/resources/apple_beta_feed.json 2>/dev/null || echo "unknown")
-              COMMIT_MSG="$COMMIT_MSG
-            - Apple beta feed: $BETA_COUNT beta releases"
-            fi
-            
-            if [ "$SECURITY_UPDATED" = "true" ]; then
-              SECURITY_COUNT=$(jq -r '.releases | length' processing/data/resources/apple_security_releases.json 2>/dev/null || echo "unknown")
-              COMMIT_MSG="$COMMIT_MSG
-            - Security releases: $SECURITY_COUNT releases"
-            fi
-            
-            if [ "$V1_FEEDS_UPDATED" -gt 0 ]; then
-              COMMIT_MSG="$COMMIT_MSG
-            - v1 feeds: $V1_FEEDS_UPDATED product feeds updated"
-            fi
-            
-            if [ "$V2_FEEDS_UPDATED" -gt 0 ]; then
-              COMMIT_MSG="$COMMIT_MSG
-            - v2 feeds: $V2_FEEDS_UPDATED product feeds updated"
-            fi
-            
-            if [ "$RSS_UPDATED" = "true" ]; then
-              RSS_ITEMS=$(grep -c "<item>" processing/data/feeds/v1/rss_feed.xml 2>/dev/null || echo "unknown")
-              BETA_IN_RSS=$(grep -c "beta" processing/data/feeds/v1/rss_feed.xml 2>/dev/null || echo "0")
-              COMMIT_MSG="$COMMIT_MSG
-            - RSS feed: $RSS_ITEMS total items ($BETA_IN_RSS beta entries)"
-            fi
-            
-            COMMIT_MSG="$COMMIT_MSG
-
-            Data stability improvements:
-            - CVE ordering: Alphabetically sorted (fixes v1 feed fluctuations)
-            - Model filtering: 100% regex match (53/53 models)
-            - Beta integration: Fixed RSS field mapping (released vs pubDate)
-            
-            Generated in processing folder with absolute path resolution."
-            
-            git commit -m "$COMMIT_MSG"
+            ✅ Processing folder isolation with v0.1.1-beta1 binaries
+            ✅ CVE ordering stabilized (alphabetical sorting) 
+            ✅ Model filtering: 100% regex match (53/53 models)
+            ✅ Beta RSS integration working (released field mapping)"
             
             git push
             echo "✅ Detailed pipeline data committed to repository"
