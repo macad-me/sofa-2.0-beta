@@ -1,6 +1,5 @@
 {
-  "UpdateHash": "0d11afa05e33ee241bd5885d4867b8e7a3d8d3bb9ef0ab6903706f18b00394d9",
-  "Version": "1.1",
+  "UpdateHash": "84b43ffddbc0eeb8470fecc1e87eb3492b7636d048024cdc0723219d8babedc6",
   "OSVersions": [
     {
       "OSVersion": "Sequoia 15",
@@ -9,14 +8,10 @@
         "ProductName": "macOS",
         "ProductVersion": "15.6.1",
         "Build": "24G90",
-        "AllBuilds": [
-          "24G90"
-        ],
         "ReleaseDate": "2025-08-20T00:00:00Z",
-        "ExpirationDate": "2025-12-02",
+        "ExpirationDate": "2025-12-03",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/124927",
-        "SecurityInfoContext": "macOS has been updated. The latest released version is now 15.6.1, with the following release date: macOS 15.6.1 : Aug 20, 2025",
         "SupportedDevices": [
           "J132AP",
           "J137AP",
@@ -93,20 +88,7 @@
           "CVE-2025-43300"
         ],
         "UniqueCVEsCount": 1,
-        "DaysSincePreviousRelease": 22,
-        "update_summary": {
-          "priority": "emergency",
-          "summary": "EMERGENCY: 1 actively exploited, 1 total CVEs",
-          "recommendation": "Deploy immediately - active exploitation confirmed",
-          "stats": {
-            "exploited": 1,
-            "critical": 0,
-            "high": 1,
-            "medium": 0,
-            "remote": 0,
-            "total": 1
-          }
-        }
+        "DaysSincePreviousRelease": 22
       },
       "SecurityReleases": [
         {
@@ -114,14 +96,10 @@
           "ProductName": "macOS",
           "ProductVersion": "15.6.1",
           "Build": "24G90",
-          "AllBuilds": [
-            "24G90"
-          ],
           "ReleaseDate": "2025-08-20T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/124927",
-          "SecurityInfoContext": "macOS has been updated. The latest released version is now 15.6.1, with the following release date: macOS 15.6.1 : Aug 20, 2025",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -198,34 +176,17 @@
             "CVE-2025-43300"
           ],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 22,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 1 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 22
         },
         {
           "UpdateName": "macOS Sequoia 15.6",
           "ProductName": "macOS",
           "ProductVersion": "15.6",
           "Build": "24G84",
-          "AllBuilds": [
-            "24G84"
-          ],
           "ReleaseDate": "2025-07-29T00:00:00Z",
           "ExpirationDate": "2025-11-18",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/124149",
-          "SecurityInfoContext": "macOS 15.6 was released on Jul 29, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -389,34 +350,17 @@
             "CVE-2025-6558"
           ],
           "UniqueCVEsCount": 88,
-          "DaysSincePreviousRelease": 78,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 88 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 88
-            }
-          }
+          "DaysSincePreviousRelease": 78
         },
         {
           "UpdateName": "macOS Sequoia 15.5",
           "ProductName": "macOS",
           "ProductVersion": "15.5",
           "Build": "24F74",
-          "AllBuilds": [
-            "24F74"
-          ],
           "ReleaseDate": "2025-05-12T00:00:00Z",
           "ExpirationDate": "2025-10-27",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122716",
-          "SecurityInfoContext": "macOS 15.5 was released on May 12, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -541,34 +485,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 51,
-          "DaysSincePreviousRelease": 26,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "51 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 51
-            }
-          }
+          "DaysSincePreviousRelease": 26
         },
         {
           "UpdateName": "macOS Sequoia 15.4.1",
           "ProductName": "macOS",
           "ProductVersion": "15.4.1",
           "Build": "24G90",
-          "AllBuilds": [
-            "24G90"
-          ],
           "ReleaseDate": "2025-04-16T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122400",
-          "SecurityInfoContext": "macOS 15.4.1 was released on Apr 16, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -647,34 +574,17 @@
             "CVE-2025-31200"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 16,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 2 actively exploited, 2 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 16
         },
         {
           "UpdateName": "macOS Sequoia 15.4",
           "ProductName": "macOS",
           "ProductVersion": "15.4",
           "Build": "24G90",
-          "AllBuilds": [
-            "24G90"
-          ],
           "ReleaseDate": "2025-03-31T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122373",
-          "SecurityInfoContext": "macOS 15.4 was released on Mar 31, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -903,34 +813,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 155,
-          "DaysSincePreviousRelease": 20,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "155 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 155
-            }
-          }
+          "DaysSincePreviousRelease": 20
         },
         {
           "UpdateName": "macOS Sequoia 15.3.2",
           "ProductName": "macOS",
           "ProductVersion": "15.3.2",
           "Build": "24G90",
-          "AllBuilds": [
-            "24G90"
-          ],
           "ReleaseDate": "2025-03-11T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122283",
-          "SecurityInfoContext": "macOS 15.3.2 was released on Mar 11, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -1007,34 +900,17 @@
             "CVE-2025-24201"
           ],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 29,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 1 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 29
         },
         {
           "UpdateName": "macOS Sequoia 15.3.1",
           "ProductName": "macOS",
           "ProductVersion": "15.3.1",
           "Build": "24G90",
-          "AllBuilds": [
-            "24G90"
-          ],
           "ReleaseDate": "2025-02-10T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122900",
-          "SecurityInfoContext": "macOS 15.3.1 was released on Feb 10, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -1111,34 +987,17 @@
             "CVE-2025-43200"
           ],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 14,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 1 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 14
         },
         {
           "UpdateName": "macOS Sequoia 15.3",
           "ProductName": "macOS",
           "ProductVersion": "15.3",
           "Build": "24G90",
-          "AllBuilds": [
-            "24G90"
-          ],
           "ReleaseDate": "2025-01-27T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122068",
-          "SecurityInfoContext": "macOS 15.3 was released on Jan 27, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -1286,34 +1145,17 @@
             "CVE-2025-24085"
           ],
           "UniqueCVEsCount": 72,
-          "DaysSincePreviousRelease": 47,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 72 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 72
-            }
-          }
+          "DaysSincePreviousRelease": 47
         },
         {
           "UpdateName": "macOS Sequoia 15.2",
           "ProductName": "macOS",
           "ProductVersion": "15.2",
           "Build": "24G90",
-          "AllBuilds": [
-            "24G90"
-          ],
           "ReleaseDate": "2024-12-11T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121839",
-          "SecurityInfoContext": "macOS 15.2 was released on Dec 11, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -1470,34 +1312,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 83,
-          "DaysSincePreviousRelease": 22,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "83 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 83
-            }
-          }
+          "DaysSincePreviousRelease": 22
         },
         {
           "UpdateName": "macOS Sequoia 15.1.1",
           "ProductName": "macOS",
           "ProductVersion": "15.1.1",
           "Build": "24G90",
-          "AllBuilds": [
-            "24G90"
-          ],
           "ReleaseDate": "2024-11-19T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121753",
-          "SecurityInfoContext": "macOS 15.1.1 was released on Nov 19, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -1576,34 +1401,17 @@
             "CVE-2024-44308"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 22,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 2 actively exploited, 2 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 22
         },
         {
           "UpdateName": "macOS Sequoia 15.1",
           "ProductName": "macOS",
           "ProductVersion": "15.1",
           "Build": "24G90",
-          "AllBuilds": [
-            "24G90"
-          ],
           "ReleaseDate": "2024-10-28T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121564",
-          "SecurityInfoContext": "macOS 15.1 was released on Oct 28, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -1757,34 +1565,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 80,
-          "DaysSincePreviousRelease": 25,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "80 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 80
-            }
-          }
+          "DaysSincePreviousRelease": 25
         },
         {
           "UpdateName": "macOS Sequoia 15.0.1",
           "ProductName": "macOS",
           "ProductVersion": "15.0.1",
           "Build": "24G90",
-          "AllBuilds": [
-            "24G90"
-          ],
           "ReleaseDate": "2024-10-03T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/100100",
-          "SecurityInfoContext": "macOS 15.0.1 was released on Oct 03, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -1857,34 +1648,17 @@
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 17,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "No known security vulnerabilities",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 17
         },
         {
           "UpdateName": "macOS Sequoia 15",
           "ProductName": "macOS",
           "ProductVersion": "15.0",
           "Build": "24G90",
-          "AllBuilds": [
-            "24G90"
-          ],
           "ReleaseDate": "2024-09-16T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121238",
-          "SecurityInfoContext": "macOS 15.0 was released on Sep 16, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -2061,20 +1835,7 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 103,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "103 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 103
-            }
-          }
+          "DaysSincePreviousRelease": 0
         }
       ],
       "SupportedModels": [
@@ -2186,14 +1947,10 @@
         "ProductName": "macOS",
         "ProductVersion": "14.7.8",
         "Build": "23H730",
-        "AllBuilds": [
-          "23H730"
-        ],
         "ReleaseDate": "2025-08-20T00:00:00Z",
-        "ExpirationDate": "2025-12-02",
+        "ExpirationDate": "2025-12-03",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/124928",
-        "SecurityInfoContext": "macOS has been updated. The latest released version is now 14.7.8, with the following release date: macOS 14.7.8 : Aug 20, 2025",
         "SupportedDevices": [
           "J132AP",
           "J137AP",
@@ -2259,20 +2016,7 @@
           "CVE-2025-43300"
         ],
         "UniqueCVEsCount": 1,
-        "DaysSincePreviousRelease": 22,
-        "update_summary": {
-          "priority": "emergency",
-          "summary": "EMERGENCY: 1 actively exploited, 1 total CVEs",
-          "recommendation": "Deploy immediately - active exploitation confirmed",
-          "stats": {
-            "exploited": 1,
-            "critical": 0,
-            "high": 1,
-            "medium": 0,
-            "remote": 0,
-            "total": 1
-          }
-        }
+        "DaysSincePreviousRelease": 22
       },
       "SecurityReleases": [
         {
@@ -2280,14 +2024,10 @@
           "ProductName": "macOS",
           "ProductVersion": "14.7.8",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2025-08-20T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/124928",
-          "SecurityInfoContext": "macOS has been updated. The latest released version is now 14.7.8, with the following release date: macOS 14.7.8 : Aug 20, 2025",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -2353,34 +2093,17 @@
             "CVE-2025-43300"
           ],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 22,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 1 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 22
         },
         {
           "UpdateName": "macOS Sonoma 14.7.7",
           "ProductName": "macOS",
           "ProductVersion": "14.7.7",
           "Build": "23H723",
-          "AllBuilds": [
-            "23H723"
-          ],
           "ReleaseDate": "2025-07-29T00:00:00Z",
           "ExpirationDate": "2025-11-18",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/124150",
-          "SecurityInfoContext": "macOS 14.7.7 was released on Jul 29, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -2493,34 +2216,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 50,
-          "DaysSincePreviousRelease": 78,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "50 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 50
-            }
-          }
+          "DaysSincePreviousRelease": 78
         },
         {
           "UpdateName": "macOS Sonoma 14.7.6",
           "ProductName": "macOS",
           "ProductVersion": "14.7.6",
           "Build": "23H626",
-          "AllBuilds": [
-            "23H626"
-          ],
           "ReleaseDate": "2025-05-12T00:00:00Z",
           "ExpirationDate": "2025-10-27",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122717",
-          "SecurityInfoContext": "macOS 14.7.6 was released on May 12, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -2616,34 +2322,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 33,
-          "DaysSincePreviousRelease": 42,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "33 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 33
-            }
-          }
+          "DaysSincePreviousRelease": 42
         },
         {
           "UpdateName": "macOS Sonoma 14.7.5",
           "ProductName": "macOS",
           "ProductVersion": "14.7.5",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2025-03-31T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122374",
-          "SecurityInfoContext": "macOS 14.7.5 was released on Mar 31, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -2818,34 +2507,17 @@
             "CVE-2025-24085"
           ],
           "UniqueCVEsCount": 110,
-          "DaysSincePreviousRelease": 49,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 110 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 110
-            }
-          }
+          "DaysSincePreviousRelease": 49
         },
         {
           "UpdateName": "macOS Sonoma 14.7.4",
           "ProductName": "macOS",
           "ProductVersion": "14.7.4",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2025-02-10T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122901",
-          "SecurityInfoContext": "macOS 14.7.4 was released on Feb 10, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -2911,34 +2583,17 @@
             "CVE-2025-43200"
           ],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 14,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 1 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 14
         },
         {
           "UpdateName": "macOS Sonoma 14.7.3",
           "ProductName": "macOS",
           "ProductVersion": "14.7.3",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2025-01-27T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122069",
-          "SecurityInfoContext": "macOS 14.7.3 was released on Jan 27, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -3046,34 +2701,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 45,
-          "DaysSincePreviousRelease": 47,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "45 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 45
-            }
-          }
+          "DaysSincePreviousRelease": 47
         },
         {
           "UpdateName": "macOS Sonoma 14.7.2",
           "ProductName": "macOS",
           "ProductVersion": "14.7.2",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2024-12-11T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121840",
-          "SecurityInfoContext": "macOS 14.7.2 was released on Dec 11, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -3176,34 +2814,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 40,
-          "DaysSincePreviousRelease": 44,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "40 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 40
-            }
-          }
+          "DaysSincePreviousRelease": 44
         },
         {
           "UpdateName": "macOS Sonoma 14.7.1",
           "ProductName": "macOS",
           "ProductVersion": "14.7.1",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2024-10-28T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121570",
-          "SecurityInfoContext": "macOS 14.7.1 was released on Oct 28, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -3318,34 +2939,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 52,
-          "DaysSincePreviousRelease": 42,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "52 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 52
-            }
-          }
+          "DaysSincePreviousRelease": 42
         },
         {
           "UpdateName": "macOS Sonoma 14.7",
           "ProductName": "macOS",
           "ProductVersion": "14.7",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2024-09-16T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121247",
-          "SecurityInfoContext": "macOS 14.7 was released on Sep 16, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -3447,34 +3051,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 39,
-          "DaysSincePreviousRelease": 40,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "39 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 39
-            }
-          }
+          "DaysSincePreviousRelease": 40
         },
         {
           "UpdateName": "macOS Sonoma 14.6.1",
           "ProductName": "macOS",
           "ProductVersion": "14.6.1",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2024-08-07T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/100100",
-          "SecurityInfoContext": "macOS 14.6.1 was released on Aug 07, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -3536,34 +3123,17 @@
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 9,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "No known security vulnerabilities",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 9
         },
         {
           "UpdateName": "macOS Sonoma 14.6",
           "ProductName": "macOS",
           "ProductVersion": "14.6",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2024-07-29T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120911",
-          "SecurityInfoContext": "macOS 14.6 was released on Jul 29, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -3706,34 +3276,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 80,
-          "DaysSincePreviousRelease": 77,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "80 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 80
-            }
-          }
+          "DaysSincePreviousRelease": 77
         },
         {
           "UpdateName": "macOS Sonoma 14.5",
           "ProductName": "macOS",
           "ProductVersion": "14.5",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2024-05-13T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120903",
-          "SecurityInfoContext": "macOS 14.5 was released on May 13, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -3847,34 +3400,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 51,
-          "DaysSincePreviousRelease": 49,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "51 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 51
-            }
-          }
+          "DaysSincePreviousRelease": 49
         },
         {
           "UpdateName": "macOS Sonoma 14.4.1",
           "ProductName": "macOS",
           "ProductVersion": "14.4.1",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2024-03-25T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120889",
-          "SecurityInfoContext": "macOS 14.4.1 was released on Mar 25, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -3938,34 +3474,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 18,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "1 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 18
         },
         {
           "UpdateName": "macOS Sonoma 14.4",
           "ProductName": "macOS",
           "ProductVersion": "14.4",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2024-03-07T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120895",
-          "SecurityInfoContext": "macOS 14.4 was released on Mar 07, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -4110,34 +3629,17 @@
             "CVE-2024-23225"
           ],
           "UniqueCVEsCount": 79,
-          "DaysSincePreviousRelease": 28,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 2 actively exploited, 79 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 79
-            }
-          }
+          "DaysSincePreviousRelease": 28
         },
         {
           "UpdateName": "macOS Sonoma 14.3.1",
           "ProductName": "macOS",
           "ProductVersion": "14.3.1",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2024-02-08T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/100100",
-          "SecurityInfoContext": "macOS 14.3.1 was released on Feb 08, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -4199,34 +3701,17 @@
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 17,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "No known security vulnerabilities",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 17
         },
         {
           "UpdateName": "macOS Sonoma 14.3",
           "ProductName": "macOS",
           "ProductVersion": "14.3",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2024-01-22T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120309",
-          "SecurityInfoContext": "macOS 14.3 was released on Jan 22, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -4311,34 +3796,17 @@
             "CVE-2024-23222"
           ],
           "UniqueCVEsCount": 20,
-          "DaysSincePreviousRelease": 34,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 20 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 20
-            }
-          }
+          "DaysSincePreviousRelease": 34
         },
         {
           "UpdateName": "macOS Sonoma 14.2.1",
           "ProductName": "macOS",
           "ProductVersion": "14.2.1",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2023-12-19T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT214048",
-          "SecurityInfoContext": "macOS 14.2.1 was released on Dec 19, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -4402,34 +3870,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 8,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "1 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 8
         },
         {
           "UpdateName": "macOS Sonoma 14.2",
           "ProductName": "macOS",
           "ProductVersion": "14.2",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2023-12-11T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT214036",
-          "SecurityInfoContext": "macOS 14.2 was released on Dec 11, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -4551,34 +4002,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 59,
-          "DaysSincePreviousRelease": 11,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "59 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 59
-            }
-          }
+          "DaysSincePreviousRelease": 11
         },
         {
           "UpdateName": "macOS Sonoma 14.1.2",
           "ProductName": "macOS",
           "ProductVersion": "14.1.2",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2023-11-30T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT214032",
-          "SecurityInfoContext": "macOS 14.1.2 was released on Nov 30, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -4646,34 +4080,17 @@
             "CVE-2023-42916"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 23,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 2 actively exploited, 2 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 23
         },
         {
           "UpdateName": "macOS Sonoma 14.1.1",
           "ProductName": "macOS",
           "ProductVersion": "14.1.1",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2023-11-07T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121012",
-          "SecurityInfoContext": "macOS 14.1.1 was released on Nov 07, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -4735,34 +4152,17 @@
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 13,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "No known security vulnerabilities",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 13
         },
         {
           "UpdateName": "macOS Sonoma 14.1",
           "ProductName": "macOS",
           "ProductVersion": "14.1",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2023-10-25T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213984",
-          "SecurityInfoContext": "macOS 14.1 was released on Oct 25, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -4895,34 +4295,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 70,
-          "DaysSincePreviousRelease": 29,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "70 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 70
-            }
-          }
+          "DaysSincePreviousRelease": 29
         },
         {
           "UpdateName": "macOS Sonoma 14",
           "ProductName": "macOS",
           "ProductVersion": "14.0",
           "Build": "23H730",
-          "AllBuilds": [
-            "23H730"
-          ],
           "ReleaseDate": "2023-09-26T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213940",
-          "SecurityInfoContext": "macOS 14.0 was released on Sep 26, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -5095,20 +4478,7 @@
             "CVE-2023-41993"
           ],
           "UniqueCVEsCount": 108,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 108 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 108
-            }
-          }
+          "DaysSincePreviousRelease": 0
         }
       ],
       "SupportedModels": [
@@ -5209,14 +4579,10 @@
         "ProductName": "macOS",
         "ProductVersion": "13.7.8",
         "Build": "22H730",
-        "AllBuilds": [
-          "22H730"
-        ],
         "ReleaseDate": "2025-08-20T00:00:00Z",
-        "ExpirationDate": "2025-12-02",
+        "ExpirationDate": "2025-12-03",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/124929",
-        "SecurityInfoContext": "macOS has been updated. The latest released version is now 13.7.8, with the following release date: macOS 13.7.8 : Aug 20, 2025",
         "SupportedDevices": [
           "J132AP",
           "J137AP",
@@ -5281,20 +4647,7 @@
           "CVE-2025-43300"
         ],
         "UniqueCVEsCount": 1,
-        "DaysSincePreviousRelease": 22,
-        "update_summary": {
-          "priority": "emergency",
-          "summary": "EMERGENCY: 1 actively exploited, 1 total CVEs",
-          "recommendation": "Deploy immediately - active exploitation confirmed",
-          "stats": {
-            "exploited": 1,
-            "critical": 0,
-            "high": 1,
-            "medium": 0,
-            "remote": 0,
-            "total": 1
-          }
-        }
+        "DaysSincePreviousRelease": 22
       },
       "SecurityReleases": [
         {
@@ -5302,14 +4655,10 @@
           "ProductName": "macOS",
           "ProductVersion": "13.7.8",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2025-08-20T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/124929",
-          "SecurityInfoContext": "macOS has been updated. The latest released version is now 13.7.8, with the following release date: macOS 13.7.8 : Aug 20, 2025",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -5374,34 +4723,17 @@
             "CVE-2025-43300"
           ],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 22,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 1 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 22
         },
         {
           "UpdateName": "macOS Ventura 13.7.7",
           "ProductName": "macOS",
           "ProductVersion": "13.7.7",
           "Build": "22H722",
-          "AllBuilds": [
-            "22H722"
-          ],
           "ReleaseDate": "2025-07-29T00:00:00Z",
           "ExpirationDate": "2025-11-18",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/124151",
-          "SecurityInfoContext": "macOS 13.7.7 was released on Jul 29, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -5504,34 +4836,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 41,
-          "DaysSincePreviousRelease": 78,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "41 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 41
-            }
-          }
+          "DaysSincePreviousRelease": 78
         },
         {
           "UpdateName": "macOS Ventura 13.7.6",
           "ProductName": "macOS",
           "ProductVersion": "13.7.6",
           "Build": "22H625",
-          "AllBuilds": [
-            "22H625"
-          ],
           "ReleaseDate": "2025-05-12T00:00:00Z",
           "ExpirationDate": "2025-10-27",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122718",
-          "SecurityInfoContext": "macOS 13.7.6 was released on May 12, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -5623,34 +4938,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 30,
-          "DaysSincePreviousRelease": 42,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "30 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 30
-            }
-          }
+          "DaysSincePreviousRelease": 42
         },
         {
           "UpdateName": "macOS Ventura 13.7.5",
           "ProductName": "macOS",
           "ProductVersion": "13.7.5",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2025-03-31T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122375",
-          "SecurityInfoContext": "macOS 13.7.5 was released on Mar 31, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -5817,34 +5115,17 @@
             "CVE-2025-24085"
           ],
           "UniqueCVEsCount": 103,
-          "DaysSincePreviousRelease": 49,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 103 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 103
-            }
-          }
+          "DaysSincePreviousRelease": 49
         },
         {
           "UpdateName": "macOS Ventura 13.7.4",
           "ProductName": "macOS",
           "ProductVersion": "13.7.4",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2025-02-10T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122902",
-          "SecurityInfoContext": "macOS 13.7.4 was released on Feb 10, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -5909,34 +5190,17 @@
             "CVE-2025-43200"
           ],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 14,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 1 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 14
         },
         {
           "UpdateName": "macOS Ventura 13.7.3",
           "ProductName": "macOS",
           "ProductVersion": "13.7.3",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2025-01-27T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122070",
-          "SecurityInfoContext": "macOS 13.7.3 was released on Jan 27, 2025. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -6033,34 +5297,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 35,
-          "DaysSincePreviousRelease": 47,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "35 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 35
-            }
-          }
+          "DaysSincePreviousRelease": 47
         },
         {
           "UpdateName": "macOS Ventura 13.7.2",
           "ProductName": "macOS",
           "ProductVersion": "13.7.2",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2024-12-11T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121842",
-          "SecurityInfoContext": "macOS 13.7.2 was released on Dec 11, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -6155,34 +5402,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 33,
-          "DaysSincePreviousRelease": 44,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "33 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 33
-            }
-          }
+          "DaysSincePreviousRelease": 44
         },
         {
           "UpdateName": "macOS Ventura 13.7.1",
           "ProductName": "macOS",
           "ProductVersion": "13.7.1",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2024-10-28T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121568",
-          "SecurityInfoContext": "macOS 13.7.1 was released on Oct 28, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -6293,34 +5523,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 49,
-          "DaysSincePreviousRelease": 42,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "49 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 49
-            }
-          }
+          "DaysSincePreviousRelease": 42
         },
         {
           "UpdateName": "macOS Ventura 13.7",
           "ProductName": "macOS",
           "ProductVersion": "13.7",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2024-09-16T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121234",
-          "SecurityInfoContext": "macOS 13.7 was released on Sep 16, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -6413,34 +5626,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 31,
-          "DaysSincePreviousRelease": 40,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "31 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 31
-            }
-          }
+          "DaysSincePreviousRelease": 40
         },
         {
           "UpdateName": "macOS Ventura 13.6.9",
           "ProductName": "macOS",
           "ProductVersion": "13.6.9",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2024-08-07T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/100100",
-          "SecurityInfoContext": "macOS 13.6.9 was released on Aug 07, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -6501,34 +5697,17 @@
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 9,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "No known security vulnerabilities",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 9
         },
         {
           "UpdateName": "macOS Ventura 13.6.8",
           "ProductName": "macOS",
           "ProductVersion": "13.6.8",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2024-07-29T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120912",
-          "SecurityInfoContext": "macOS 13.6.8 was released on Jul 29, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -6636,34 +5815,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 46,
-          "DaysSincePreviousRelease": 77,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "46 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 46
-            }
-          }
+          "DaysSincePreviousRelease": 77
         },
         {
           "UpdateName": "macOS Ventura 13.6.7",
           "ProductName": "macOS",
           "ProductVersion": "13.6.7",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2024-05-13T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120900",
-          "SecurityInfoContext": "macOS 13.6.7 was released on May 13, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -6749,34 +5911,17 @@
             "CVE-2024-23296"
           ],
           "UniqueCVEsCount": 22,
-          "DaysSincePreviousRelease": 49,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 22 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 22
-            }
-          }
+          "DaysSincePreviousRelease": 49
         },
         {
           "UpdateName": "macOS Ventura 13.6.6",
           "ProductName": "macOS",
           "ProductVersion": "13.6.6",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2024-03-25T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120891",
-          "SecurityInfoContext": "macOS 13.6.6 was released on Mar 25, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -6839,34 +5984,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 18,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "1 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 18
         },
         {
           "UpdateName": "macOS Ventura 13.6.5",
           "ProductName": "macOS",
           "ProductVersion": "13.6.5",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2024-03-07T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120886",
-          "SecurityInfoContext": "macOS 13.6.5 was released on Mar 07, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -6962,34 +6090,17 @@
             "CVE-2024-23225"
           ],
           "UniqueCVEsCount": 32,
-          "DaysSincePreviousRelease": 45,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 32 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 32
-            }
-          }
+          "DaysSincePreviousRelease": 45
         },
         {
           "UpdateName": "macOS Ventura 13.6.4",
           "ProductName": "macOS",
           "ProductVersion": "13.6.4",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2024-01-22T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120307",
-          "SecurityInfoContext": "macOS 13.6.4 was released on Jan 22, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -7066,34 +6177,17 @@
             "CVE-2024-23222"
           ],
           "UniqueCVEsCount": 13,
-          "DaysSincePreviousRelease": 42,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 13 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 13
-            }
-          }
+          "DaysSincePreviousRelease": 42
         },
         {
           "UpdateName": "macOS Ventura 13.6.3",
           "ProductName": "macOS",
           "ProductVersion": "13.6.3",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2023-12-11T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT214038",
-          "SecurityInfoContext": "macOS 13.6.3 was released on Dec 11, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -7186,34 +6280,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 31,
-          "DaysSincePreviousRelease": 34,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "31 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 31
-            }
-          }
+          "DaysSincePreviousRelease": 34
         },
         {
           "UpdateName": "macOS Ventura 13.6.2",
           "ProductName": "macOS",
           "ProductVersion": "13.6.2",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2023-11-07T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121012",
-          "SecurityInfoContext": "macOS 13.6.2 was released on Nov 07, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -7274,34 +6351,17 @@
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 13,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "No known security vulnerabilities",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 13
         },
         {
           "UpdateName": "macOS Ventura 13.6.1",
           "ProductName": "macOS",
           "ProductVersion": "13.6.1",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2023-10-25T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213985",
-          "SecurityInfoContext": "macOS 13.6.1 was released on Oct 25, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -7391,34 +6451,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 28,
-          "DaysSincePreviousRelease": 34,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "28 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 28
-            }
-          }
+          "DaysSincePreviousRelease": 34
         },
         {
           "UpdateName": "macOS Ventura 13.6",
           "ProductName": "macOS",
           "ProductVersion": "13.6",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2023-09-21T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213931",
-          "SecurityInfoContext": "macOS 13.6 was released on Sep 21, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -7506,34 +6549,17 @@
             "CVE-2023-41991"
           ],
           "UniqueCVEsCount": 23,
-          "DaysSincePreviousRelease": 14,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 2 actively exploited, 23 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 23
-            }
-          }
+          "DaysSincePreviousRelease": 14
         },
         {
           "UpdateName": "macOS Ventura 13.5.2",
           "ProductName": "macOS",
           "ProductVersion": "13.5.2",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2023-09-07T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213906",
-          "SecurityInfoContext": "macOS 13.5.2 was released on Sep 07, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -7598,34 +6624,17 @@
             "CVE-2023-41064"
           ],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 21,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 1 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 21
         },
         {
           "UpdateName": "macOS Ventura 13.5.1",
           "ProductName": "macOS",
           "ProductVersion": "13.5.1",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2023-08-17T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121012",
-          "SecurityInfoContext": "macOS 13.5.1 was released on Aug 17, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -7686,34 +6695,17 @@
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 24,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "No known security vulnerabilities",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 24
         },
         {
           "UpdateName": "macOS Ventura 13.5",
           "ProductName": "macOS",
           "ProductVersion": "13.5",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2023-07-24T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213843",
-          "SecurityInfoContext": "macOS 13.5 was released on Jul 24, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -7855,34 +6847,17 @@
             "CVE-2023-37450"
           ],
           "UniqueCVEsCount": 77,
-          "DaysSincePreviousRelease": 33,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 2 actively exploited, 77 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 77
-            }
-          }
+          "DaysSincePreviousRelease": 33
         },
         {
           "UpdateName": "macOS Ventura 13.4.1",
           "ProductName": "macOS",
           "ProductVersion": "13.4.1",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2023-06-21T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213813",
-          "SecurityInfoContext": "macOS 13.4.1 was released on Jun 21, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -7949,34 +6924,17 @@
             "CVE-2023-32434"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 34,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 2 actively exploited, 2 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 34
         },
         {
           "UpdateName": "macOS Ventura 13.4",
           "ProductName": "macOS",
           "ProductVersion": "13.4",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2023-05-18T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213758",
-          "SecurityInfoContext": "macOS 13.4 was released on May 18, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -8105,34 +7063,17 @@
             "CVE-2023-28204"
           ],
           "UniqueCVEsCount": 63,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 3 actively exploited, 63 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 3,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 63
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "macOS Ventura 13.3.1",
           "ProductName": "macOS",
           "ProductVersion": "13.3.1",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2023-10-31T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213721",
-          "SecurityInfoContext": "macOS 13.3.1 was released on Oct 31, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -8199,34 +7140,17 @@
             "CVE-2023-28205"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 218,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 2 actively exploited, 2 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 218
         },
         {
           "UpdateName": "macOS Ventura 13.3",
           "ProductName": "macOS",
           "ProductVersion": "13.3",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2023-03-27T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213670",
-          "SecurityInfoContext": "macOS 13.3 was released on Mar 27, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -8386,34 +7310,17 @@
             "CVE-2023-32435"
           ],
           "UniqueCVEsCount": 96,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 96 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 96
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "macOS Ventura 13.2.1",
           "ProductName": "macOS",
           "ProductVersion": "13.2.1",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2023-10-31T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213633",
-          "SecurityInfoContext": "macOS 13.2.1 was released on Oct 31, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -8481,34 +7388,17 @@
             "CVE-2023-23529"
           ],
           "UniqueCVEsCount": 4,
-          "DaysSincePreviousRelease": 281,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 4 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 4
-            }
-          }
+          "DaysSincePreviousRelease": 281
         },
         {
           "UpdateName": "macOS Ventura 13.2",
           "ProductName": "macOS",
           "ProductVersion": "13.2",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2023-01-23T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213605",
-          "SecurityInfoContext": "macOS 13.2 was released on Jan 23, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -8608,34 +7498,17 @@
             "CVE-2023-41990"
           ],
           "UniqueCVEsCount": 36,
-          "DaysSincePreviousRelease": 41,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 36 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 36
-            }
-          }
+          "DaysSincePreviousRelease": 41
         },
         {
           "UpdateName": "macOS Ventura 13.1",
           "ProductName": "macOS",
           "ProductVersion": "13.1",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2022-12-13T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213532",
-          "SecurityInfoContext": "macOS 13.1 was released on Dec 13, 2022. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -8751,34 +7624,17 @@
             "CVE-2022-42856"
           ],
           "UniqueCVEsCount": 51,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 2 actively exploited, 51 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 51
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "macOS Ventura 13.0.1",
           "ProductName": "macOS",
           "ProductVersion": "13.0.1",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2024-06-12T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213504",
-          "SecurityInfoContext": "macOS 13.0.1 was released on Jun 12, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -8842,34 +7698,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 597,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "2 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 597
         },
         {
           "UpdateName": "macOS Ventura 13",
           "ProductName": "macOS",
           "ProductVersion": "13.0",
           "Build": "22H730",
-          "AllBuilds": [
-            "22H730"
-          ],
           "ReleaseDate": "2022-10-24T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213488",
-          "SecurityInfoContext": "macOS 13.0 was released on Oct 24, 2022. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -9088,20 +7927,7 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 157,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "157 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 157
-            }
-          }
+          "DaysSincePreviousRelease": 0
         }
       ],
       "SupportedModels": [
@@ -9213,14 +8039,10 @@
         "ProductName": "macOS",
         "ProductVersion": "12.7.6",
         "Build": "21H1320",
-        "AllBuilds": [
-          "21H1320"
-        ],
         "ReleaseDate": "2024-07-29T00:00:00Z",
-        "ExpirationDate": "2025-12-02",
+        "ExpirationDate": "2025-12-03",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/120910",
-        "SecurityInfoContext": "macOS has been updated. The latest released version is now 12.7.6, with the following release date: macOS 12.7.6 : Jul 29, 2024",
         "SupportedDevices": [
           "J132AP",
           "J137AP",
@@ -9329,20 +8151,7 @@
           "CVE-2024-23296"
         ],
         "UniqueCVEsCount": 42,
-        "DaysSincePreviousRelease": 77,
-        "update_summary": {
-          "priority": "emergency",
-          "summary": "EMERGENCY: 1 actively exploited, 42 total CVEs",
-          "recommendation": "Deploy immediately - active exploitation confirmed",
-          "stats": {
-            "exploited": 1,
-            "critical": 0,
-            "high": 1,
-            "medium": 0,
-            "remote": 0,
-            "total": 42
-          }
-        }
+        "DaysSincePreviousRelease": 77
       },
       "SecurityReleases": [
         {
@@ -9350,14 +8159,10 @@
           "ProductName": "macOS",
           "ProductVersion": "12.7.6",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2024-07-29T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120910",
-          "SecurityInfoContext": "macOS has been updated. The latest released version is now 12.7.6, with the following release date: macOS 12.7.6 : Jul 29, 2024",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -9466,34 +8271,17 @@
             "CVE-2024-23296"
           ],
           "UniqueCVEsCount": 42,
-          "DaysSincePreviousRelease": 77,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 42 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 42
-            }
-          }
+          "DaysSincePreviousRelease": 77
         },
         {
           "UpdateName": "macOS Monterey 12.7.5",
           "ProductName": "macOS",
           "ProductVersion": "12.7.5",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2024-05-13T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120899",
-          "SecurityInfoContext": "macOS 12.7.5 was released on May 13, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -9577,34 +8365,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 19,
-          "DaysSincePreviousRelease": 67,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "19 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 19
-            }
-          }
+          "DaysSincePreviousRelease": 67
         },
         {
           "UpdateName": "macOS Monterey 12.7.4",
           "ProductName": "macOS",
           "ProductVersion": "12.7.4",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2024-03-07T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120884",
-          "SecurityInfoContext": "macOS 12.7.4 was released on Mar 07, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -9699,34 +8470,17 @@
             "CVE-2024-23225"
           ],
           "UniqueCVEsCount": 28,
-          "DaysSincePreviousRelease": 45,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 28 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 28
-            }
-          }
+          "DaysSincePreviousRelease": 45
         },
         {
           "UpdateName": "macOS Monterey 12.7.3",
           "ProductName": "macOS",
           "ProductVersion": "12.7.3",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2024-01-22T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120305",
-          "SecurityInfoContext": "macOS 12.7.3 was released on Jan 22, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -9802,34 +8556,17 @@
             "CVE-2024-23222"
           ],
           "UniqueCVEsCount": 9,
-          "DaysSincePreviousRelease": 42,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 9 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 9
-            }
-          }
+          "DaysSincePreviousRelease": 42
         },
         {
           "UpdateName": "macOS Monterey 12.7.2",
           "ProductName": "macOS",
           "ProductVersion": "12.7.2",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2023-12-11T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT214037",
-          "SecurityInfoContext": "macOS 12.7.2 was released on Dec 11, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -9922,34 +8659,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 28,
-          "DaysSincePreviousRelease": 47,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "28 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 28
-            }
-          }
+          "DaysSincePreviousRelease": 47
         },
         {
           "UpdateName": "macOS Monterey 12.7.1",
           "ProductName": "macOS",
           "ProductVersion": "12.7.1",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2023-10-25T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213983",
-          "SecurityInfoContext": "macOS 12.7.1 was released on Oct 25, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -10037,34 +8757,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 23,
-          "DaysSincePreviousRelease": 34,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "23 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 23
-            }
-          }
+          "DaysSincePreviousRelease": 34
         },
         {
           "UpdateName": "macOS Monterey 12.7",
           "ProductName": "macOS",
           "ProductVersion": "12.7",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2023-09-21T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213932",
-          "SecurityInfoContext": "macOS 12.7 was released on Sep 21, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -10149,34 +8852,17 @@
             "CVE-2023-41992"
           ],
           "UniqueCVEsCount": 18,
-          "DaysSincePreviousRelease": 10,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 18 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 18
-            }
-          }
+          "DaysSincePreviousRelease": 10
         },
         {
           "UpdateName": "macOS Monterey 12.6.9",
           "ProductName": "macOS",
           "ProductVersion": "12.6.9",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2023-09-11T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213914",
-          "SecurityInfoContext": "macOS 12.6.9 was released on Sep 11, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -10244,34 +8930,17 @@
             "CVE-2023-41064"
           ],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 49,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 1 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 49
         },
         {
           "UpdateName": "macOS Monterey 12.6.8",
           "ProductName": "macOS",
           "ProductVersion": "12.6.8",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2023-07-24T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213844",
-          "SecurityInfoContext": "macOS 12.6.8 was released on Jul 24, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -10389,34 +9058,17 @@
             "CVE-2023-38606"
           ],
           "UniqueCVEsCount": 50,
-          "DaysSincePreviousRelease": 33,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 2 actively exploited, 50 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 50
-            }
-          }
+          "DaysSincePreviousRelease": 33
         },
         {
           "UpdateName": "macOS Monterey 12.6.7",
           "ProductName": "macOS",
           "ProductVersion": "12.6.7",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2023-06-21T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213810",
-          "SecurityInfoContext": "macOS 12.6.7 was released on Jun 21, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -10484,34 +9136,17 @@
             "CVE-2023-32434"
           ],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 34,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 1 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 34
         },
         {
           "UpdateName": "macOS Monterey 12.6.6",
           "ProductName": "macOS",
           "ProductVersion": "12.6.6",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2023-05-18T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213759",
-          "SecurityInfoContext": "macOS 12.6.6 was released on May 18, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -10608,34 +9243,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 32,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "32 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 32
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "macOS Monterey 12.6.5",
           "ProductName": "macOS",
           "ProductVersion": "12.6.5",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2023-10-31T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213724",
-          "SecurityInfoContext": "macOS 12.6.5 was released on Oct 31, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -10703,34 +9321,17 @@
             "CVE-2023-28206"
           ],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 218,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 1 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 218
         },
         {
           "UpdateName": "macOS Monterey 12.6.4",
           "ProductName": "macOS",
           "ProductVersion": "12.6.4",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2023-03-27T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213677",
-          "SecurityInfoContext": "macOS 12.6.4 was released on Mar 27, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -10836,34 +9437,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 41,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "41 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 41
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "macOS Monterey 12.6.3",
           "ProductName": "macOS",
           "ProductVersion": "12.6.3",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2024-06-12T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213604",
-          "SecurityInfoContext": "macOS 12.6.3 was released on Jun 12, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -10949,34 +9533,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 21,
-          "DaysSincePreviousRelease": 547,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "21 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 21
-            }
-          }
+          "DaysSincePreviousRelease": 547
         },
         {
           "UpdateName": "macOS Monterey 12.6.2",
           "ProductName": "macOS",
           "ProductVersion": "12.6.2",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2022-12-13T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213533",
-          "SecurityInfoContext": "macOS 12.6.2 was released on Dec 13, 2022. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -11058,34 +9625,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 17,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "17 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 17
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "macOS Monterey 12.6.1",
           "ProductName": "macOS",
           "ProductVersion": "12.6.1",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2024-06-12T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213494",
-          "SecurityInfoContext": "macOS 12.6.1 was released on Jun 12, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -11164,34 +9714,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 14,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "14 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 14
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "macOS Monterey 12.6",
           "ProductName": "macOS",
           "ProductVersion": "12.6",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2024-06-12T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213444",
-          "SecurityInfoContext": "macOS 12.6 was released on Jun 12, 2024. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -11298,34 +9831,17 @@
             "CVE-2022-32917"
           ],
           "UniqueCVEsCount": 40,
-          "DaysSincePreviousRelease": 225,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 40 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 40
-            }
-          }
+          "DaysSincePreviousRelease": 225
         },
         {
           "UpdateName": "macOS Monterey 12.5.1",
           "ProductName": "macOS",
           "ProductVersion": "12.5.1",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2023-10-31T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213413",
-          "SecurityInfoContext": "macOS 12.5.1 was released on Oct 31, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -11395,34 +9911,17 @@
             "CVE-2022-32893"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 468,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 2 actively exploited, 2 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 468
         },
         {
           "UpdateName": "macOS Monterey 12.5",
           "ProductName": "macOS",
           "ProductVersion": "12.5",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2022-07-20T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213345",
-          "SecurityInfoContext": "macOS 12.5 was released on Jul 20, 2022. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -11560,34 +10059,17 @@
             "CVE-2022-2294"
           ],
           "UniqueCVEsCount": 71,
-          "DaysSincePreviousRelease": 65,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 71 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 71
-            }
-          }
+          "DaysSincePreviousRelease": 65
         },
         {
           "UpdateName": "macOS Monterey 12.4",
           "ProductName": "macOS",
           "ProductVersion": "12.4",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2022-05-16T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213257",
-          "SecurityInfoContext": "macOS 12.4 was released on May 16, 2022. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -11736,34 +10218,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 84,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "84 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 84
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "macOS Monterey 12.3.1",
           "ProductName": "macOS",
           "ProductVersion": "12.3.1",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2023-11-02T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213220",
-          "SecurityInfoContext": "macOS 12.3.1 was released on Nov 02, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -11833,34 +10298,17 @@
             "CVE-2022-22674"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 2,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 2 actively exploited, 2 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 2
         },
         {
           "UpdateName": "macOS Monterey 12.3",
           "ProductName": "macOS",
           "ProductVersion": "12.3",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2023-10-31T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213183",
-          "SecurityInfoContext": "macOS 12.3 was released on Oct 31, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -11994,34 +10442,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 69,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "69 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 69
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "macOS Monterey 12.2.1",
           "ProductName": "macOS",
           "ProductVersion": "12.2.1",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2023-11-06T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213092",
-          "SecurityInfoContext": "macOS 12.2.1 was released on Nov 06, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -12089,34 +10520,17 @@
             "CVE-2022-22620"
           ],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 4,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 1 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 4
         },
         {
           "UpdateName": "macOS Monterey 12.2",
           "ProductName": "macOS",
           "ProductVersion": "12.2",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2023-11-02T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213054",
-          "SecurityInfoContext": "macOS 12.2 was released on Nov 02, 2023. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -12198,34 +10612,17 @@
             "CVE-2022-22587"
           ],
           "UniqueCVEsCount": 15,
-          "DaysSincePreviousRelease": 689,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 15 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 15
-            }
-          }
+          "DaysSincePreviousRelease": 689
         },
         {
           "UpdateName": "macOS Monterey 12.1",
           "ProductName": "macOS",
           "ProductVersion": "12.1",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2021-12-13T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/102874",
-          "SecurityInfoContext": "macOS 12.1 was released on Dec 13, 2021. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -12344,34 +10741,17 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 54,
-          "DaysSincePreviousRelease": 49,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "54 CVEs with unspecified severity",
-            "recommendation": "Update to stay secure - security fixes included",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 54
-            }
-          }
+          "DaysSincePreviousRelease": 49
         },
         {
           "UpdateName": "macOS Monterey 12.0.1",
           "ProductName": "macOS",
           "ProductVersion": "12.0.1",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2021-10-25T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/103236",
-          "SecurityInfoContext": "macOS 12.0.1 was released on Oct 25, 2021. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -12509,34 +10889,17 @@
             "CVE-2021-30883"
           ],
           "UniqueCVEsCount": 71,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "emergency",
-            "summary": "EMERGENCY: 1 actively exploited, 71 total CVEs",
-            "recommendation": "Deploy immediately - active exploitation confirmed",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 71
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "macOS Monterey 12.0",
           "ProductName": "macOS",
           "ProductVersion": "12.0",
           "Build": "21H1320",
-          "AllBuilds": [
-            "21H1320"
-          ],
           "ReleaseDate": "2021-09-20T00:00:00Z",
-          "ExpirationDate": "2025-12-02",
+          "ExpirationDate": "2025-12-03",
           "ReleaseType": "OS",
           "SecurityInfo": "",
-          "SecurityInfoContext": "macOS 12.0 was released on Sep 20, 2021. There are newer updates available - see if these apply to your devices (might be only for selected models).",
           "SupportedDevices": [
             "J132AP",
             "J137AP",
@@ -12600,20 +10963,7 @@
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "regular",
-            "summary": "No known security vulnerabilities",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 0
         }
       ],
       "SupportedModels": [
@@ -12713,7 +11063,109 @@
     "com.apple.XprotectFramework.PluginService": "74",
     "ReleaseDate": "2025-09-03T17:01:27Z"
   },
-  "Models": {},
+  "Models": {
+    "Mac14,15": {
+      "MarketingName": "MacBook Air (15-inch, M2, 2023)",
+      "OSVersions": [
+        13,
+        14,
+        15,
+        26
+      ],
+      "SupportedOS": [
+        "Tahoe 26",
+        "Sequoia 15",
+        "Sonoma 14",
+        "Ventura 13"
+      ]
+    },
+    "Mac14,2": {
+      "MarketingName": "MacBook Air (M2, 2022)",
+      "OSVersions": [
+        12,
+        13,
+        14,
+        15,
+        26
+      ],
+      "SupportedOS": [
+        "Monterey 12",
+        "Tahoe 26",
+        "Sequoia 15",
+        "Sonoma 14",
+        "Ventura 13"
+      ]
+    },
+    "Mac15,12": {
+      "MarketingName": "MacBook Air (13-inch, M3, 2024)",
+      "OSVersions": [
+        14,
+        15,
+        26
+      ],
+      "SupportedOS": [
+        "Tahoe 26",
+        "Sequoia 15",
+        "Sonoma 14"
+      ]
+    },
+    "Mac15,13": {
+      "MarketingName": "MacBook Air (15-inch, M3, 2024)",
+      "OSVersions": [
+        14,
+        15,
+        26
+      ],
+      "SupportedOS": [
+        "Tahoe 26",
+        "Sequoia 15",
+        "Sonoma 14"
+      ]
+    },
+    "MacBookAir10,1": {
+      "MarketingName": "MacBook Air (M1, 2020)",
+      "OSVersions": [
+        12,
+        13,
+        14,
+        15,
+        26
+      ],
+      "SupportedOS": [
+        "Monterey 12",
+        "Tahoe 26",
+        "Sequoia 15",
+        "Sonoma 14",
+        "Ventura 13"
+      ]
+    },
+    "MacBookAir7,2": {
+      "MarketingName": "MacBook Air (13-inch, Early 2015)",
+      "OSVersions": [
+        12
+      ],
+      "SupportedOS": [
+        "Monterey 12"
+      ]
+    },
+    "MacBookAir9,1": {
+      "MarketingName": "MacBook Air (Retina, 13-inch, 2020)",
+      "OSVersions": [
+        12,
+        13,
+        14,
+        15,
+        26
+      ],
+      "SupportedOS": [
+        "Monterey 12",
+        "Tahoe 26",
+        "Sequoia 15",
+        "Sonoma 14",
+        "Ventura 13"
+      ]
+    }
+  },
   "InstallationApps": {
     "LatestUMA": {
       "title": "macOS Sequoia",

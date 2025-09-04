@@ -1,6 +1,5 @@
 {
-  "UpdateHash": "d386f4a781a127aa32906f54daa880b700f7c05120548c3ea6fd34cffd335791",
-  "Version": "1.1",
+  "UpdateHash": "f1c7ef037b404a77ab42a74f796d1c28d2009dbbea1fbd972fd72eef5db5cd62",
   "OSVersions": [
     {
       "OSVersion": "18",
@@ -9,13 +8,9 @@
         "ProductName": "iOS and iPadOS",
         "ProductVersion": "18.6.2",
         "Build": "18A000",
-        "AllBuilds": [
-          "18A000"
-        ],
         "ReleaseDate": "2025-08-20T00:00:00Z",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-        "SecurityInfoContext": "iOS 18.6.2 addresses 1 actively exploited vulnerability and is the latest approved version.",
         "SupportedDevices": [],
         "CVEs": {
           "CVE-2025-43300": true
@@ -24,20 +19,7 @@
           "CVE-2025-43300"
         ],
         "UniqueCVEsCount": 1,
-        "DaysSincePreviousRelease": 6,
-        "update_summary": {
-          "priority": "critical",
-          "summary": "Contains 1 actively exploited vulnerabilities",
-          "recommendation": "Update immediately - actively exploited vulnerabilities",
-          "stats": {
-            "exploited": 1,
-            "critical": 0,
-            "high": 1,
-            "medium": 0,
-            "remote": 0,
-            "total": 1
-          }
-        }
+        "DaysSincePreviousRelease": 6
       },
       "SecurityReleases": [
         {
@@ -45,13 +27,9 @@
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "18.6.2",
           "Build": "18A000",
-          "AllBuilds": [
-            "18A000"
-          ],
           "ReleaseDate": "2025-08-20T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "iOS 18.6.2 addresses 1 actively exploited vulnerability and is the latest approved version.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-43300": true
@@ -60,64 +38,30 @@
             "CVE-2025-43300"
           ],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 6,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 1 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 6
         },
         {
           "UpdateName": "iOS 18.6.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "18.6.1",
           "Build": "18A000",
-          "AllBuilds": [
-            "18A000"
-          ],
           "ReleaseDate": "2025-08-14T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This update has no published CVE entries. Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 16,
-          "update_summary": {
-            "priority": "low",
-            "summary": "Maintenance update with no security fixes",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 16
         },
         {
           "UpdateName": "iOS 18.6 and iPadOS 18.6",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "18.6",
           "Build": "18A000",
-          "AllBuilds": [
-            "18A000"
-          ],
           "ReleaseDate": "2025-07-29T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 1 actively exploited vulnerability. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-31229": false,
@@ -154,33 +98,16 @@
             "CVE-2025-6558"
           ],
           "UniqueCVEsCount": 29,
-          "DaysSincePreviousRelease": 78,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 1 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 29
-            }
-          }
+          "DaysSincePreviousRelease": 78
         },
         {
           "UpdateName": "iOS 18.5 and iPadOS 18.5",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "18.5",
           "Build": "18A000",
-          "AllBuilds": [
-            "18A000"
-          ],
           "ReleaseDate": "2025-05-12T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-8176": false,
@@ -220,33 +147,16 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 34,
-          "DaysSincePreviousRelease": 26,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 34 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 34
-            }
-          }
+          "DaysSincePreviousRelease": 26
         },
         {
           "UpdateName": "iOS 18.4.1 and iPadOS 18.4.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "18.4.1",
           "Build": "18A000",
-          "AllBuilds": [
-            "18A000"
-          ],
           "ReleaseDate": "2025-04-16T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 2 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-31200": true,
@@ -257,33 +167,16 @@
             "CVE-2025-31200"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 16,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 2 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 16
         },
         {
           "UpdateName": "iOS 18.4 and iPadOS 18.4",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "18.4",
           "Build": "18A000",
-          "AllBuilds": [
-            "18A000"
-          ],
           "ReleaseDate": "2025-03-31T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-48958": false,
@@ -365,33 +258,16 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 76,
-          "DaysSincePreviousRelease": 20,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 76 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 76
-            }
-          }
+          "DaysSincePreviousRelease": 20
         },
         {
           "UpdateName": "iOS 18.3.2 and iPadOS 18.3.2",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "18.3.2",
           "Build": "18A000",
-          "AllBuilds": [
-            "18A000"
-          ],
           "ReleaseDate": "2025-03-11T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 1 actively exploited vulnerability. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-24201": true
@@ -400,33 +276,16 @@
             "CVE-2025-24201"
           ],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 29,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 1 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 29
         },
         {
           "UpdateName": "iOS 18.3.1 and iPadOS 18.3.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "18.3.1",
           "Build": "18A000",
-          "AllBuilds": [
-            "18A000"
-          ],
           "ReleaseDate": "2025-02-10T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 2 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-24200": true,
@@ -437,33 +296,16 @@
             "CVE-2025-24200"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 14,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 2 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 14
         },
         {
           "UpdateName": "iOS 18.3 and iPadOS 18.3",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "18.3",
           "Build": "18A000",
-          "AllBuilds": [
-            "18A000"
-          ],
           "ReleaseDate": "2025-01-27T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 1 actively exploited vulnerability. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-55549": false,
@@ -509,64 +351,30 @@
             "CVE-2025-24085"
           ],
           "UniqueCVEsCount": 38,
-          "DaysSincePreviousRelease": 21,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 1 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 38
-            }
-          }
+          "DaysSincePreviousRelease": 21
         },
         {
           "UpdateName": "iOS 18.2.1 and iPadOS 18.2.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "18.2.1",
           "Build": "18A000",
-          "AllBuilds": [
-            "18A000"
-          ],
           "ReleaseDate": "2025-01-06T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This update has no published CVE entries. Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 26,
-          "update_summary": {
-            "priority": "low",
-            "summary": "Maintenance update with no security fixes",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 26
         },
         {
           "UpdateName": "iOS 18.2 and iPadOS 18.2",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "18.2",
           "Build": "18A000",
-          "AllBuilds": [
-            "18A000"
-          ],
           "ReleaseDate": "2024-12-11T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-40864": false,
@@ -613,33 +421,16 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 41,
-          "DaysSincePreviousRelease": 22,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 41 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 41
-            }
-          }
+          "DaysSincePreviousRelease": 22
         },
         {
           "UpdateName": "iOS 18.1.1 and iPadOS 18.1.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "18.1.1",
           "Build": "18A000",
-          "AllBuilds": [
-            "18A000"
-          ],
           "ReleaseDate": "2024-11-19T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 2 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-44308": true,
@@ -650,33 +441,16 @@
             "CVE-2024-44308"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 22,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 2 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 22
         },
         {
           "UpdateName": "iOS 18.1 and iPadOS 18.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "18.1",
           "Build": "18A000",
-          "AllBuilds": [
-            "18A000"
-          ],
           "ReleaseDate": "2024-10-28T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-40851": false,
@@ -724,33 +498,16 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 42,
-          "DaysSincePreviousRelease": 25,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 42 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 42
-            }
-          }
+          "DaysSincePreviousRelease": 25
         },
         {
           "UpdateName": "iOS 18.0.1 and iPadOS 18.0.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "18.0.1",
           "Build": "18A000",
-          "AllBuilds": [
-            "18A000"
-          ],
           "ReleaseDate": "2024-10-03T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-44204": false,
@@ -758,33 +515,16 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 17,
-          "update_summary": {
-            "priority": "medium",
-            "summary": "Addresses 2 security issues",
-            "recommendation": "Update to stay secure - minor security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 17
         },
         {
           "UpdateName": "iOS 18 and iPadOS 18",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "18.0",
           "Build": "18A000",
-          "AllBuilds": [
-            "18A000"
-          ],
           "ReleaseDate": "2024-09-16T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-5841": false,
@@ -838,20 +578,7 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 48,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 48 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 48
-            }
-          }
+          "DaysSincePreviousRelease": 0
         }
       ]
     },
@@ -862,13 +589,9 @@
         "ProductName": "iOS and iPadOS",
         "ProductVersion": "17.7.9",
         "Build": "17A000",
-        "AllBuilds": [
-          "17A000"
-        ],
         "ReleaseDate": "2025-07-29T00:00:00Z",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-        "SecurityInfoContext": "iOS 17.7.9 addresses 1 actively exploited vulnerability and is the latest approved version.",
         "SupportedDevices": [],
         "CVEs": {
           "CVE-2025-24220": false,
@@ -894,20 +617,7 @@
           "CVE-2025-6558"
         ],
         "UniqueCVEsCount": 18,
-        "DaysSincePreviousRelease": 71,
-        "update_summary": {
-          "priority": "critical",
-          "summary": "Contains 1 actively exploited vulnerabilities",
-          "recommendation": "Update immediately - actively exploited vulnerabilities",
-          "stats": {
-            "exploited": 1,
-            "critical": 0,
-            "high": 1,
-            "medium": 0,
-            "remote": 0,
-            "total": 18
-          }
-        }
+        "DaysSincePreviousRelease": 71
       },
       "SecurityReleases": [
         {
@@ -915,13 +625,9 @@
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.7.9",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2025-07-29T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "iOS 17.7.9 addresses 1 actively exploited vulnerability and is the latest approved version.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-24220": false,
@@ -947,64 +653,30 @@
             "CVE-2025-6558"
           ],
           "UniqueCVEsCount": 18,
-          "DaysSincePreviousRelease": 71,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 1 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 18
-            }
-          }
+          "DaysSincePreviousRelease": 71
         },
         {
           "UpdateName": "iPadOS 17.7.8",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.7.8",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2025-05-19T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This update has no published CVE entries. Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 7,
-          "update_summary": {
-            "priority": "low",
-            "summary": "Maintenance update with no security fixes",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 7
         },
         {
           "UpdateName": "iPadOS 17.7.7",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.7.7",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2025-05-12T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-8176": false,
@@ -1038,33 +710,16 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 28,
-          "DaysSincePreviousRelease": 42,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 28 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 28
-            }
-          }
+          "DaysSincePreviousRelease": 42
         },
         {
           "UpdateName": "iPadOS 17.7.6",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.7.6",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2025-03-31T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 2 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-54502": false,
@@ -1123,33 +778,16 @@
             "CVE-2025-24085"
           ],
           "UniqueCVEsCount": 50,
-          "DaysSincePreviousRelease": 49,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 2 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 50
-            }
-          }
+          "DaysSincePreviousRelease": 49
         },
         {
           "UpdateName": "iPadOS 17.7.5",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.7.5",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2025-02-10T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 2 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-24200": true,
@@ -1160,33 +798,16 @@
             "CVE-2025-24200"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 14,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 2 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 14
         },
         {
           "UpdateName": "iPadOS 17.7.4",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.7.4",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2025-01-27T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-54478": false,
@@ -1211,33 +832,16 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 19,
-          "DaysSincePreviousRelease": 47,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 19 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 19
-            }
-          }
+          "DaysSincePreviousRelease": 47
         },
         {
           "UpdateName": "iPadOS 17.7.3",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.7.3",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2024-12-11T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-44201": false,
@@ -1260,33 +864,16 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 17,
-          "DaysSincePreviousRelease": 22,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 17 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 17
-            }
-          }
+          "DaysSincePreviousRelease": 22
         },
         {
           "UpdateName": "iOS 17.7.2 and iPadOS 17.7.2",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.7.2",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2024-11-19T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 2 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-44308": true,
@@ -1297,33 +884,16 @@
             "CVE-2024-44308"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 2 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "iPadOS 17.7.10",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.7.10",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2025-08-20T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 1 actively exploited vulnerability. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-43300": true
@@ -1332,33 +902,16 @@
             "CVE-2025-43300"
           ],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 296,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 1 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 296
         },
         {
           "UpdateName": "iOS 17.7.1 and iPadOS 17.7.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.7.1",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2024-10-28T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-40854": false,
@@ -1387,33 +940,16 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 23,
-          "DaysSincePreviousRelease": 42,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 23 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 23
-            }
-          }
+          "DaysSincePreviousRelease": 42
         },
         {
           "UpdateName": "iOS 17.7 and iPadOS 17.7",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.7",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2024-09-16T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-27876": false,
@@ -1437,64 +973,30 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 18,
-          "DaysSincePreviousRelease": 40,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 18 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 18
-            }
-          }
+          "DaysSincePreviousRelease": 40
         },
         {
           "UpdateName": "iOS 17.6.1 and iPadOS 17.6.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.6.1",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2024-08-07T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This update has no published CVE entries. Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 9,
-          "update_summary": {
-            "priority": "low",
-            "summary": "Maintenance update with no security fixes",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 9
         },
         {
           "UpdateName": "iOS 17.6 and iPadOS 17.6",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.6",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2024-07-29T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-52356": false,
@@ -1540,64 +1042,30 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 40,
-          "DaysSincePreviousRelease": 70,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 40 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 40
-            }
-          }
+          "DaysSincePreviousRelease": 70
         },
         {
           "UpdateName": "iOS 17.5.1 and iPadOS 17.5.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.5.1",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2024-05-20T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This update has no published CVE entries. Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 7,
-          "update_summary": {
-            "priority": "low",
-            "summary": "Maintenance update with no security fixes",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 7
         },
         {
           "UpdateName": "iOS 17.5 and iPadOS 17.5",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.5",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2024-05-13T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-42893": false,
@@ -1652,66 +1120,32 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 49,
-          "DaysSincePreviousRelease": 53,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 49 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 49
-            }
-          }
+          "DaysSincePreviousRelease": 53
         },
         {
           "UpdateName": "iOS 17.4.1 and iPadOS 17.4.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.4.1",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2024-03-21T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-1580": false
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 16,
-          "update_summary": {
-            "priority": "medium",
-            "summary": "Addresses 1 security issues",
-            "recommendation": "Update to stay secure - minor security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 16
         },
         {
           "UpdateName": "iOS 17.4 and iPadOS 17.4",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.4",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2024-03-05T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 2 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2022-48554": false,
@@ -1761,64 +1195,30 @@
             "CVE-2024-23225"
           ],
           "UniqueCVEsCount": 41,
-          "DaysSincePreviousRelease": 26,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 2 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 41
-            }
-          }
+          "DaysSincePreviousRelease": 26
         },
         {
           "UpdateName": "iOS 17.3.1 and iPadOS 17.3.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.3.1",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2024-02-08T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This update has no published CVE entries. Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 17,
-          "update_summary": {
-            "priority": "low",
-            "summary": "Maintenance update with no security fixes",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 17
         },
         {
           "UpdateName": "iOS 17.3 and iPadOS 17.3",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.3",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2024-01-22T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 1 actively exploited vulnerability. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-23201": false,
@@ -1846,64 +1246,30 @@
             "CVE-2024-23222"
           ],
           "UniqueCVEsCount": 20,
-          "DaysSincePreviousRelease": 34,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 1 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 20
-            }
-          }
+          "DaysSincePreviousRelease": 34
         },
         {
           "UpdateName": "iOS 17.2.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.2.1",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2023-12-19T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This update has no published CVE entries. Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 8,
-          "update_summary": {
-            "priority": "low",
-            "summary": "Maintenance update with no security fixes",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 8
         },
         {
           "UpdateName": "iOS 17.2 and iPadOS 17.2",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.2",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2023-12-11T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-40389": false,
@@ -1932,33 +1298,16 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 23,
-          "DaysSincePreviousRelease": 11,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 23 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 23
-            }
-          }
+          "DaysSincePreviousRelease": 11
         },
         {
           "UpdateName": "iOS 17.1.2 and iPadOS 17.1.2",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.1.2",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2023-11-30T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 2 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-42916": true,
@@ -1969,64 +1318,30 @@
             "CVE-2023-42916"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 23,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 2 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 23
         },
         {
           "UpdateName": "iOS 17.1.1 and iPadOS 17.1.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.1.1",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2023-11-07T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This update has no published CVE entries. Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 13,
-          "update_summary": {
-            "priority": "low",
-            "summary": "Maintenance update with no security fixes",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 13
         },
         {
           "UpdateName": "iOS 17.1 and iPadOS 17.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.1",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2023-10-25T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-40408": false,
@@ -2070,33 +1385,16 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 38,
-          "DaysSincePreviousRelease": 21,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 38 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 38
-            }
-          }
+          "DaysSincePreviousRelease": 21
         },
         {
           "UpdateName": "iOS 17.0.3 and iPadOS 17.0.3",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.0.3",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2023-10-04T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 2 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-42824": true,
@@ -2107,64 +1405,30 @@
             "CVE-2023-5217"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 13,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 2 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 13
         },
         {
           "UpdateName": "iOS 17.0.2",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.0.2",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2023-09-21T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This update has no published CVE entries. Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "low",
-            "summary": "Maintenance update with no security fixes",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "iOS 17.0.1 and iPadOS 17.0.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.0.1",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2023-09-21T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 3 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-41991": true,
@@ -2177,33 +1441,16 @@
             "CVE-2023-41991"
           ],
           "UniqueCVEsCount": 3,
-          "DaysSincePreviousRelease": 3,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 3 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 3,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 3
-            }
-          }
+          "DaysSincePreviousRelease": 3
         },
         {
           "UpdateName": "iOS 17 and iPadOS 17",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "17.0",
           "Build": "17A000",
-          "AllBuilds": [
-            "17A000"
-          ],
           "ReleaseDate": "2023-09-18T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-32359": false,
@@ -2285,20 +1532,7 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 76,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 76 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 76
-            }
-          }
+          "DaysSincePreviousRelease": 0
         }
       ]
     },
@@ -2309,13 +1543,9 @@
         "ProductName": "iOS and iPadOS",
         "ProductVersion": "16.7.9",
         "Build": "16A000",
-        "AllBuilds": [
-          "16A000"
-        ],
         "ReleaseDate": "2024-07-29T00:00:00Z",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-        "SecurityInfoContext": "iOS 16.7.9 addresses 27 security issues and is the latest approved version.",
         "SupportedDevices": [],
         "CVEs": {
           "CVE-2023-52356": false,
@@ -2348,20 +1578,7 @@
         },
         "ActivelyExploitedCVEs": [],
         "UniqueCVEsCount": 27,
-        "DaysSincePreviousRelease": 77,
-        "update_summary": {
-          "priority": "high",
-          "summary": "Addresses 27 security issues",
-          "recommendation": "Update soon - multiple security fixes",
-          "stats": {
-            "exploited": 0,
-            "critical": 0,
-            "high": 0,
-            "medium": 0,
-            "remote": 0,
-            "total": 27
-          }
-        }
+        "DaysSincePreviousRelease": 77
       },
       "SecurityReleases": [
         {
@@ -2369,13 +1586,9 @@
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.7.9",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2024-07-29T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "iOS 16.7.9 addresses 27 security issues and is the latest approved version.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-52356": false,
@@ -2408,33 +1621,16 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 27,
-          "DaysSincePreviousRelease": 77,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 27 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 27
-            }
-          }
+          "DaysSincePreviousRelease": 77
         },
         {
           "UpdateName": "iOS 16.7.8 and iPadOS 16.7.8",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.7.8",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2024-05-13T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 1 actively exploited vulnerability. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-23251": false,
@@ -2466,66 +1662,32 @@
             "CVE-2024-23296"
           ],
           "UniqueCVEsCount": 24,
-          "DaysSincePreviousRelease": 53,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 1 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 24
-            }
-          }
+          "DaysSincePreviousRelease": 53
         },
         {
           "UpdateName": "iOS 16.7.7 and iPadOS 16.7.7",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.7.7",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2024-03-21T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-1580": false
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 16,
-          "update_summary": {
-            "priority": "medium",
-            "summary": "Addresses 1 security issues",
-            "recommendation": "Update to stay secure - minor security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 16
         },
         {
           "UpdateName": "iOS 16.7.6 and iPadOS 16.7.6",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.7.6",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2024-03-05T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 1 actively exploited vulnerability. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-28826": false,
@@ -2552,33 +1714,16 @@
             "CVE-2024-23225"
           ],
           "UniqueCVEsCount": 19,
-          "DaysSincePreviousRelease": 43,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 1 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 19
-            }
-          }
+          "DaysSincePreviousRelease": 43
         },
         {
           "UpdateName": "iOS 16.7.5 and iPadOS 16.7.5",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.7.5",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2024-01-22T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 1 actively exploited vulnerability. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-42888": false,
@@ -2595,64 +1740,30 @@
             "CVE-2024-23222"
           ],
           "UniqueCVEsCount": 9,
-          "DaysSincePreviousRelease": 34,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 1 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 9
-            }
-          }
+          "DaysSincePreviousRelease": 34
         },
         {
           "UpdateName": "iOS 16.7.4 and iPadOS 16.7.4",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.7.4",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2023-12-19T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This update has no published CVE entries. Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 8,
-          "update_summary": {
-            "priority": "low",
-            "summary": "Maintenance update with no security fixes",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 8
         },
         {
           "UpdateName": "iOS 16.7.3 and iPadOS 16.7.3",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.7.3",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2023-12-11T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 2 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-42883": false,
@@ -2673,33 +1784,16 @@
             "CVE-2023-42916"
           ],
           "UniqueCVEsCount": 12,
-          "DaysSincePreviousRelease": 47,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 2 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 12
-            }
-          }
+          "DaysSincePreviousRelease": 47
         },
         {
           "UpdateName": "iOS 16.7.2 and iPadOS 16.7.2",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.7.2",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2023-10-25T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-32359": false,
@@ -2728,33 +1822,16 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 23,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "high",
-            "summary": "Addresses 23 security issues",
-            "recommendation": "Update soon - multiple security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 23
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "iOS 16.7.11 and iPadOS 16.7.11",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.7.11",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2025-03-31T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 3 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-24200": true,
@@ -2767,64 +1844,30 @@
             "CVE-2025-24200"
           ],
           "UniqueCVEsCount": 3,
-          "DaysSincePreviousRelease": 236,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 3 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 3,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 3
-            }
-          }
+          "DaysSincePreviousRelease": 236
         },
         {
           "UpdateName": "iOS 16.7.10 and iPadOS 16.7.10",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.7.10",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2024-08-07T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This update has no published CVE entries. Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 302,
-          "update_summary": {
-            "priority": "low",
-            "summary": "Maintenance update with no security fixes",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 302
         },
         {
           "UpdateName": "iOS 16.7.1 and iPadOS 16.7.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.7.1",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2023-10-10T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 2 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-42824": true,
@@ -2835,33 +1878,16 @@
             "CVE-2023-5217"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 19,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 2 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 19
         },
         {
           "UpdateName": "iOS 16.7 and iPadOS 16.7",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.7",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2023-09-21T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 3 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-35990": false,
@@ -2892,33 +1918,16 @@
             "CVE-2023-41991"
           ],
           "UniqueCVEsCount": 21,
-          "DaysSincePreviousRelease": 14,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 3 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 3,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 21
-            }
-          }
+          "DaysSincePreviousRelease": 14
         },
         {
           "UpdateName": "iOS 16.6.1 and iPadOS 16.6.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.6.1",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2023-09-07T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 2 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-41061": true,
@@ -2929,33 +1938,16 @@
             "CVE-2023-41061"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 45,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 2 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 45
         },
         {
           "UpdateName": "iOS 16.6 and iPadOS 16.6",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.6",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2023-07-24T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 2 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2022-3970": false,
@@ -3008,33 +2000,16 @@
             "CVE-2023-37450"
           ],
           "UniqueCVEsCount": 44,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 2 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 44
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "iOS 16.5.1 and iPadOS 16.5.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.5.1",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2023-11-06T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 2 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-32434": true,
@@ -3045,33 +2020,16 @@
             "CVE-2023-32434"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 172,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 2 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 172
         },
         {
           "UpdateName": "iOS 16.5 and iPadOS 16.5",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.5",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2023-05-18T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 3 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-27930": false,
@@ -3127,33 +2085,16 @@
             "CVE-2023-28204"
           ],
           "UniqueCVEsCount": 46,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 3 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 3,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 46
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "iOS 16.4.1 and iPadOS 16.4.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.4.1",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2023-10-31T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 2 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-28205": true,
@@ -3164,33 +2105,16 @@
             "CVE-2023-28205"
           ],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 218,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 2 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 218
         },
         {
           "UpdateName": "iOS 16.4 and iPadOS 16.4",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.4",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2023-03-27T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 1 actively exploited vulnerability. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2014-1745": false,
@@ -3251,33 +2175,16 @@
             "CVE-2023-32435"
           ],
           "UniqueCVEsCount": 53,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 1 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 53
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "iOS 16.3.1 and iPadOS 16.3.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.3.1",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2023-10-31T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 1 actively exploited vulnerability. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-23514": false,
@@ -3288,33 +2195,16 @@
             "CVE-2023-23529"
           ],
           "UniqueCVEsCount": 3,
-          "DaysSincePreviousRelease": 281,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 1 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 3
-            }
-          }
+          "DaysSincePreviousRelease": 281
         },
         {
           "UpdateName": "iOS 16.3 and iPadOS 16.3",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.3",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2023-01-23T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 1 actively exploited vulnerability. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2022-0108": false,
@@ -3343,33 +2233,16 @@
             "CVE-2023-41990"
           ],
           "UniqueCVEsCount": 21,
-          "DaysSincePreviousRelease": 41,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 1 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 21
-            }
-          }
+          "DaysSincePreviousRelease": 41
         },
         {
           "UpdateName": "iOS 16.2 and iPadOS 16.2",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.2",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2022-12-13T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 2 actively exploited vulnerabilities. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2022-32919": false,
@@ -3427,33 +2300,16 @@
             "CVE-2022-42856"
           ],
           "UniqueCVEsCount": 49,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 2 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 2,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 49
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "iOS 16.1.2",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.1.2",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2024-06-12T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 1 actively exploited vulnerability. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2022-42856": true
@@ -3462,33 +2318,16 @@
             "CVE-2022-42856"
           ],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 1 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "iOS 16.1.1 and iPadOS 16.1.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.1.1",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2024-06-12T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2022-40303": false,
@@ -3496,33 +2335,16 @@
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 2,
-          "DaysSincePreviousRelease": 597,
-          "update_summary": {
-            "priority": "medium",
-            "summary": "Addresses 2 security issues",
-            "recommendation": "Update to stay secure - minor security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 2
-            }
-          }
+          "DaysSincePreviousRelease": 597
         },
         {
           "UpdateName": "iOS 16.1 and iPadOS 16",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.1",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2022-10-24T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 1 actively exploited vulnerability. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2022-32909": false,
@@ -3573,128 +2395,60 @@
             "CVE-2022-42827"
           ],
           "UniqueCVEsCount": 43,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 1 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 43
-            }
-          }
+          "DaysSincePreviousRelease": 0
         },
         {
           "UpdateName": "iOS 16.0.3",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.0.3",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2023-11-03T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2022-22658": false
           },
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 1,
-          "DaysSincePreviousRelease": 407,
-          "update_summary": {
-            "priority": "medium",
-            "summary": "Addresses 1 security issues",
-            "recommendation": "Update to stay secure - minor security fixes",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 1
-            }
-          }
+          "DaysSincePreviousRelease": 407
         },
         {
           "UpdateName": "iOS 16.0.2",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.0.2",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2022-09-22T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This update has no published CVE entries. Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 7,
-          "update_summary": {
-            "priority": "low",
-            "summary": "Maintenance update with no security fixes",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 7
         },
         {
           "UpdateName": "iOS 16.0.1",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.0.1",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2022-09-15T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This update has no published CVE entries. Newer updates are available - check if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
-          "DaysSincePreviousRelease": 3,
-          "update_summary": {
-            "priority": "low",
-            "summary": "Maintenance update with no security fixes",
-            "recommendation": "Update recommended - may include unpublished security improvements",
-            "stats": {
-              "exploited": 0,
-              "critical": 0,
-              "high": 0,
-              "medium": 0,
-              "remote": 0,
-              "total": 0
-            }
-          }
+          "DaysSincePreviousRelease": 3
         },
         {
           "UpdateName": "iOS 16",
           "ProductName": "iOS and iPadOS",
           "ProductVersion": "16.0",
           "Build": "16A000",
-          "AllBuilds": [
-            "16A000"
-          ],
           "ReleaseDate": "2022-09-12T00:00:00Z",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
-          "SecurityInfoContext": "This release addresses 1 actively exploited vulnerability. Newer updates are available - verify compatibility with your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2021-36690": false,
@@ -3753,20 +2507,7 @@
             "CVE-2022-32917"
           ],
           "UniqueCVEsCount": 51,
-          "DaysSincePreviousRelease": 0,
-          "update_summary": {
-            "priority": "critical",
-            "summary": "Contains 1 actively exploited vulnerabilities",
-            "recommendation": "Update immediately - actively exploited vulnerabilities",
-            "stats": {
-              "exploited": 1,
-              "critical": 0,
-              "high": 1,
-              "medium": 0,
-              "remote": 0,
-              "total": 51
-            }
-          }
+          "DaysSincePreviousRelease": 0
         }
       ]
     }
