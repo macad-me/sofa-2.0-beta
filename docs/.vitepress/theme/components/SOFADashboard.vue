@@ -844,7 +844,7 @@
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Developer</span>
         </template>
-        <div class="beta-releases-grid gap-3 flex-grow">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 flex-grow">
           <div v-for="(beta, idx) in betaReleases" :key="idx" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-150">
             <div class="space-y-1.5">
               <div class="flex items-center justify-between">
@@ -2088,24 +2088,6 @@ const copyToClipboard = async (text: string, itemId?: string) => {
 @media (max-width: 360px) {
   .dashboard-container {
     padding: 1rem 0.25rem 1rem 0.25rem; /* Ultra minimal horizontal padding */
-  }
-}
-
-/* Beta releases grid */
-.beta-releases-grid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-}
-
-@media (min-width: 768px) {
-  .beta-releases-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .beta-releases-grid {
-    grid-template-columns: repeat(3, 1fr);
   }
 }
 

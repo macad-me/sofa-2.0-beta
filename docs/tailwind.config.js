@@ -6,7 +6,6 @@ export default {
     "./.vitepress/**/*.{js,ts,vue}",
     "./.vitepress/theme/**/*.{js,ts,vue,css}"
   ],
-  darkMode: 'class',
   theme: {
     screens: {
       sm: '640px',

@@ -11,30 +11,13 @@
 /* ===== BASE GRID SYSTEM ===== */
 
 .bento-grid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 4rem;
-  align-items: stretch;
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 items-stretch;
   /* Ensure the grid itself is centered within its container */
   margin: 0 auto !important;
-  margin-bottom: 4rem !important;
   max-width: 100% !important;
   width: 100% !important;
   justify-self: center !important;
   box-sizing: border-box;
-}
-
-@media (min-width: 768px) {
-  .bento-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .bento-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }
 
 .bento-grid-section {
@@ -68,7 +51,8 @@
 .bento-card {
   @apply bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700/50 
          rounded-xl hover:border-gray-300 dark:hover:border-slate-600/60 
-         transition-colors duration-150 h-full backdrop-blur-sm;
+         transition-colors duration-150 h-full;
+  backdrop-filter: blur(10px);
   box-sizing: border-box;
   max-width: 100%;
 }
@@ -86,7 +70,16 @@
   @apply w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0;
 }
 
-/* Dark mode adjustments are now handled by Tailwind utilities in the @apply directive */
+/* Dark mode adjustments for consistent theme */
+.dark .bento-card {
+  background: rgba(30, 41, 59, 0.5);
+  border-color: rgba(51, 65, 85, 0.5);
+}
+
+.dark .bento-card:hover {
+  background: rgba(30, 41, 59, 0.7);
+  border-color: rgba(71, 85, 105, 0.6);
+}
 
 .bento-card-title {
   @apply font-semibold text-gray-900 dark:text-white text-sm flex-shrink-0;
@@ -189,9 +182,9 @@ h3.bento-card-title {
 }
 
 .bento-statistics {
-  @apply bg-white dark:bg-slate-800/50 border
-         border-gray-200 dark:border-slate-700/50 hover:border-gray-300 dark:hover:border-slate-600/60
-         backdrop-blur-sm;
+  @apply bg-white dark:bg-slate-800/50 
+         border-gray-200 dark:border-slate-700/50 hover:border-gray-300 dark:hover:border-slate-600/60;
+  backdrop-filter: blur(10px);
 }
 
 .bento-statistics .bento-card-icon {
@@ -203,9 +196,9 @@ h3.bento-card-title {
 }
 
 .bento-beta-gradient {
-  @apply bg-white dark:bg-slate-800/50 border
-         border-gray-200 dark:border-slate-700/50 hover:border-gray-300 dark:hover:border-slate-600/60
-         backdrop-blur-sm;
+  @apply bg-white dark:bg-slate-800/50 
+         border-gray-200 dark:border-slate-700/50 hover:border-gray-300 dark:hover:border-slate-600/60;
+  backdrop-filter: blur(10px);
 }
 
 .bento-beta-gradient .bento-card-icon {
@@ -217,9 +210,9 @@ h3.bento-card-title {
 }
 
 .bento-community-gradient {
-  @apply bg-white dark:bg-slate-800/50 border
-         border-gray-200 dark:border-slate-700/50 hover:border-gray-300 dark:hover:border-slate-600/60
-         backdrop-blur-sm;
+  @apply bg-white dark:bg-slate-800/50 
+         border-gray-200 dark:border-slate-700/50 hover:border-gray-300 dark:hover:border-slate-600/60;
+  backdrop-filter: blur(10px);
 }
 
 .bento-community-gradient .bento-card-icon {
@@ -262,10 +255,19 @@ h3.bento-card-title {
   @apply w-full text-left p-3.5 rounded-lg transition-all duration-150 text-sm cursor-pointer 
          bg-gray-50 dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700/50
          hover:border-gray-300 dark:hover:border-slate-600/60
-         text-gray-900 dark:text-gray-100 backdrop-blur-sm;
+         text-gray-900 dark:text-gray-100;
+  backdrop-filter: blur(10px);
 }
 
-/* Dark mode button styling now handled by Tailwind utilities in @apply */
+.dark .bento-button {
+  background: rgba(30, 41, 59, 0.5);
+  border-color: rgba(51, 65, 85, 0.5);
+}
+
+.dark .bento-button:hover {
+  background: rgba(30, 41, 59, 0.7);
+  border-color: rgba(71, 85, 105, 0.6);
+}
 
 /* Remove all platform-specific button hover colors for consistency */
 .bento-button-macos,
