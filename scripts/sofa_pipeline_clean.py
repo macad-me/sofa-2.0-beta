@@ -145,78 +145,41 @@ def run_build(version: str) -> StageResult:
     """Run build stage for v1 or v2"""
     console.rule(f"[bold blue]Stage: Build {version}")
     
-    products = ["safari", "ios", "macos", "tvos", "watchos", "visionos"]
+    start_time = datetime.now()
     
-    with Progress(
-        SpinnerColumn(),
-        TextColumn("[progress.description]{task.description}"),
-        console=console,
-    ) as progress:
-        build_results = {}
-        start_time = datetime.now()
+    if version == "v1":
+        # Simple, clean call to sofa-build all --legacy
+        console.print("🔧 Building all v1 feeds with legacy mode...")
+        cmd = [
+            "./bin/sofa-build", "all",
+            "-i", "data/resources",
+            "-o", "data/feeds/v1",
+            "--type", "v1",
+            "--legacy"
+        ]
+        console.print(f"🚀 Running: {' '.join(cmd)}")
+        result = run_binary_command(cmd, "build_v1", 300)
         
-        if version == "v1":
-            # Use --legacy flag for v1 to build all products at once (more stable)
-            task = progress.add_task(f"Building all {version} feeds with legacy mode...", total=1)
-            
-            cmd = [
-                "./bin/sofa-build", "all",
-                "-i", "data/resources",
-                "-o", f"data/feeds/{version}",
-                "--type", version,
-                "--legacy"
-            ]
-            
-            result = run_binary_command(cmd, f"build_{version}_all", 300)
-            
-            # Check which files were created
-            for product in products:
-                feed_file = Path(f"data/feeds/{version}/{product}_data_feed.json")
-                if feed_file.exists():
-                    build_results[product] = "✅"
-                else:
-                    build_results[product] = "❌"
-                    
-            progress.advance(task)
-            
-        else:
-            # Use individual product builds for v2 (current approach)
-            task = progress.add_task(f"Building {version} feeds...", total=len(products))
-            
-            for product in products:
-                progress.update(task, description=f"Building {product} {version}...")
-                
-                cmd = [
-                    "./bin/sofa-build", product,
-                    "-i", "data/resources",
-                    "-f", f"data/feeds/{version}/{product}_data_feed.json", 
-                    "--type", version
-                ]
-                
-                result = run_binary_command(cmd, f"build_{version}_{product}", 120)
-                
-                if result.success:
-                    build_results[product] = "✅"
-                else:
-                    build_results[product] = "❌"
-                    console.print(f"❌ {product} {version} failed: {result.message}")
-                
-                progress.advance(task)
-    
-    # Display results table
-    table = Table(title=f"Build {version} Results")
-    table.add_column("Product", style="cyan")
-    table.add_column("Status", style="green")
-    
-    for product, status in build_results.items():
-        table.add_row(product, status)
-    
-    console.print(table)
+    else:
+        # Simple call to sofa-build all for v2  
+        console.print("🔧 Building all v2 feeds...")
+        cmd = [
+            "./bin/sofa-build", "all", 
+            "-i", "data/resources",
+            "-o", "data/feeds/v2",
+            "--type", "v2"
+        ]
+        console.print(f"🚀 Running: {' '.join(cmd)}")
+        result = run_binary_command(cmd, "build_v2", 300)
     
     duration = (datetime.now() - start_time).total_seconds()
-    success = all(status == "✅" for status in build_results.values())
     
-    return StageResult(f"build_{version}", success, duration)
+    if result.success:
+        console.print(f"✅ {version} build completed in {duration:.1f}s", style="green")
+    else:
+        console.print(f"❌ {version} build failed: {result.message}", style="red")
+    
+    return StageResult(f"build_{version}", result.success, duration, result.message)
 
 def run_bulletin() -> StageResult:
     """Generate bulletin data"""
