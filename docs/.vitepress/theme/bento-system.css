@@ -335,6 +335,32 @@ h3.bento-card-title {
 
 /* ===== RESPONSIVE ADJUSTMENTS ===== */
 
+/* Very narrow screens - reduce gap to prevent overflow */
+@media (max-width: 480px) {
+  .bento-grid {
+    @apply gap-4;
+  }
+  
+  .dashboard-container .bento-grid {
+    gap: 1rem !important;
+  }
+}
+
+/* Extra narrow screens - further reduce gap */
+@media (max-width: 360px) {
+  .bento-grid {
+    @apply gap-3;
+  }
+  
+  .dashboard-container .bento-grid {
+    gap: 0.75rem !important;
+  }
+  
+  .bento-card-content {
+    @apply p-3;
+  }
+}
+
 @media (max-width: 768px) {
   .bento-card-content {
     @apply p-4;
