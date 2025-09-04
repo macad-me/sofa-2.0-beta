@@ -1,8 +1,8 @@
 # SOFA Gather Configuration
 # Standard directory structure: bin/, config/, data/
 
-[output]
-directory = "../data/resources"
+[output]  
+directory = "data/resources"
 history_enabled = true
 timestamp_tracking = true
 preserve_history = false
@@ -33,8 +33,8 @@ fetch_uma = true
 fetch_xprotect = true
 
 [cache]
-enabled = true
-directory = "../data/cache"
+enabled = true  
+directory = "data/cache"
 ttl_seconds = 21600
 preserve_history = false
 
