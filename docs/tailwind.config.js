@@ -6,14 +6,8 @@ export default {
     "./.vitepress/**/*.{js,ts,vue}",
     "./.vitepress/theme/**/*.{js,ts,vue,css}"
   ],
+  darkMode: 'class',
   theme: {
-    screens: {
-      sm: '640px',
-      md: '768px', 
-      lg: '1024px',
-      xl: '1280px',
-      '2xl': '1536px',
-    },
     extend: {
       colors: {
         // Apple platform colors - authentic branding

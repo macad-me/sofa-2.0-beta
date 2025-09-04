@@ -1,5 +1,3 @@
-@import 'tailwindcss' reference;
-
 /**
  * SOFA Bento Grid System
  * Tailwind CSS implementation for VitePress
@@ -21,7 +19,7 @@
 }
 
 .bento-grid-section {
-  margin-bottom: 4rem;
+  @apply mb-16;
 }
 
 /* Ensure dashboard bento grid is always centered */
@@ -70,55 +68,15 @@
   @apply w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0;
 }
 
-/* Dark mode adjustments for consistent theme - explicit styling needed for Tailwind 4 */
+/* Dark mode adjustments for consistent theme */
 .dark .bento-card {
-  background: rgba(30, 41, 59, 0.5) !important;
-  border-color: rgba(51, 65, 85, 0.5) !important;
+  background: rgba(30, 41, 59, 0.5);
+  border-color: rgba(51, 65, 85, 0.5);
 }
 
 .dark .bento-card:hover {
-  background: rgba(30, 41, 59, 0.7) !important;
-  border-color: rgba(71, 85, 105, 0.6) !important;
-}
-
-/* Apply to ALL bento variants consistently - more aggressive selectors */
-.dark .bento-card,
-.dark .bento-statistics,
-.dark .bento-beta-gradient,
-.dark .bento-community-gradient,
-.dark .bento-quickboard,
-.dark .bento-macos,
-.dark .bento-ios,
-.dark .bento-watchos,
-.dark .bento-tvos,
-.dark .bento-visionos,
-.dark .bento-safari,
-.dark .bento-community,
-.dark .bento-feed-macos,
-.dark .bento-feed-ios,
-.dark [class*="bento-"] {
-  background: rgba(30, 41, 59, 0.5) !important;
-  border-color: rgba(51, 65, 85, 0.5) !important;
-  backdrop-filter: blur(10px) !important;
-}
-
-.dark .bento-card:hover,
-.dark .bento-statistics:hover,
-.dark .bento-beta-gradient:hover,
-.dark .bento-community-gradient:hover,
-.dark .bento-quickboard:hover,
-.dark .bento-macos:hover,
-.dark .bento-ios:hover,
-.dark .bento-watchos:hover,
-.dark .bento-tvos:hover,
-.dark .bento-visionos:hover,
-.dark .bento-safari:hover,
-.dark .bento-community:hover,
-.dark .bento-feed-macos:hover,
-.dark .bento-feed-ios:hover,
-.dark [class*="bento-"]:hover {
-  background: rgba(30, 41, 59, 0.7) !important;
-  border-color: rgba(71, 85, 105, 0.6) !important;
+  background: rgba(30, 41, 59, 0.7);
+  border-color: rgba(71, 85, 105, 0.6);
 }
 
 .bento-card-title {
@@ -299,67 +257,14 @@ h3.bento-card-title {
   backdrop-filter: blur(10px);
 }
 
-/* Dark mode button styling - explicit for Tailwind 4 */
 .dark .bento-button {
-  background: rgba(30, 41, 59, 0.5) !important;
-  border-color: rgba(51, 65, 85, 0.5) !important;
+  background: rgba(30, 41, 59, 0.5);
+  border-color: rgba(51, 65, 85, 0.5);
 }
 
 .dark .bento-button:hover {
-  background: rgba(30, 41, 59, 0.7) !important;
-  border-color: rgba(71, 85, 105, 0.6) !important;
-}
-
-/* Dark mode text contrast fixes - selective to preserve colored elements */
-.dark .bento-card-title:not([class*="text-"]) {
-  color: rgb(248, 250, 252) !important;
-}
-
-/* Only override gray text colors, preserve colored ones */
-.dark .bento-card .text-gray-900 {
-  color: rgb(248, 250, 252) !important;
-}
-
-.dark .bento-card .text-gray-700 {
-  color: rgb(203, 213, 225) !important;
-}
-
-.dark .bento-card .text-gray-600,
-.dark .bento-card .text-gray-500 {
-  color: rgb(156, 163, 175) !important;
-}
-
-.dark .bento-card .text-gray-400 {
-  color: rgb(107, 114, 128) !important;
-}
-
-/* Fix buttons while preserving colored text */
-.dark .bento-button:not([class*="text-"]) {
-  color: rgb(229, 231, 235) !important;
-}
-
-/* Fix SOFADashboard platform navigation and other elements */
-.dark .group,
-.dark .group\\/btn,
-.dark [class*="group"] {
-  background: rgba(30, 41, 59, 0.5) !important;
-  border-color: rgba(51, 65, 85, 0.5) !important;
-}
-
-.dark .group:hover,
-.dark .group\\/btn:hover,
-.dark [class*="group"]:hover {
-  background: rgba(30, 41, 59, 0.7) !important;
-}
-
-/* Force dark mode for platform navigation buttons */
-.dark a[class*="bg-white"] {
-  background: rgba(30, 41, 59, 0.5) !important;
-  border-color: rgba(51, 65, 85, 0.5) !important;
-}
-
-.dark a[class*="bg-white"]:hover {
-  background: rgba(30, 41, 59, 0.7) !important;
+  background: rgba(30, 41, 59, 0.7);
+  border-color: rgba(71, 85, 105, 0.6);
 }
 
 /* Remove all platform-specific button hover colors for consistency */
@@ -373,7 +278,7 @@ h3.bento-card-title {
 
 /* Copy URL Buttons */
 .bento-copy-url {
-  @apply flex items-center gap-1 px-2 py-1 text-gray-400 rounded transition-colors;
+  @apply flex items-center gap-1 px-2 py-1 text-gray-400 hover:bg-opacity-20 rounded transition-colors;
 }
 
 .bento-copy-url-macos {
@@ -474,6 +379,32 @@ h3.bento-card-title {
   
   .bento-card-content {
     @apply p-2;
+  }
+}
+
+/* Very narrow screens - reduce gap to prevent overflow */
+@media (max-width: 480px) {
+  .bento-grid {
+    @apply gap-4;
+  }
+  
+  .dashboard-container .bento-grid {
+    gap: 1rem !important;
+  }
+}
+
+/* Extra narrow screens - further reduce gap */
+@media (max-width: 360px) {
+  .bento-grid {
+    @apply gap-3;
+  }
+  
+  .dashboard-container .bento-grid {
+    gap: 0.75rem !important;
+  }
+  
+  .bento-card-content {
+    @apply p-3;
   }
 }
 
