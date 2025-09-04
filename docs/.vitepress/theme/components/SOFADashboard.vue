@@ -2077,6 +2077,20 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   filter: drop-shadow(0 4px 20px rgba(124, 58, 237, 0.4));
 }
 
+/* Very narrow screens - minimal padding */
+@media (max-width: 480px) {
+  .dashboard-container {
+    padding: 1rem 0.5rem 1rem 0.5rem; /* Minimal horizontal padding */
+  }
+}
+
+/* Extra narrow screens - ultra minimal padding */
+@media (max-width: 360px) {
+  .dashboard-container {
+    padding: 1rem 0.25rem 1rem 0.25rem; /* Ultra minimal horizontal padding */
+  }
+}
+
 @media (max-width: 768px) {
   .dashboard-container {
     padding: 1.5rem 1rem 1.5rem 1rem; /* Adjusted for mobile */
