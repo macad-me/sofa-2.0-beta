@@ -242,6 +242,7 @@
         title="Other Platforms"
         platform="watchos"
         :icon="WatchIcon"
+        :style="{ '--bento-order': bentoOrder.indexOf('other-platforms') }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">Latest</span>
@@ -324,6 +325,7 @@
         title="Safari Updates"
         platform="safari"
         :icon="GlobeIcon"
+        :style="{ '--bento-order': bentoOrder.indexOf('safari') }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Latest</span>
@@ -653,6 +655,7 @@
         title="Data Statistics"
         platform="statistics"
         :icon="ActivityIcon"
+        :style="{ '--bento-order': bentoOrder.indexOf('statistics') }"
       >
         <template #badge>
           <span v-if="metricsLoading" class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200">Loading</span>
@@ -866,6 +869,7 @@
         platform="timeline-gradient"
         :icon="HistoryIcon"
         class="md:col-span-2"
+        :style="{ '--bento-order': bentoOrder.indexOf('timeline') }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">Timeline</span>
