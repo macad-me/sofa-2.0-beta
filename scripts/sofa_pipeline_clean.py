@@ -147,45 +147,6 @@ def run_fetch() -> StageResult:
     
     return result
 
-def run_build(version: str) -> StageResult:
-    """Run build stage for v1 or v2"""
-    console.rule(f"[bold blue]Stage: Build {version}")
-    
-    start_time = datetime.now()
-    
-    if version == "v1":
-        # Simple, clean call to sofa-build all --legacy
-        console.print("🔧 Building all v1 feeds with legacy mode...")
-        cmd = [
-            "./bin/sofa-build", "all",
-            "-i", "data/resources",
-            "-o", "data/feeds/v1",
-            "--feed-type", "v1",
-            "--legacy"
-        ]
-        console.print(f"🚀 Running: {' '.join(cmd)}")
-        result = run_binary_command(cmd, "build_v1", 300)
-        
-    else:
-        # Simple call to sofa-build all for v2  
-        console.print("🔧 Building all v2 feeds...")
-        cmd = [
-            "./bin/sofa-build", "all", 
-            "-i", "data/resources",
-            "-o", "data/feeds/v2",
-            "--feed-type", "v2"
-        ]
-        console.print(f"🚀 Running: {' '.join(cmd)}")
-        result = run_binary_command(cmd, "build_v2", 300)
-    
-    duration = (datetime.now() - start_time).total_seconds()
-    
-    if result.success:
-        console.print(f"✅ {version} build completed in {duration:.1f}s", style="green")
-    else:
-        console.print(f"❌ {version} build failed: {result.message}", style="red")
-    
-    return StageResult(f"build_{version}", result.success, duration, result.message)
 
 def run_bulletin() -> StageResult:
     """Generate bulletin data"""
@@ -372,10 +333,26 @@ def run(
         elif stage_name == "fetch":
             result = run_fetch()
         elif stage_name == "build":
-            # Build both v1 and v2
-            result_v1 = run_build("v1")
-            result_v2 = run_build("v2") 
-            results.extend([result_v1, result_v2])
+            # Simple single call to build all feeds with legacy mode
+            console.rule("[bold blue]Build All Feeds")
+            console.print("🔧 Building all feeds (v1 + v2) with legacy mode...")
+            
+            cmd = [
+                "./bin/sofa-build", "all",
+                "-i", "data/resources", 
+                "-o", "data/feeds",
+                "--legacy"
+            ]
+            console.print(f"🚀 Running: {' '.join(cmd)}")
+            
+            result = run_binary_command(cmd, "build_all", 600)
+            
+            if result.success:
+                console.print("✅ All feeds built successfully", style="green")
+            else:
+                console.print(f"❌ Build failed: {result.message}", style="red")
+                
+            results.append(result)
             continue
         elif stage_name == "bulletin":
             result = run_bulletin()
