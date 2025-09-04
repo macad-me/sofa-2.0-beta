@@ -200,6 +200,7 @@
         title="iOS & iPadOS"
         platform="ios"
         :icon="SmartphoneIcon"
+        :style="{ '--bento-order': bentoOrder.indexOf('ios-ipados') }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200">Latest</span>
