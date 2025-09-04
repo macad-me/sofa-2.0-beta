@@ -1,5 +1,5 @@
 {
-  "update_hash": "sha256:effacd2731e9d65cb9c273fa3911e50f2bb00b9ef29528a835712447b6873fd2",
+  "update_hash": "sha256:05d9940d0ff31e16517c3b0ac41b961de28861fb6111aea2ce1a56fe024239e7",
   "devices": [
     {
       "name": "iPhone 2G",
@@ -1788,12 +1788,12 @@
     }
   ],
   "latest_versions": {
-    "iPadOS": "18.6.2",
-    "watchOS": "10.6.2",
-    "iOS": "18.6.2",
     "tvOS": "17.6.2",
+    "iOS": "18.6.2",
+    "watchOS": "10.6.2",
     "visionOS": "1.3.2",
-    "macOS": "14.7.2"
+    "macOS": "14.7.2",
+    "iPadOS": "18.6.2"
   },
   "signing_status": {
     "iPhone15,2": [
@@ -3736,7 +3736,7 @@
     "build": "24G90",
     "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/093-10809/CFD6DD38-DAF0-40DA-854F-31AAD1294C6F/UniversalMac_15.6.1_24G90_Restore.ipsw",
     "apple_slug": "093-10809",
-    "fetch_timestamp": "2025-09-04T16:46:17.557880196Z"
+    "fetch_timestamp": "2025-09-04T17:12:58.513001662Z"
   },
   "total_devices": 255,
   "total_firmwares": 214
