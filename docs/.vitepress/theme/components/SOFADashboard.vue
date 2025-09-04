@@ -883,38 +883,16 @@
         title="Recent Security Releases"
         platform="timeline-gradient"
         :icon="HistoryIcon"
-        class="md:col-span-2 relative"
+        class="md:col-span-2"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">Timeline</span>
         </template>
         
-        <!-- Navigation buttons -->
-        <div class="absolute right-4 top-4 flex gap-1 z-10">
-          <button
-            @click="scrollTimeline('left')"
-            :disabled="!canScrollLeft"
-            class="p-1.5 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-150"
-            :class="canScrollLeft ? 'hover:border-green-300 dark:hover:border-green-600 cursor-pointer' : 'opacity-50 cursor-not-allowed'"
-            aria-label="Previous releases"
-          >
-            <component :is="ChevronLeftIcon" class="h-4 w-4 text-gray-600 dark:text-gray-400" />
-          </button>
-          <button
-            @click="scrollTimeline('right')"
-            :disabled="!canScrollRight"
-            class="p-1.5 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-150"
-            :class="canScrollRight ? 'hover:border-green-300 dark:hover:border-green-600 cursor-pointer' : 'opacity-50 cursor-not-allowed'"
-            aria-label="Next releases"
-          >
-            <component :is="ChevronRightIcon" class="h-4 w-4 text-gray-600 dark:text-gray-400" />
-          </button>
-        </div>
-        
         <div 
           ref="timelineContainer" 
           @scroll="checkScrollButtons"
-          class="overflow-x-auto flex-grow scrollbar-hide"
+          class="overflow-x-auto flex-grow scrollbar-hide mb-3"
           style="scroll-behavior: smooth;"
         >
           <div class="flex gap-3 pb-2" style="min-width: max-content;">
@@ -948,14 +926,27 @@
             <p class="text-xs text-gray-500 dark:text-gray-400">
               Showing {{ recentReleases.length }} most recent releases
             </p>
-            <button 
-              class="inline-flex items-center gap-1 text-xs font-medium text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-colors"
-              @click="scrollTimeline('right')"
-              v-if="canScrollRight"
-            >
-              View more
-              <component :is="ChevronRightIcon" class="h-3 w-3" />
-            </button>
+            <!-- Navigation buttons repositioned below cards -->
+            <div class="flex gap-1">
+              <button
+                @click="scrollTimeline('left')"
+                :disabled="!canScrollLeft"
+                class="p-1.5 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-150"
+                :class="canScrollLeft ? 'hover:border-green-300 dark:hover:border-green-600 cursor-pointer' : 'opacity-50 cursor-not-allowed'"
+                aria-label="Previous releases"
+              >
+                <component :is="ChevronLeftIcon" class="h-4 w-4 text-gray-600 dark:text-gray-400" />
+              </button>
+              <button
+                @click="scrollTimeline('right')"
+                :disabled="!canScrollRight"
+                class="p-1.5 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-150"
+                :class="canScrollRight ? 'hover:border-green-300 dark:hover:border-green-600 cursor-pointer' : 'opacity-50 cursor-not-allowed'"
+                aria-label="Next releases"
+              >
+                <component :is="ChevronRightIcon" class="h-4 w-4 text-gray-600 dark:text-gray-400" />
+              </button>
+            </div>
           </div>
         </template>
       </BentoCard>
@@ -1101,7 +1092,7 @@ const safariTimeRef = ref('')
 // Timeline navigation refs
 const timelineContainer = ref(null)
 const canScrollLeft = ref(false)
-const canScrollRight = ref(true)
+const canScrollRight = ref(false)
 
 // Preference system for bento order
 const defaultBentoOrder = [
@@ -1271,6 +1262,7 @@ onMounted(async () => {
   await nextTick()
   checkScrollButtons()
 })
+
 
 // Helper function to format dates
 const formatDate = (dateString) => {
@@ -1496,6 +1488,12 @@ const recentReleases = computed(() => {
   }))
 })
 
+// Watch for changes in recent releases and re-check scroll buttons
+watch(recentReleases, async () => {
+  await nextTick()
+  setTimeout(checkScrollButtons, 100)
+}, { flush: 'post' })
+
 // Timeline navigation functions
 const checkScrollButtons = () => {
   if (!timelineContainer.value) return
@@ -1503,6 +1501,15 @@ const checkScrollButtons = () => {
   const container = timelineContainer.value
   canScrollLeft.value = container.scrollLeft > 0
   canScrollRight.value = container.scrollLeft < container.scrollWidth - container.clientWidth - 10
+  
+  // Debug log to see scroll state
+  console.log('Scroll check:', {
+    scrollLeft: container.scrollLeft,
+    scrollWidth: container.scrollWidth,
+    clientWidth: container.clientWidth,
+    canScrollRight: canScrollRight.value,
+    canScrollLeft: canScrollLeft.value
+  })
 }
 
 const scrollTimeline = (direction) => {
