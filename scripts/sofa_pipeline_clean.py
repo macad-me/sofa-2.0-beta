@@ -62,6 +62,12 @@ def run_binary_command(cmd: List[str], stage_name: str, timeout: int = 600) -> S
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
         duration = (datetime.now() - start_time).total_seconds()
         
+        # Always show what happened for debugging
+        if result.stdout:
+            console.print(f"[dim]stdout: {result.stdout[-500:]}[/dim]")
+        if result.stderr:
+            console.print(f"[red]stderr: {result.stderr[-500:]}[/red]")
+        
         if result.returncode == 0:
             return StageResult(stage_name, True, duration, "Completed successfully")
         else:
