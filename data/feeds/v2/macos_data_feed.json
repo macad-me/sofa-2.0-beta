@@ -1,7 +1,7 @@
 {
   "Version": "2.0",
   "UpdateHash": "1cfbb107fb00ee1b830fcc018b1288d1cd378d067f6991bb58c808aab371cf90",
-  "LastCheck": "2025-09-03T20:39:44.272858263+00:00",
+  "LastCheck": "2025-09-04T00:42:59.968490943+00:00",
   "OSVersions": [
     {
       "OSVersion": "Sequoia 15",
@@ -7641,9 +7641,9 @@
     "com.apple.XProtect": "5313"
   },
   "XProtectPayloads": {
-    "ReleaseDate": "2025-09-03T17:01:27Z",
     "com.apple.XProtectFramework.XProtect": "153",
-    "com.apple.XprotectFramework.PluginService": "74"
+    "com.apple.XprotectFramework.PluginService": "74",
+    "ReleaseDate": "2025-09-03T17:01:27Z"
   },
   "InstallationApps": {
     "LatestUMA": {
