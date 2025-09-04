@@ -436,10 +436,7 @@ jobs:
             Pipeline stage: ${{ github.event.inputs.pipeline_stage }} | Files: $TOTAL_CHANGES
             Updates: $CHANGE_SUMMARY
             
-            ✅ Processing folder isolation with v0.1.1-beta1 binaries
-            ✅ CVE ordering stabilized (alphabetical sorting) 
-            ✅ Model filtering: 100% regex match (53/53 models)
-            ✅ Beta RSS integration working (released field mapping)"
+            Generated with sofa_pipeline_clean.py v0.2.0 + v0.1.1-beta1 binaries"
             
             git push
             echo "✅ Detailed pipeline data committed to repository"
