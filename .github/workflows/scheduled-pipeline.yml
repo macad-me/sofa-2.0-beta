@@ -157,9 +157,9 @@ jobs:
             # Check binary architecture
             echo "  🔍 Binary info: $(file "$binary")"
             
-            # Test execution
-            if ./"$binary" --version 2>&1; then
-              echo "  ✅ $binary works"
+            # Test execution and show version
+            if VERSION_OUTPUT=$(./"$binary" --version 2>&1); then
+              echo "  ✅ $binary: $VERSION_OUTPUT"
             else
               EXITCODE=$?
               echo "  ❌ $binary failed (exit code: $EXITCODE)"
