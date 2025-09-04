@@ -2,10 +2,10 @@
   "metrics": {
     "total_updates": 0,
     "security_updates": 0,
-    "last_scan": "2025-09-04T05:37:00Z"
+    "last_scan": "2025-09-04T12:40:00Z"
   },
   "performance": {
-    "avg_response_time": "150ms",
-    "uptime": "99.9%"
+    "uptime": "99.9%",
+    "status": "All systems operational"
   }
 }
