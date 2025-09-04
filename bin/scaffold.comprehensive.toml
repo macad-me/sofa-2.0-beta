@@ -354,8 +354,7 @@ content = '''
             "Mac15,12": "MacBook Air (13-inch, M3, 2024)",
             "Mac14,15": "MacBook Air (15-inch, M2, 2023)",
             "Mac14,2": "MacBook Air (M2, 2022)",
-            "MacBookAir10,1": "MacBook Air (M1, 2020)",
-            "MacBookAir9,1": "MacBook Air (Retina, 13-inch, 2020)"
+            "MacBookAir10,1": "MacBook Air (M1, 2020)"
         }
     },
     {
@@ -384,14 +383,9 @@ content = '''
             "MacBookPro18,1": "MacBook Pro (16-inch, 2021)",
             "MacBookPro18,2": "MacBook Pro (16-inch, 2021)",
             "MacBookPro17,1": "MacBook Pro (13-inch, M1, 2020)",
-            "MacBookPro16,3": "MacBook Pro (13-inch, 2020, Two Thunderbolt 3 ports)",
             "MacBookPro16,2": "MacBook Pro (13-inch, 2020, Four Thunderbolt 3 ports)",
             "MacBookPro16,1": "MacBook Pro (16-inch, 2019)",
-            "MacBookPro16,4": "MacBook Pro (16-inch, 2019)",
-            "MacBookPro15,4": "MacBook Pro (13-inch, 2019, Two Thunderbolt 3 ports)",
-            "MacBookPro15,1": "MacBook Pro (15-inch, 2018)",
-            "MacBookPro15,3": "MacBook Pro (15-inch, 2018)",
-            "MacBookPro15,2": "MacBook Pro (13-inch, 2018, Four Thunderbolt 3 ports)"
+            "MacBookPro16,4": "MacBook Pro (16-inch, 2019)"
         }        
     },
     {
@@ -402,8 +396,7 @@ content = '''
             "Mac16,10": "Mac mini (2024)",
             "Mac14,3": "Mac mini (2023)",
             "Mac14,12": "Mac mini (2023)",
-            "Macmini9,1": "Mac mini (M1, 2020)",
-            "Macmini8,1": "Mac mini (2018)"
+            "Macmini9,1": "Mac mini (M1, 2020)"
         }
     },
     {
@@ -429,10 +422,7 @@ content = '''
             "iMac21,1": "iMac (24-inch, M1, 2021)",
             "iMac21,2": "iMac (24-inch, M1, 2021)",
             "iMac20,1": "iMac (Retina 5K, 27-inch, 2020)",
-            "iMac20,2": "iMac (Retina 5K, 27-inch, 2020)",
-            "iMac19,1": "iMac (Retina 5K, 27-inch, 2019)",
-            "iMac19,2": "iMac (Retina 4K, 21.5-inch, 2019)",
-            "iMacPro1,1": "iMac Pro"
+            "iMac20,2": "iMac (Retina 5K, 27-inch, 2020)"
         }
     },
     {
