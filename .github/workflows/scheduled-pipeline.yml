@@ -29,8 +29,8 @@ env:
   PYTHON_VERSION: '3.13'
 
 jobs:
-  test-pipeline:
-    name: Force Test Pipeline
+  pipeline:
+    name: SOFA Production Pipeline
     runs-on: ubuntu-latest
     
     steps:
@@ -46,7 +46,7 @@ jobs:
         
       - name: Show environment info
         run: |
-          echo "## 🧪 Pipeline Test Environment" >> $GITHUB_STEP_SUMMARY
+          echo "## 🏭 Production Pipeline Environment" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**OS:** $(lsb_release -d | cut -f2)" >> $GITHUB_STEP_SUMMARY
           echo "**Architecture:** $(uname -m)" >> $GITHUB_STEP_SUMMARY
@@ -132,16 +132,16 @@ jobs:
 
 
           
-      - name: Test binary execution
+      - name: Verify binary execution
         run: |
-          echo "🧪 Testing essential SOFA CLI binaries..."
+          echo "🔧 Verifying essential SOFA CLI binaries..."
           cd processing/bin
           
-          # Only test the binaries we actually need for the pipeline
+          # Verify the binaries we need for the pipeline
           ESSENTIAL_BINARIES=("sofa-build" "sofa-cve" "sofa-fetch" "sofa-gather")
           
           for binary in "${ESSENTIAL_BINARIES[@]}"; do
-            echo "Testing $binary..."
+            echo "Verifying $binary..."
             
             # Check if binary exists and is executable
             if [ ! -f "$binary" ]; then
@@ -372,10 +372,10 @@ jobs:
           find data/ -type f | head -20 || echo "No data files found"
           
           # Add generated data
-          git config --local user.email "test@github.com"
-          git config --local user.name "Pipeline Test"
+          git config --local user.email "action@github.com"
+          git config --local user.name "SOFA Pipeline"
           
-          # Explicitly add EVERY resource file (based on successful test run)
+          # Explicitly add EVERY resource file (based on successful pipeline run)
           echo "📁 Adding ALL expected resource files explicitly:"
           git add data/resources/apple_beta_feed.json && echo "✅ Added apple_beta_feed.json" || echo "❌ apple_beta_feed.json not found or unchanged"
           git add data/resources/apple_beta_os_history.json && echo "✅ Added apple_beta_os_history.json" || echo "❌ apple_beta_os_history.json not found or unchanged"
