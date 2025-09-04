@@ -1,3 +1,41 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import 'tailwindcss' reference;
+
+@theme {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  
+  /* Apple platform colors - authentic branding */
+  --color-apple-blue: hsl(203, 88%, 53%);     /* macOS */
+  --color-apple-purple: hsl(262, 76%, 51%);   /* iOS */
+  --color-apple-green: hsl(142, 76%, 36%);    /* watchOS, tvOS, visionOS */
+  --color-apple-orange: hsl(24, 95%, 53%);    /* Safari */
+  --color-apple-red: hsl(0, 84%, 60%);        /* Alerts/warnings */
+  --color-apple-gray: hsl(210, 11%, 71%);     /* Secondary text */
+  
+  /* Bento gradient colors with proper opacity */
+  --color-bento-primary-blue: hsl(217, 91%, 60%);
+  --color-bento-primary-green: hsl(142, 76%, 36%);
+  --color-bento-primary-orange: hsl(24, 95%, 53%);
+  --color-bento-emerald: hsl(155, 76%, 36%);
+  --color-bento-indigo: hsl(231, 48%, 48%);
+  
+  /* Font family */
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Animations */
+  --animate-fade-in: fadeIn 0.6s ease-out;
+  --animate-scale-in: scaleIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
