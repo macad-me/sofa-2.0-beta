@@ -154,7 +154,7 @@ def run_build(version: str) -> StageResult:
             "./bin/sofa-build", "all",
             "-i", "data/resources",
             "-o", "data/feeds/v1",
-            "--type", "v1",
+            "--feed-type", "v1",
             "--legacy"
         ]
         console.print(f"🚀 Running: {' '.join(cmd)}")
@@ -167,7 +167,7 @@ def run_build(version: str) -> StageResult:
             "./bin/sofa-build", "all", 
             "-i", "data/resources",
             "-o", "data/feeds/v2",
-            "--type", "v2"
+            "--feed-type", "v2"
         ]
         console.print(f"🚀 Running: {' '.join(cmd)}")
         result = run_binary_command(cmd, "build_v2", 300)
