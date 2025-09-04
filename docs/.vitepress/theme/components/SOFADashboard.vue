@@ -112,6 +112,7 @@
         title="Quick Board"
         platform="quickboard"
         :icon="ShieldIcon"
+        :style="{ '--bento-order': bentoOrder.indexOf('quick-board') }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Beta</span>
@@ -157,6 +158,7 @@
         title="macOS"
         platform="macos"
         :icon="MonitorIcon"
+        :style="{ '--bento-order': bentoOrder.indexOf('macos') }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">Latest</span>
@@ -662,36 +664,24 @@
               <component :is="GlobeIcon" class="h-3.5 w-3.5 text-emerald-600" />
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Total Requests</span>
             </div>
-            <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">
-              {{ metricsData.metrics.totalRequests.formatted }}
-            </div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">
-              Last 30 days
-            </div>
+            <div class="text-lg font-bold text-gray-400">--</div>
+            <div class="text-xs text-gray-400">No data</div>
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-1">
-              <component :is="UsersIcon" class="h-3.5 w-3.5 text-emerald-600" />
-              <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Unique Visitors</span>
+              <component :is="UsersIcon" class="h-3.5 w-3.5 text-gray-400" />
+              <span class="font-semibold text-gray-500 text-sm">Unique Visitors</span>
             </div>
-            <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">
-              {{ metricsData.metrics.uniqueVisitors.formatted }}
-            </div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">
-              Monthly users
-            </div>
+            <div class="text-lg font-bold text-gray-400">--</div>
+            <div class="text-xs text-gray-400">No data</div>
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-1">
-              <component :is="ServerIcon" class="h-3.5 w-3.5 text-emerald-600" />
-              <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Bandwidth</span>
+              <component :is="ServerIcon" class="h-3.5 w-3.5 text-gray-400" />
+              <span class="font-semibold text-gray-500 text-sm">Bandwidth</span>
             </div>
-            <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">
-              {{ metricsData.metrics.bandwidth.formatted }}
-            </div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">
-              Data transfer
-            </div>
+            <div class="text-lg font-bold text-gray-400">--</div>
+            <div class="text-xs text-gray-400">No data</div>
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-1">
@@ -699,10 +689,10 @@
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Daily Average</span>
             </div>
             <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">
-              {{ metricsData.calculated.dailyAverage.formatted.visitors }}
+              --
             </div>
             <div class="text-xs text-gray-500 dark:text-gray-400">
-              Visitors/day
+              No data
             </div>
           </div>
         </div>
@@ -819,15 +809,6 @@
             >
               <component :is="FileIcon" class="h-3 w-3" />
               <span class="flex-grow">safari_data_feed.json</span>
-              <component :is="ExternalLinkIcon" class="h-3 w-3 opacity-50" />
-            </a>
-            <a 
-              href="/data/feeds/v2/feed_metadata.json" 
-              target="_blank"
-              class="text-xs text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1 transition-colors py-1 border-t border-gray-200 dark:border-gray-700 pt-1.5 mt-1"
-            >
-              <component :is="FileIcon" class="h-3 w-3" />
-              <span class="flex-grow font-semibold">feed_metadata.json</span>
               <component :is="ExternalLinkIcon" class="h-3 w-3 opacity-50" />
             </a>
           </div>
@@ -1663,12 +1644,10 @@ onMounted(async () => {
     console.log('Could not fetch star count')
   }
   
-  // Fetch metrics data
+  // Disable metrics data to prevent strange values
   try {
-    const response = await fetch('/v1/metrics.json')
-    if (response.ok) {
-      metricsData.value = await response.json()
-    }
+    // Skip metrics fetching - show "No data" state instead
+    metricsData.value = { error: true }
   } catch (error) {
     console.error('Failed to fetch metrics:', error)
   } finally {
