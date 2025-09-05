@@ -36,7 +36,8 @@
         </a>
       </div>
       
-      <!-- Preferences Button -->
+      <!-- Preferences Button - DISABLED FOR LAUNCH -->
+      <!--
       <div class="preferences-control">
         <button 
           @click="showOrderControls = !showOrderControls"
@@ -48,9 +49,11 @@
           <span>Customize Layout</span>
         </button>
       </div>
+      -->
     </div>
 
-    <!-- Preferences Panel -->
+    <!-- Preferences Panel - DISABLED FOR LAUNCH -->
+    <!--
     <div v-if="showOrderControls" class="preferences-panel">
       <div class="preferences-header">
         <h3>Customize Dashboard Layout</h3>
@@ -63,24 +66,25 @@
         Drag cards or use arrows to reorder your dashboard. Changes are saved automatically.
       </div>
       <div class="order-list">
-        <div v-for="(cardId, index) in bentoOrder" :key="cardId" class="order-item">
+        <div v-for="(cardId, index) in bentoOrder" :key="cardId" class="order-item" :class="{ 'order-item-disabled': !isCardOrderable(cardId) }">
           <div class="order-item-name">
             {{ getCardName(cardId) }}
+            <span v-if="!isCardOrderable(cardId)" class="text-xs text-gray-400 ml-1">(static)</span>
           </div>
           <div class="order-controls">
             <button 
               @click="moveCard(index, 'up')" 
-              :disabled="index === 0"
+              :disabled="index === 0 || !isCardOrderable(cardId)"
               class="move-btn"
-              :class="{ disabled: index === 0 }"
+              :class="{ disabled: index === 0 || !isCardOrderable(cardId) }"
             >
               <component :is="ArrowUpIcon" class="h-4 w-4" />
             </button>
             <button 
               @click="moveCard(index, 'down')" 
-              :disabled="index === bentoOrder.length - 1"
+              :disabled="index === bentoOrder.length - 1 || !isCardOrderable(cardId)"
               class="move-btn"
-              :class="{ disabled: index === bentoOrder.length - 1 }"
+              :class="{ disabled: index === bentoOrder.length - 1 || !isCardOrderable(cardId) }"
             >
               <component :is="ArrowDownIcon" class="h-4 w-4" />
             </button>
@@ -88,6 +92,7 @@
         </div>
       </div>
     </div>
+    -->
 
     <!-- Platform Navigation -->
     <div class="flex flex-wrap justify-center gap-3 mb-12">
@@ -107,12 +112,12 @@
 
     <!-- Bento Grid -->
     <BentoGrid>
-      <!-- Quick Board -->
+      <!-- Quick Board - HIDDEN FOR LAUNCH -->
+      <!--
       <BentoCard 
         title="Quick Board"
         platform="quickboard"
         :icon="ShieldIcon"
-        :style="{ '--bento-order': bentoOrder.indexOf('quick-board') }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Beta</span>
@@ -152,13 +157,14 @@
           </a>
         </div>
       </BentoCard>
+      -->
 
       <!-- macOS -->
       <BentoCard 
         title="macOS"
         platform="macos"
         :icon="MonitorIcon"
-        :style="{ '--bento-order': bentoOrder.indexOf('macos') }"
+        :style="{ order: bentoDisplayOrder['macos'] }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">Latest</span>
@@ -200,7 +206,7 @@
         title="iOS & iPadOS"
         platform="ios"
         :icon="SmartphoneIcon"
-        :style="{ '--bento-order': bentoOrder.indexOf('ios-ipados') }"
+        :style="{ order: bentoDisplayOrder['ios-ipados'] }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200">Latest</span>
@@ -237,12 +243,55 @@
         </div>
       </BentoCard>
 
-      <!-- Other Platforms -->
+      <!-- MacAdmins Community (moved here from later in layout) -->
+      <BentoCard 
+        title="MacAdmins Community"
+        platform="community-gradient"
+        :icon="HeartIcon"
+        :style="{ order: bentoDisplayOrder['community-1'] }"
+      >
+        <div class="grid grid-cols-1 gap-3 flex-grow">
+          <a href="https://github.com/sponsors/macadmins?o=esb" target="_blank" rel="noopener noreferrer" class="block">
+            <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-150">
+              <div class="space-y-1">
+                <div class="flex items-center gap-1">
+                  <component :is="HeartIcon" class="h-3.5 w-3.5 text-red-500" />
+                  <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">MAOS</span>
+                </div>
+                <div class="text-lg font-bold text-indigo-700 dark:text-indigo-300">
+                  Support Us
+                </div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">
+                  GitHub Sponsors
+                </div>
+              </div>
+            </div>
+          </a>
+          <a href="https://www.macadmins.org/donate" target="_blank" rel="noopener noreferrer" class="block">
+            <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-150">
+              <div class="space-y-1">
+                <div class="flex items-center gap-1">
+                  <component :is="DollarSignIcon" class="h-3.5 w-3.5 text-green-500" />
+                  <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Donate</span>
+                </div>
+                <div class="text-lg font-bold text-indigo-700 dark:text-indigo-300">
+                  MacAdmins.org
+                </div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">
+                  Direct donation
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </BentoCard>
+
+      <!-- Other Platforms - HIDDEN (COMBINED INTO PLATFORM UPDATES) -->
+      <!--
       <BentoCard 
         title="Other Platforms"
         platform="watchos"
         :icon="WatchIcon"
-        :style="{ '--bento-order': bentoOrder.indexOf('other-platforms') }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">Latest</span>
@@ -319,13 +368,14 @@
           </a>
         </div>
       </BentoCard>
+      -->
 
-      <!-- Safari -->
+      <!-- Safari - HIDDEN (COMBINED INTO PLATFORM UPDATES) -->
+      <!--
       <BentoCard 
         title="Safari Updates"
         platform="safari"
         :icon="GlobeIcon"
-        :style="{ '--bento-order': bentoOrder.indexOf('safari') }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Latest</span>
@@ -356,8 +406,109 @@
           </a>
         </div>
       </BentoCard>
+      -->
 
-      <!-- Community -->
+      <!-- NEW COMBINED Platform Updates Bento (Apple Beta Releases style) -->
+      <BentoCard 
+        title="Other Platform Updates"
+        platform="platforms-combined"
+        :icon="CpuIcon"
+        class="md:col-span-2"
+        :style="{ order: bentoDisplayOrder['other-platforms-combined'] }"
+      >
+        <template #badge>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">Latest</span>
+        </template>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 flex-grow">
+          <!-- watchOS -->
+          <div v-if="watchOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500 dark:text-gray-400">Aug 14, 2025</span>
+                <div class="flex items-center gap-1">
+                  <component :is="ShieldIcon" class="h-3 w-3 text-gray-400" />
+                  <span class="text-xs text-gray-600 dark:text-gray-400">No CVEs</span>
+                </div>
+              </div>
+              <div>
+                <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
+                  watchOS 11.6.1
+                </div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">
+                  Build N/A
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- tvOS -->
+          <div v-if="tvOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500 dark:text-gray-400">Jul 29, 2025</span>
+                <div class="flex items-center gap-1">
+                  <component :is="ShieldIcon" class="h-3 w-3 text-orange-500" />
+                  <span class="text-xs text-orange-600 dark:text-orange-400">24 CVEs</span>
+                </div>
+              </div>
+              <div>
+                <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
+                  tvOS 18.6
+                </div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">
+                  Build N/A
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Safari -->
+          <div v-if="safariVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-150">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500 dark:text-gray-400">Jul 30, 2025</span>
+                <div class="flex items-center gap-1">
+                  <component :is="ShieldIcon" class="h-3 w-3 text-gray-400" />
+                  <span class="text-xs text-gray-600 dark:text-gray-400">No CVEs</span>
+                </div>
+              </div>
+              <div>
+                <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
+                  Safari 18.6
+                </div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">
+                  Version 18.6
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- visionOS -->
+          <div v-if="visionOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500 dark:text-gray-400">Sep 02, 2025</span>
+                <div class="flex items-center gap-1">
+                  <component :is="ShieldIcon" class="h-3 w-3 text-orange-500" />
+                  <span class="text-xs text-orange-600 dark:text-orange-400">24 CVEs</span>
+                </div>
+              </div>
+              <div>
+                <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
+                  visionOS 2.6
+                </div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">
+                  Build 25A5351b
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </BentoCard>
+
+      <!-- Community - HIDDEN FOR LAUNCH -->
+      <!--
       <BentoCard 
         title="MacAdmins Community"
         platform="community"
@@ -398,12 +549,14 @@
           </a>
         </div>
       </BentoCard>
+      -->
 
       <!-- macOS Data Feed -->
       <BentoCard 
         title="macOS Data Feed"
         platform="feed-macos"
         :icon="DownloadIcon"
+        :style="{ order: bentoDisplayOrder['macos-data-feed'] }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">Live</span>
@@ -470,6 +623,7 @@
         title="iOS Data Feed"
         platform="feed-ios"
         :icon="SmartphoneIcon"
+        :style="{ order: bentoDisplayOrder['ios-data-feed'] }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200">Live</span>
@@ -535,6 +689,7 @@
       <BentoCard 
         title="Last Updated"
         :icon="ClockIcon"
+        :style="{ order: bentoDisplayOrder['last-updated'] }"
         card-class="hover:border-gray-400 dark:hover:border-gray-500"
       >
         <template #badge>
@@ -655,7 +810,7 @@
         title="Data Statistics"
         platform="statistics"
         :icon="ActivityIcon"
-        :style="{ '--bento-order': bentoOrder.indexOf('statistics') }"
+        :style="{ order: bentoDisplayOrder['statistics'] }"
       >
         <template #badge>
           <span v-if="metricsLoading" class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200">Loading</span>
@@ -755,6 +910,7 @@
         title="V2 Data Feeds"
         platform="feeds"
         :icon="DownloadIcon"
+        :style="{ order: bentoDisplayOrder['v2-data-feeds'] }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">Direct Access</span>
@@ -825,6 +981,7 @@
         platform="beta-gradient"
         :icon="SparklesIcon"
         class="md:col-span-2"
+        :style="{ order: bentoDisplayOrder['beta-releases'] }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Developer</span>
@@ -869,7 +1026,7 @@
         platform="timeline-gradient"
         :icon="HistoryIcon"
         class="md:col-span-2"
-        :style="{ '--bento-order': bentoOrder.indexOf('timeline') }"
+        :style="{ order: bentoDisplayOrder['timeline'] }"
       >
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">Timeline</span>
@@ -937,7 +1094,51 @@
         </template>
       </BentoCard>
 
-      <!-- Community Support -->
+      <!-- V1 Data Feeds - Last visible bento -->
+      <BentoCard 
+        title="V1 Data Feeds"
+        platform="feeds"
+        :icon="DownloadIcon"
+        :style="{ order: bentoDisplayOrder['v1-data-feeds'] || 12 }"
+      >
+        <template #badge>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">Direct Access</span>
+        </template>
+        <div class="space-y-2 flex-grow">
+          <div class="grid grid-cols-1 gap-1.5">
+            <a 
+              href="/data/feeds/v1/macos_data_feed.json" 
+              target="_blank"
+              class="text-xs text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1 transition-colors py-1"
+            >
+              <component :is="FileIcon" class="h-3 w-3" />
+              <span class="flex-grow">macos_data_feed.json</span>
+              <component :is="ExternalLinkIcon" class="h-3 w-3 opacity-50" />
+            </a>
+            <a 
+              href="/data/feeds/v1/ios_data_feed.json" 
+              target="_blank"
+              class="text-xs text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1 transition-colors py-1"
+            >
+              <component :is="FileIcon" class="h-3 w-3" />
+              <span class="flex-grow">ios_data_feed.json</span>
+              <component :is="ExternalLinkIcon" class="h-3 w-3 opacity-50" />
+            </a>
+            <a 
+              href="/data/feeds/v1/rss_feed.xml" 
+              target="_blank"
+              class="text-xs text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1 transition-colors py-1 border-t border-gray-200 dark:border-gray-700 pt-1.5 mt-1"
+            >
+              <component :is="RssIcon" class="h-3 w-3" />
+              <span class="flex-grow font-semibold">rss_feed.xml</span>
+              <component :is="ExternalLinkIcon" class="h-3 w-3 opacity-50" />
+            </a>
+          </div>
+        </div>
+      </BentoCard>
+
+      <!-- Community Support - HIDDEN (MOVED TO POSITION 3) -->
+      <!--
       <BentoCard 
         title="MacAdmins Community"
         platform="community-gradient"
@@ -983,6 +1184,7 @@
           </p>
         </template>
       </BentoCard>
+      -->
 
     </BentoGrid>
   </div>
@@ -1164,26 +1366,35 @@ const getCardName = (cardId) => {
   return names[cardId] || cardId
 }
 
-// Create a map of all bento cards for dynamic ordering
-const bentoCards = computed(() => {
-  // This will store all the card configurations
-  // We'll use this in the template to render cards in the preferred order
-  return {
-    'quick-board': { cols: 1, component: 'quick-board' },
-    'macos': { cols: 1, component: 'macos' },
-    'ios-ipados': { cols: 1, component: 'ios-ipados' },
-    'other-platforms': { cols: 1, component: 'other-platforms' },
-    'safari': { cols: 1, component: 'safari' },
-    'community-1': { cols: 1, component: 'community-1' },
-    'macos-feed': { cols: 1, component: 'macos-feed' },
-    'ios-feed': { cols: 1, component: 'ios-feed' },
-    'last-updated': { cols: 1, component: 'last-updated' },
-    'statistics': { cols: 1, component: 'statistics' },
-    'beta-releases': { cols: 1, component: 'beta-releases' },
-    'timeline': { cols: 2, component: 'timeline' }, // Timeline spans 2 columns
-    'community-2': { cols: 1, component: 'community-2' }
-  }
-})
+// Check if card has ordering implemented  
+const isCardOrderable = (cardId) => {
+  const orderableCards = [
+    'quick-board',
+    'macos', 
+    'ios-ipados',
+    'other-platforms',
+    'safari',
+    'statistics',
+    'timeline'
+  ]
+  return orderableCards.includes(cardId)
+}
+
+// Flexible bento ordering system - optimized layout for launch
+const bentoDisplayOrder = {
+  'macos': 1,                    // Primary Apple platform
+  'ios-ipados': 2,              // Primary mobile platform  
+  'community-1': 3,             // MacAdmins Community - Support (stacked vertically)
+  'timeline': 4,                // Recent Security Releases - Timeline
+  'statistics': 5,              // Data Statistics - Analytics
+  'last-updated': 6,            // Last Updated - Status
+  'macos-data-feed': 7,         // macOS Data Feed - V2 format
+  'ios-data-feed': 8,           // iOS Data Feed - V2 format
+  'other-platforms-combined': 9, // Other Platform Updates - Combined platforms
+  'v2-data-feeds': 10,          // V2 Data Feeds - Advanced feeds
+  'beta-releases': 11,          // Apple Beta Releases - Developer info
+  'v1-data-feeds': 12           // V1 Data Feeds - Legacy format access
+}
 
 // Use composable for data fetching with proper error handling and fallback
 const bulletin = useSOFAData('resources/bulletin_data.json')

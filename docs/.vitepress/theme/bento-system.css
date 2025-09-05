@@ -340,6 +340,19 @@
   color: white !important;
 }
 
+/* Disabled state for non-orderable cards */
+.order-item-disabled {
+  opacity: 0.5;
+}
+
+.order-item-disabled .order-item-name {
+  color: #9ca3af;
+}
+
+.dark .order-item-disabled .order-item-name {
+  color: #6b7280;
+}
+
 /* Reset h3 default styles for bento titles */
 h3.bento-card-title {
   margin: 0;
