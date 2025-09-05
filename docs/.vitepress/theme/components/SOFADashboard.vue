@@ -823,24 +823,24 @@
               <component :is="GlobeIcon" class="h-3.5 w-3.5 text-emerald-600" />
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Total Requests</span>
             </div>
-            <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">{{ metricsData?.metrics?.totalRequests?.formatted || '--' }}</div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">{{ metricsData?.period?.days || '--' }} day period</div>
+            <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">{{ metricsData?.volume?.metrics?.totalRequests?.formatted || metricsData?.metrics?.totalRequests?.formatted || '--' }}</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">{{ metricsData?.periods?.volume?.days || metricsData?.period?.days || '--' }} day volume</div>
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-1">
               <component :is="UsersIcon" class="h-3.5 w-3.5 text-emerald-600" />
-              <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Unique Visitors</span>
+              <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Cache Ratio</span>
             </div>
-            <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">{{ metricsData?.metrics?.uniqueIPsDailySum?.formatted || '--' }}</div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">{{ metricsData?.period?.days || '--' }} day total</div>
+            <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">{{ metricsData?.volume?.metrics?.cacheRatio?.formatted || metricsData?.metrics?.cacheRatio?.formatted || '--' }}</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">Efficiency metric</div>
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-1">
               <component :is="ServerIcon" class="h-3.5 w-3.5 text-emerald-600" />
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Bandwidth</span>
             </div>
-            <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">{{ metricsData?.metrics?.bandwidth?.formatted || '--' }}</div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">{{ metricsData?.period?.days || '--' }} day total</div>
+            <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">{{ metricsData?.volume?.metrics?.bandwidth?.formatted || metricsData?.metrics?.bandwidth?.formatted || '--' }}</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">{{ metricsData?.periods?.volume?.days || metricsData?.period?.days || '--' }} day total</div>
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-1">
@@ -848,7 +848,7 @@
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Daily Average</span>
             </div>
             <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">
-              {{ metricsData?.calculated?.dailyAverage?.formatted?.requests || '--' }}
+              {{ metricsData?.volume?.calculated?.dailyAverage?.formatted?.requests || metricsData?.calculated?.dailyAverage?.formatted?.requests || '--' }}
             </div>
             <div class="text-xs text-gray-500 dark:text-gray-400">
               Avg requests/day

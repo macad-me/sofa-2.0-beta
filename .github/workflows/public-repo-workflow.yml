@@ -13,10 +13,14 @@ on:
         required: false
         default: "false"
         type: boolean
-      output_path:
-        description: "Path where metrics should be saved (e.g., data/resources/metrics.json)"
+      metrics_path:
+        description: "Path where metrics JSON should be saved"
         required: false
         default: "data/resources/metrics.json"
+      timeseries_path:
+        description: "Path where timeseries NDJSON should be saved"
+        required: false
+        default: "data/resources/timeseries.ndjson"
 
 permissions:
   contents: write
@@ -31,7 +35,8 @@ jobs:
     
     env:
       PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
-      OUTPUT_PATH: ${{ inputs.output_path || vars.METRICS_OUTPUT_PATH || 'data/resources/metrics.json' }}
+      METRICS_PATH: ${{ inputs.metrics_path || vars.METRICS_OUTPUT_PATH || 'data/resources/metrics.json' }}
+      TIMESERIES_PATH: ${{ inputs.timeseries_path || vars.TIMESERIES_OUTPUT_PATH || 'data/resources/timeseries.ndjson' }}
     
     steps:
       - name: Checkout public repo
@@ -51,112 +56,99 @@ jobs:
             exit 1
           fi
           
-          # Retry mechanism for transient failures
-          MAX_ATTEMPTS=3
-          ATTEMPT=1
+          # Create directories
+          echo "📁 Creating directories..."
+          mkdir -p "$(dirname "$METRICS_PATH")"
+          mkdir -p "$(dirname "$TIMESERIES_PATH")"
           
-          # Fetch file content via GitHub API
-          HTTP_CODE=$(curl -w "%{http_code}" -o api_response.json \
+          # Fetch metrics JSON
+          echo "📊 Fetching latest metrics JSON..."
+          HTTP_CODE=$(curl -w "%{http_code}" -o metrics_response.json \
                -H "Authorization: Bearer $PRIVATE_REPO_TOKEN" \
                -H "Accept: application/vnd.github.v3+json" \
                -H "User-Agent: SOFA-Metrics-Fetcher/1.0" \
                -s \
                https://api.github.com/repos/headmin/sofa-metrics-collector/contents/data/metrics/latest.json)
           
-          echo "📡 HTTP Response Code: $HTTP_CODE"
-          
-          # Check HTTP status
           if [ "$HTTP_CODE" != "200" ]; then
-            echo "❌ HTTP Error $HTTP_CODE"
-            echo "API Response:"
-            cat api_response.json
+            echo "❌ Failed to fetch metrics JSON: $HTTP_CODE"
+            cat metrics_response.json
             exit 1
           fi
           
-          # Verify we got valid JSON with content field
-          if ! jq -e '.content' api_response.json >/dev/null 2>&1; then
-            echo "❌ Invalid API response - missing content field"
-            echo "API Response:"
-            cat api_response.json
+          # Fetch timeseries NDJSON  
+          echo "📈 Fetching timeseries data..."
+          HTTP_CODE=$(curl -w "%{http_code}" -o timeseries_response.json \
+               -H "Authorization: Bearer $PRIVATE_REPO_TOKEN" \
+               -H "Accept: application/vnd.github.v3+json" \
+               -H "User-Agent: SOFA-Metrics-Fetcher/1.0" \
+               -s \
+               https://api.github.com/repos/headmin/sofa-metrics-collector/contents/data/metrics/timeseries.ndjson)
+          
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "❌ Failed to fetch timeseries NDJSON: $HTTP_CODE"
+            cat timeseries_response.json
             exit 1
           fi
           
-          # Decode base64 content and save to output path
-          echo "📁 Creating directory: $(dirname "$OUTPUT_PATH")"
-          mkdir -p "$(dirname "$OUTPUT_PATH")"
-          
-          echo "🔓 Decoding base64 content..."
-          jq -r '.content' api_response.json | base64 -d > temp_metrics.json
-          
-          # Verify decoded JSON is valid
+          # Process metrics JSON
+          jq -r '.content' metrics_response.json | base64 -d > temp_metrics.json
           if ! jq empty temp_metrics.json 2>/dev/null; then
-            echo "❌ Decoded content is not valid JSON"
-            echo "First 500 chars of decoded content:"
-            head -c 500 temp_metrics.json
+            echo "❌ Invalid metrics JSON"
             exit 1
           fi
+          jq '. + {"source": "sofa-metrics-collector"} | del(.notes?)' temp_metrics.json > "$METRICS_PATH"
           
-          # Transform for public (remove internal fields, add source)
-          echo "🔄 Transforming metrics for public consumption..."
-          jq '. + {"source": "sofa-metrics-collector"} | del(.notes?)' temp_metrics.json > "$OUTPUT_PATH"
+          # Process timeseries NDJSON
+          jq -r '.content' timeseries_response.json | base64 -d > "$TIMESERIES_PATH"
           
           # Display summary
-          echo "✅ Successfully fetched and saved metrics to: $OUTPUT_PATH"
-          echo "📊 Metrics Summary:"
-          echo "   Total Requests: $(jq -r '.metrics.totalRequests.formatted' "$OUTPUT_PATH")"
-          echo "   Page Views: $(jq -r '.metrics.pageViews.formatted' "$OUTPUT_PATH")"
-          echo "   Bandwidth: $(jq -r '.metrics.bandwidth.formatted' "$OUTPUT_PATH")"
-          echo "   Cache Ratio: $(jq -r '.metrics.cacheRatio.formatted' "$OUTPUT_PATH")"
-          echo "   Timestamp: $(jq -r '.timestamp' "$OUTPUT_PATH")"
+          echo "✅ Successfully fetched both files"
+          echo "📊 Metrics: $(jq -r '.volume.metrics.totalRequests.formatted' "$METRICS_PATH") requests"
+          echo "📈 Timeseries: $(wc -l < "$TIMESERIES_PATH") data points"
+          echo "🕒 Latest: $(jq -r '.timestamp' "$METRICS_PATH")"
           
-          # Cleanup temp files
-          rm -f api_response.json temp_metrics.json
-          
-          echo "🎉 Metrics fetch completed successfully!"
+          # Cleanup
+          rm -f *_response.json temp_metrics.json
 
       - name: Check for changes
         id: changes
         run: |
-          # Check if metrics file has changed or is new
-          echo "🔍 Checking for changes in $OUTPUT_PATH..."
+          # Check if either metrics or timeseries files have changed
+          echo "🔍 Checking for changes in metrics files..."
           
-          # Show file info
-          if [ -f "$OUTPUT_PATH" ]; then
-            echo "✅ File exists: $OUTPUT_PATH ($(wc -c < "$OUTPUT_PATH") bytes)"
-          else
-            echo "❌ File missing: $OUTPUT_PATH"
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
+          HAS_CHANGES=false
           
-          # Check if file exists in git
-          if git ls-files --error-unmatch "$OUTPUT_PATH" >/dev/null 2>&1; then
-            echo "📁 File is tracked by git, checking for changes..."
-            
-            # Show current file timestamp for comparison
-            CURRENT_TIMESTAMP=$(jq -r '.timestamp' "$OUTPUT_PATH" 2>/dev/null || echo "unknown")
-            echo "📊 Current metrics timestamp: $CURRENT_TIMESTAMP"
-            
-            if git diff --quiet "$OUTPUT_PATH" 2>/dev/null; then
-              echo "has_changes=false" >> $GITHUB_OUTPUT
-              echo "📊 No changes detected - metrics are identical"
-              echo "💡 Metrics may already be up-to-date"
+          # Check metrics JSON
+          if [ -f "$METRICS_PATH" ]; then
+            echo "✅ Metrics file: $METRICS_PATH ($(wc -c < "$METRICS_PATH") bytes)"
+            if git ls-files --error-unmatch "$METRICS_PATH" >/dev/null 2>&1; then
+              if ! git diff --quiet "$METRICS_PATH" 2>/dev/null; then
+                echo "📊 Metrics JSON has changes"
+                HAS_CHANGES=true
+              fi
             else
-              echo "has_changes=true" >> $GITHUB_OUTPUT
-              echo "📊 Changes detected in metrics file"
-              echo "📈 Differences:"
-              git diff --stat "$OUTPUT_PATH" || true
-              git diff "$OUTPUT_PATH" | head -20 || true
+              echo "📊 Metrics JSON is new"
+              HAS_CHANGES=true
             fi
-          else
-            echo "📁 File is new (not tracked by git)"
-            echo "has_changes=true" >> $GITHUB_OUTPUT
-            echo "📊 New metrics file will be added"
           fi
           
-          # Show the decision
-          CHANGES_VALUE=$(grep "has_changes=" $GITHUB_OUTPUT | tail -1 | cut -d'=' -f2)
-          echo "🎯 Final decision: has_changes=$CHANGES_VALUE"
+          # Check timeseries NDJSON
+          if [ -f "$TIMESERIES_PATH" ]; then
+            echo "✅ Timeseries file: $TIMESERIES_PATH ($(wc -l < "$TIMESERIES_PATH") lines)"
+            if git ls-files --error-unmatch "$TIMESERIES_PATH" >/dev/null 2>&1; then
+              if ! git diff --quiet "$TIMESERIES_PATH" 2>/dev/null; then
+                echo "📈 Timeseries NDJSON has changes"
+                HAS_CHANGES=true
+              fi
+            else
+              echo "📈 Timeseries NDJSON is new"
+              HAS_CHANGES=true
+            fi
+          fi
+          
+          echo "has_changes=$HAS_CHANGES" >> $GITHUB_OUTPUT
+          echo "🎯 Final decision: has_changes=$HAS_CHANGES"
 
       - name: Setup git
         if: steps.changes.outputs.has_changes == 'true' || inputs.force_update == 'true'
@@ -174,14 +166,14 @@ jobs:
           git status --porcelain || true
           
           # Extract key metrics for commit message
-          TIMESTAMP=$(jq -r '.timestamp' "$OUTPUT_PATH")
-          REQUESTS=$(jq -r '.metrics.totalRequests.formatted' "$OUTPUT_PATH")
-          PAGEVIEWS=$(jq -r '.metrics.pageViews.formatted' "$OUTPUT_PATH")
-          BANDWIDTH=$(jq -r '.metrics.bandwidth.formatted' "$OUTPUT_PATH")
-          CACHE_RATIO=$(jq -r '.metrics.cacheRatio.formatted' "$OUTPUT_PATH")
+          TIMESTAMP=$(jq -r '.timestamp' "$METRICS_PATH")
+          REQUESTS=$(jq -r '.volume.metrics.totalRequests.formatted // .metrics.totalRequests.formatted // "N/A"' "$METRICS_PATH")
+          BANDWIDTH=$(jq -r '.volume.metrics.bandwidth.formatted // .metrics.bandwidth.formatted // "N/A"' "$METRICS_PATH")
+          CACHE_RATIO=$(jq -r '.volume.metrics.cacheRatio.formatted // .metrics.cacheRatio.formatted // "N/A"' "$METRICS_PATH")
+          TREND_REQUESTS=$(jq -r '.trend.metrics.totalRequests.formatted // "N/A"' "$METRICS_PATH")
           
-          echo "📁 Adding file to git: $OUTPUT_PATH"
-          git add "$OUTPUT_PATH"
+          echo "📁 Adding files to git"
+          git add "$METRICS_PATH" "$TIMESERIES_PATH"
           
           # Show what will be committed
           echo "Changes to be committed:"
@@ -193,9 +185,8 @@ jobs:
           echo "💬 Committing with message..."
           git commit -m "📊 Update SOFA metrics ($READABLE_DATE)
 
-          - Requests: $REQUESTS
-          - Page Views: $PAGEVIEWS
-          - Bandwidth: $BANDWIDTH
+          - Volume (30d): $REQUESTS requests, $BANDWIDTH bandwidth
+          - Trend (7d): $TREND_REQUESTS requests 
           - Cache Ratio: $CACHE_RATIO
           
           Auto-updated from sofa-metrics-collector"
@@ -223,21 +214,35 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Verify metrics file
+      - name: Verify metrics files
         env:
-          OUTPUT_PATH: ${{ inputs.output_path || vars.METRICS_OUTPUT_PATH || 'data/resources/metrics.json' }}
+          METRICS_PATH: ${{ inputs.metrics_path || vars.METRICS_OUTPUT_PATH || 'data/resources/metrics.json' }}
+          TIMESERIES_PATH: ${{ inputs.timeseries_path || vars.TIMESERIES_OUTPUT_PATH || 'data/resources/timeseries.ndjson' }}
         run: |
-          if [ -f "$OUTPUT_PATH" ]; then
-            echo "✅ Metrics file exists at: $OUTPUT_PATH"
-            echo "📊 File size: $(wc -c < "$OUTPUT_PATH") bytes"
-            echo "🕒 Timestamp: $(jq -r '.timestamp' "$OUTPUT_PATH" 2>/dev/null || echo 'Invalid JSON')"
+          echo "🔍 Verifying metrics files..."
+          
+          # Check metrics JSON
+          if [ -f "$METRICS_PATH" ]; then
+            echo "✅ Metrics JSON exists: $METRICS_PATH"
+            echo "📊 Size: $(wc -c < "$METRICS_PATH") bytes"
+            echo "🕒 Timestamp: $(jq -r '.timestamp' "$METRICS_PATH" 2>/dev/null || echo 'Invalid JSON')"
+            echo "📈 Volume: $(jq -r '.volume.metrics.totalRequests.formatted' "$METRICS_PATH" 2>/dev/null || echo 'N/A') requests"
+            echo "📊 Trend: $(jq -r '.trend.metrics.totalRequests.formatted' "$METRICS_PATH" 2>/dev/null || echo 'N/A') requests (7d)"
             
-            # Validate JSON structure
-            if jq empty "$OUTPUT_PATH" 2>/dev/null; then
+            if jq empty "$METRICS_PATH" 2>/dev/null; then
               echo "✅ Valid JSON format"
             else
               echo "❌ Invalid JSON format"
             fi
           else
-            echo "❌ Metrics file not found at: $OUTPUT_PATH"
+            echo "❌ Metrics JSON not found: $METRICS_PATH"
+          fi
+          
+          # Check timeseries NDJSON
+          if [ -f "$TIMESERIES_PATH" ]; then
+            echo "✅ Timeseries NDJSON exists: $TIMESERIES_PATH"
+            echo "📈 Lines: $(wc -l < "$TIMESERIES_PATH")"
+            echo "🕒 Latest: $(tail -1 "$TIMESERIES_PATH" | jq -r '.timestamp' 2>/dev/null || echo 'Invalid NDJSON')"
+          else
+            echo "❌ Timeseries NDJSON not found: $TIMESERIES_PATH"
           fi
