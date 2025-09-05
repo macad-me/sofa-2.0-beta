@@ -1,7 +1,7 @@
 {
   "Version": "2.0",
-  "UpdateHash": "af2e80d74580bba2d26612487edbab78463d0e49adba0a39f44596f5786e4d8d",
-  "LastCheck": "2025-09-04T13:49:53.919585174+00:00",
+  "UpdateHash": "5f873e8190e29ec3105c3be550c18731c3df873f38e6f9f9db7cf71f7e34d752",
+  "LastCheck": "2025-09-05T02:10:07.155687101+00:00",
   "OSVersions": [
     {
       "OSVersion": "18",
@@ -17,7 +17,7 @@
           "22G100"
         ],
         "ReleaseDate": "2025-08-20T00:00:00Z",
-        "ExpirationDate": "2025-12-03",
+        "ExpirationDate": "2025-12-04",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/HT201222",
         "SecurityInfoContext": "iOS has been updated to version 18.6.2, which was released on August 20, 2025. This update addresses one security issue and is the most recent approved version.",
@@ -150,7 +150,7 @@
             "22G100"
           ],
           "ReleaseDate": "2025-08-20T00:00:00Z",
-          "ExpirationDate": "2025-12-03",
+          "ExpirationDate": "2025-12-04",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
           "SecurityInfoContext": "iOS has been updated to version 18.6.2, which was released on August 20, 2025. This update addresses one security issue and is the most recent approved version.",
@@ -351,7 +351,7 @@
             "22G6086"
           ],
           "ReleaseDate": "2025-07-29T00:00:00Z",
-          "ExpirationDate": "2025-12-03",
+          "ExpirationDate": "2025-12-04",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
           "SecurityInfoContext": "iOS 18.6 was released on July 29, 2025. This release addressed 29 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
@@ -513,7 +513,7 @@
             "22F6076"
           ],
           "ReleaseDate": "2025-05-12T00:00:00Z",
-          "ExpirationDate": "2025-12-03",
+          "ExpirationDate": "2025-12-04",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
           "SecurityInfoContext": "iOS 18.5 was released on May 12, 2025. This release addressed 34 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
@@ -1311,7 +1311,7 @@
           "21H450"
         ],
         "ReleaseDate": "2025-08-20T00:00:00Z",
-        "ExpirationDate": "2025-12-03",
+        "ExpirationDate": "2025-12-04",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/HT201222",
         "SecurityInfoContext": "iOS has been updated to version 17.7.10, which was released on August 20, 2025. This update addresses one security issue and is the most recent approved version.",
@@ -1362,7 +1362,7 @@
             "21H450"
           ],
           "ReleaseDate": "2025-08-20T00:00:00Z",
-          "ExpirationDate": "2025-12-03",
+          "ExpirationDate": "2025-12-04",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
           "SecurityInfoContext": "iOS has been updated to version 17.7.10, which was released on August 20, 2025. This update addresses one security issue and is the most recent approved version.",
@@ -1475,7 +1475,7 @@
             "21H440"
           ],
           "ReleaseDate": "2025-05-19T00:00:00Z",
-          "ExpirationDate": "2025-12-03",
+          "ExpirationDate": "2025-12-04",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
           "SecurityInfoContext": "iOS 17.7.8 was released on May 19, 2025. This update has no published CVE entries. Newer updates are now available, so please check to see if they apply to your devices.",
@@ -1809,7 +1809,7 @@
             "21H221"
           ],
           "ReleaseDate": "2024-11-19T00:00:00Z",
-          "ExpirationDate": "2025-12-03",
+          "ExpirationDate": "2025-12-04",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
           "SecurityInfoContext": "iOS 17.7.2 was released on November 19, 2024. This release addressed 2 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
@@ -2937,7 +2937,7 @@
           "20H360"
         ],
         "ReleaseDate": "2025-03-31T00:00:00Z",
-        "ExpirationDate": "2025-12-03",
+        "ExpirationDate": "2025-12-04",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/HT201222",
         "SecurityInfoContext": "iOS has been updated to version 16.7.11, which was released on March 31, 2025. This update addresses 3 security issues and is the most recent approved version.",
@@ -3006,7 +3006,7 @@
             "20H360"
           ],
           "ReleaseDate": "2025-03-31T00:00:00Z",
-          "ExpirationDate": "2025-12-03",
+          "ExpirationDate": "2025-12-04",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/HT201222",
           "SecurityInfoContext": "iOS has been updated to version 16.7.11, which was released on March 31, 2025. This update addresses 3 security issues and is the most recent approved version.",
