@@ -823,24 +823,24 @@
               <component :is="GlobeIcon" class="h-3.5 w-3.5 text-emerald-600" />
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Total Requests</span>
             </div>
-            <div class="text-lg font-bold text-gray-400">--</div>
-            <div class="text-xs text-gray-400">No data</div>
+            <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">{{ metricsData?.metrics?.totalRequests?.formatted || '--' }}</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">{{ metricsData?.period?.days || '--' }} day period</div>
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-1">
-              <component :is="UsersIcon" class="h-3.5 w-3.5 text-gray-400" />
-              <span class="font-semibold text-gray-500 text-sm">Unique Visitors</span>
+              <component :is="UsersIcon" class="h-3.5 w-3.5 text-emerald-600" />
+              <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Unique Visitors</span>
             </div>
-            <div class="text-lg font-bold text-gray-400">--</div>
-            <div class="text-xs text-gray-400">No data</div>
+            <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">{{ metricsData?.metrics?.uniqueIPsDailySum?.formatted || '--' }}</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">{{ metricsData?.period?.days || '--' }} day total</div>
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-1">
-              <component :is="ServerIcon" class="h-3.5 w-3.5 text-gray-400" />
-              <span class="font-semibold text-gray-500 text-sm">Bandwidth</span>
+              <component :is="ServerIcon" class="h-3.5 w-3.5 text-emerald-600" />
+              <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Bandwidth</span>
             </div>
-            <div class="text-lg font-bold text-gray-400">--</div>
-            <div class="text-xs text-gray-400">No data</div>
+            <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">{{ metricsData?.metrics?.bandwidth?.formatted || '--' }}</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">{{ metricsData?.period?.days || '--' }} day total</div>
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-1">
@@ -848,10 +848,10 @@
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Daily Average</span>
             </div>
             <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">
-              --
+              {{ metricsData?.calculated?.dailyAverage?.formatted?.requests || '--' }}
             </div>
             <div class="text-xs text-gray-500 dark:text-gray-400">
-              No data
+              Daily average
             </div>
           </div>
         </div>
@@ -1860,12 +1860,17 @@ onMounted(async () => {
     console.log('Could not fetch star count')
   }
   
-  // Disable metrics data to prevent strange values
+  // Fetch metrics data from local file
   try {
-    // Skip metrics fetching - show "No data" state instead
-    metricsData.value = { error: true }
+    const response = await fetch('/data/resources/metrics.json')
+    if (response.ok) {
+      metricsData.value = await response.json()
+    } else {
+      metricsData.value = { error: true }
+    }
   } catch (error) {
     console.error('Failed to fetch metrics:', error)
+    metricsData.value = { error: true }
   } finally {
     metricsLoading.value = false
   }
