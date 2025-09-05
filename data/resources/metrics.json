@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-05T18:11:27.400Z",
+  "timestamp": "2025-09-05T18:22:31.762Z",
   "periods": {
     "volume": {
       "start": "2025-08-06T00:00:00.000Z",
@@ -15,20 +15,16 @@
   "volume": {
     "metrics": {
       "totalRequests": {
-        "value": 88223809,
+        "value": 88222718,
         "formatted": "88.22M"
       },
       "bandwidth": {
-        "bytes": 1861814050727,
+        "bytes": 1861789668956,
         "formatted": "1.69 TB"
       },
       "cachedRequests": {
-        "value": 88126760,
+        "value": 88125670,
         "formatted": "88.13M"
-      },
-      "threats": {
-        "value": 808832,
-        "formatted": "808.8k"
       },
       "cacheRatio": {
         "value": 99.9,
@@ -37,11 +33,9 @@
     },
     "calculated": {
       "dailyAverage": {
-        "requests": 2940793,
-        "threats": 26961,
+        "requests": 2940757,
         "formatted": {
-          "requests": "2.94M",
-          "threats": "27.0k"
+          "requests": "2.94M"
         }
       }
     }
@@ -49,20 +43,16 @@
   "trend": {
     "metrics": {
       "totalRequests": {
-        "value": 20344197,
+        "value": 20343669,
         "formatted": "20.34M"
       },
       "bandwidth": {
-        "bytes": 413867656553,
-        "formatted": "385.44 GB"
+        "bytes": 413856256198,
+        "formatted": "385.43 GB"
       },
       "cachedRequests": {
-        "value": 20325889,
+        "value": 20325361,
         "formatted": "20.33M"
-      },
-      "threats": {
-        "value": 128,
-        "formatted": "128"
       }
     },
     "daily": [
@@ -73,69 +63,37 @@
       },
       {
         "date": "2025-09-02",
-        "requests": 3474602,
-        "bytes": 75189186819
+        "requests": 3474601,
+        "bytes": 75189183266
       },
       {
         "date": "2025-09-03",
-        "requests": 3507882,
-        "bytes": 69956396359
+        "requests": 3507897,
+        "bytes": 69956619013
       },
       {
         "date": "2025-08-30",
-        "requests": 1931986,
-        "bytes": 40132076781
+        "requests": 1931985,
+        "bytes": 40132074591
       },
       {
         "date": "2025-08-29",
-        "requests": 3193005,
-        "bytes": 67097728270
+        "requests": 3193018,
+        "bytes": 67097912677
       },
       {
         "date": "2025-09-04",
-        "requests": 3721297,
-        "bytes": 72023283492
+        "requests": 3720757,
+        "bytes": 72011815706
       },
       {
         "date": "2025-09-01",
-        "requests": 2616283,
-        "bytes": 51205361258
+        "requests": 2616269,
+        "bytes": 51205027371
       }
     ],
     "geographic": {
       "topCountries": []
-    }
-  },
-  "metrics": {
-    "totalRequests": {
-      "value": 88223809,
-      "formatted": "88.22M"
-    },
-    "bandwidth": {
-      "bytes": 1861814050727,
-      "formatted": "1.69 TB"
-    },
-    "cachedRequests": {
-      "value": 88126760,
-      "formatted": "88.13M"
-    },
-    "threats": {
-      "value": 808832,
-      "formatted": "808.8k"
-    },
-    "cacheRatio": {
-      "value": 99.9,
-      "formatted": "99.9%"
-    }
-  },
-  "calculated": {
-    "dailyAverage": {
-      "requests": 2940793,
-      "threats": 26961,
-      "formatted": {
-        "requests": "2.94M",
-        "threats": "27.0k"
-      }
     }
   },
   "source": "sofa-metrics-collector"
