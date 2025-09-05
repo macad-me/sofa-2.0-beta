@@ -1,0 +1,51 @@
+{
+  "timestamp": "2025-09-05T14:55:30.264Z",
+  "period": {
+    "start": "2025-08-06T00:00:00.000Z",
+    "end": "2025-09-05T00:00:00.000Z",
+    "days": 30
+  },
+  "metrics": {
+    "totalRequests": {
+      "value": 88222718,
+      "formatted": "88.22M"
+    },
+    "pageViews": {
+      "value": 19951,
+      "formatted": "20.0k"
+    },
+    "bandwidth": {
+      "bytes": 1861789668956,
+      "formatted": "1.69 TB"
+    },
+    "cachedRequests": {
+      "value": 88125670,
+      "formatted": "88.13M"
+    },
+    "threats": {
+      "value": 808817,
+      "formatted": "808.8k"
+    },
+    "cacheRatio": {
+      "value": 99.9,
+      "formatted": "99.9%"
+    },
+    "uniqueIPsDailySum": {
+      "value": 6812631,
+      "formatted": "6.81M"
+    }
+  },
+  "calculated": {
+    "dailyAverage": {
+      "requests": 2940757,
+      "pageViews": 665,
+      "threats": 26960,
+      "formatted": {
+        "requests": "2.94M",
+        "pageViews": "665",
+        "threats": "27.0k"
+      }
+    }
+  },
+  "source": "sofa-metrics-collector"
+}
