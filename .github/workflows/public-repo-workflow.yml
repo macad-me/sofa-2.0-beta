@@ -1,0 +1,230 @@
+# GitHub Actions workflow for PUBLIC repository
+
+name: Fetch SOFA Metrics from Private Repo
+
+on:
+  schedule:
+    - cron: '45 */6 * * *'   # 45 minutes after private repo collection
+  workflow_dispatch:
+    inputs:
+      force_update:
+        description: "Force update even if no changes detected"
+        required: false
+        default: "false"
+        type: boolean
+      output_path:
+        description: "Path where metrics should be saved (e.g., data/resources/metrics.json)"
+        required: false
+        default: "data/resources/metrics.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-sofa-metrics-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  fetch-metrics:
+    runs-on: ubuntu-latest
+    
+    env:
+      PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+      OUTPUT_PATH: ${{ inputs.output_path || vars.METRICS_OUTPUT_PATH || 'data/resources/metrics.json' }}
+    
+    steps:
+      - name: Checkout public repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Create fetch script
+        run: |
+          cat > fetch-from-private.js << 'EOF'
+          #!/usr/bin/env node
+
+          const fs = require('fs');
+          const path = require('path');
+
+          class PrivateMetricsFetcher {
+            constructor() {
+              this.privateRepo = 'macad-me/sofa-metrics-collector';
+              this.metricsPath = 'data/metrics/latest.json';
+              this.token = process.env.PRIVATE_REPO_TOKEN;
+              this.outputPath = process.env.OUTPUT_PATH || 'data/resources/metrics.json';
+            }
+
+            validateToken() {
+              if (!this.token) {
+                console.error('❌ PRIVATE_REPO_TOKEN environment variable is required');
+                process.exit(1);
+              }
+            }
+
+            async fetchMetrics() {
+              const url = `https://api.github.com/repos/${this.privateRepo}/contents/${this.metricsPath}`;
+              
+              console.log(`🔄 Fetching metrics from ${this.privateRepo}...`);
+              
+              try {
+                const response = await fetch(url, {
+                  headers: {
+                    'Authorization': `Bearer ${this.token}`,
+                    'Accept': 'application/vnd.github.v3+json',
+                    'User-Agent': 'SOFA-Metrics-Fetcher/1.0'
+                  }
+                });
+
+                if (!response.ok) {
+                  if (response.status === 404) {
+                    throw new Error(`Metrics file not found. Make sure metrics collection has run.`);
+                  } else if (response.status === 401) {
+                    throw new Error('Authentication failed. Check your PRIVATE_REPO_TOKEN.');
+                  } else if (response.status === 403) {
+                    throw new Error('Access forbidden. Make sure the token has access to the private repository.');
+                  }
+                  throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                const content = Buffer.from(data.content, 'base64').toString('utf8');
+                const metrics = JSON.parse(content);
+                
+                console.log(`✅ Successfully fetched metrics from ${metrics.timestamp}`);
+                return metrics;
+                
+              } catch (error) {
+                console.error('❌ Failed to fetch metrics:', error.message);
+                throw error;
+              }
+            }
+
+            transformForPublic(metrics) {
+              return {
+                timestamp: metrics.timestamp,
+                period: metrics.period,
+                metrics: metrics.metrics,
+                calculated: metrics.calculated,
+                source: 'sofa-metrics-collector'
+              };
+            }
+
+            saveMetrics(metrics) {
+              const outputDir = path.dirname(this.outputPath);
+              fs.mkdirSync(outputDir, { recursive: true });
+              fs.writeFileSync(this.outputPath, JSON.stringify(metrics, null, 2));
+              console.log(`✅ Metrics saved to ${this.outputPath}`);
+            }
+
+            async run() {
+              console.log('🚀 Starting SOFA metrics fetch\n');
+              
+              try {
+                this.validateToken();
+                const rawMetrics = await this.fetchMetrics();
+                const publicMetrics = this.transformForPublic(rawMetrics);
+                this.saveMetrics(publicMetrics);
+                
+                console.log('\n📊 Metrics Summary:');
+                console.log(`   Total Requests: ${publicMetrics.metrics.totalRequests.formatted}`);
+                console.log(`   Page Views: ${publicMetrics.metrics.pageViews.formatted}`);
+                console.log(`   Bandwidth: ${publicMetrics.metrics.bandwidth.formatted}`);
+                console.log(`   Cache Ratio: ${publicMetrics.metrics.cacheRatio.formatted}`);
+                
+              } catch (error) {
+                console.error('\n❌ Metrics fetch failed:', error.message);
+                process.exit(1);
+              }
+            }
+          }
+
+          const fetcher = new PrivateMetricsFetcher();
+          fetcher.run();
+          EOF
+
+      - name: Fetch latest metrics
+        run: |
+          node fetch-from-private.js
+
+      - name: Check for changes
+        id: changes
+        run: |
+          # Check if metrics file has changed
+          if git diff --quiet "$OUTPUT_PATH" 2>/dev/null; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "📊 No changes detected in metrics"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "📊 Changes detected in metrics"
+          fi
+
+      - name: Setup git
+        if: steps.changes.outputs.has_changes == 'true' || inputs.force_update == 'true'
+        run: |
+          git config user.name "SOFA Metrics Bot"
+          git config user.email "metrics-bot@macadmin.me"
+
+      - name: Commit updated metrics
+        if: steps.changes.outputs.has_changes == 'true' || inputs.force_update == 'true'
+        run: |
+          # Extract key metrics for commit message
+          TIMESTAMP=$(jq -r '.timestamp' "$OUTPUT_PATH")
+          REQUESTS=$(jq -r '.metrics.totalRequests.formatted' "$OUTPUT_PATH")
+          PAGEVIEWS=$(jq -r '.metrics.pageViews.formatted' "$OUTPUT_PATH") 
+          BANDWIDTH=$(jq -r '.metrics.bandwidth.formatted' "$OUTPUT_PATH")
+          CACHE_RATIO=$(jq -r '.metrics.cacheRatio.formatted' "$OUTPUT_PATH")
+          
+          git add "$OUTPUT_PATH"
+          git commit -m "📊 Update SOFA metrics ($(date -d "$TIMESTAMP" '+%Y-%m-%d %H:%M' 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%S.%fZ" "$TIMESTAMP" '+%Y-%m-%d %H:%M' 2>/dev/null || echo "$TIMESTAMP"))
+
+          - Requests: $REQUESTS
+          - Page Views: $PAGEVIEWS
+          - Bandwidth: $BANDWIDTH  
+          - Cache Ratio: $CACHE_RATIO
+          
+          Auto-updated from sofa-metrics-collector"
+
+      - name: Push changes
+        if: steps.changes.outputs.has_changes == 'true' || inputs.force_update == 'true'
+        run: |
+          git push
+
+      - name: Upload metrics artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sofa-metrics-${{ github.run_id }}
+          path: ${{ env.OUTPUT_PATH }}
+          retention-days: 30
+
+  verify-metrics:
+    runs-on: ubuntu-latest
+    needs: fetch-metrics
+    if: always()
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify metrics file
+        env:
+          OUTPUT_PATH: ${{ inputs.output_path || vars.METRICS_OUTPUT_PATH || 'data/resources/metrics.json' }}
+        run: |
+          if [ -f "$OUTPUT_PATH" ]; then
+            echo "✅ Metrics file exists at: $OUTPUT_PATH"
+            echo "📊 File size: $(wc -c < "$OUTPUT_PATH") bytes"
+            echo "🕒 Timestamp: $(jq -r '.timestamp' "$OUTPUT_PATH" 2>/dev/null || echo 'Invalid JSON')"
+            
+            # Validate JSON structure
+            if jq empty "$OUTPUT_PATH" 2>/dev/null; then
+              echo "✅ Valid JSON format"
+            else
+              echo "❌ Invalid JSON format"
+            fi
+          else
+            echo "❌ Metrics file not found at: $OUTPUT_PATH"
+          fi
