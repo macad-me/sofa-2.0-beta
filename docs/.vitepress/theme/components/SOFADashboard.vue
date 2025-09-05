@@ -2212,8 +2212,9 @@ const copyToClipboard = async (text: string, itemId?: string) => {
 }
 
 .github-btn:hover {
-  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-  border-color: rgba(118, 75, 162, 0.4);
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: white;
 }
 
 .github-star-icon {
