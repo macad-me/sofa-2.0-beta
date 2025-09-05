@@ -1400,6 +1400,10 @@ const bentoDisplayOrder = {
 const bulletin = useSOFAData('resources/bulletin_data.json')
 const macos = useSOFAData('feeds/v2/macos_data_feed.json')
 const ios = useSOFAData('feeds/v2/ios_data_feed.json')
+const safari = useSOFAData('feeds/v2/safari_data_feed.json')
+const watchos = useSOFAData('feeds/v2/watchos_data_feed.json')
+const tvos = useSOFAData('feeds/v2/tvos_data_feed.json')
+const visionos = useSOFAData('feeds/v2/visionos_data_feed.json')
 const beta = useSOFAData('feeds/v1/apple-beta-os-feed.json')
 const metadata = useSOFAData('resources/sofa-status.json', {
   autoRefresh: true,
@@ -1576,57 +1580,63 @@ const betaReleases = computed(() => {
 })
 
 const safariVersion = computed(() => {
-  // Get Safari data from bulletin
-  if (bulletinData.value?.recent_releases) {
-    const safariRelease = bulletinData.value.recent_releases.find(r => r.platform === 'safari')
-    if (safariRelease) {
-      return {
-        version: safariRelease.version,
-        releaseDate: formatDate(safariRelease.release_date),
-        name: safariRelease.name
-      }
+  // Get Safari data from V2 feed
+  if (safari.data.value?.AppVersions?.[0]?.Latest) {
+    const latest = safari.data.value.AppVersions[0].Latest
+    const cveCount = latest.CVEs ? Object.keys(latest.CVEs).length : 0
+    return {
+      version: latest.ProductVersion,
+      releaseDate: formatDate(latest.ReleaseDate),
+      cves: cveCount,
+      name: latest.UpdateName || `Safari ${latest.ProductVersion}`
     }
   }
   return null
 })
 
 const watchOSVersion = computed(() => {
-  if (bulletinData.value?.latest_releases?.watchos) {
-    const latest = bulletinData.value.latest_releases.watchos
+  // Get watchOS data from V2 feed  
+  if (watchos.data.value?.OSVersions?.[0]?.Latest) {
+    const latest = watchos.data.value.OSVersions[0].Latest
+    const cveCount = latest.CVEs ? Object.keys(latest.CVEs).length : 0
     return {
-      version: latest.version,
-      build: latest.build || 'N/A',
-      releaseDate: formatDate(latest.release_date),
-      cves: latest.total_cve_count,
-      name: `watchOS ${latest.version}`
+      version: latest.ProductVersion,
+      build: latest.Build || 'N/A',
+      releaseDate: formatDate(latest.ReleaseDate),
+      cves: cveCount,
+      name: latest.UpdateName || `watchOS ${latest.ProductVersion}`
     }
   }
   return null
 })
 
 const tvOSVersion = computed(() => {
-  if (bulletinData.value?.latest_releases?.tvos) {
-    const latest = bulletinData.value.latest_releases.tvos
+  // Get tvOS data from V2 feed
+  if (tvos.data.value?.OSVersions?.[0]?.Latest) {
+    const latest = tvos.data.value.OSVersions[0].Latest
+    const cveCount = latest.CVEs ? Object.keys(latest.CVEs).length : 0
     return {
-      version: latest.version,
-      build: latest.build || 'N/A',
-      releaseDate: formatDate(latest.release_date),
-      cves: latest.total_cve_count,
-      name: `tvOS ${latest.version}`
+      version: latest.ProductVersion,
+      build: latest.Build || 'N/A',
+      releaseDate: formatDate(latest.ReleaseDate),
+      cves: cveCount,
+      name: latest.UpdateName || `tvOS ${latest.ProductVersion}`
     }
   }
   return null
 })
 
 const visionOSVersion = computed(() => {
-  if (bulletinData.value?.latest_releases?.visionos) {
-    const latest = bulletinData.value.latest_releases.visionos
+  // Get visionOS data from V2 feed
+  if (visionos.data.value?.OSVersions?.[0]?.Latest) {
+    const latest = visionos.data.value.OSVersions[0].Latest
+    const cveCount = latest.CVEs ? Object.keys(latest.CVEs).length : 0
     return {
-      version: latest.version,
-      build: latest.build || 'N/A',
-      releaseDate: formatDate(latest.release_date),
-      cves: latest.total_cve_count,
-      name: `visionOS ${latest.version}`
+      version: latest.ProductVersion,
+      build: latest.Build || 'N/A',
+      releaseDate: formatDate(latest.ReleaseDate),
+      cves: cveCount,
+      name: latest.UpdateName || `visionOS ${latest.ProductVersion}`
     }
   }
   return null
