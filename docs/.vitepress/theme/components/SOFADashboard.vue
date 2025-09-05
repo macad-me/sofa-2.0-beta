@@ -851,7 +851,7 @@
               {{ metricsData?.calculated?.dailyAverage?.formatted?.requests || '--' }}
             </div>
             <div class="text-xs text-gray-500 dark:text-gray-400">
-              Daily average
+              Avg requests/day
             </div>
           </div>
         </div>
