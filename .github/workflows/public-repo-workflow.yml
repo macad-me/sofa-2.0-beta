@@ -38,118 +38,40 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Create fetch script
+      - name: Fetch metrics from private repo
         run: |
-          cat > fetch-from-private.js << 'EOF'
-          #!/usr/bin/env node
-
-          const fs = require('fs');
-          const path = require('path');
-
-          class PrivateMetricsFetcher {
-            constructor() {
-              this.privateRepo = 'macad-me/sofa-metrics-collector';
-              this.metricsPath = 'data/metrics/latest.json';
-              this.token = process.env.PRIVATE_REPO_TOKEN;
-              this.outputPath = process.env.OUTPUT_PATH || 'data/resources/metrics.json';
-            }
-
-            validateToken() {
-              if (!this.token) {
-                console.error('❌ PRIVATE_REPO_TOKEN environment variable is required');
-                process.exit(1);
-              }
-            }
-
-            async fetchMetrics() {
-              const url = `https://api.github.com/repos/${this.privateRepo}/contents/${this.metricsPath}`;
-              
-              console.log(`🔄 Fetching metrics from ${this.privateRepo}...`);
-              
-              try {
-                const response = await fetch(url, {
-                  headers: {
-                    'Authorization': `Bearer ${this.token}`,
-                    'Accept': 'application/vnd.github.v3+json',
-                    'User-Agent': 'SOFA-Metrics-Fetcher/1.0'
-                  }
-                });
-
-                if (!response.ok) {
-                  if (response.status === 404) {
-                    throw new Error(`Metrics file not found. Make sure metrics collection has run.`);
-                  } else if (response.status === 401) {
-                    throw new Error('Authentication failed. Check your PRIVATE_REPO_TOKEN.');
-                  } else if (response.status === 403) {
-                    throw new Error('Access forbidden. Make sure the token has access to the private repository.');
-                  }
-                  throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                }
-
-                const data = await response.json();
-                const content = Buffer.from(data.content, 'base64').toString('utf8');
-                const metrics = JSON.parse(content);
-                
-                console.log(`✅ Successfully fetched metrics from ${metrics.timestamp}`);
-                return metrics;
-                
-              } catch (error) {
-                console.error('❌ Failed to fetch metrics:', error.message);
-                throw error;
-              }
-            }
-
-            transformForPublic(metrics) {
-              return {
-                timestamp: metrics.timestamp,
-                period: metrics.period,
-                metrics: metrics.metrics,
-                calculated: metrics.calculated,
-                source: 'sofa-metrics-collector'
-              };
-            }
-
-            saveMetrics(metrics) {
-              const outputDir = path.dirname(this.outputPath);
-              fs.mkdirSync(outputDir, { recursive: true });
-              fs.writeFileSync(this.outputPath, JSON.stringify(metrics, null, 2));
-              console.log(`✅ Metrics saved to ${this.outputPath}`);
-            }
-
-            async run() {
-              console.log('🚀 Starting SOFA metrics fetch\n');
-              
-              try {
-                this.validateToken();
-                const rawMetrics = await this.fetchMetrics();
-                const publicMetrics = this.transformForPublic(rawMetrics);
-                this.saveMetrics(publicMetrics);
-                
-                console.log('\n📊 Metrics Summary:');
-                console.log(`   Total Requests: ${publicMetrics.metrics.totalRequests.formatted}`);
-                console.log(`   Page Views: ${publicMetrics.metrics.pageViews.formatted}`);
-                console.log(`   Bandwidth: ${publicMetrics.metrics.bandwidth.formatted}`);
-                console.log(`   Cache Ratio: ${publicMetrics.metrics.cacheRatio.formatted}`);
-                
-              } catch (error) {
-                console.error('\n❌ Metrics fetch failed:', error.message);
-                process.exit(1);
-              }
-            }
-          }
-
-          const fetcher = new PrivateMetricsFetcher();
-          fetcher.run();
-          EOF
-
-      - name: Fetch latest metrics
-        run: |
-          node fetch-from-private.js
+          echo "🔄 Fetching metrics from macad-me/sofa-metrics-collector..."
+          
+          # Fetch file content via GitHub API
+          curl -H "Authorization: Bearer $PRIVATE_REPO_TOKEN" \
+               -H "Accept: application/vnd.github.v3+json" \
+               -H "User-Agent: SOFA-Metrics-Fetcher/1.0" \
+               -s \
+               https://api.github.com/repos/macad-me/sofa-metrics-collector/contents/data/metrics/latest.json > api_response.json
+          
+          # Check if request was successful
+          if [ $(jq -r '.message // "success"' api_response.json) != "success" ]; then
+            echo "❌ API Error: $(jq -r '.message' api_response.json)"
+            exit 1
+          fi
+          
+          # Decode base64 content and save to output path
+          mkdir -p "$(dirname "$OUTPUT_PATH")"
+          jq -r '.content' api_response.json | base64 -d > temp_metrics.json
+          
+          # Transform for public (remove internal fields, add source)
+          jq '. + {"source": "sofa-metrics-collector"} | del(.notes?)' temp_metrics.json > "$OUTPUT_PATH"
+          
+          # Display summary
+          echo "✅ Successfully fetched and saved metrics to: $OUTPUT_PATH"
+          echo "📊 Metrics Summary:"
+          echo "   Total Requests: $(jq -r '.metrics.totalRequests.formatted' "$OUTPUT_PATH")"
+          echo "   Page Views: $(jq -r '.metrics.pageViews.formatted' "$OUTPUT_PATH")"  
+          echo "   Bandwidth: $(jq -r '.metrics.bandwidth.formatted' "$OUTPUT_PATH")"
+          echo "   Cache Ratio: $(jq -r '.metrics.cacheRatio.formatted' "$OUTPUT_PATH")"
+          
+          # Cleanup temp files
+          rm -f api_response.json temp_metrics.json
 
       - name: Check for changes
         id: changes
