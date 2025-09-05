@@ -196,7 +196,7 @@
             <h3>Deploy & Update</h3>
           </div>
           <div class="card-content">
-            <p class="card-description">Push to dashboard and notify subscribers</p>
+            <p class="card-description">Push to dashboard and rebuild pages</p>
             <div class="deploy-status">
               <div class="status-indicator" :class="deployStatus">
                 <component :is="statusIcon" class="status-icon-small" />
