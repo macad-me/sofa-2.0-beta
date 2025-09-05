@@ -1,48 +1,139 @@
 {
-  "timestamp": "2025-09-05T14:55:30.264Z",
-  "period": {
-    "start": "2025-08-06T00:00:00.000Z",
-    "end": "2025-09-05T00:00:00.000Z",
-    "days": 30
+  "timestamp": "2025-09-05T18:11:27.400Z",
+  "periods": {
+    "volume": {
+      "start": "2025-08-06T00:00:00.000Z",
+      "end": "2025-09-05T00:00:00.000Z",
+      "days": 30
+    },
+    "trend": {
+      "start": "2025-08-29T00:00:00.000Z",
+      "end": "2025-09-05T00:00:00.000Z",
+      "days": 7
+    }
+  },
+  "volume": {
+    "metrics": {
+      "totalRequests": {
+        "value": 88223809,
+        "formatted": "88.22M"
+      },
+      "bandwidth": {
+        "bytes": 1861814050727,
+        "formatted": "1.69 TB"
+      },
+      "cachedRequests": {
+        "value": 88126760,
+        "formatted": "88.13M"
+      },
+      "threats": {
+        "value": 808832,
+        "formatted": "808.8k"
+      },
+      "cacheRatio": {
+        "value": 99.9,
+        "formatted": "99.9%"
+      }
+    },
+    "calculated": {
+      "dailyAverage": {
+        "requests": 2940793,
+        "threats": 26961,
+        "formatted": {
+          "requests": "2.94M",
+          "threats": "27.0k"
+        }
+      }
+    }
+  },
+  "trend": {
+    "metrics": {
+      "totalRequests": {
+        "value": 20344197,
+        "formatted": "20.34M"
+      },
+      "bandwidth": {
+        "bytes": 413867656553,
+        "formatted": "385.44 GB"
+      },
+      "cachedRequests": {
+        "value": 20325889,
+        "formatted": "20.33M"
+      },
+      "threats": {
+        "value": 128,
+        "formatted": "128"
+      }
+    },
+    "daily": [
+      {
+        "date": "2025-08-31",
+        "requests": 1899142,
+        "bytes": 38263623574
+      },
+      {
+        "date": "2025-09-02",
+        "requests": 3474602,
+        "bytes": 75189186819
+      },
+      {
+        "date": "2025-09-03",
+        "requests": 3507882,
+        "bytes": 69956396359
+      },
+      {
+        "date": "2025-08-30",
+        "requests": 1931986,
+        "bytes": 40132076781
+      },
+      {
+        "date": "2025-08-29",
+        "requests": 3193005,
+        "bytes": 67097728270
+      },
+      {
+        "date": "2025-09-04",
+        "requests": 3721297,
+        "bytes": 72023283492
+      },
+      {
+        "date": "2025-09-01",
+        "requests": 2616283,
+        "bytes": 51205361258
+      }
+    ],
+    "geographic": {
+      "topCountries": []
+    }
   },
   "metrics": {
     "totalRequests": {
-      "value": 88222718,
+      "value": 88223809,
       "formatted": "88.22M"
     },
-    "pageViews": {
-      "value": 19951,
-      "formatted": "20.0k"
-    },
     "bandwidth": {
-      "bytes": 1861789668956,
+      "bytes": 1861814050727,
       "formatted": "1.69 TB"
     },
     "cachedRequests": {
-      "value": 88125670,
+      "value": 88126760,
       "formatted": "88.13M"
     },
     "threats": {
-      "value": 808817,
+      "value": 808832,
       "formatted": "808.8k"
     },
     "cacheRatio": {
       "value": 99.9,
       "formatted": "99.9%"
-    },
-    "uniqueIPsDailySum": {
-      "value": 6812631,
-      "formatted": "6.81M"
     }
   },
   "calculated": {
     "dailyAverage": {
-      "requests": 2940757,
-      "pageViews": 665,
-      "threats": 26960,
+      "requests": 2940793,
+      "threats": 26961,
       "formatted": {
         "requests": "2.94M",
-        "pageViews": "665",
         "threats": "27.0k"
       }
     }
