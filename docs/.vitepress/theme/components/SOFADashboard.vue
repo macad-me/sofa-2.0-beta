@@ -1577,14 +1577,14 @@ const betaReleases = computed(() => {
 
 const safariVersion = computed(() => {
   // Get Safari data from bulletin
-  if (bulletinData.value?.recent_releases) {
-    const safariRelease = bulletinData.value.recent_releases.find(r => r.platform === 'safari')
-    if (safariRelease) {
-      return {
-        version: safariRelease.version,
-        releaseDate: formatDate(safariRelease.release_date),
-        name: safariRelease.name
-      }
+  if (bulletinData.value?.latest_releases?.safari) {
+    const latest = bulletinData.value.latest_releases.safari
+    return {
+      version: latest.version,
+      build: latest.build || 'N/A',
+      releaseDate: formatDate(latest.release_date),
+      cves: latest.total_cve_count,
+      name: `Safari ${latest.version}`
     }
   }
   return null
