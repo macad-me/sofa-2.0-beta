@@ -243,7 +243,7 @@ curl https://sofa-beta.macadmin.me/resources/bulletin_data.json
 
 ### Binary Management
 - **Auto-Download**: Fresh binaries from sofa-core-cli releases
-- **Version Tracking**: Uses specific version (v0.1.0-beta1)
+- **Version Tracking**: Uses specific version (v0.1.2-beta1)
 - **Caching**: Binaries cached between runs for efficiency
 - **Clean Extraction**: Non-essential binaries removed
 
@@ -292,4 +292,4 @@ generate_rss.py → data/feeds/v1/rss_feed.xml
 
 *Last updated: 2025-08-31*  
 *Pipeline Version: 2.0-beta*  
-*SOFA CLI Version: v0.1.0-beta1*
+*SOFA CLI Version: v0.1.2-beta1*
