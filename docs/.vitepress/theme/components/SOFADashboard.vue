@@ -467,18 +467,18 @@
           <div v-if="safariVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-150">
             <div class="space-y-1.5">
               <div class="flex items-center justify-between">
-                <span class="text-xs text-gray-500 dark:text-gray-400">Jul 30, 2025</span>
+                <span class="text-xs text-gray-500 dark:text-gray-400">{{ safariVersion.releaseDate }}</span>
                 <div class="flex items-center gap-1">
-                  <component :is="ShieldIcon" class="h-3 w-3 text-gray-400" />
-                  <span class="text-xs text-gray-600 dark:text-gray-400">No CVEs</span>
+                  <component :is="ShieldIcon" class="h-3 w-3" :class="safariVersion.cves > 0 ? 'text-orange-500' : 'text-gray-400'" />
+                  <span class="text-xs" :class="safariVersion.cves > 0 ? 'text-orange-600 dark:text-orange-400' : 'text-gray-600 dark:text-gray-400'">{{ safariVersion.cves > 0 ? `${safariVersion.cves} CVEs` : 'No CVEs' }}</span>
                 </div>
               </div>
               <div>
                 <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
-                  Safari 18.6
+                  Safari {{ safariVersion.version }}
                 </div>
                 <div class="text-xs text-gray-500 dark:text-gray-400">
-                  Version 18.6
+                  Build {{ safariVersion.build }}
                 </div>
               </div>
             </div>
