@@ -1,7 +1,7 @@
 {
   "Version": "2.0",
-  "UpdateHash": "55338a83cc42210b23e6a03a3313bbce0030c597dde611e75fe37c38bfa0eda2",
-  "LastCheck": "2025-09-06T09:07:51.949507222+00:00",
+  "UpdateHash": "f34101505ef42d157700af7ef01186618ed31e023f67321fe5ddb0f9ef4ead06",
+  "LastCheck": "2025-09-06T11:00:45.294966270+00:00",
   "OSVersions": [
     {
       "OSVersion": "Sequoia 15",
@@ -10784,7 +10784,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2021-09-20T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/120895",
+          "SecurityInfo": "https://support.apple.com/en-us/122400",
           "SecurityInfoContext": "macOS 12.0 was released on . This update has no published CVE entries. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {},
@@ -10810,12 +10810,12 @@
     }
   ],
   "XProtectPlistConfigData": {
-    "ReleaseDate": "2025-09-03T17:01:27Z",
-    "com.apple.XProtect": "5313"
+    "com.apple.XProtect": "5313",
+    "ReleaseDate": "2025-09-03T17:01:27Z"
   },
   "XProtectPayloads": {
-    "ReleaseDate": "2025-09-03T17:01:27Z",
     "com.apple.XProtectFramework.XProtect": "153",
+    "ReleaseDate": "2025-09-03T17:01:27Z",
     "com.apple.XprotectFramework.PluginService": "74"
   },
   "InstallationApps": {
