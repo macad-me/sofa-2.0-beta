@@ -421,48 +421,6 @@
         </template>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 flex-grow">
-          <!-- watchOS -->
-          <div v-if="watchOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
-            <div class="space-y-1.5">
-              <div class="flex items-center justify-between">
-                <span class="text-xs text-gray-500 dark:text-gray-400">Aug 14, 2025</span>
-                <div class="flex items-center gap-1">
-                  <component :is="ShieldIcon" class="h-3 w-3 text-gray-400" />
-                  <span class="text-xs text-gray-600 dark:text-gray-400">No CVEs</span>
-                </div>
-              </div>
-              <div>
-                <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
-                  watchOS 11.6.1
-                </div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">
-                  Build N/A
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- tvOS -->
-          <div v-if="tvOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
-            <div class="space-y-1.5">
-              <div class="flex items-center justify-between">
-                <span class="text-xs text-gray-500 dark:text-gray-400">Jul 29, 2025</span>
-                <div class="flex items-center gap-1">
-                  <component :is="ShieldIcon" class="h-3 w-3 text-orange-500" />
-                  <span class="text-xs text-orange-600 dark:text-orange-400">24 CVEs</span>
-                </div>
-              </div>
-              <div>
-                <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
-                  tvOS 18.6
-                </div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">
-                  Build N/A
-                </div>
-              </div>
-            </div>
-          </div>
-          
           <!-- Safari -->
           <div v-if="safariVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-150">
             <div class="space-y-1.5">
@@ -484,22 +442,64 @@
             </div>
           </div>
           
-          <!-- visionOS -->
-          <div v-if="visionOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
+          <!-- tvOS -->
+          <div v-if="tvOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
             <div class="space-y-1.5">
               <div class="flex items-center justify-between">
-                <span class="text-xs text-gray-500 dark:text-gray-400">Sep 02, 2025</span>
+                <span class="text-xs text-gray-500 dark:text-gray-400">{{ tvOSVersion.releaseDate }}</span>
                 <div class="flex items-center gap-1">
-                  <component :is="ShieldIcon" class="h-3 w-3 text-orange-500" />
-                  <span class="text-xs text-orange-600 dark:text-orange-400">24 CVEs</span>
+                  <component :is="ShieldIcon" class="h-3 w-3" :class="tvOSVersion.cves > 0 ? 'text-orange-500' : 'text-gray-400'" />
+                  <span class="text-xs" :class="tvOSVersion.cves > 0 ? 'text-orange-600 dark:text-orange-400' : 'text-gray-600 dark:text-gray-400'">{{ tvOSVersion.cves > 0 ? `${tvOSVersion.cves} CVEs` : 'No CVEs' }}</span>
                 </div>
               </div>
               <div>
                 <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
-                  visionOS 2.6
+                  tvOS {{ tvOSVersion.version }}
                 </div>
                 <div class="text-xs text-gray-500 dark:text-gray-400">
-                  Build 25A5351b
+                  Build {{ tvOSVersion.build }}
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- visionOS -->
+          <div v-if="visionOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500 dark:text-gray-400">{{ visionOSVersion.releaseDate }}</span>
+                <div class="flex items-center gap-1">
+                  <component :is="ShieldIcon" class="h-3 w-3" :class="visionOSVersion.cves > 0 ? 'text-orange-500' : 'text-gray-400'" />
+                  <span class="text-xs" :class="visionOSVersion.cves > 0 ? 'text-orange-600 dark:text-orange-400' : 'text-gray-600 dark:text-gray-400'">{{ visionOSVersion.cves > 0 ? `${visionOSVersion.cves} CVEs` : 'No CVEs' }}</span>
+                </div>
+              </div>
+              <div>
+                <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
+                  visionOS {{ visionOSVersion.version }}
+                </div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">
+                  Build {{ visionOSVersion.build }}
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- watchOS -->
+          <div v-if="watchOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500 dark:text-gray-400">{{ watchOSVersion.releaseDate }}</span>
+                <div class="flex items-center gap-1">
+                  <component :is="ShieldIcon" class="h-3 w-3" :class="watchOSVersion.cves > 0 ? 'text-orange-500' : 'text-gray-400'" />
+                  <span class="text-xs" :class="watchOSVersion.cves > 0 ? 'text-orange-600 dark:text-orange-400' : 'text-gray-600 dark:text-gray-400'">{{ watchOSVersion.cves > 0 ? `${watchOSVersion.cves} CVEs` : 'No CVEs' }}</span>
+                </div>
+              </div>
+              <div>
+                <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
+                  watchOS {{ watchOSVersion.version }}
+                </div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">
+                  Build {{ watchOSVersion.build }}
                 </div>
               </div>
             </div>
