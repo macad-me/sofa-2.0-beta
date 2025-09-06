@@ -1,17 +1,17 @@
 {
   "version": "3.0",
-  "generated": "2025-09-06T07:36:56Z",
+  "generated": "2025-09-06T08:12:42Z",
   "pipeline": {
     "gather": null,
     "fetch": null,
     "build": null,
     "bulletin": {
-      "last_run": "2025-09-06T07:36:56Z",
+      "last_run": "2025-09-06T08:12:42Z",
       "bulletin_count": 1,
       "cve_count": 29,
       "status": "completed",
-      "current_hash": "b6eeb0d44773d555de86aee0bd2bdacb8df0fec161990ee6e328acf94fa0ce7c",
-      "previous_hash": null,
+      "current_hash": "1c99c6ba0f243dd7cc170129c7af5ad525c93053057d236b7374be1417d2189b",
+      "previous_hash": "b6eeb0d44773d555de86aee0bd2bdacb8df0fec161990ee6e328acf94fa0ce7c",
       "live_check_enabled": false
     },
     "enrich": null
