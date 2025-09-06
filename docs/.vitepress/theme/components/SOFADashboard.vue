@@ -807,7 +807,7 @@
 
       <!-- Cloudflare Data Statistics -->
       <BentoCard 
-        title="Cloudflare Statistics"
+        title="Cloudflare Cache"
         platform="statistics"
         :icon="ActivityIcon"
         :style="{ order: bentoDisplayOrder['statistics'] }"
