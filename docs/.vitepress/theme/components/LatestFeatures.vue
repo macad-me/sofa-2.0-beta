@@ -433,6 +433,20 @@ export default {
       safariData: {}
     }
   },
+  computed: {
+    platformMeshIcon() {
+      const platformMap = {
+        'macOS': '/icons-sofa-mesh/macos-subtle.png',
+        'iOS': '/icons-sofa-mesh/ios-subtle.png', 
+        'iPadOS': '/icons-sofa-mesh/ipados-subtle.png',
+        'Safari': '/icons-sofa-mesh/safari-subtle.png',
+        'watchOS': '/icons-sofa-mesh/watchos-subtle.png',
+        'tvOS': '/icons-sofa-mesh/tvos-subtle.png',
+        'visionOS': '/icons-sofa-mesh/visionos-subtle.png'
+      }
+      return platformMap[this.platform] || null
+    }
+  },
   async mounted() {
     await this.loadAllData()
     this.loadData()
@@ -971,6 +985,7 @@ export default {
 .latest-features {
   margin-bottom: 2rem;
 }
+
 
 .latest-release-heading {
   margin-top: 24px;
@@ -1599,12 +1614,12 @@ h2.card-title::after,
 }
 
 .button-group button.active {
-  background: #10b981;
+  background: #3b82f6;
   color: white;
 }
 
 .button-group button.active:hover {
-  background: #059669;
+  background: #2563eb;
 }
 
 .button-group button:disabled {
@@ -1619,7 +1634,7 @@ h2.card-title::after,
 .version-text {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #10b981;
+  color: #3b82f6;
 }
 
 .deferral-details-grid {
@@ -1714,7 +1729,7 @@ h2.card-title::after,
 }
 
 .deferral-link:hover {
-  color: #10b981;
+  color: #3b82f6;
 }
 
 .deferral-link svg {
@@ -2308,7 +2323,7 @@ h2.card-title::after,
 /* Dark mode Deferral styles */
 :root.dark .version-text,
 .dark .version-text {
-  color: #34d399;
+  color: #93c5fd;
 }
 
 :root.dark .deferral-item,
@@ -2328,7 +2343,7 @@ h2.card-title::after,
 
 :root.dark .deferral-link:hover,
 .dark .deferral-link:hover {
-  color: #34d399;
+  color: #93c5fd;
 }
 
 /* Dark mode XProtect styles */
