@@ -1,7 +1,7 @@
 {
   "Version": "2.0",
-  "UpdateHash": "1062c2695cb8b962c6933f9d18539cd72c61daf242bca1000fa3c2dafb6d4751",
-  "LastCheck": "2025-09-06T04:41:55.783228126+00:00",
+  "UpdateHash": "d1fb1b01416aaa6f82a33a7d8a6dff8b87e76e21c8d0664b23c3a429cce2e229",
+  "LastCheck": "2025-09-06T06:41:04.518765474+00:00",
   "OSVersions": [
     {
       "OSVersion": "Sequoia 15",
@@ -11,13 +11,12 @@
         "ProductVersion": "15.6.1",
         "Build": "24G90",
         "AllBuilds": [
-          "24G90",
           "24G90"
         ],
         "ReleaseDate": "2025-08-20T00:00:00Z",
         "ExpirationDate": "2025-12-05",
         "ReleaseType": "OS",
-        "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+        "SecurityInfo": "https://support.apple.com/en-us/124927",
         "SecurityInfoContext": "macOS has been updated to version 15.6.1, which was released on August 20, 2025. This update addresses one security issue and is the most recent approved version.",
         "SupportedDevices": [
           "J132AP",
@@ -123,13 +122,12 @@
           "ProductVersion": "15.6.1",
           "Build": "24G90",
           "AllBuilds": [
-            "24G90",
             "24G90"
           ],
           "ReleaseDate": "2025-08-20T00:00:00Z",
           "ExpirationDate": "2025-12-05",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/124927",
           "SecurityInfoContext": "macOS has been updated to version 15.6.1, which was released on August 20, 2025. This update addresses one security issue and is the most recent approved version.",
           "SupportedDevices": [
             "J132AP",
@@ -239,7 +237,7 @@
           "ReleaseDate": "2025-07-29T00:00:00Z",
           "ExpirationDate": "2025-11-18",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/124149",
           "SecurityInfoContext": "macOS 15.6 was released on July 29, 2025. This release addressed 88 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -436,7 +434,7 @@
           "ReleaseDate": "2025-05-12T00:00:00Z",
           "ExpirationDate": "2025-10-27",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122716",
           "SecurityInfoContext": "macOS 15.5 was released on May 12, 2025. This release addressed 51 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -586,7 +584,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2025-04-16T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122400",
           "SecurityInfoContext": "macOS 15.4.1 was released on April 16, 2025. This release addressed 2 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -685,7 +683,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2025-03-31T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122373",
           "SecurityInfoContext": "macOS 15.4 was released on March 31, 2025. This release addressed 155 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -924,7 +922,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2025-03-11T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122283",
           "SecurityInfoContext": "macOS 15.3.2 was released on March 11, 2025. This release addressed one security issue. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -1016,7 +1014,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2025-02-10T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122900",
           "SecurityInfoContext": "macOS 15.3.1 was released on February 10, 2025. This release addressed one security issue. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -1108,7 +1106,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2025-01-27T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122068",
           "SecurityInfoContext": "macOS 15.3 was released on January 27, 2025. This release addressed 72 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -1271,7 +1269,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-12-11T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121839",
           "SecurityInfoContext": "macOS 15.2 was released on December 11, 2024. This release addressed 83 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -1438,7 +1436,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-11-19T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121753",
           "SecurityInfoContext": "macOS 15.1.1 was released on November 19, 2024. This release addressed 2 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -1537,7 +1535,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-10-28T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121564",
           "SecurityInfoContext": "macOS 15.1 was released on October 28, 2024. This release addressed 80 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -1701,7 +1699,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-10-03T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SecurityInfoContext": "macOS 15.0.1 was released on October 03, 2024. This update has no published CVE entries. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -1784,7 +1782,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-09-16T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121238",
           "SecurityInfoContext": "macOS 15.0 was released on September 16, 2024. This release addressed 103 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -1974,13 +1972,12 @@
         "ProductVersion": "14.7.8",
         "Build": "23H730",
         "AllBuilds": [
-          "23H730",
           "23H730"
         ],
         "ReleaseDate": "2025-08-20T00:00:00Z",
         "ExpirationDate": "2025-12-05",
         "ReleaseType": "OS",
-        "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+        "SecurityInfo": "https://support.apple.com/en-us/124928",
         "SecurityInfoContext": "macOS has been updated to version 14.7.8, which was released on August 20, 2025. This update addresses one security issue and is the most recent approved version.",
         "SupportedDevices": [
           "J132AP",
@@ -2075,13 +2072,12 @@
           "ProductVersion": "14.7.8",
           "Build": "23H730",
           "AllBuilds": [
-            "23H730",
             "23H730"
           ],
           "ReleaseDate": "2025-08-20T00:00:00Z",
           "ExpirationDate": "2025-12-05",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/124928",
           "SecurityInfoContext": "macOS has been updated to version 14.7.8, which was released on August 20, 2025. This update addresses one security issue and is the most recent approved version.",
           "SupportedDevices": [
             "J132AP",
@@ -2180,7 +2176,7 @@
           "ReleaseDate": "2025-07-29T00:00:00Z",
           "ExpirationDate": "2025-11-18",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/124150",
           "SecurityInfoContext": "macOS 14.7.7 was released on July 29, 2025. This release addressed 50 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -2321,7 +2317,7 @@
           "ReleaseDate": "2025-05-12T00:00:00Z",
           "ExpirationDate": "2025-10-27",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122717",
           "SecurityInfoContext": "macOS 14.7.6 was released on May 12, 2025. This release addressed 33 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -2442,7 +2438,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2025-03-31T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122374",
           "SecurityInfoContext": "macOS 14.7.5 was released on March 31, 2025. This release addressed 110 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -2647,7 +2643,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2025-02-10T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122901",
           "SecurityInfoContext": "macOS 14.7.4 was released on February 10, 2025. This release addressed one security issue. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -2743,7 +2739,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2025-01-27T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122069",
           "SecurityInfoContext": "macOS 14.7.3 was released on January 27, 2025. This release addressed 45 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -2876,7 +2872,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-12-11T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121840",
           "SecurityInfoContext": "macOS 14.7.2 was released on December 11, 2024. This release addressed 40 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -3004,7 +3000,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-10-28T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121570",
           "SecurityInfoContext": "macOS 14.7.1 was released on October 28, 2024. This release addressed 52 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -3144,7 +3140,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-09-16T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121247",
           "SecurityInfoContext": "macOS 14.7 was released on September 16, 2024. This release addressed 39 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -3271,7 +3267,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-08-07T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SecurityInfoContext": "macOS 14.6.1 was released on August 07, 2024. This update has no published CVE entries. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -3358,7 +3354,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-07-29T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120911",
           "SecurityInfoContext": "macOS 14.6 was released on July 29, 2024. This release addressed 80 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -3526,7 +3522,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-05-13T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120903",
           "SecurityInfoContext": "macOS 14.5 was released on May 13, 2024. This release addressed 51 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -3665,7 +3661,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-03-25T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120889",
           "SecurityInfoContext": "macOS 14.4.1 was released on March 25, 2024. This release addressed one security issue. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -3754,7 +3750,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-03-07T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120895",
           "SecurityInfoContext": "macOS 14.4 was released on March 07, 2024. This release addressed 79 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -3934,7 +3930,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-02-08T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SecurityInfoContext": "macOS 14.3.1 was released on February 08, 2024. This update has no published CVE entries. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -4021,7 +4017,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-01-22T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120309",
           "SecurityInfoContext": "macOS 14.3 was released on January 22, 2024. This release addressed 20 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -4136,7 +4132,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-12-19T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT214048",
           "SecurityInfoContext": "macOS 14.2.1 was released on December 19, 2023. This release addressed one security issue. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -4225,7 +4221,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-12-11T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT214036",
           "SecurityInfoContext": "macOS 14.2 was released on December 11, 2023. This release addressed 59 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -4372,7 +4368,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-11-30T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT214032",
           "SecurityInfoContext": "macOS 14.1.2 was released on November 30, 2023. This release addressed 2 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -4475,7 +4471,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-11-07T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121012",
           "SecurityInfoContext": "macOS 14.1.1 was released on November 07, 2023. This update has no published CVE entries. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -4562,7 +4558,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-10-25T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213984",
           "SecurityInfoContext": "macOS 14.1 was released on October 25, 2023. This release addressed 70 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -4720,7 +4716,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-09-26T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213940",
           "SecurityInfoContext": "macOS 14.0 was released on September 26, 2023. This release addressed 108 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -4926,13 +4922,12 @@
         "ProductVersion": "13.7.8",
         "Build": "22H730",
         "AllBuilds": [
-          "22H730",
           "22H730"
         ],
         "ReleaseDate": "2025-08-20T00:00:00Z",
         "ExpirationDate": "2025-12-05",
         "ReleaseType": "OS",
-        "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+        "SecurityInfo": "https://support.apple.com/en-us/124929",
         "SecurityInfoContext": "macOS has been updated to version 13.7.8, which was released on August 20, 2025. This update addresses one security issue and is the most recent approved version.",
         "SupportedDevices": [
           "J132AP",
@@ -5026,13 +5021,12 @@
           "ProductVersion": "13.7.8",
           "Build": "22H730",
           "AllBuilds": [
-            "22H730",
             "22H730"
           ],
           "ReleaseDate": "2025-08-20T00:00:00Z",
           "ExpirationDate": "2025-12-05",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/124929",
           "SecurityInfoContext": "macOS has been updated to version 13.7.8, which was released on August 20, 2025. This update addresses one security issue and is the most recent approved version.",
           "SupportedDevices": [
             "J132AP",
@@ -5130,7 +5124,7 @@
           "ReleaseDate": "2025-07-29T00:00:00Z",
           "ExpirationDate": "2025-11-18",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/124151",
           "SecurityInfoContext": "macOS 13.7.7 was released on July 29, 2025. This release addressed 41 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -5261,7 +5255,7 @@
           "ReleaseDate": "2025-05-12T00:00:00Z",
           "ExpirationDate": "2025-10-27",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122718",
           "SecurityInfoContext": "macOS 13.7.6 was released on May 12, 2025. This release addressed 30 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -5378,7 +5372,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2025-03-31T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122375",
           "SecurityInfoContext": "macOS 13.7.5 was released on March 31, 2025. This release addressed 103 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -5575,7 +5569,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2025-02-10T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122902",
           "SecurityInfoContext": "macOS 13.7.4 was released on February 10, 2025. This release addressed one security issue. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -5670,7 +5664,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2025-01-27T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122070",
           "SecurityInfoContext": "macOS 13.7.3 was released on January 27, 2025. This release addressed 35 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -5792,7 +5786,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-12-11T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121842",
           "SecurityInfoContext": "macOS 13.7.2 was released on December 11, 2024. This release addressed 33 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -5912,7 +5906,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-10-28T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121568",
           "SecurityInfoContext": "macOS 13.7.1 was released on October 28, 2024. This release addressed 49 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -6048,7 +6042,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-09-16T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121234",
           "SecurityInfoContext": "macOS 13.7 was released on September 16, 2024. This release addressed 31 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -6166,7 +6160,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-08-07T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SecurityInfoContext": "macOS 13.6.9 was released on August 07, 2024. This update has no published CVE entries. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -6252,7 +6246,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-07-29T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120912",
           "SecurityInfoContext": "macOS 13.6.8 was released on July 29, 2024. This release addressed 46 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -6385,7 +6379,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-05-13T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120900",
           "SecurityInfoContext": "macOS 13.6.7 was released on May 13, 2024. This release addressed 22 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -6501,7 +6495,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-03-25T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120891",
           "SecurityInfoContext": "macOS 13.6.6 was released on March 25, 2024. This release addressed one security issue. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -6589,7 +6583,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-03-07T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120886",
           "SecurityInfoContext": "macOS 13.6.5 was released on March 07, 2024. This release addressed 32 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -6715,7 +6709,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-01-22T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120307",
           "SecurityInfoContext": "macOS 13.6.4 was released on January 22, 2024. This release addressed 13 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -6822,7 +6816,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-12-11T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT214038",
           "SecurityInfoContext": "macOS 13.6.3 was released on December 11, 2023. This release addressed 31 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -6940,7 +6934,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-11-07T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121012",
           "SecurityInfoContext": "macOS 13.6.2 was released on November 07, 2023. This update has no published CVE entries. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -7026,7 +7020,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-10-25T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213985",
           "SecurityInfoContext": "macOS 13.6.1 was released on October 25, 2023. This release addressed 28 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -7141,7 +7135,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-09-21T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213931",
           "SecurityInfoContext": "macOS 13.6 was released on September 21, 2023. This release addressed 23 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -7264,7 +7258,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-09-07T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213906",
           "SecurityInfoContext": "macOS 13.5.2 was released on September 07, 2023. This release addressed one security issue. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -7359,7 +7353,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-08-17T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121012",
           "SecurityInfoContext": "macOS 13.5.1 was released on August 17, 2023. This update has no published CVE entries. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -7445,7 +7439,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-07-24T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213843",
           "SecurityInfoContext": "macOS 13.5 was released on July 24, 2023. This release addressed 77 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -7622,7 +7616,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-06-21T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213813",
           "SecurityInfoContext": "macOS 13.4.1 was released on June 21, 2023. This release addressed 2 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -7724,7 +7718,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-05-18T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213758",
           "SecurityInfoContext": "macOS 13.4 was released on May 18, 2023. This release addressed 63 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -7893,7 +7887,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-10-31T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213721",
           "SecurityInfoContext": "macOS 13.3.1 was released on October 31, 2023. This release addressed 2 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -7995,7 +7989,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-03-27T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213670",
           "SecurityInfoContext": "macOS 13.3 was released on March 27, 2023. This release addressed 96 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -8185,7 +8179,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-10-31T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213633",
           "SecurityInfoContext": "macOS 13.2.1 was released on October 31, 2023. This release addressed 4 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -8283,7 +8277,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-01-23T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213605",
           "SecurityInfoContext": "macOS 13.2 was released on January 23, 2023. This release addressed 36 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -8413,7 +8407,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2022-12-13T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213532",
           "SecurityInfoContext": "macOS 13.1 was released on December 13, 2022. This release addressed 51 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -8564,7 +8558,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-06-12T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213504",
           "SecurityInfoContext": "macOS 13.0.1 was released on June 12, 2024. This release addressed 2 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -8653,7 +8647,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2022-10-24T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213488",
           "SecurityInfoContext": "macOS 13.0 was released on October 24, 2022. This release addressed 157 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -8900,13 +8894,12 @@
         "ProductVersion": "12.7.6",
         "Build": "21H1320",
         "AllBuilds": [
-          "21H1320",
           "21H1320"
         ],
         "ReleaseDate": "2024-07-29T00:00:00Z",
         "ExpirationDate": "2025-12-05",
         "ReleaseType": "OS",
-        "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+        "SecurityInfo": "https://support.apple.com/en-us/120910",
         "SecurityInfoContext": "macOS has been updated to version 12.7.6, which was released on July 29, 2024. This update addresses 42 security issues and is the most recent approved version.",
         "SupportedDevices": [
           "J132AP",
@@ -9044,13 +9037,12 @@
           "ProductVersion": "12.7.6",
           "Build": "21H1320",
           "AllBuilds": [
-            "21H1320",
             "21H1320"
           ],
           "ReleaseDate": "2024-07-29T00:00:00Z",
           "ExpirationDate": "2025-12-05",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120910",
           "SecurityInfoContext": "macOS has been updated to version 12.7.6, which was released on July 29, 2024. This update addresses 42 security issues and is the most recent approved version.",
           "SupportedDevices": [
             "J132AP",
@@ -9189,7 +9181,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-05-13T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120899",
           "SecurityInfoContext": "macOS 12.7.5 was released on May 13, 2024. This release addressed 19 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -9239,7 +9231,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-03-07T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120884",
           "SecurityInfoContext": "macOS 12.7.4 was released on March 07, 2024. This release addressed 28 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -9305,7 +9297,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-01-22T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120305",
           "SecurityInfoContext": "macOS 12.7.3 was released on January 22, 2024. This release addressed 9 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -9352,7 +9344,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-12-11T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT214037",
           "SecurityInfoContext": "macOS 12.7.2 was released on December 11, 2023. This release addressed 28 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -9411,7 +9403,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-10-25T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213983",
           "SecurityInfoContext": "macOS 12.7.1 was released on October 25, 2023. This release addressed 23 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -9465,7 +9457,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-09-21T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213932",
           "SecurityInfoContext": "macOS 12.7 was released on September 21, 2023. This release addressed 18 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -9521,7 +9513,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-09-11T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213914",
           "SecurityInfoContext": "macOS 12.6.9 was released on September 11, 2023. This release addressed one security issue. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -9560,7 +9552,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-07-24T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213844",
           "SecurityInfoContext": "macOS 12.6.8 was released on July 24, 2023. This release addressed 50 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -9654,7 +9646,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-06-21T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213810",
           "SecurityInfoContext": "macOS 12.6.7 was released on June 21, 2023. This release addressed one security issue. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -9693,7 +9685,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-05-18T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213759",
           "SecurityInfoContext": "macOS 12.6.6 was released on May 18, 2023. This release addressed 32 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -9756,7 +9748,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-10-31T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213724",
           "SecurityInfoContext": "macOS 12.6.5 was released on October 31, 2023. This release addressed one security issue. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -9795,7 +9787,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-03-27T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213677",
           "SecurityInfoContext": "macOS 12.6.4 was released on March 27, 2023. This release addressed 41 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -9867,7 +9859,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-06-12T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213604",
           "SecurityInfoContext": "macOS 12.6.3 was released on June 12, 2024. This release addressed 21 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -9919,7 +9911,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2022-12-13T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213533",
           "SecurityInfoContext": "macOS 12.6.2 was released on December 13, 2022. This release addressed 17 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -9967,7 +9959,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-06-12T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213494",
           "SecurityInfoContext": "macOS 12.6.1 was released on June 12, 2024. This release addressed 14 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -10012,7 +10004,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-06-12T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213444",
           "SecurityInfoContext": "macOS 12.6 was released on June 12, 2024. This release addressed 40 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -10090,7 +10082,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-10-31T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213413",
           "SecurityInfoContext": "macOS 12.5.1 was released on October 31, 2023. This release addressed 2 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -10136,7 +10128,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2022-07-20T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213345",
           "SecurityInfoContext": "macOS 12.5 was released on July 20, 2022. This release addressed 71 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -10245,7 +10237,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2022-05-16T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213257",
           "SecurityInfoContext": "macOS 12.4 was released on May 16, 2022. This release addressed 84 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -10360,7 +10352,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-11-02T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213220",
           "SecurityInfoContext": "macOS 12.3.1 was released on November 02, 2023. This release addressed 2 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -10406,7 +10398,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-10-31T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213183",
           "SecurityInfoContext": "macOS 12.3 was released on October 31, 2023. This release addressed 69 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -10506,7 +10498,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-11-06T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213092",
           "SecurityInfoContext": "macOS 12.2.1 was released on November 06, 2023. This release addressed one security issue. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -10545,7 +10537,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-11-02T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213054",
           "SecurityInfoContext": "macOS 12.2 was released on November 02, 2023. This release addressed 15 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -10598,7 +10590,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2021-12-13T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/102874",
           "SecurityInfoContext": "macOS 12.1 was released on December 13, 2021. This release addressed 54 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -10683,7 +10675,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2021-10-25T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/103236",
           "SecurityInfoContext": "macOS 12.0.1 was released on October 25, 2021. This release addressed 71 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -10792,7 +10784,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2021-09-20T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121839",
           "SecurityInfoContext": "macOS 12.0 was released on . This update has no published CVE entries. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {},
@@ -10823,8 +10815,8 @@
   },
   "XProtectPayloads": {
     "ReleaseDate": "2025-09-03T17:01:27Z",
-    "com.apple.XProtectFramework.XProtect": "153",
-    "com.apple.XprotectFramework.PluginService": "74"
+    "com.apple.XprotectFramework.PluginService": "74",
+    "com.apple.XProtectFramework.XProtect": "153"
   },
   "InstallationApps": {
     "LatestUMA": {

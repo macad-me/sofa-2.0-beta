@@ -1,8 +1,8 @@
 {
   "OSName": "watchOS",
   "Version": "2.0",
-  "UpdateHash": "ee49b4a37dd7b0f5f9073aa472d076c81420d07c0a98fc61a03f9a83d14b07a2",
-  "LastCheck": "2025-09-06T04:41:55.834330814+00:00",
+  "UpdateHash": "51912a05f780b2fdd8f5be65cfa164b184e19b79c78b489ece4bdc4fc0a13d1c",
+  "LastCheck": "2025-09-06T06:41:04.573983007+00:00",
   "OSVersions": [
     {
       "OSVersion": "watchOS 11",
@@ -14,7 +14,7 @@
         "AllBuilds": [],
         "ReleaseDate": "2025-08-14",
         "ReleaseType": "OS",
-        "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+        "SecurityInfo": "https://support.apple.com/en-us/100100",
         "SecurityInfoContext": "watchOS has been updated to version 11.6.1, which was released on August 14, 2025. This update has no published CVE entries and is the most recent approved version.",
         "SupportedDevices": [],
         "CVEs": {},
@@ -45,7 +45,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2025-08-14",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SecurityInfoContext": "watchOS has been updated to version 11.6.1, which was released on August 14, 2025. This update has no published CVE entries and is the most recent approved version.",
           "SupportedDevices": [],
           "CVEs": {},
@@ -75,7 +75,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2025-07-29",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/124155",
           "SecurityInfoContext": "watchOS 11.6 was released on July 29, 2025. This release addressed 21 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -135,7 +135,7 @@
         "AllBuilds": [],
         "ReleaseDate": "2024-08-19",
         "ReleaseType": "OS",
-        "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+        "SecurityInfo": "https://support.apple.com/en-us/100100",
         "SecurityInfoContext": "watchOS has been updated to version 10.6.1, which was released on August 19, 2024. This update has no published CVE entries and is the most recent approved version.",
         "SupportedDevices": [],
         "CVEs": {},
@@ -166,7 +166,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-08-19",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SecurityInfoContext": "watchOS has been updated to version 10.6.1, which was released on August 19, 2024. This update has no published CVE entries and is the most recent approved version.",
           "SupportedDevices": [],
           "CVEs": {},
@@ -196,7 +196,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2024-07-29",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120916",
           "SecurityInfoContext": "watchOS 10.6 was released on July 29, 2024. This release addressed 32 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
@@ -263,7 +263,7 @@
         "AllBuilds": [],
         "ReleaseDate": "2023-09-21",
         "ReleaseType": "OS",
-        "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+        "SecurityInfo": "https://support.apple.com/kb/HT213929",
         "SecurityInfoContext": "watchOS has been updated to version 9.6.3, which was released on September 21, 2023. This update addresses 2 security issues and is the most recent approved version.",
         "SupportedDevices": [],
         "CVEs": {
@@ -305,7 +305,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-09-21",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213929",
           "SecurityInfoContext": "watchOS has been updated to version 9.6.3, which was released on September 21, 2023. This update addresses 2 security issues and is the most recent approved version.",
           "SupportedDevices": [],
           "CVEs": {
@@ -346,7 +346,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2023-09-07",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213907",
           "SecurityInfoContext": "watchOS 9.6.2 was released on September 07, 2023. This release addressed one security issue. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {

@@ -1,5 +1,5 @@
 {
-  "UpdateHash": "f1c7ef037b404a77ab42a74f796d1c28d2009dbbea1fbd972fd72eef5db5cd62",
+  "UpdateHash": "c7a54026cf4bb96761455b940e9e446e9859805c5aa677d5b2d1f48a32255f7b",
   "OSVersions": [
     {
       "OSVersion": "18",
@@ -10,7 +10,7 @@
         "Build": "18A000",
         "ReleaseDate": "2025-08-20T00:00:00Z",
         "ReleaseType": "OS",
-        "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+        "SecurityInfo": "https://support.apple.com/en-us/124925",
         "SupportedDevices": [],
         "CVEs": {
           "CVE-2025-43300": true
@@ -29,7 +29,7 @@
           "Build": "18A000",
           "ReleaseDate": "2025-08-20T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/124925",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-43300": true
@@ -47,7 +47,7 @@
           "Build": "18A000",
           "ReleaseDate": "2025-08-14T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
@@ -61,7 +61,7 @@
           "Build": "18A000",
           "ReleaseDate": "2025-07-29T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/124147",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-31229": false,
@@ -107,7 +107,7 @@
           "Build": "18A000",
           "ReleaseDate": "2025-05-12T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122404",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-8176": false,
@@ -156,7 +156,7 @@
           "Build": "18A000",
           "ReleaseDate": "2025-04-16T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122282",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-31200": true,
@@ -176,7 +176,7 @@
           "Build": "18A000",
           "ReleaseDate": "2025-03-31T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122371",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-48958": false,
@@ -267,7 +267,7 @@
           "Build": "18A000",
           "ReleaseDate": "2025-03-11T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122281",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-24201": true
@@ -285,7 +285,7 @@
           "Build": "18A000",
           "ReleaseDate": "2025-02-10T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122174",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-24200": true,
@@ -305,7 +305,7 @@
           "Build": "18A000",
           "ReleaseDate": "2025-01-27T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122066",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-55549": false,
@@ -360,7 +360,7 @@
           "Build": "18A000",
           "ReleaseDate": "2025-01-06T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
@@ -374,7 +374,7 @@
           "Build": "18A000",
           "ReleaseDate": "2024-12-11T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121837",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-40864": false,
@@ -430,7 +430,7 @@
           "Build": "18A000",
           "ReleaseDate": "2024-11-19T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121752",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-44308": true,
@@ -450,7 +450,7 @@
           "Build": "18A000",
           "ReleaseDate": "2024-10-28T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121563",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-40851": false,
@@ -507,7 +507,7 @@
           "Build": "18A000",
           "ReleaseDate": "2024-10-03T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121373",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-44204": false,
@@ -524,7 +524,7 @@
           "Build": "18A000",
           "ReleaseDate": "2024-09-16T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121250",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-5841": false,
@@ -591,7 +591,7 @@
         "Build": "17A000",
         "ReleaseDate": "2025-07-29T00:00:00Z",
         "ReleaseType": "OS",
-        "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+        "SecurityInfo": "https://support.apple.com/en-us/124148",
         "SupportedDevices": [],
         "CVEs": {
           "CVE-2025-24220": false,
@@ -627,7 +627,7 @@
           "Build": "17A000",
           "ReleaseDate": "2025-07-29T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/124148",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-24220": false,
@@ -662,7 +662,7 @@
           "Build": "17A000",
           "ReleaseDate": "2025-05-19T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
@@ -676,7 +676,7 @@
           "Build": "17A000",
           "ReleaseDate": "2025-05-12T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122405",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-8176": false,
@@ -719,7 +719,7 @@
           "Build": "17A000",
           "ReleaseDate": "2025-03-31T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122372",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-54502": false,
@@ -787,7 +787,7 @@
           "Build": "17A000",
           "ReleaseDate": "2025-02-10T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122173",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-24200": true,
@@ -807,7 +807,7 @@
           "Build": "17A000",
           "ReleaseDate": "2025-01-27T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122067",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-54478": false,
@@ -841,7 +841,7 @@
           "Build": "17A000",
           "ReleaseDate": "2024-12-11T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121838",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-44201": false,
@@ -873,7 +873,7 @@
           "Build": "17A000",
           "ReleaseDate": "2024-11-19T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121754",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-44308": true,
@@ -893,7 +893,7 @@
           "Build": "17A000",
           "ReleaseDate": "2025-08-20T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/124926",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-43300": true
@@ -911,7 +911,7 @@
           "Build": "17A000",
           "ReleaseDate": "2024-10-28T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121567",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-40854": false,
@@ -949,7 +949,7 @@
           "Build": "17A000",
           "ReleaseDate": "2024-09-16T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121246",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-27876": false,
@@ -982,7 +982,7 @@
           "Build": "17A000",
           "ReleaseDate": "2024-08-07T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
@@ -996,7 +996,7 @@
           "Build": "17A000",
           "ReleaseDate": "2024-07-29T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120909",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-52356": false,
@@ -1051,7 +1051,7 @@
           "Build": "17A000",
           "ReleaseDate": "2024-05-20T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
@@ -1065,7 +1065,7 @@
           "Build": "17A000",
           "ReleaseDate": "2024-05-13T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120905",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-42893": false,
@@ -1129,7 +1129,7 @@
           "Build": "17A000",
           "ReleaseDate": "2024-03-21T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120890",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-1580": false
@@ -1145,7 +1145,7 @@
           "Build": "17A000",
           "ReleaseDate": "2024-03-05T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120893",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2022-48554": false,
@@ -1204,7 +1204,7 @@
           "Build": "17A000",
           "ReleaseDate": "2024-02-08T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
@@ -1218,7 +1218,7 @@
           "Build": "17A000",
           "ReleaseDate": "2024-01-22T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120304",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-23201": false,
@@ -1255,7 +1255,7 @@
           "Build": "17A000",
           "ReleaseDate": "2023-12-19T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121012",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
@@ -1269,7 +1269,7 @@
           "Build": "17A000",
           "ReleaseDate": "2023-12-11T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT214035",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-40389": false,
@@ -1307,7 +1307,7 @@
           "Build": "17A000",
           "ReleaseDate": "2023-11-30T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT214031",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-42916": true,
@@ -1327,7 +1327,7 @@
           "Build": "17A000",
           "ReleaseDate": "2023-11-07T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121012",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
@@ -1341,7 +1341,7 @@
           "Build": "17A000",
           "ReleaseDate": "2023-10-25T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213982",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-40408": false,
@@ -1394,7 +1394,7 @@
           "Build": "17A000",
           "ReleaseDate": "2023-10-04T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213961",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-42824": true,
@@ -1414,7 +1414,7 @@
           "Build": "17A000",
           "ReleaseDate": "2023-09-21T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121012",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
@@ -1428,7 +1428,7 @@
           "Build": "17A000",
           "ReleaseDate": "2023-09-21T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213926",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-41991": true,
@@ -1450,7 +1450,7 @@
           "Build": "17A000",
           "ReleaseDate": "2023-09-18T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213938",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-32359": false,
@@ -1545,7 +1545,7 @@
         "Build": "16A000",
         "ReleaseDate": "2024-07-29T00:00:00Z",
         "ReleaseType": "OS",
-        "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+        "SecurityInfo": "https://support.apple.com/en-us/120908",
         "SupportedDevices": [],
         "CVEs": {
           "CVE-2023-52356": false,
@@ -1588,7 +1588,7 @@
           "Build": "16A000",
           "ReleaseDate": "2024-07-29T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120908",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-52356": false,
@@ -1630,7 +1630,7 @@
           "Build": "16A000",
           "ReleaseDate": "2024-05-13T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120898",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-23251": false,
@@ -1671,7 +1671,7 @@
           "Build": "16A000",
           "ReleaseDate": "2024-03-21T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120892",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-1580": false
@@ -1687,7 +1687,7 @@
           "Build": "16A000",
           "ReleaseDate": "2024-03-05T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120880",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-28826": false,
@@ -1723,7 +1723,7 @@
           "Build": "16A000",
           "ReleaseDate": "2024-01-22T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/120310",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-42888": false,
@@ -1749,7 +1749,7 @@
           "Build": "16A000",
           "ReleaseDate": "2023-12-19T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121012",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
@@ -1763,7 +1763,7 @@
           "Build": "16A000",
           "ReleaseDate": "2023-12-11T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT214034",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-42883": false,
@@ -1793,7 +1793,7 @@
           "Build": "16A000",
           "ReleaseDate": "2023-10-25T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213981",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-32359": false,
@@ -1831,7 +1831,7 @@
           "Build": "16A000",
           "ReleaseDate": "2025-03-31T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/122346",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2025-24200": true,
@@ -1853,7 +1853,7 @@
           "Build": "16A000",
           "ReleaseDate": "2024-08-07T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
@@ -1867,7 +1867,7 @@
           "Build": "16A000",
           "ReleaseDate": "2023-10-10T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213972",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-42824": true,
@@ -1887,7 +1887,7 @@
           "Build": "16A000",
           "ReleaseDate": "2023-09-21T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213927",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-35990": false,
@@ -1927,7 +1927,7 @@
           "Build": "16A000",
           "ReleaseDate": "2023-09-07T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213905",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-41061": true,
@@ -1947,7 +1947,7 @@
           "Build": "16A000",
           "ReleaseDate": "2023-07-24T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213841",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2022-3970": false,
@@ -2009,7 +2009,7 @@
           "Build": "16A000",
           "ReleaseDate": "2023-11-06T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213814",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-32434": true,
@@ -2029,7 +2029,7 @@
           "Build": "16A000",
           "ReleaseDate": "2023-05-18T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213757",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-27930": false,
@@ -2094,7 +2094,7 @@
           "Build": "16A000",
           "ReleaseDate": "2023-10-31T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213720",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-28205": true,
@@ -2114,7 +2114,7 @@
           "Build": "16A000",
           "ReleaseDate": "2023-03-27T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213676",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2014-1745": false,
@@ -2184,7 +2184,7 @@
           "Build": "16A000",
           "ReleaseDate": "2023-10-31T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213635",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2023-23514": false,
@@ -2204,7 +2204,7 @@
           "Build": "16A000",
           "ReleaseDate": "2023-01-23T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213606",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2022-0108": false,
@@ -2242,7 +2242,7 @@
           "Build": "16A000",
           "ReleaseDate": "2022-12-13T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213530",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2022-32919": false,
@@ -2309,7 +2309,7 @@
           "Build": "16A000",
           "ReleaseDate": "2024-06-12T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213516",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2022-42856": true
@@ -2327,7 +2327,7 @@
           "Build": "16A000",
           "ReleaseDate": "2024-06-12T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213505",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2022-40303": false,
@@ -2344,7 +2344,7 @@
           "Build": "16A000",
           "ReleaseDate": "2022-10-24T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213489",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2022-32909": false,
@@ -2404,7 +2404,7 @@
           "Build": "16A000",
           "ReleaseDate": "2023-11-03T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213480",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2022-22658": false
@@ -2420,7 +2420,7 @@
           "Build": "16A000",
           "ReleaseDate": "2022-09-22T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121012",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
@@ -2434,7 +2434,7 @@
           "Build": "16A000",
           "ReleaseDate": "2022-09-15T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/121012",
           "SupportedDevices": [],
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
@@ -2448,7 +2448,7 @@
           "Build": "16A000",
           "ReleaseDate": "2022-09-12T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/kb/HT213446",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2021-36690": false,

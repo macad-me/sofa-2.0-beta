@@ -1,6 +1,6 @@
 {
   "Version": "2.0",
-  "UpdateHash": "358492b81ad29a142beb6b2f0644df162b0c0a2f3ca2a7bb0fbb7aea1d6de9c3",
+  "UpdateHash": "a7d8b79cb4b5f18b6123f9162cb64da3e890c660c67598577cee32641074b871",
   "AppVersions": [
     {
       "AppVersion": "Safari 18",
@@ -341,7 +341,7 @@
           "ProductName": "Safari",
           "ReleaseDate": "2024-10-03T00:00:00Z",
           "ReleaseType": "Safari",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/100100",
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
@@ -627,7 +627,7 @@
           "ProductName": "Safari",
           "ReleaseDate": "2024-02-09T00:00:00Z",
           "ReleaseType": "Safari",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/100100",
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
@@ -670,7 +670,7 @@
           "ProductName": "Safari",
           "ReleaseDate": "2023-12-19T00:00:00Z",
           "ReleaseType": "Safari",
-          "SecurityInfo": "https://support.apple.com/en-us/HT201222",
+          "SecurityInfo": "https://support.apple.com/en-us/100100",
           "CVEs": {},
           "ActivelyExploitedCVEs": [],
           "UniqueCVEsCount": 0,
