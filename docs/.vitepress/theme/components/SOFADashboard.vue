@@ -805,9 +805,9 @@
         </template>
       </BentoCard>
 
-      <!-- Data Statistics -->
+      <!-- Cloudflare Data Statistics -->
       <BentoCard 
-        title="Data Statistics"
+        title="Cloudflare Statistics"
         platform="statistics"
         :icon="ActivityIcon"
         :style="{ order: bentoDisplayOrder['statistics'] }"
