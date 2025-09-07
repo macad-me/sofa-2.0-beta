@@ -1,196 +1,106 @@
-# SOFA 2.0 - Turnkey Security Data Platform
+# SOFA 
+**S**imple **O**rganized **F**eed for **A**pple Software Updates
 
-## 🚀 Quick Start
+![Sofa logo](./images/custom_logo.png "Optional title")
 
-```bash
-# 1. Clone this repository
-git clone https://github.com/[your-org]/sofa-2.0
-cd sofa-2.0
+Hello 👋,
 
-# 2. Run bootstrap
-gh workflow run bootstrap.yml
+**SOFA** supports MacAdmins by efficiently tracking and surfacing information on updates for macOS and iOS. It consists of a machine-readable feed and user-friendly web interface, providing continuously up-to-date information on XProtect data, OS updates, and the details bundled in those releases.
 
-# 3. View your data at:
-# https://[your-org].github.io/sofa-2.0
-```
+Updated automatically via GitHub Actions, the SOFA feed is a dynamic, centralized, and accessible source of truth. It can be self-hosted, giving you complete assurances as to the provenance of the data your fleet and coworkers can consume. The goal is to streamline the monitoring of Apple's software releases, thereby boosting security awareness and administrative efficiency.
 
-That's it! The system will now automatically update every 6 hours.
+## Key Features
 
-## 📊 What You Get
+### Machine-Readable Feed, RSS Feed, and Web UI
 
-- **Live Dashboard**: Beautiful web interface showing latest Apple security data
-- **JSON API**: Machine-readable feeds at `/data/feeds/[platform].json`
-- **RSS Feed**: Subscribe to updates at `/data/feeds/rss.xml`
-- **Historical Data**: Git history provides complete audit trail
-- **Zero Maintenance**: Fully automated updates via GitHub Actions
+- **JSON Feed**: Provides detailed, machine-readable data optimized for automated tools and scripts
+- **RSS Feed**: Provides RSS Feed for use with entries sorted by date released
+- **Web Interface**: Divided between the major version tabs at the top and organized into sections that cover the latest OS information, XProtect updates, and security details for each OS, SOFA facilitates both quick summaries and deep dives into relevant data points
 
-## 🏗️ Architecture
+## Deprecation notice
+**IMPORTANT NOTE:** Update Your Use of SOFA Feed
+- Implement a USER-AGENT in Custom Tools
+To optimize hosting and caching for SOFA, please implement a user-agent in your integrations, tools, and workflows. This enhances performance and user interactions with SOFA.
+- Update to the New Feed Location
+Please update your scripts that are utilising the SOFA macOS and iOS feeds to point to **https://sofafeed.macadmins.io/v1/macos_data_feed.json** and **https://sofafeed.macadmins.io/v1/ios_data_feed.json** respectively.
 
-```
-This Repo
-    ├── Binaries (pre-compiled, static)
-    ├── GitHub Actions (automated updates)
-    ├── Data (JSON files, git-tracked)
-    └── VitePress Site (web interface)
-           ↓
-    GitHub Pages (free hosting)
-           ↓
-    Your Users (web + API access)
-```
+The old feed addresses of https://sofa.macadmins.io/v1/macos_data_feed.json and https://sofa.macadmins.io/v1/ios_data_feed.json are **deprecated** and will be removed soon.
 
-## 📁 Repository Structure
+### Use Cases
 
-```
-├── bin/                 # Static binaries (no dependencies!)
-├── config/              # Simple configuration files
-├── data/                # All your security data (auto-updated)
-│   ├── raw/            # Source data from Apple
-│   ├── feeds/          # Processed platform feeds
-│   └── archive/        # Historical snapshots
-├── site/               # VitePress website
-└── .github/workflows/  # Automation magic
-```
+SOFA supports a wide array of practical applications, whether for MacAdmin tooling directly or discussing the state of security on Apple platforms with security personnel.
 
-## 🔄 Data Update Flow
+- **Xprotect Monitoring**: Keep track of the latest XProtect updates centrally so agents running on your fleet can verify compliance with CIS/mSCP standards, ensuring Apple's tooling is up-to-date
+- **Security Overviews**: Surface information on vulnerabilities (CVEs) and their exploitation status (KEV).
+- **Track Countdowns**: Know both a timestamp and the days since a release was posted so you can track when management that delays the update being visible will elapse, or just use it to remind users that the clock is ticking on an update that addresses 'critical' issues
+- **Documentation Access**: Use links to quickly view relevant Apple documentation and check detailed CVE information CVE.org, CISA.gov and NVD, and correlate those CVE's across platforms or major versions
+- **Download Universal Mac Assistant**: Access the latest and all 'active' (currently signed) IPSW/Universal Mac Assistant (UMA) download links. These can be integrated into your custom reprovisioning workflows, such as EraseAndInstall, to streamline and enhance your device re-purpose/deployment processes
+- **Self-Hosting**: Take control of the SOFA feed by self-hosting. Establish your fork as the authoritative source in your environment. Tailor the feed to meet your specific needs and maintain complete autonomy over its data
 
-1. **Every 6 hours**: GitHub Actions runs automatically
-2. **Gather**: Binaries fetch latest data from Apple
-3. **Process**: Build platform-specific feeds
-4. **Commit**: Changes pushed back to repository
-5. **Deploy**: Site rebuilds with new data
-6. **Serve**: Available instantly via CDN
+## SOFA 2.0 Overview
 
-## 📈 Available Data
+SOFA 2.0 provides enhanced data feeds with richer security information and improved API access:
 
-### Platform Feeds
-- `macos.json` - macOS versions, updates, CVEs
-- `ios.json` - iOS/iPadOS security releases  
-- `tvos.json` - tvOS updates
-- `watchos.json` - watchOS updates
-- `visionos.json` - visionOS updates
+### Feed Versions
 
-### Security Data
-- `xprotect.json` - XProtect versions and updates
-- `gdmf_[platform].json` - Gatekeeper data
-- `security_releases.json` - All Apple security bulletins
+- **V1 Feeds** (`/v1/`): Legacy format with basic CVE boolean flags and essential OS data
+- **V2 Feeds** (`/v2/`): Enhanced format with detailed CVE metadata, NIST URLs, KEV status, severity ratings, and enriched security context
 
-### Metadata
-- `rss.xml` - RSS feed of all updates
-- `metadata.json` - Last update time, versions
+### API Access
 
-## 🎨 Customization
+- **Primary Feed URLs**: `https://site.com/v2/macos_data_feed.json` (cleaner root-level access)
+- **Fallback URLs**: `https://site.com/data/feeds/v2/macos_data_feed.json` (backward compatibility)
+- **Supported Platforms**: macOS, iOS/iPadOS, Safari, tvOS, watchOS, visionOS
+- **Additional Data**: Security releases, XProtect information, beta releases, CVE search, model identifiers
 
-### Change Update Frequency
-Edit `.github/workflows/update-data.yml`:
-```yaml
-schedule:
-  - cron: '0 */6 * * *'  # Change this
-```
+### Technical Implementation
 
-### Modify Website
-Edit files in `site/` directory:
-- `index.md` - Homepage content
-- `.vitepress/config.ts` - Site configuration
-- `.vitepress/theme/` - Custom components
+- **Safe Build Process**: Stable build to `data/feeds` with post-build copying to root directories
+- **Path Resolution**: Uses absolute paths for reliable execution without dangerous directory changes
+- **Config Accessibility**: Maintains access to `config/` directory for proper binary operation
+- **Deployment Flexibility**: Environment-configurable URLs for GitHub repository and branch targeting
 
-### Add New Data Sources
-1. Add gathering logic to binaries
-2. Update workflows to process new data
-3. Data automatically appears in feeds
+## Web UI Overview
 
-## 🔧 Development
+### OS Version Card
 
-### Test Locally
-```bash
-# Test binaries
-./bin/sofa-gather --help
+- **Latest OS Version:** View details for the latest macOS and iOS releases, including version numbers, build identifiers, and release dates
+- **Download Links:** Direct access to download latest installers like IPSW files (coming soon!) or Universal Mac Assistant (UMA) packages
+- **Security and Documentation Links:** Quick access to relevant Apple documentation and security advisories
 
-# Test website
-cd site
-npm install
-npm run dev
-# Open http://localhost:5173
-```
+### XProtect Data Card (macOS Only)
 
-### Test with Act
-```bash
-# Install Act
-brew install act
+- **Latest Versions Information:** Track the most current versions of XProtect
+- **Verification Baseline:** Use as a baseline info for use in custom tools to ensure XProtect is up-to-date across your macOS fleet. This could be running compliance scripts or extension attributes. See some starter examples in [Tools](./tool-scripts)
+- **Update Frequency Details:** See when XProtect was updated and the days since the latest release
 
-# Test workflows locally (free!)
-act -W .github/workflows/update-data.yml
-```
+### Security Updates Listing
 
-## 📊 API Usage
+- **Release Timelines:** Overview of the release dates and intervals between the latest security updates.
+- **Vulnerability Details:**  For each CVE, links are provided to view detailed records at CISA.gov or CVE.org. Use 'Command-click' to open a CVE record on the NVD website, highlighting detailed info on actively exploited vulnerabilities and related security advisories
+- **Search and Highlight**: Search for specific CVEs to identify which OS updates address the vulnerabilities
 
-### JavaScript/TypeScript
-```javascript
-const response = await fetch('https://[your-org].github.io/sofa-2.0/data/feeds/macos.json');
-const data = await response.json();
-console.log(data.latest_version);
-```
+## RSS Overview
 
-### Python
-```python
-import requests
-data = requests.get('https://[your-org].github.io/sofa-2.0/data/feeds/macos.json').json()
-print(data['latest_version'])
-```
+The RSS feed is generated using [feedgen](https://feedgen.kiesow.be/) by leveraging the same data generated for the data feed. It extracts `SecurityReleases` and injects them into individual entries, providing a streamlined and organized feed of the latest updates. The process involves:
 
-### curl
-```bash
-curl https://[your-org].github.io/sofa-2.0/data/feeds/macos.json | jq '.latest_version'
-```
+1. **Loading Cache Data**: RSS data is loaded from cached JSON files from the `cache/` directory to ensure all previously fetched updates are considered.
+1. **Writing to Cache**: New or updated data is written back to the cache, sorted by `ReleaseDate`.
+1. **Diffing Data**: New feed results are compared against existing cached data to identify and handle new entries.
+1. **Generate New Cache**: Updating the current cache files with new entries if new entries exist.
+1. **Creating RSS Entries**: `SecurityReleases` from the data feed are used to create RSS entries, including handling specific data like `XProtect` configurations and payloads.
+1. **Writing RSS Feed**: The sorted and updated entries are written to an RSS feed file (`v1/rss_feed.xml`) using `feedgen`.
 
-## 📈 Monitoring
+## Getting Started
 
-Check system health:
-```bash
-# View last update time
-curl https://[your-org].github.io/sofa-2.0/data/metadata.json | jq '.last_updated'
+### Access the Web UI
 
-# Check workflow runs
-gh run list --workflow=update-data.yml
-```
+Visit the [SOFA Web UI](https://sofa.macadmins.io) to start exploring SOFA's features
 
-## 🆘 Troubleshooting
+### Use the Feed Data
 
-| Issue | Solution |
-|-------|----------|
-| No updates | Check Actions tab for errors |
-| Old data | Manually trigger: `gh workflow run update-data.yml` |
-| Site not loading | Check Pages settings in repo |
-| Binaries fail | Ensure `chmod +x bin/*` was run |
+Access the feed directly for integration with automated tools or scripts. For production use, we strongly recommend self-hosting the feed to enhance reliability and security. For guidance on how to utilize and implement the feed, explore examples in the [Tools](./tool-scripts) section. For details on self-hosting, please refer to the section below.
 
-## 📜 License
+## Self-Hosting SOFA
 
-MIT - Use freely for any purpose
-
-## 🤝 Contributing
-
-1. Fork this repository
-2. Make your changes
-3. Test with Act locally
-4. Submit a pull request
-
-## 🎯 Roadmap
-
-- [x] Phase 1: Core data gathering
-- [x] Phase 2: Automated updates
-- [x] Phase 3: Web interface
-- [ ] Phase 4: Advanced analytics
-- [ ] Phase 5: Slack/Discord webhooks
-- [ ] Phase 6: Custom notifications
-
-## 💡 Why SOFA 2.0?
-
-- **Zero Infrastructure**: Runs entirely on GitHub (free)
-- **Zero Dependencies**: Static binaries just work
-- **Zero Maintenance**: Self-updating system
-- **Zero Cost**: Everything within free tier
-- **Maximum Reliability**: GitHub's infrastructure
-- **Maximum Performance**: CDN-served static files
-
----
-
-Built with ❤️ for the Mac Admin community
+We believe that organizations needing tight control and ownership of the data they rely on should consider self-hosting SOFA. By cloning the repository into your own GitHub account and activating GitHub Actions to automatically build the feed at set intervals — or implementing a similar setup on platforms like GitLab — you ensure full control over how the data is determined, updated, and utilized. Additional documentation on self-hosting will be available to guide you through this process.
