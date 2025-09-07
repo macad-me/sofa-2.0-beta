@@ -4,20 +4,20 @@
 
 ## About Beta Testing
 
-Apple's beta programs allow users and developers to test pre-release software and provide feedback before public release.
+Apple's beta programs allow admins, and developers and consumers to test pre-release software and provide feedback to Apple before public release.
 
 ### Beta Types
 
 #### Developer Beta
 - **Access**: Requires Apple Developer Program membership ($99/year)
-- **Timing**: Released first, typically at WWDC or special events
-- **Risk**: Higher risk, more unstable
+- **Timing**: Released first, typically at WWDC 
+- **Risk**: Breaking changes, more unstable
 - **Features**: Access to all beta features and APIs
 
 #### Public Beta
 - **Access**: Free through Apple Beta Software Program
-- **Timing**: Usually 1-2 weeks after developer beta
-- **Risk**: More stable than developer beta
+- **Timing**: Starts after developer beta, once out, avail cadence is usually few days after developer beta
+- **Risk**: Less frequently released, often similar to developer beta
 - **Features**: Consumer-focused testing
 
 ### Important Considerations
