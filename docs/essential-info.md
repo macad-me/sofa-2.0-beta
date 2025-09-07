@@ -9,7 +9,6 @@
 ### Security & Updates
 - [Apple Security Updates](https://support.apple.com/en-us/100100) - Complete list of security updates
 - [Apple Platform Security Guide](https://support.apple.com/guide/security/welcome/web) - Comprehensive security documentation
-- [Apple CVE Database](https://support.apple.com/en-us/HT201220) - Apple's CVE entries
 
 ### Developer Resources
 - [Apple Developer](https://developer.apple.com) - Developer portal and documentation
@@ -31,6 +30,7 @@
 
 ### MacAdmins Community
 - [MacAdmins Slack](https://www.macadmins.org) - Join the community (20,000+ members)
+- [MacSysAdmin](https://macsysadmin.se) - Long-running conference for MacAdmins
 - [MacAdmins Conference](https://macadmins.psu.edu) - Annual conference at Penn State
 - [MacAdmins GitHub](https://github.com/macadmins) - Open source projects
 
@@ -45,7 +45,11 @@
 - [Kandji](https://www.kandji.io) - Modern Apple MDM
 - [Mosyle](https://mosyle.com) - Apple device management
 - [SimpleMDM](https://simplemdm.com) - Straightforward MDM solution
-- [Addigy](https://addigy.com) - Cloud-based Apple management
+- [Microsoft Intune](https://www.microsoft.com/en-us/microsoft-365/enterprise/microsoft-intune) - Microsoft's MDM solution
+- [Workspace ONE](https://omnissa.com) - Unified endpoint management
+- [Addigy](https://addigy.com) - Apple management platform
+- [fleetDM](https://fleetdm.com) - Open device management
+- [Zentral](https://zentral.com) - Pre-configured stack of open source tools 
 
 ### Documentation & Learning
 - [macOS Security Compliance Project](https://github.com/usnistgov/macos_security) - NIST security guidelines
@@ -85,12 +89,6 @@ Organizations can delay the visibility of updates to users:
    - Test recovery procedures
    - Document rollback plans
 
-### Compliance Considerations
-- **HIPAA**: Healthcare data protection
-- **SOC 2**: Security controls audit
-- **ISO 27001**: Information security management
-- **GDPR**: Data privacy regulations
-- **FedRAMP**: Federal security standards
 
 ## Emergency Resources
 
