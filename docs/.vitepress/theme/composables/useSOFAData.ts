@@ -26,7 +26,10 @@ const getAPIBase = () => {
 
 // GitHub raw URL fallback for real-time data
 const getGitHubRawURL = (feedPath: string) => {
-  return `https://raw.githubusercontent.com/macad-me/sofa-2.0-beta/main/data/${feedPath}`
+  // Use build-time configuration (works with GitHub Pages)
+  const githubRepo = __GITHUB_REPO__
+  const githubBranch = __GITHUB_BRANCH__
+  return `https://raw.githubusercontent.com/${githubRepo}/${githubBranch}/data/${feedPath}`
 }
 
 // Check if data is stale (older than 6 hours)

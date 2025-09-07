@@ -66,6 +66,11 @@ jobs:
       - name: Build site
         env:
           VITEPRESS_BASE: "/"
+          # GitHub automatically provides these for dynamic URL configuration
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+          # Set production API base for GitHub Pages deployment
+          VITE_API_BASE_PROD: ${{ format('https://{0}.github.io/{1}', github.repository_owner, github.event.repository.name) }}
         run: |
           cd docs
           pnpm run build
