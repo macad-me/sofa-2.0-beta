@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-09-07T12:58:01.415085671Z",
+  "generated_at": "2025-09-07T16:41:47.964497842Z",
   "latest_releases": {
     "macos": {
       "version": "15.6.1",
@@ -158,8 +158,8 @@
     "kev_matches": 2,
     "latest_wave_date": "2025-08-20T00:00:00Z",
     "kev_cve_list": [
-      "CVE-2025-6558",
-      "CVE-2025-43300"
+      "CVE-2025-43300",
+      "CVE-2025-6558"
     ]
   },
   "beta_releases": {
