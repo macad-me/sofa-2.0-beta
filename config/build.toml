@@ -8,7 +8,7 @@ required_files = ["apple_security_releases.json"]
 
 # Output configuration  
 [output]
-directory = "data/feeds"
+directory = "."
 preserve_history = false
 max_history_files = 10
 

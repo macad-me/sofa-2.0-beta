@@ -4,6 +4,8 @@ import type { Plugin } from 'vite'
 
 export function dataPlugin(): Plugin {
   const dataRoot = resolve(__dirname, '../../data')
+  const rootV1 = resolve(__dirname, '../../v1')
+  const rootV2 = resolve(__dirname, '../../v2')
   
   return {
     name: 'vitepress-data-plugin',
@@ -28,14 +30,14 @@ export function dataPlugin(): Plugin {
             console.log('🔍 DataPlugin - After base removal:', url)
           }
           
-          // Map URLs to actual data file paths
-          const mappings: Record<string, string> = {
-            '/data/feeds/v2/': 'feeds/v2/',
-            '/data/feeds/v1/': 'feeds/v1/',
-            '/data/resources/': 'resources/',
-            '/v2/': 'feeds/v2/',
-            '/v1/': 'feeds/v1/',
-            '/resources/': 'resources/',
+          // Map URLs to actual data file paths - check root directories first
+          const mappings: Record<string, { paths: string[], description: string }> = {
+            '/data/feeds/v2/': { paths: ['../../v2/', 'feeds/v2/'], description: 'v2 feeds from root or data dir' },
+            '/data/feeds/v1/': { paths: ['../../v1/', 'feeds/v1/'], description: 'v1 feeds from root or data dir' },
+            '/data/resources/': { paths: ['resources/'], description: 'resources from data dir' },
+            '/v2/': { paths: ['../../v2/', 'feeds/v2/'], description: 'v2 feeds from root or data dir' },
+            '/v1/': { paths: ['../../v1/', 'feeds/v1/'], description: 'v1 feeds from root or data dir' },
+            '/resources/': { paths: ['resources/'], description: 'resources from data dir' },
           }
           
           // Simple aliases for common files
@@ -73,26 +75,30 @@ export function dataPlugin(): Plugin {
             }
           }
           
-          for (const [urlPrefix, dataPath] of Object.entries(mappings)) {
+          for (const [urlPrefix, mapping] of Object.entries(mappings)) {
             if (url.startsWith(urlPrefix)) {
               const filePath = url.replace(urlPrefix, '')
-              const fullPath = resolve(dataRoot, dataPath, filePath)
               
-              console.log('🔍 DataPlugin: Looking for file at:', fullPath)
-              
-              if (existsSync(fullPath)) {
-                try {
-                  const content = readFileSync(fullPath, 'utf-8')
-                  res.setHeader('Content-Type', 'application/json')
-                  res.setHeader('Cache-Control', 'no-cache')
-                  res.end(content)
-                  console.log('✅ DataPlugin: Successfully served file:', fullPath)
-                  return
-                } catch (err) {
-                  console.error('❌ Error reading', fullPath, ':', err)
+              // Try each path in order
+              for (const dataPath of mapping.paths) {
+                const fullPath = resolve(dataRoot, dataPath, filePath)
+                
+                console.log('🔍 DataPlugin: Looking for file at:', fullPath)
+                
+                if (existsSync(fullPath)) {
+                  try {
+                    const content = readFileSync(fullPath, 'utf-8')
+                    res.setHeader('Content-Type', 'application/json')
+                    res.setHeader('Cache-Control', 'no-cache')
+                    res.end(content)
+                    console.log('✅ DataPlugin: Successfully served file:', fullPath)
+                    return
+                  } catch (err) {
+                    console.error('❌ Error reading', fullPath, ':', err)
+                  }
+                } else {
+                  console.log('❌ DataPlugin: File not found:', fullPath)
                 }
-              } else {
-                console.log('❌ DataPlugin: File not found:', fullPath)
               }
             }
           }
