@@ -12,7 +12,7 @@ export default defineConfig({
   base: '/',  // Root path for custom domain
   
   themeConfig: {
-    // Keep navigation data for routing but hide the visual navbar
+    // Navigation data for VitePress mobile menu
     nav: [
       { text: 'macOS', link: '/macos/sequoia' },
       { text: 'iOS/iPadOS', link: '/ios/ios18' },
@@ -22,6 +22,10 @@ export default defineConfig({
       { text: 'watchOS', link: '/watchos/watchos11' },
       { text: 'How It Works', link: '/how-it-works' }
     ],
+    
+    // Ensure mobile navigation works
+    siteTitle: 'SOFA',
+    logo: '/custom_logo.png',
     
     // Disable next/prev page links if desired
     docFooter: {

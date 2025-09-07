@@ -260,6 +260,7 @@ onMounted(() => {
 
 <style scoped>
 .data-source-debug {
+  display: none !important; /* Temporarily disable to test mobile navigation */
   position: fixed;
   bottom: 0;
   left: 0;

@@ -14,9 +14,83 @@ import CustomNavBar from './components/CustomNavBar.vue'
 </script>
 
 <style>
-/* Hide default VitePress navbar */
-.VPNav {
+/* Hide default VitePress navbar completely - we use custom navbar */
+.VPNav,
+.VPNavScreen,
+.VPNavScreenAppearance,
+.VPLocalNav,
+.VPNavBar,
+.VPNavBarTitle,
+.VPNavBarSearch,
+.VPNavBarSocialLinks,
+.VPNavBarExtra,
+.VPNavScreenMenu {
   display: none !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+/* CRITICAL: Disable ALL backdrop elements that block clicks and cause graying */
+.VPBackdrop,
+.backdrop,
+*[class*="backdrop"],
+*[class*="Backdrop"],
+.fade-enter-active,
+.fade-enter-to {
+  display: none !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  z-index: -9999 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Additional safety - disable any graying effects */
+[class*="backdrop"]::before,
+[class*="backdrop"]::after,
+.VPBackdrop::before,
+.VPBackdrop::after {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* Keep sidebar available on desktop, hide on mobile */
+.VPSidebar {
+  display: block !important;
+  top: 64px !important;
+  height: calc(100vh - 64px) !important;
+  z-index: 9999 !important;
+}
+
+@media (max-width: 960px) {
+  /* Hide sidebar and all nav elements on mobile - use our custom mobile menu instead */
+  .VPNav,
+  .VPSidebar,
+  .VPNavScreen,
+  .VPNavScreenAppearance,
+  .VPLocalNav,
+  .VPNavBar,
+  .VPBackdrop {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    z-index: -9999 !important;
+  }
+  
+  /* Also disable any mobile overlays/curtains */
+  *[class*="backdrop"],
+  *[class*="overlay"],
+  *[class*="curtain"],
+  .curtain,
+  .VPBackdrop,
+  .backdrop {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    z-index: -9999 !important;
+  }
 }
 
 /* Ensure custom navbar stays at top */
@@ -31,23 +105,24 @@ import CustomNavBar from './components/CustomNavBar.vue'
   border-bottom: 1px solid var(--vp-c-divider);
 }
 
-/* Adjust content and sidebar for custom navbar height */
+/* Adjust content for custom navbar height */
 .VPContent {
   padding-top: 64px !important;
+  margin-top: 64px !important;
 }
 
-.VPSidebar {
-  top: 64px !important;
-  height: calc(100vh - 64px) !important;
+/* Ensure all content starts below our fixed navbar */
+main,
+.VPDoc,
+.Layout,
+.content,
+#app > div > main {
+  padding-top: 80px !important;
+  margin-top: 0 !important;
 }
 
-/* Hide sidebar on home page */
-.layout-home .VPSidebar {
-  display: none !important;
-}
-
-/* Ensure doc content doesn't overlap navbar */
-.VPDoc {
-  padding-top: 2rem !important;
+/* Ensure home page content also respects navbar */
+.layout-home main {
+  padding-top: 80px !important;
 }
 </style>
