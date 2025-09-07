@@ -361,6 +361,40 @@ def run(
             
             if result.success:
                 console.print("✅ All feeds built successfully", style="green")
+                
+                # Move feeds from data/feeds to root directories
+                import shutil
+                
+                console.print("🚚 Moving feeds to root directories...")
+                
+                # Ensure root directories exist
+                Path("v1").mkdir(exist_ok=True)
+                Path("v2").mkdir(exist_ok=True)
+                
+                # Move v1 feeds
+                v1_source = Path("data/feeds/v1")
+                if v1_source.exists():
+                    for feed_file in v1_source.glob("*.json"):
+                        dest = Path("v1") / feed_file.name
+                        shutil.copy2(feed_file, dest)
+                        console.print(f"  📁 {feed_file.name} → v1/", style="dim")
+                    
+                    # Move RSS feed too
+                    rss_source = v1_source / "rss_feed.xml"
+                    if rss_source.exists():
+                        shutil.copy2(rss_source, Path("v1/rss_feed.xml"))
+                        console.print(f"  📡 rss_feed.xml → v1/", style="dim")
+                
+                # Move v2 feeds  
+                v2_source = Path("data/feeds/v2")
+                if v2_source.exists():
+                    for feed_file in v2_source.glob("*.json"):
+                        dest = Path("v2") / feed_file.name
+                        shutil.copy2(feed_file, dest)
+                        console.print(f"  📁 {feed_file.name} → v2/", style="dim")
+                
+                console.print("✅ Feeds moved to root directories", style="green")
+                
             else:
                 console.print(f"❌ Build failed: {result.message}", style="red")
                 
