@@ -14,8 +14,8 @@
 
       <!-- Right: Navigation -->
       <nav class="navbar-nav">
-        <!-- Desktop Navigation Links - Always visible -->
-        <a v-for="item in navItems" :key="item.text" :href="item.link" class="nav-link always-visible-nav">
+        <!-- Desktop Navigation Links -->
+        <a v-for="item in navItems" :key="item.text" :href="item.link" class="nav-link desktop-nav">
           {{ item.text }}
         </a>
         
@@ -59,12 +59,9 @@
     <div v-if="isMobileMenuOpen" class="mobile-menu-overlay" @click="closeMobileMenu">
       <nav class="mobile-menu" @click.stop>
         <div class="mobile-menu-content">
-          <div v-for="section in mobileMenuItems" :key="section.text" class="mobile-menu-section">
-            <h3 class="mobile-section-title">{{ section.text }}</h3>
-            <a v-for="item in section.items" :key="item.text" :href="item.link" class="mobile-nav-link" @click="closeMobileMenu">
-              {{ item.text }}
-            </a>
-          </div>
+          <a v-for="item in navItems" :key="item.text" :href="item.link" class="mobile-nav-link" @click="closeMobileMenu">
+            {{ item.text }}
+          </a>
         </div>
       </nav>
     </div>
@@ -87,82 +84,16 @@ const navItems = [
   { text: 'watchOS', link: withBase('/watchos/watchos11') }
 ]
 
-const mobileMenuItems = [
-  {
-    text: 'Documentation',
-    items: [
-      { text: 'How It Works', link: withBase('/how-it-works') },
-      { text: 'Scheduled Process', link: withBase('/scheduled-process') }
-    ]
-  },
-  {
-    text: 'macOS',
-    items: [
-      { text: 'macOS Tahoe 26', link: withBase('/macos/tahoe26') },
-      { text: 'macOS Sequoia 15', link: withBase('/macos/sequoia') },
-      { text: 'macOS Sonoma 14', link: withBase('/macos/sonoma') },
-      { text: 'macOS Ventura 13', link: withBase('/macos/ventura') },
-      { text: 'macOS Monterey 12', link: withBase('/macos/monterey') }
-    ]
-  },
-  {
-    text: 'iOS/iPadOS',
-    items: [
-      { text: 'iOS/iPadOS 26', link: withBase('/ios/ios26') },
-      { text: 'iOS/iPadOS 18', link: withBase('/ios/ios18') },
-      { text: 'iOS/iPadOS 17', link: withBase('/ios/ios17') }
-    ]
-  },
-  {
-    text: 'Safari',
-    items: [
-      { text: 'Safari 18', link: withBase('/safari/safari18') }
-    ]
-  },
-  {
-    text: 'tvOS',
-    items: [
-      { text: 'tvOS 26', link: withBase('/tvos/tvos26') },
-      { text: 'tvOS 18', link: withBase('/tvos/tvos18') },
-      { text: 'tvOS 17', link: withBase('/tvos/tvos17') }
-    ]
-  },
-  {
-    text: 'visionOS',
-    items: [
-      { text: 'visionOS 2', link: withBase('/visionos/visionos2') }
-    ]
-  },
-  {
-    text: 'watchOS',
-    items: [
-      { text: 'watchOS 26', link: withBase('/watchos/watchos26') },
-      { text: 'watchOS 11', link: withBase('/watchos/watchos11') }
-    ]
-  },
-  {
-    text: 'Tools',
-    items: [
-      { text: 'CVE Search', link: withBase('/cve-search') },
-      { text: 'Release Deferrals', link: withBase('/release-deferrals') },
-      { text: 'Model Identifiers', link: withBase('/model-identifier') },
-      { text: 'macOS Installers', link: withBase('/macos-installer-info') },
-      { text: 'Beta Releases', link: withBase('/beta-releases') },
-      { text: 'Essential Info', link: withBase('/essential-info') }
-    ]
-  }
-]
-
 onMounted(() => {
   // Check initial theme
   isDark.value = document.documentElement.classList.contains('dark')
   
   // Watch for theme changes
-  const observer = new MutationObserver(() => {
+  const themeObserver = new MutationObserver(() => {
     isDark.value = document.documentElement.classList.contains('dark')
   })
   
-  observer.observe(document.documentElement, {
+  themeObserver.observe(document.documentElement, {
     attributes: true,
     attributeFilter: ['class']
   })
@@ -176,27 +107,40 @@ onMounted(() => {
 
   document.addEventListener('keydown', handleEscape)
   
-  // Minimal backdrop management - navigation is now working
+  // Event-based backdrop management - only when needed
   const cleanupBackdrops = () => {
     const backdrops = document.querySelectorAll('.VPBackdrop, .backdrop')
-    backdrops.forEach(backdrop => {
-      backdrop.style.display = 'none'
-      backdrop.style.pointerEvents = 'none'
-    })
+    if (backdrops.length > 0) {
+      backdrops.forEach(backdrop => {
+        backdrop.remove() // Complete removal for no delay
+      })
+    }
   }
   
-  // Run cleanup less aggressively since navigation is working
-  setTimeout(cleanupBackdrops, 1000)
-  const intervalId = setInterval(cleanupBackdrops, 2000)
+  // Observe for backdrop creation and remove immediately
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node.classList && (node.classList.contains('VPBackdrop') || node.classList.contains('backdrop'))) {
+          node.remove() // Remove immediately when created
+        }
+      })
+    })
+  })
+  
+  // Watch for backdrop creation
+  observer.observe(document.body, { childList: true, subtree: true })
+  
+  // Initial cleanup
+  cleanupBackdrops()
   
   // Navigation is working - debug removed
   
   // Cleanup on unmount
   return () => {
+    themeObserver.disconnect()
     observer.disconnect()
     document.removeEventListener('keydown', handleEscape)
-    window.removeEventListener('resize', removeBlockingElements)
-    if (intervalId) clearInterval(intervalId)
   }
 })
 
@@ -454,37 +398,25 @@ const closeMobileMenu = () => {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  max-height: 70vh;
-  overflow-y: auto;
-}
-
-.mobile-menu-section {
-  display: flex;
-  flex-direction: column;
-}
-
-.mobile-section-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--vp-c-text-1, #374151);
-  margin: 0 0 0.75rem 0;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--vp-c-brand, #3b82f6);
+  gap: 1rem;
 }
 
 .mobile-nav-link {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
-  color: var(--vp-c-text-2, #6b7280);
+  color: var(--vp-c-text-1, #374151);
   text-decoration: none;
-  padding: 0.5rem 0;
-  margin-left: 0.5rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--vp-c-divider-light, #f3f4f6);
   transition: color 0.2s ease;
 }
 
 .mobile-nav-link:hover {
   color: var(--vp-c-brand, #3b82f6);
+}
+
+.mobile-nav-link:last-child {
+  border-bottom: none;
 }
 
 /* Dark mode mobile menu */
@@ -520,22 +452,10 @@ const closeMobileMenu = () => {
   to { transform: translateY(0); }
 }
 
-/* CRITICAL: Always show navigation links */
-.always-visible-nav {
-  display: block !important;
-  pointer-events: auto !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
 /* Mobile Styles */
 @media (max-width: 960px) {
-  /* Keep all nav visible - users need to access it */
-  .desktop-nav,
-  .always-visible-nav {
-    display: block !important;
-    pointer-events: auto !important;
-    visibility: visible !important;
+  .desktop-nav {
+    display: none;
   }
   
   .mobile-menu-button {
