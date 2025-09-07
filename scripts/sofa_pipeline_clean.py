@@ -349,52 +349,28 @@ def run(
             console.rule("[bold blue]Build All Feeds")
             console.print("🔧 Building all feeds (v1 + v2) with legacy mode...")
             
+            # Run from bin/ directory with correct relative paths
+            console.print("🔧 Changing to bin/ directory for proper path resolution...")
+            
             cmd = [
-                "./bin/sofa-build", "all",
-                "-i", "data/resources", 
-                "-o", ".",
+                "./sofa-build", "all",
+                "-i", "../data/resources", 
+                "-o", "..",
                 "--legacy"
             ]
-            console.print(f"🚀 Running: {' '.join(cmd)}")
+            console.print(f"🚀 Running from bin/: {' '.join(cmd)}")
             
-            result = run_binary_command(cmd, "build_all", 600)
+            # Change to bin directory and run
+            original_cwd = Path.cwd()
+            try:
+                import os
+                os.chdir("bin")
+                result = run_binary_command(cmd, "build_all", 600)
+            finally:
+                os.chdir(original_cwd)
             
             if result.success:
-                console.print("✅ All feeds built successfully", style="green")
-                
-                # Move feeds from data/feeds to root directories
-                import shutil
-                
-                console.print("🚚 Moving feeds to root directories...")
-                
-                # Ensure root directories exist
-                Path("v1").mkdir(exist_ok=True)
-                Path("v2").mkdir(exist_ok=True)
-                
-                # Move v1 feeds
-                v1_source = Path("data/feeds/v1")
-                if v1_source.exists():
-                    for feed_file in v1_source.glob("*.json"):
-                        dest = Path("v1") / feed_file.name
-                        shutil.copy2(feed_file, dest)
-                        console.print(f"  📁 {feed_file.name} → v1/", style="dim")
-                    
-                    # Move RSS feed too
-                    rss_source = v1_source / "rss_feed.xml"
-                    if rss_source.exists():
-                        shutil.copy2(rss_source, Path("v1/rss_feed.xml"))
-                        console.print(f"  📡 rss_feed.xml → v1/", style="dim")
-                
-                # Move v2 feeds  
-                v2_source = Path("data/feeds/v2")
-                if v2_source.exists():
-                    for feed_file in v2_source.glob("*.json"):
-                        dest = Path("v2") / feed_file.name
-                        shutil.copy2(feed_file, dest)
-                        console.print(f"  📁 {feed_file.name} → v2/", style="dim")
-                
-                console.print("✅ Feeds moved to root directories", style="green")
-                
+                console.print("✅ All feeds built directly to root directories", style="green")
             else:
                 console.print(f"❌ Build failed: {result.message}", style="red")
                 
