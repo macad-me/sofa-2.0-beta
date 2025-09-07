@@ -200,7 +200,7 @@ def run_rss() -> StageResult:
         cmd = [
             "./scripts/generate_rss.py",
             "--data-dir", "data/resources", 
-            "--output", "data/feeds/v1/rss_feed.xml",
+            "--output", "v1/rss_feed.xml",
             "--include-xprotect",
             "--include-beta",
             "--verbose"
@@ -208,10 +208,16 @@ def run_rss() -> StageResult:
         
         result = run_binary_command(cmd, "rss", 60)
         
-        if result.success and Path("data/feeds/v1/rss_feed.xml").exists():
-            size = Path("data/feeds/v1/rss_feed.xml").stat().st_size
+        # Check both locations for RSS feed
+        root_rss = Path("v1/rss_feed.xml")
+        fallback_rss = Path("data/feeds/v1/rss_feed.xml")
+        
+        if result.success and (root_rss.exists() or fallback_rss.exists()):
+            rss_file = root_rss if root_rss.exists() else fallback_rss
+            size = rss_file.stat().st_size
+            location = "root" if root_rss.exists() else "data/feeds"
             console.print(f"✅ RSS feed generated ({size:,} bytes)", style="green")
-            console.print(f"   📡 Feed location: data/feeds/v1/rss_feed.xml", style="dim")
+            console.print(f"   📡 Feed location: {rss_file} [{location}]", style="dim")
     
     return result
 
@@ -262,16 +268,22 @@ def verify_results() -> None:
     else:
         resources_tree.add("❌ apple_security_releases.json")
     
-    # Check feeds
-    feeds_tree = data_tree.add("📂 feeds/")
+    # Check feeds - look in root directories first, fallback to data/feeds
+    feeds_tree = tree.add("📂 feeds/")
     
     for version in ["v1", "v2"]:
         version_tree = feeds_tree.add(f"📂 {version}/")
         for product in ["safari", "ios", "macos", "tvos", "watchos", "visionos"]:
-            feed_file = Path(f"data/feeds/{version}/{product}_data_feed.json")
-            if feed_file.exists():
-                size = feed_file.stat().st_size
-                version_tree.add(f"✅ {product}_data_feed.json ({size:,} bytes)")
+            # Check root directory first
+            root_feed_file = Path(f"{version}/{product}_data_feed.json")
+            fallback_feed_file = Path(f"data/feeds/{version}/{product}_data_feed.json")
+            
+            if root_feed_file.exists():
+                size = root_feed_file.stat().st_size
+                version_tree.add(f"✅ {product}_data_feed.json ({size:,} bytes) [root]")
+            elif fallback_feed_file.exists():
+                size = fallback_feed_file.stat().st_size
+                version_tree.add(f"✅ {product}_data_feed.json ({size:,} bytes) [data/feeds]")
             else:
                 version_tree.add(f"❌ {product}_data_feed.json")
     
@@ -340,7 +352,7 @@ def run(
             cmd = [
                 "./bin/sofa-build", "all",
                 "-i", "data/resources", 
-                "-o", "data/feeds",
+                "-o", ".",
                 "--legacy"
             ]
             console.print(f"🚀 Running: {' '.join(cmd)}")
