@@ -1,7 +1,7 @@
 # SOFA 
 **S**imple **O**rganized **F**eed for **A**pple Software Updates
 
-![Sofa logo](./images/custom_logo.png "Optional title")
+![Sofa logo](./docs/public/custom_logo.png "Optional title")
 
 Hello 👋,
 

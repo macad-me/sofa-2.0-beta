@@ -7,12 +7,17 @@ index_urls = [
     "https://support.apple.com/en-us/120989"
 ]
 
-cache_dir = "data/cache/html"
+cache_dir = "./data/cache/html"
 cache_ttl_seconds = 10
 max_concurrent_requests = 10
 user_agent = "sofa-rust-fetcher/1.0"
 request_timeout_seconds = 30
 max_retries = 3
+
+[output]
+directory = "./data/resources"
+preserve_history = true
+max_history_files = 10
 
 # CVE Enrichment Sources (optional)
 [cve_enrichment]

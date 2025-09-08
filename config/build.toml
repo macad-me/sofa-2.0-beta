@@ -2,13 +2,13 @@
 
 # Input configuration
 [input]
-directory = "data/resources"
-models_directory = "data/models"
-required_files = ["apple_security_releases.json"]
+directory = "./data/resources"
+models_directory = "./data/models/legacy"
+required_files = ["apple_security_releases.ndjson", "apple_cves_with_context.ndjson", "kev_catalog.json"]
 
 # Output configuration  
 [output]
-directory = "."
+directory = "./"
 preserve_history = false
 max_history_files = 10
 
@@ -71,9 +71,9 @@ inherit_devices = false
 
 # CVE database configuration
 [cve]
-database_path = "../data/resources/cve_lookup.ndjson"
-kev_path = "../data/resources/kev_catalog.json"
-cache_directory = "../data/cache/html"
+database_path = "./data/resources/apple_cves_with_context.ndjson"
+kev_path = "./data/resources/kev_catalog.json"
+cache_directory = "./data/cache/html"
 
 # Logging configuration
 [logging]
