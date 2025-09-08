@@ -1,8 +1,8 @@
 {
   "OSName": "tvOS",
   "Version": "2.0",
-  "UpdateHash": "ff9bde55349f17bbf822685a4816fcaa61a2fa27b4d03c7b3c1006f14a21cb98",
-  "LastCheck": "2025-09-08T15:55:51.349246249+00:00",
+  "UpdateHash": "da19f10d759ab5939ce9a12dfb5267c65d12d4e8b9e9ae278738eeb8640884f8",
+  "LastCheck": "2025-09-08T18:18:29.863114542+00:00",
   "OSVersions": [
     {
       "OSVersion": "tvOS 18",
@@ -22,9 +22,9 @@
         "SecurityInfoContext": "tvOS has been updated to version 18.6, which was released on July 29, 2025. This update addresses 24 security issues and is the most recent approved version.",
         "SupportedDevices": [
           "AppleTV14,1",
-          "AppleTV11,1",
+          "AppleTV6,2",
           "AppleTV5,3",
-          "AppleTV6,2"
+          "AppleTV11,1"
         ],
         "CVEs": {
           "CVE-2025-31273": {},
@@ -93,9 +93,9 @@
           "SecurityInfoContext": "tvOS has been updated to version 18.6, which was released on July 29, 2025. This update addresses 24 security issues and is the most recent approved version.",
           "SupportedDevices": [
             "AppleTV5,3",
-            "AppleTV6,2",
             "AppleTV14,1",
-            "AppleTV11,1"
+            "AppleTV11,1",
+            "AppleTV6,2"
           ],
           "CVEs": {
             "CVE-2025-31273": {},
@@ -162,9 +162,9 @@
           "SecurityInfo": "https://support.apple.com/en-us/122720",
           "SecurityInfoContext": "tvOS 18.5 was released on May 12, 2025. This release addressed 25 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
-            "AppleTV11,1",
             "AppleTV5,3",
             "AppleTV6,2",
+            "AppleTV11,1",
             "AppleTV14,1"
           ],
           "CVEs": {
