@@ -95,7 +95,17 @@ export default defineConfig({
           { text: 'Model Identifiers', link: '/model-identifier' },
           { text: 'macOS Installers', link: '/macos-installer-info' },
           { text: 'Beta Releases', link: '/beta-releases' },
-          { text: 'Essential Info', link: '/essential-info' }
+          { text: 'Essential Info', link: '/essential-info' },
+          { text: 'Essential Resources', link: '/essential-resources' }
+        ]
+      },
+      {
+        text: 'Info',
+        items: [
+          { text: 'Getting Started', link: '/getting-started' },
+          { text: 'Use Cases', link: '/use-cases' },
+          { text: 'Contributors', link: '/team' },
+          { text: 'Community', link: '/community' }
         ]
       }
     ],
@@ -105,7 +115,7 @@ export default defineConfig({
     ],
     footer: {
       message: 'Released under the Apache 2.0 License.',
-      copyright: 'Copyright © 2024 by Mac Admins Open Source.',
+      copyright: 'Copyright © 2025 by Mac Admins Open Source.',
     },
   },
   vite: {
