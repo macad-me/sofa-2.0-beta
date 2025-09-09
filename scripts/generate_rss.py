@@ -411,7 +411,7 @@ def create_feed_item(
             return "https://sofa.macadmins.io/beta-releases"  # Xcode betas tracked here
             
         elif "xprotect" in product_lower or release_type.startswith("xprotect"):
-            return "https://sofa.macadmins.io/how-it-works"  # XProtect info on How It Works
+            return "https://sofa.macadmins.io/macos/sequoia"  # XProtect info on current macOS page
             
         elif release_type == "beta" or "beta" in product_lower:
             return "https://sofa.macadmins.io/beta-releases"
@@ -433,7 +433,7 @@ def create_feed_item(
         # Enhanced XProtect update description
         desc_parts.append(release.get("description", f"{product_name} updated"))
         desc_parts.append("Malware protection and security definitions updated")
-        desc_parts.append("Track all XProtect components on SOFA: https://sofa.macadmins.io/how-it-works")
+        desc_parts.append("Track all XProtect components on SOFA: https://sofa.macadmins.io/macos/sequoia")
 
     elif release_type == "beta":
         # Rich beta release description
