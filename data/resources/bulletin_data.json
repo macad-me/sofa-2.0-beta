@@ -1,7 +1,7 @@
 {
-  "content_hash": "b44cfa2ad53427def4cb042de19afb700398a27b6c4cf78517a0b664db6cb961",
+  "content_hash": "e46cd5cd7054d8e34ce8a4298db4cdb7d67ea66e616f3a3b41b5d53fe0583f40",
   "content_changed": true,
-  "generated_at": "2025-09-09T08:49:06.579527279Z",
+  "generated_at": "2025-09-09T10:12:29.345984792Z",
   "latest_releases": {
     "macos": {
       "version": "15.6.1",
@@ -160,8 +160,8 @@
     "kev_matches": 2,
     "latest_wave_date": "2025-08-20T00:00:00Z",
     "kev_cve_list": [
-      "CVE-2025-6558",
-      "CVE-2025-43300"
+      "CVE-2025-43300",
+      "CVE-2025-6558"
     ]
   },
   "beta_releases": {
