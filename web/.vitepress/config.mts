@@ -119,6 +119,7 @@ export default defineConfig({
     },
   },
   vite: {
+    assetsInclude: ['**/*.rss'],
     define: {
       // Make API base URLs available to the client
       __API_BASE_PROD__: JSON.stringify(process.env.VITE_API_BASE_PROD || 'https://sofa-beta.macadmin.me'),
