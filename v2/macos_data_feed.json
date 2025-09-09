@@ -1,7 +1,7 @@
 {
   "Version": "2.0",
-  "UpdateHash": "32494249bc2a8aa009962b5435020736d78daf5c69ed0cbbd49a21eaf0791904",
-  "LastCheck": "2025-09-09T12:11:54.096429461+00:00",
+  "UpdateHash": "acec5ed998672c0447e5659ce8e4ee607f8c75f210e45add30741f2e502a0805",
+  "LastCheck": "2025-09-09T12:33:12.021941136+00:00",
   "OSVersions": [
     {
       "OSVersion": "Sequoia 15",
@@ -12259,7 +12259,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2021-09-20T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/kb/HT212011",
+          "SecurityInfo": "https://support.apple.com/kb/HT213675",
           "SecurityInfoContext": "macOS 12.0 was released on . This update has no published CVE entries. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
