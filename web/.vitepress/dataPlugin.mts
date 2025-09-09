@@ -139,7 +139,7 @@ export function dataPlugin(): Plugin {
           try {
             // Read all files in the source directory
             const files = readdirSync(mapping.from, { withFileTypes: true })
-              .filter(dirent => dirent.isFile() && (dirent.name.endsWith('.json') || dirent.name.endsWith('.ndjson')))
+              .filter(dirent => dirent.isFile() && (dirent.name.endsWith('.json') || dirent.name.endsWith('.ndjson') || dirent.name.endsWith('.rss')))
               .map(dirent => dirent.name)
             
             for (const file of files) {
