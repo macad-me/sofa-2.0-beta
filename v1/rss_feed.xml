@@ -6,67 +6,109 @@
     <description>Simple Organized Feed for Apple Software Updates - Security releases and updates</description>
     <language>en-us</language>
     <generator>SOFA RSS Generator 2.0</generator>
-    <lastBuildDate>Tue, 09 Sep 2025 18:34:42 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Sep 2025 19:10:28 +0000</lastBuildDate>
     <image>
       <url>https://sofa.macadmins.io/images/custom_logo.png</url>
       <title>SOFA</title>
       <link>https://sofa.macadmins.io</link>
     </image>
     <item>
+      <title>Xcode 26 RC (17A321)</title>
+      <link>https://developer.apple.com/go/?id=xcode-26-sdk-rn</link>
+      <description>Developer Beta Release for Xcode&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 17A321&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/beta-releases&quot;&gt;https://sofa.macadmins.io/beta-releases&lt;/a&gt;</description>
+      <guid isPermaLink="false">Beta_Xcode_26_RC_(17A321)_26 RC</guid>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>iOS 26 RC (23A340)</title>
+      <link>https://developer.apple.com/go/?id=ios-26-rn</link>
+      <description>Developer Beta Release for iOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 23A340&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/ios/ios17&quot;&gt;https://sofa.macadmins.io/ios/ios17&lt;/a&gt;</description>
+      <guid isPermaLink="false">Beta_iOS_26_RC_(23A340)_26 RC</guid>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>iPadOS 26 RC (23A340)</title>
+      <link>https://developer.apple.com/go/?id=ipados-26-rn</link>
+      <description>Developer Beta Release for iPadOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 23A340&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/ios/ios17&quot;&gt;https://sofa.macadmins.io/ios/ios17&lt;/a&gt;</description>
+      <guid isPermaLink="false">Beta_iPadOS_26_RC_(23A340)_26 RC</guid>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>macOS 26 RC (25A353)</title>
+      <link>https://developer.apple.com/go/?id=macos-26-rn</link>
+      <description>Developer Beta Release for macOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 25A353&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/macos/sequoia&quot;&gt;https://sofa.macadmins.io/macos/sequoia&lt;/a&gt;</description>
+      <guid isPermaLink="false">Beta_macOS_26_RC_(25A353)_26 RC</guid>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>tvOS 26 RC (23J352)</title>
+      <link>https://developer.apple.com/go/?id=tvos-26-rn</link>
+      <description>Developer Beta Release for tvOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 23J352&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/tvos/tvos17&quot;&gt;https://sofa.macadmins.io/tvos/tvos17&lt;/a&gt;</description>
+      <guid isPermaLink="false">Beta_tvOS_26_RC_(23J352)_26 RC</guid>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>visionOS 26 RC (23M336)</title>
+      <link>https://developer.apple.com/go/?id=visionos-26-rn</link>
+      <description>Developer Beta Release for visionOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 23M336&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/visionos/visionos2&quot;&gt;https://sofa.macadmins.io/visionos/visionos2&lt;/a&gt;</description>
+      <guid isPermaLink="false">Beta_visionOS_26_RC_(23M336)_26 RC</guid>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>watchOS 26 RC (23R351)</title>
+      <link>https://developer.apple.com/go/?id=watchos-26-rn</link>
+      <description>Developer Beta Release for watchOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 23R351&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/watchos/watchos11&quot;&gt;https://sofa.macadmins.io/watchos/watchos11&lt;/a&gt;</description>
+      <guid isPermaLink="false">Beta_watchOS_26_RC_(23R351)_26 RC</guid>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>iOS 18.7 RC (22H20)</title>
+      <link>https://developer.apple.com/go/?id=ios-18_7-rn</link>
+      <description>Developer Beta Release for iOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 22H20&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/ios/ios18&quot;&gt;https://sofa.macadmins.io/ios/ios18&lt;/a&gt;</description>
+      <guid isPermaLink="false">Beta_iOS_18.7_RC_(22H20)_18.7 RC</guid>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>iPadOS 18.7 RC (22H20)</title>
+      <link>https://developer.apple.com/go/?id=ipados-18_7-rn</link>
+      <description>Developer Beta Release for iPadOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 22H20&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/ios/ios18&quot;&gt;https://sofa.macadmins.io/ios/ios18&lt;/a&gt;</description>
+      <guid isPermaLink="false">Beta_iPadOS_18.7_RC_(22H20)_18.7 RC</guid>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>iOS 16.7.12 RC (20H364)</title>
+      <link>https://sofa.macadmins.io</link>
+      <description>Developer Beta Release for iOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 20H364&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/ios/ios17&quot;&gt;https://sofa.macadmins.io/ios/ios17&lt;/a&gt;</description>
+      <guid isPermaLink="false">Beta_iOS_16.7.12_RC_(20H364)_16.7.12 RC</guid>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>iPadOS 16.7.12 RC (20H364)</title>
+      <link>https://sofa.macadmins.io</link>
+      <description>Developer Beta Release for iPadOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 20H364&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/ios/ios17&quot;&gt;https://sofa.macadmins.io/ios/ios17&lt;/a&gt;</description>
+      <guid isPermaLink="false">Beta_iPadOS_16.7.12_RC_(20H364)_16.7.12 RC</guid>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>iOS 15.8.5 RC (19H394)</title>
+      <link>https://sofa.macadmins.io</link>
+      <description>Developer Beta Release for iOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 19H394&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/ios/ios17&quot;&gt;https://sofa.macadmins.io/ios/ios17&lt;/a&gt;</description>
+      <guid isPermaLink="false">Beta_iOS_15.8.5_RC_(19H394)_15.8.5 RC</guid>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>iPadOS 15.8.5 RC (19H394)</title>
+      <link>https://sofa.macadmins.io</link>
+      <description>Developer Beta Release for iPadOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 19H394&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/ios/ios17&quot;&gt;https://sofa.macadmins.io/ios/ios17&lt;/a&gt;</description>
+      <guid isPermaLink="false">Beta_iPadOS_15.8.5_RC_(19H394)_15.8.5 RC</guid>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+    </item>
+    <item>
       <title>XProtect Security Framework Bundle Update</title>
       <link>https://support.apple.com/en-us/100100</link>
       <description>XProtect Security Framework updated: Configuration (5313), Remediator (153), Gatekeeper Configuration (140), Malware Removal Tool (MRT) (1.93), Plugin Service (74)&lt;br&gt;Malware protection and security definitions updated&lt;br&gt;Track all XProtect components on SOFA: &lt;a href=f&quot;https://sofa.macadmins.io/macos/sequoia&quot;&gt;https://sofa.macadmins.io/macos/sequoia&lt;/a&gt;</description>
       <guid isPermaLink="false">XProtect_xprotect_Bundle Update</guid>
       <pubDate>Wed, 03 Sep 2025 17:01:27 +0000</pubDate>
-    </item>
-    <item>
-      <title>iOS 26 beta 9 (23A5336a)</title>
-      <link>https://developer.apple.com/go/?id=ios-26-rn</link>
-      <description>Developer Beta Release for iOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 23A5336a&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/ios/ios17&quot;&gt;https://sofa.macadmins.io/ios/ios17&lt;/a&gt;</description>
-      <guid isPermaLink="false">Beta_iOS_26_beta_9_(23A5336a)_26 beta 9</guid>
-      <pubDate>Tue, 02 Sep 2025 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>iPadOS 26 beta 9 (23A5336a)</title>
-      <link>https://developer.apple.com/go/?id=ipados-26-rn</link>
-      <description>Developer Beta Release for iPadOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 23A5336a&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/ios/ios17&quot;&gt;https://sofa.macadmins.io/ios/ios17&lt;/a&gt;</description>
-      <guid isPermaLink="false">Beta_iPadOS_26_beta_9_(23A5336a)_26 beta 9</guid>
-      <pubDate>Tue, 02 Sep 2025 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>macOS 26 beta 9 (25A5351b)</title>
-      <link>https://developer.apple.com/go/?id=macos-26-rn</link>
-      <description>Developer Beta Release for macOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 25A5351b&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/macos/sequoia&quot;&gt;https://sofa.macadmins.io/macos/sequoia&lt;/a&gt;</description>
-      <guid isPermaLink="false">Beta_macOS_26_beta_9_(25A5351b)_26 beta 9</guid>
-      <pubDate>Tue, 02 Sep 2025 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>tvOS 26 beta 9 (23J5351a)</title>
-      <link>https://developer.apple.com/go/?id=tvos-26-rn</link>
-      <description>Developer Beta Release for tvOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 23J5351a&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/tvos/tvos17&quot;&gt;https://sofa.macadmins.io/tvos/tvos17&lt;/a&gt;</description>
-      <guid isPermaLink="false">Beta_tvOS_26_beta_9_(23J5351a)_26 beta 9</guid>
-      <pubDate>Tue, 02 Sep 2025 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>visionOS 26 beta 9 (23M5335b)</title>
-      <link>https://developer.apple.com/go/?id=visionos-26-rn</link>
-      <description>Developer Beta Release for visionOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 23M5335b&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/visionos/visionos2&quot;&gt;https://sofa.macadmins.io/visionos/visionos2&lt;/a&gt;</description>
-      <guid isPermaLink="false">Beta_visionOS_26_beta_9_(23M5335b)_26 beta 9</guid>
-      <pubDate>Tue, 02 Sep 2025 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>watchOS 26 beta 9 (23R5350b)</title>
-      <link>https://developer.apple.com/go/?id=watchos-26-rn</link>
-      <description>Developer Beta Release for watchOS&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 23R5350b&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/watchos/watchos11&quot;&gt;https://sofa.macadmins.io/watchos/watchos11&lt;/a&gt;</description>
-      <guid isPermaLink="false">Beta_watchOS_26_beta_9_(23R5350b)_26 beta 9</guid>
-      <pubDate>Tue, 02 Sep 2025 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Xcode 26 beta 7 (17A5305kTF)</title>
-      <link>https://developer.apple.com/go/?id=xcode-26-sdk-rn</link>
-      <description>Developer Beta Release for Xcode&lt;br&gt;New features and improvements preview&lt;br&gt;Build Number: 17A5305kTF&lt;br&gt;Bug Reporting: Use Feedback Assistant app&lt;br&gt;Access: Requires Apple Developer Program or Beta Software Program&lt;br&gt;More Details: &lt;a href=&quot;https://sofa.macadmins.io/beta-releases&quot;&gt;https://sofa.macadmins.io/beta-releases&lt;/a&gt;</description>
-      <guid isPermaLink="false">Beta_Xcode_26_beta_7_(17A5305kTF)_26 beta 7</guid>
-      <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>iOS 18.6.2 and iPadOS 18.6.2</title>

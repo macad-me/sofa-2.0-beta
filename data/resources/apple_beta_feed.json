@@ -1,75 +1,135 @@
 {
-  "UpdateHash": "f3fb86966f2cd0a0163e1e4ed84c90676a887dc1fc7150efc5074e5f40b40aba",
-  "created_at": "2025-09-09T18:34:06.557498Z",
+  "UpdateHash": "86bebf3d99f792c52ace7b15aa4b3762d5c3bfc36e9e649b855ea81e526c07a9",
+  "created_at": "2025-09-09T19:10:12.755315Z",
   "items": [
     {
-      "title": "iOS 26 beta 9 (23A5336a)",
-      "platform": "iOS",
-      "version": "26 beta 9",
-      "build": "23A5336a",
-      "released": "2025-09-02",
-      "release_notes_url": "https://developer.apple.com/go/?id=ios-26-rn",
-      "downloads_url": "https://developer.apple.com/download",
-      "source_card_url": "https://developer.apple.com/news/releases/"
-    },
-    {
-      "title": "iPadOS 26 beta 9 (23A5336a)",
-      "platform": "iPadOS",
-      "version": "26 beta 9",
-      "build": "23A5336a",
-      "released": "2025-09-02",
-      "release_notes_url": "https://developer.apple.com/go/?id=ipados-26-rn",
-      "downloads_url": "https://developer.apple.com/download",
-      "source_card_url": "https://developer.apple.com/news/releases/"
-    },
-    {
-      "title": "macOS 26 beta 9 (25A5351b)",
-      "platform": "macOS",
-      "version": "26 beta 9",
-      "build": "25A5351b",
-      "released": "2025-09-02",
-      "release_notes_url": "https://developer.apple.com/go/?id=macos-26-rn",
-      "downloads_url": "https://developer.apple.com/download",
-      "source_card_url": "https://developer.apple.com/news/releases/"
-    },
-    {
-      "title": "tvOS 26 beta 9 (23J5351a)",
-      "platform": "tvOS",
-      "version": "26 beta 9",
-      "build": "23J5351a",
-      "released": "2025-09-02",
-      "release_notes_url": "https://developer.apple.com/go/?id=tvos-26-rn",
-      "downloads_url": "https://developer.apple.com/download",
-      "source_card_url": "https://developer.apple.com/news/releases/"
-    },
-    {
-      "title": "visionOS 26 beta 9 (23M5335b)",
-      "platform": "visionOS",
-      "version": "26 beta 9",
-      "build": "23M5335b",
-      "released": "2025-09-02",
-      "release_notes_url": "https://developer.apple.com/go/?id=visionos-26-rn",
-      "downloads_url": "https://developer.apple.com/download",
-      "source_card_url": "https://developer.apple.com/news/releases/"
-    },
-    {
-      "title": "watchOS 26 beta 9 (23R5350b)",
-      "platform": "watchOS",
-      "version": "26 beta 9",
-      "build": "23R5350b",
-      "released": "2025-09-02",
-      "release_notes_url": "https://developer.apple.com/go/?id=watchos-26-rn",
-      "downloads_url": "https://developer.apple.com/download",
-      "source_card_url": "https://developer.apple.com/news/releases/"
-    },
-    {
-      "title": "Xcode 26 beta 7 (17A5305kTF)",
+      "title": "Xcode 26 RC (17A321)",
       "platform": "Xcode",
-      "version": "26 beta 7",
-      "build": "17A5305kTF",
-      "released": "2025-08-28",
+      "version": "26 RC",
+      "build": "17A321",
+      "released": "2025-09-09",
       "release_notes_url": "https://developer.apple.com/go/?id=xcode-26-sdk-rn",
       "downloads_url": "https://developer.apple.com/download/applications",
+      "source_card_url": "https://developer.apple.com/news/releases/"
+    },
+    {
+      "title": "iOS 26 RC (23A340)",
+      "platform": "iOS",
+      "version": "26 RC",
+      "build": "23A340",
+      "released": "2025-09-09",
+      "release_notes_url": "https://developer.apple.com/go/?id=ios-26-rn",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "source_card_url": "https://developer.apple.com/news/releases/"
+    },
+    {
+      "title": "iPadOS 26 RC (23A340)",
+      "platform": "iPadOS",
+      "version": "26 RC",
+      "build": "23A340",
+      "released": "2025-09-09",
+      "release_notes_url": "https://developer.apple.com/go/?id=ipados-26-rn",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "source_card_url": "https://developer.apple.com/news/releases/"
+    },
+    {
+      "title": "macOS 26 RC (25A353)",
+      "platform": "macOS",
+      "version": "26 RC",
+      "build": "25A353",
+      "released": "2025-09-09",
+      "release_notes_url": "https://developer.apple.com/go/?id=macos-26-rn",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "source_card_url": "https://developer.apple.com/news/releases/"
+    },
+    {
+      "title": "tvOS 26 RC (23J352)",
+      "platform": "tvOS",
+      "version": "26 RC",
+      "build": "23J352",
+      "released": "2025-09-09",
+      "release_notes_url": "https://developer.apple.com/go/?id=tvos-26-rn",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "source_card_url": "https://developer.apple.com/news/releases/"
+    },
+    {
+      "title": "visionOS 26 RC (23M336)",
+      "platform": "visionOS",
+      "version": "26 RC",
+      "build": "23M336",
+      "released": "2025-09-09",
+      "release_notes_url": "https://developer.apple.com/go/?id=visionos-26-rn",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "source_card_url": "https://developer.apple.com/news/releases/"
+    },
+    {
+      "title": "watchOS 26 RC (23R351)",
+      "platform": "watchOS",
+      "version": "26 RC",
+      "build": "23R351",
+      "released": "2025-09-09",
+      "release_notes_url": "https://developer.apple.com/go/?id=watchos-26-rn",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "source_card_url": "https://developer.apple.com/news/releases/"
+    },
+    {
+      "title": "iOS 18.7 RC (22H20)",
+      "platform": "iOS",
+      "version": "18.7 RC",
+      "build": "22H20",
+      "released": "2025-09-09",
+      "release_notes_url": "https://developer.apple.com/go/?id=ios-18_7-rn",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "source_card_url": "https://developer.apple.com/news/releases/"
+    },
+    {
+      "title": "iPadOS 18.7 RC (22H20)",
+      "platform": "iPadOS",
+      "version": "18.7 RC",
+      "build": "22H20",
+      "released": "2025-09-09",
+      "release_notes_url": "https://developer.apple.com/go/?id=ipados-18_7-rn",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "source_card_url": "https://developer.apple.com/news/releases/"
+    },
+    {
+      "title": "iOS 16.7.12 RC (20H364)",
+      "platform": "iOS",
+      "version": "16.7.12 RC",
+      "build": "20H364",
+      "released": "2025-09-09",
+      "release_notes_url": null,
+      "downloads_url": "https://developer.apple.com/download/os",
+      "source_card_url": "https://developer.apple.com/news/releases/"
+    },
+    {
+      "title": "iPadOS 16.7.12 RC (20H364)",
+      "platform": "iPadOS",
+      "version": "16.7.12 RC",
+      "build": "20H364",
+      "released": "2025-09-09",
+      "release_notes_url": null,
+      "downloads_url": "https://developer.apple.com/download/os",
+      "source_card_url": "https://developer.apple.com/news/releases/"
+    },
+    {
+      "title": "iOS 15.8.5 RC (19H394)",
+      "platform": "iOS",
+      "version": "15.8.5 RC",
+      "build": "19H394",
+      "released": "2025-09-09",
+      "release_notes_url": null,
+      "downloads_url": "https://developer.apple.com/download/os",
+      "source_card_url": "https://developer.apple.com/news/releases/"
+    },
+    {
+      "title": "iPadOS 15.8.5 RC (19H394)",
+      "platform": "iPadOS",
+      "version": "15.8.5 RC",
+      "build": "19H394",
+      "released": "2025-09-09",
+      "release_notes_url": null,
+      "downloads_url": "https://developer.apple.com/download/os",
       "source_card_url": "https://developer.apple.com/news/releases/"
     },
     {
