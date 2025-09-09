@@ -344,12 +344,15 @@ jobs:
           else
             echo "❌ No data/resources directory found" >> $GITHUB_STEP_SUMMARY
           fi
-          
+      
       - name: RSS generation with beta validation  
         if: success() && (github.event_name == 'schedule' || contains(github.event.inputs.pipeline_stage, 'rss') || github.event.inputs.pipeline_stage == 'all')
+        env:
+          SOFA_FQDN: ${{ vars.SOFA_BASE_URL || 'https://sofa.macadmins.io' }}
         run: |
           echo "📡 RSS generation with beta validation..."
-          cd processing
+          echo "🌐 Using SOFA_FQDN: $SOFA_FQDN"
+          cd processing    
           
           # Check for required input files
           echo "📊 RSS input files:"
