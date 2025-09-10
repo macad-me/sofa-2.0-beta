@@ -1,5 +1,6 @@
 <template>
-  <div class="dashboard-container">
+  <ClientOnly>
+    <div class="dashboard-container">
     <!-- SOFA Header -->
     <div class="sofa-header">
       <div class="sofa-image-container">
@@ -1200,6 +1201,7 @@
       </a>
     </div>
   </div>
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">

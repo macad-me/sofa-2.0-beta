@@ -54,6 +54,7 @@ export function dataPlugin(): Plugin {
             '/resources/links.json': 'resources/essential_links.json',
             '/resources/apple_beta_os_history.json': 'resources/apple_beta_os_history.json',
             '/resources/metrics.json': 'resources/metrics.json',
+            '/v1/apple-beta-os-feed.json': 'resources/apple_beta_feed.json',
             '/v1/rss_feed.xml': '../../v1/rss_feed.rss',
             '/v1/feed.rss': '../../v1/rss_feed.rss',
             '/v1/rss_feed.rss': '../../v1/rss_feed.rss'
