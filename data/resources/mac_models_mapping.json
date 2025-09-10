@@ -1656,14 +1656,34 @@
     ]
   },
   "VMA2MACOSAP": {
-    "MarketingName": "VMA2MACOSAP",
-    "SupportedOS": [],
-    "OSVersions": []
+    "MarketingName": "Virtual Machine (Apple Silicon)",
+    "SupportedOS": [
+      "Sequoia 15",
+      "Sonoma 14",
+      "Ventura 13",
+      "Monterey 12"
+    ],
+    "OSVersions": [
+      12,
+      13,
+      14,
+      15
+    ]
   },
   "VMM-x86_64": {
-    "MarketingName": "VMM-x86_64",
-    "SupportedOS": [],
-    "OSVersions": []
+    "MarketingName": "Virtual Machine (x86_64)",
+    "SupportedOS": [
+      "Sequoia 15",
+      "Sonoma 14",
+      "Ventura 13",
+      "Monterey 12"
+    ],
+    "OSVersions": [
+      11,
+      12,
+      13,
+      14
+    ]
   },
   "Watch2,3": {
     "MarketingName": "Watch2,3",
