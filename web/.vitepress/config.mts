@@ -45,7 +45,7 @@ export default defineConfig({
       {
         text: 'macOS',
         items: [
-          { text: 'macOS Tahoe 26', link: '/macos/tahoe26' },
+          { text: 'macOS Tahoe 26', link: '/macos/tahoe' },
           { text: 'macOS Sequoia 15', link: '/macos/sequoia' },
           { text: 'macOS Sonoma 14', link: '/macos/sonoma' },
           { text: 'macOS Ventura 13', link: '/macos/ventura' },
@@ -77,6 +77,7 @@ export default defineConfig({
       {
         text: 'visionOS',
         items: [
+           { text: 'visionOS 26', link: '/visionos/visionos26' },
           { text: 'visionOS 2', link: '/visionos/visionos2' },
         ]
       },
@@ -95,7 +96,6 @@ export default defineConfig({
           { text: 'Model Identifiers', link: '/model-identifier' },
           { text: 'macOS Installers', link: '/macos-installer-info' },
           { text: 'Beta Releases', link: '/beta-releases' },
-          { text: 'Essential Info', link: '/essential-info' },
           { text: 'Essential Resources', link: '/essential-resources' }
         ]
       },
@@ -119,7 +119,6 @@ export default defineConfig({
     },
   },
   vite: {
-    assetsInclude: ['**/*.rss'],
     define: {
       // Make API base URLs available to the client
       __API_BASE_PROD__: JSON.stringify(process.env.VITE_API_BASE_PROD || 'https://sofa-beta.macadmin.me'),

@@ -1,6 +1,7 @@
 ---
 title: iOS/iPadOS 26
 platform: iOS
+current: true
 layout: doc
 ---
 
@@ -13,9 +14,16 @@ layout: doc
   platform="iOS"
 />
 
-## iPadOS 26 Beta
+<LatestFeatures 
+  title="iOS 26" 
+  platform="iOS"
+  dataPath="/v2/ios_data_feed.json" 
+  linksData="/v1/essential_links.json"
+>
+</LatestFeatures>
 
-<BetaFeatures 
-  title="iPadOS 26" 
-  platform="iPadOS"
+<SecurityInfo 
+  title="iOS 26" 
+  platform="iOS" 
+  dataPath="/v2/ios_data_feed.json" 
 />

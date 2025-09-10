@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: 03 - Deploy to GitHub Pages
 
 on:
   push:
@@ -61,7 +61,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd web
-          pnpm install --no-frozen-lockfile
+          pnpm install --frozen-lockfile
       
       - name: Build site
         env:

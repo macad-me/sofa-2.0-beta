@@ -21,9 +21,16 @@
     <!-- Loaded Data View -->
     <div v-else-if="osData" class="features-container">     
       <div class="info-container">
-        <div class="tip custom-block">
+        <!-- Current Version Message -->
+        <div v-if="isLatestVersion" class="tip custom-block">
           <p class="custom-block-title">RECOMMENDED RELEASE FOR MOST UP-TO-DATE SECURITY</p>
           <p>This is the latest version of {{ platform }} that receives the most up-to-date security patches and updates, making it the recommended choice to protect your devices.</p>
+        </div>
+        
+        <!-- Legacy Version Message -->
+        <div v-else class="warning custom-block">
+          <p class="custom-block-title">LEGACY VERSION - LIMITED SECURITY SUPPORT</p>
+          <p>This is an older version of {{ platform }} that may receive limited security updates. Consider upgrading to the latest version for the most comprehensive security protection.</p>
         </div>
       </div>
 
@@ -385,7 +392,7 @@
 
     <!-- Loading Data State -->
     <div v-else class="loading-state">
-      <p>Loading data...</p>
+      <p>Loading data... or currently not available</p>
     </div>
   </div>
 </template>
@@ -445,6 +452,11 @@ export default {
         'visionOS': '/icons-sofa-mesh/visionos-subtle.png'
       }
       return platformMap[this.platform] || null
+    },
+    
+    isLatestVersion() {
+      // Use frontmatter flag for simple, explicit version status
+      return this.$frontmatter?.current === true
     }
   },
   async mounted() {
@@ -586,44 +598,90 @@ export default {
             })
           }
           
-          // Add "What's new for enterprise" if exists
-          if (versionLinks['What\'s new for enterprise']) {
+          // Add "What's new for enterprise" if exists (check multiple formats)
+          const enterpriseKey = Object.keys(versionLinks).find(key => 
+            key.includes('What\'s new for enterprise') || key === 'What\'s new for enterprise'
+          )
+          if (enterpriseKey) {
             wantedLinks.push({ 
               title: 'What\'s new for enterprise', 
-              url: versionLinks['What\'s new for enterprise'], 
+              url: versionLinks[enterpriseKey], 
               platform: 'version' 
             })
           }
           
-          // Add "What's new in updates" if exists
-          if (versionLinks['What\'s new in updates']) {
+          // Add "What's new in updates" if exists (check multiple formats)
+          const updatesKey = Object.keys(versionLinks).find(key => 
+            key.includes('What\'s new in the updates') || key === 'What\'s new in updates'
+          )
+          if (updatesKey) {
             wantedLinks.push({ 
               title: 'What\'s new in updates', 
-              url: versionLinks['What\'s new in updates'], 
+              url: versionLinks[updatesKey], 
               platform: 'version' 
             })
           }
           
-          // Add "About" link if exists
+          // Add all other relevant version-specific links
           Object.entries(versionLinks).forEach(([title, url]) => {
+            // Skip the ones we already added with custom titles
+            if (title === enterpriseKey || title === updatesKey) return
+            
+            // Add About links
             if (title.startsWith('About ')) {
+              wantedLinks.push({ title, url, platform: 'version' })
+            }
+            
+            // Add any other platform-specific documentation
+            if (title.includes('Release Notes') || title.includes('documentation') || 
+                title.includes('guide') || title.includes('deployment')) {
               wantedLinks.push({ title, url, platform: 'version' })
             }
           })
         }
         
-        // Add Developer Release Notes from general links
-        if (platformData.general && platformData.general['Developer Release Notes']) {
-          wantedLinks.push({ 
-            title: 'Developer Release Notes', 
-            url: platformData.general['Developer Release Notes'], 
-            platform: 'general' 
+        // Add general platform resources that apply to all versions
+        if (platformData.general) {
+          Object.entries(platformData.general).forEach(([title, url]) => {
+            wantedLinks.push({ title, url, platform: 'general' })
+          })
+        }
+        
+        // Add relevant general resources from _general_resources
+        if (essentialLinksData._general_resources) {
+          const relevantGeneral = essentialLinksData._general_resources.filter(resource => {
+            // Add security and platform-related general resources
+            return resource.title.includes('Security') || 
+                   resource.title.includes('Platform') ||
+                   resource.title.includes('Deployment') ||
+                   resource.title.includes('Training')
+          })
+          
+          relevantGeneral.slice(0, 4).forEach(resource => { // Limit to first 4 to avoid clutter
+            wantedLinks.push({ 
+              title: resource.title, 
+              url: resource.url, 
+              platform: 'general' 
+            })
           })
         }
       }
       
       // Set the essential links
       this.essentialLinks = wantedLinks
+    },
+    
+    getPlatformData() {
+      // Helper method to get data for the current platform
+      switch (this.platform.toLowerCase()) {
+        case 'macos': return this.macOSData
+        case 'ios': return this.iOSData
+        case 'tvos': return this.tvOSData
+        case 'watchos': return this.watchOSData
+        case 'visionos': return this.visionOSData
+        case 'safari': return this.safariData
+        default: return null
+      }
     },
     loadData() {
       try {
@@ -799,11 +857,12 @@ export default {
         'iOS 17': '/ios_17.png',
         'iOS 16': '/ios_16.png',
         'watchOS 26': '/watchos_26.png',
+        'watchOS 11': '/watchos_11.png', // Use watchOS 26 image as fallback
         'tvOS 26': '/tvos_26.png',
-        'watchOS 11': '/watchos_26.png', // Use watchOS 26 image as fallback
-        'tvOS 18': '/tvos_26.png', // Use tvOS 26 image as fallback
-        'tvOS 17': '/tvos_26.png', // Use tvOS 26 image as fallback
-        'visionOS': '/ios_18.png', // Use iOS 18 as fallback for visionOS
+        'tvOS 18': '/tvos_18.png', // Use tvOS 26 image as fallback
+        'tvOS 17': '/tvos_17.png', // Use tvOS 26 image as fallback
+        'visionOS 26': '/visionos_26.png', // Use iOS 18 as fallback for visionOS
+        'visionOS 2': '/visionos_2.png', // Use iOS 18 as fallback for visionOS
         'Safari 18': '/safari_18.png', // Safari 18 specific image
         'Safari': '/safari_18.png', // Use Safari 18 image for Safari
         'default': '/SWUpdate.png', // Use SWUpdate as default fallback
@@ -1043,6 +1102,24 @@ export default {
 .tip.custom-block {
   margin: 0;
   flex-grow: 1;
+}
+
+.warning.custom-block {
+  margin: 0;
+  flex-grow: 1;
+  padding: 0.625rem 0.875rem !important;
+}
+
+.warning.custom-block .custom-block-title {
+  color: #d97706 !important;
+  margin-bottom: 0.375rem !important;
+}
+
+.warning.custom-block p:last-child {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #78716c;
 }
 
 .custom-block-title {
