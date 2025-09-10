@@ -53,8 +53,9 @@ export function dataPlugin(): Plugin {
             '/resources/bulletin.json': 'resources/bulletin_data.json',
             '/resources/links.json': 'resources/essential_links.json',
             '/resources/apple_beta_os_history.json': 'resources/apple_beta_os_history.json',
-            '/v1/rss_feed.xml': '../../v1/feed.rss',
-            '/v1/feed.rss': '../../v1/feed.rss'
+            '/v1/rss_feed.xml': '../../v1/rss_feed.rss',
+            '/v1/feed.rss': '../../v1/rss_feed.rss',
+            '/v1/rss_feed.rss': '../../v1/rss_feed.rss'
           }
           
           // Check aliases first
@@ -73,7 +74,7 @@ export function dataPlugin(): Plugin {
             if (existsSync(fullPath)) {
               try {
                 const content = readFileSync(fullPath, 'utf-8')
-                res.setHeader('Content-Type', url.endsWith('.xml') ? 'application/xml' : 'application/json')
+                res.setHeader('Content-Type', (url.endsWith('.xml') || url.endsWith('.rss')) ? 'application/xml' : 'application/json')
                 res.setHeader('Cache-Control', 'no-cache')
                 res.end(content)
                 console.log('✅ DataPlugin: Successfully served aliased file:', fullPath)
@@ -141,7 +142,7 @@ export function dataPlugin(): Plugin {
           try {
             // Read all files in the source directory
             const files = readdirSync(mapping.from, { withFileTypes: true })
-              .filter(dirent => dirent.isFile() && (dirent.name.endsWith('.json') || dirent.name.endsWith('.ndjson')))
+              .filter(dirent => dirent.isFile() && (dirent.name.endsWith('.json') || dirent.name.endsWith('.ndjson') || dirent.name.endsWith('.rss')))
               .map(dirent => dirent.name)
             
             for (const file of files) {
