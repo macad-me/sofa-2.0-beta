@@ -1956,7 +1956,7 @@ onMounted(async () => {
   
   // Fetch metrics data from local file
   try {
-    const response = await fetch('/data/resources/metrics.json')
+    const response = await fetch('/resources/metrics.json')
     if (response.ok) {
       metricsData.value = await response.json()
     } else {
