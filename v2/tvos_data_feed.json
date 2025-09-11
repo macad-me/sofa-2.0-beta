@@ -1,8 +1,8 @@
 {
   "OSName": "tvOS",
   "Version": "2.0",
-  "UpdateHash": "90f9bb8334ba2d7fb23512c661fdc800787c8e3394094f156deb0a1eea990c86",
-  "LastCheck": "2025-09-11T17:10:48.006558339+00:00",
+  "UpdateHash": "c1002045315e0e35489499d0d0a2ff6a679c148e80321508d72f229f5654ee1e",
+  "LastCheck": "2025-09-11T18:15:36.891706617+00:00",
   "OSVersions": [
     {
       "OSVersion": "tvOS 18",
@@ -21,10 +21,10 @@
         "SecurityInfo": "https://support.apple.com/en-us/124153",
         "SecurityInfoContext": "tvOS has been updated to version 18.6, which was released on July 29, 2025. This update addresses 24 security issues and is the most recent approved version.",
         "SupportedDevices": [
-          "AppleTV11,1",
-          "AppleTV14,1",
           "AppleTV5,3",
-          "AppleTV6,2"
+          "AppleTV14,1",
+          "AppleTV6,2",
+          "AppleTV11,1"
         ],
         "CVEs": {
           "CVE-2025-31273": {},
@@ -92,10 +92,10 @@
           "SecurityInfo": "https://support.apple.com/en-us/124153",
           "SecurityInfoContext": "tvOS has been updated to version 18.6, which was released on July 29, 2025. This update addresses 24 security issues and is the most recent approved version.",
           "SupportedDevices": [
-            "AppleTV5,3",
-            "AppleTV11,1",
             "AppleTV6,2",
-            "AppleTV14,1"
+            "AppleTV14,1",
+            "AppleTV5,3",
+            "AppleTV11,1"
           ],
           "CVEs": {
             "CVE-2025-31273": {},
@@ -164,8 +164,8 @@
           "SupportedDevices": [
             "AppleTV5,3",
             "AppleTV6,2",
-            "AppleTV14,1",
-            "AppleTV11,1"
+            "AppleTV11,1",
+            "AppleTV14,1"
           ],
           "CVEs": {
             "CVE-2024-8176": {},
