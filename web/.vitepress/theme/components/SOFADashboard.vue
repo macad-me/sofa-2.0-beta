@@ -1,6 +1,5 @@
 <template>
-  <ClientOnly>
-    <div class="dashboard-container">
+  <div class="dashboard-container">
     <!-- SOFA Header -->
     <div class="sofa-header">
       <div class="sofa-image-container">
@@ -100,12 +99,12 @@
       <a v-for="platform in platforms" 
          :key="platform.name"
          :href="platform.link"
-         class="group flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-sm font-medium transition-all duration-200 hover:shadow-sm"
-         :class="`hover:border-${platform.color}-300 dark:hover:border-${platform.color}-600`">
-        <div :class="`w-6 h-6 bg-${platform.color}-100 dark:bg-${platform.color}-900/30 rounded flex items-center justify-center`">
-          <component :is="platform.icon" :class="`h-3.5 w-3.5 text-${platform.color}-600`" />
+         class="platform-btn group flex items-center justify-center gap-2.5 px-3.5 py-2.5 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-lg text-sm font-semibold transition-all duration-200 hover:shadow-sm min-w-0"
+         :data-platform="platform.color">
+        <div class="platform-icon w-4 h-4 flex items-center justify-center flex-shrink-0" :data-platform="platform.color">
+          <component :is="platform.icon" class="platform-icon-svg w-full h-full" :data-platform="platform.color" />
         </div>
-        <span :class="`text-gray-700 dark:text-gray-300 group-hover:text-${platform.color}-600 transition-colors`">
+        <span class="platform-text transition-colors leading-none whitespace-nowrap text-transparent" :data-platform="platform.color">
           {{ platform.label }}
         </span>
       </a>
@@ -168,7 +167,7 @@
         :style="{ order: bentoDisplayOrder['macos'] }"
       >
         <template #badge>
-          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">Latest</span>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md macos-badge">Latest</span>
         </template>
         <div class="grid grid-cols-1 gap-3 flex-grow">
           <a 
@@ -177,7 +176,7 @@
             :href="version.version.startsWith('14') ? `${baseUrl}/macos/sonoma` : `${baseUrl}/macos/sequoia`"
             class="block"
           >
-            <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-150">
+            <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-macos-300 dark:hover:border-macos-600 transition-all duration-150 macos-version-card">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
                   <span class="text-xs text-gray-500 dark:text-gray-400">{{ version.releaseDate }}</span>
@@ -210,7 +209,7 @@
         :style="{ order: bentoDisplayOrder['ios-ipados'] }"
       >
         <template #badge>
-          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200">Latest</span>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md ios-badge">Latest</span>
         </template>
         <div class="grid grid-cols-1 gap-3 flex-grow">
           <a 
@@ -219,7 +218,7 @@
             :href="version.version.startsWith('17') ? `${baseUrl}/ios/ios17` : `${baseUrl}/ios/ios18`"
             class="block"
           >
-            <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-150">
+            <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-ios-300 dark:hover:border-ios-600 transition-all duration-150 ios-version-card">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
                   <span class="text-xs text-gray-500 dark:text-gray-400">{{ version.releaseDate }}</span>
@@ -253,13 +252,13 @@
       >
         <div class="grid grid-cols-1 gap-3 flex-grow">
           <a href="https://github.com/sponsors/macadmins?o=esb" target="_blank" rel="noopener noreferrer" class="block">
-            <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-150">
+            <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-red-300 dark:hover:border-red-500 transition-all duration-150 community-github-card">
               <div class="space-y-1">
                 <div class="flex items-center gap-1">
                   <component :is="HeartIcon" class="h-3.5 w-3.5 text-red-500" />
                   <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">MAOS</span>
                 </div>
-                <div class="text-lg font-bold text-indigo-700 dark:text-indigo-300">
+                <div class="text-lg font-bold">
                     Support SOFA creators
                 </div>
                 <div class="text-xs text-gray-500 dark:text-gray-400">
@@ -269,13 +268,13 @@
             </div>
           </a>
           <a href="https://www.macadmins.org/donate" target="_blank" rel="noopener noreferrer" class="block">
-            <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-150">
+            <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-500 transition-all duration-150 community-donate-card">
               <div class="space-y-1">
                 <div class="flex items-center gap-1">
                   <component :is="DollarSignIcon" class="h-3.5 w-3.5 text-green-500" />
                   <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">MacAdmins.org</span>
                 </div>
-                <div class="text-lg font-bold text-indigo-700 dark:text-indigo-300">
+                <div class="text-lg font-bold">
                   MacAdmins Foundation
                 </div>
                 <div class="text-xs text-gray-500 dark:text-gray-400">
@@ -423,7 +422,7 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 flex-grow">
           <!-- Safari -->
-          <div v-if="safariVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-150">
+          <div v-if="safariVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-safari-300 dark:hover:border-safari-600 transition-all duration-150 other-platform-safari">
             <div class="space-y-1.5">
               <div class="flex items-center justify-between">
                 <span class="text-xs text-gray-500 dark:text-gray-400">{{ safariVersion.releaseDate }}</span>
@@ -444,7 +443,7 @@
           </div>
           
           <!-- tvOS -->
-          <div v-if="tvOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
+          <div v-if="tvOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-tvos-300 dark:hover:border-tvos-600 transition-all duration-150 other-platform-tvos">
             <div class="space-y-1.5">
               <div class="flex items-center justify-between">
                 <span class="text-xs text-gray-500 dark:text-gray-400">{{ tvOSVersion.releaseDate }}</span>
@@ -465,7 +464,7 @@
           </div>
           
           <!-- visionOS -->
-          <div v-if="visionOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
+          <div v-if="visionOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-visionos-300 dark:hover:border-visionos-600 transition-all duration-150 other-platform-visionos">
             <div class="space-y-1.5">
               <div class="flex items-center justify-between">
                 <span class="text-xs text-gray-500 dark:text-gray-400">{{ visionOSVersion.releaseDate }}</span>
@@ -486,7 +485,7 @@
           </div>
           
           <!-- watchOS -->
-          <div v-if="watchOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
+          <div v-if="watchOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-watchos-300 dark:hover:border-watchos-600 transition-all duration-150 other-platform-watchos">
             <div class="space-y-1.5">
               <div class="flex items-center justify-between">
                 <span class="text-xs text-gray-500 dark:text-gray-400">{{ watchOSVersion.releaseDate }}</span>
@@ -560,7 +559,7 @@
         :style="{ order: bentoDisplayOrder['macos-data-feed'] }"
       >
         <template #badge>
-          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">Live</span>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md macos-feed-badge">Live</span>
         </template>
         <div class="space-y-3 flex-grow">
           <div class="grid grid-cols-2 gap-3">
@@ -627,7 +626,7 @@
         :style="{ order: bentoDisplayOrder['ios-data-feed'] }"
       >
         <template #badge>
-          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200">Live</span>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md ios-feed-badge">Live</span>
         </template>
         <div class="space-y-3 flex-grow">
           <div class="grid grid-cols-2 gap-3">
@@ -988,7 +987,7 @@
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Developer</span>
         </template>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 flex-grow">
-          <div v-for="(beta, idx) in betaReleases" :key="idx" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-150">
+          <div v-for="(beta, idx) in betaReleases" :key="idx" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-150 beta-release-card" :class="getBetaPlatformClass(beta.platform)">
             <div class="space-y-1.5">
               <div class="flex items-center justify-between">
                 <span class="text-xs text-gray-500 dark:text-gray-400">{{ beta.released }}</span>
@@ -1012,7 +1011,7 @@
         </div>
         <template #footer>
           <button
-            @click="copyToClipboard('https://beta-feed.macadmin.me/v1/apple-beta-os-feed.json', 'beta-footer')"
+            @click="copyToClipboard('https://sofafeed.macadmins.io/resources/apple_beta_feed.json', 'beta-footer')"
             class="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 flex items-center gap-1 transition-colors"
           >
             <component :is="copiedItem === 'beta-footer' ? CheckCircle2Icon : ClipboardIcon" class="h-3 w-3" :class="copiedItem === 'beta-footer' ? 'text-green-500' : ''" />
@@ -1041,7 +1040,8 @@
         >
           <div class="flex gap-3 pb-2" style="min-width: max-content;">
             <div v-for="(release, idx) in recentReleases" :key="idx" 
-                 class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150 flex-shrink-0" 
+                 class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-150 flex-shrink-0 timeline-release-card" 
+                 :class="getTimelinePlatformClass(release.name)"
                  style="width: 200px;">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
@@ -1057,7 +1057,7 @@
                   </div>
                   <a v-if="release.url" :href="release.url" target="_blank" rel="noopener noreferrer" 
                      class="text-xs text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-1 mt-1">
-                    Details
+                    Security details
                     <component :is="ExternalLinkIcon" class="h-2.5 w-2.5" />
                   </a>
                 </div>
@@ -1201,7 +1201,6 @@
       </a>
     </div>
   </div>
-  </ClientOnly>
 </template>
 
 <script setup lang="ts">
@@ -1238,6 +1237,7 @@ import {
   History as HistoryIcon,
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
+  Cpu as CpuIcon,
   Settings as SettingsIcon,
   ArrowUp as ArrowUpIcon,
   ArrowDown as ArrowDownIcon,
@@ -1251,15 +1251,18 @@ const platforms = computed(() => {
   const basePath = base.endsWith('/') ? base.slice(0, -1) : base
   
   return [
-    { name: 'macos', label: 'Sequoia 15', link: `${basePath}/macos/sequoia`, icon: MonitorIcon, color: 'blue' },
-    { name: 'macos-sonoma', label: 'Sonoma 14', link: `${basePath}/macos/sonoma`, icon: MonitorIcon, color: 'blue' },
-    { name: 'macos-tahoe', label: 'Tahoe 26 Beta', link: `${basePath}/macos/tahoe`, icon: MonitorIcon, color: 'orange' },
-    { name: 'ios', label: 'iOS/iPadOS 18', link: `${basePath}/ios/ios18`, icon: SmartphoneIcon, color: 'purple' },
-    { name: 'ios-beta', label: 'iOS 26 Beta', link: `${basePath}/ios/ios26`, icon: SmartphoneIcon, color: 'orange' },
-    { name: 'visionos', label: 'visionOS 2', link: `${basePath}/visionos/visionos2`, icon: EyeIcon, color: 'orange' },
-    { name: 'tvos', label: 'tvOS 18', link: `${basePath}/tvos/tvos18`, icon: TvIcon, color: 'green' },
-    { name: 'watchos', label: 'watchOS 11', link: `${basePath}/watchos/watchos11`, icon: WatchIcon, color: 'pink' },
-    { name: 'safari', label: 'Safari 18', link: `${basePath}/safari/safari18`, icon: GlobeIcon, color: 'cyan' }
+    { name: 'macos-tahoe', label: 'Tahoe 26', link: `${basePath}/macos/tahoe`, icon: MonitorIcon, color: 'macos' },
+    { name: 'macos', label: 'Sequoia 15', link: `${basePath}/macos/sequoia`, icon: MonitorIcon, color: 'macos' },
+    { name: 'macos-sonoma', label: 'Sonoma 14', link: `${basePath}/macos/sonoma`, icon: MonitorIcon, color: 'macos' },
+    { name: 'ios-beta', label: 'iOS/iPadOS 26', link: `${basePath}/ios/ios26`, icon: SmartphoneIcon, color: 'ios' },
+    { name: 'ios', label: 'iOS/iPadOS 18', link: `${basePath}/ios/ios18`, icon: SmartphoneIcon, color: 'ios' },
+    { name: 'visionos-beta', label: 'visionOS 26', link: `${basePath}/visionos/visionos26`, icon: EyeIcon, color: 'visionos' },
+    { name: 'visionos', label: 'visionOS 2', link: `${basePath}/visionos/visionos2`, icon: EyeIcon, color: 'visionos' },
+    { name: 'tvos-beta', label: 'tvOS 26', link: `${basePath}/tvos/tvos26`, icon: TvIcon, color: 'tvos' },
+    { name: 'tvos', label: 'tvOS 18', link: `${basePath}/tvos/tvos18`, icon: TvIcon, color: 'tvos' },
+    { name: 'watchos-beta', label: 'watchOS 26', link: `${basePath}/watchos/watchos26`, icon: WatchIcon, color: 'watchos' },
+    { name: 'watchos', label: 'watchOS 11', link: `${basePath}/watchos/watchos11`, icon: WatchIcon, color: 'watchos' },
+    { name: 'safari', label: 'Safari 18', link: `${basePath}/safari/safari18`, icon: GlobeIcon, color: 'safari' }
   ]
 })
 
@@ -1268,6 +1271,26 @@ const baseUrl = computed(() => {
   const base = import.meta.env.BASE_URL || '/'
   return base.endsWith('/') ? base.slice(0, -1) : base
 })
+
+// Function to determine platform class for timeline and beta cards
+const getTimelinePlatformClass = (releaseName) => {
+  if (releaseName.includes('macOS')) return 'timeline-macos'
+  if (releaseName.includes('iOS') || releaseName.includes('iPadOS')) return 'timeline-ios'
+  if (releaseName.includes('tvOS')) return 'timeline-tvos'
+  if (releaseName.includes('watchOS')) return 'timeline-watchos'
+  if (releaseName.includes('visionOS')) return 'timeline-visionos'
+  if (releaseName.includes('Safari')) return 'timeline-safari'
+  return 'timeline-default'
+}
+
+const getBetaPlatformClass = (betaPlatform) => {
+  if (betaPlatform.includes('macOS')) return 'beta-macos'
+  if (betaPlatform.includes('iOS') || betaPlatform.includes('iPadOS')) return 'beta-ios'
+  if (betaPlatform.includes('tvOS')) return 'beta-tvos'
+  if (betaPlatform.includes('watchOS')) return 'beta-watchos'
+  if (betaPlatform.includes('visionOS')) return 'beta-visionos'
+  return 'beta-default'
+}
 
 // Real data from JSON feeds
 const macosData = ref({})
@@ -1418,7 +1441,7 @@ const tvos = useSOFAData('v2/tvos_data_feed.json')
 const watchos = useSOFAData('v2/watchos_data_feed.json')
 const visionos = useSOFAData('v2/visionos_data_feed.json')
 const safari = useSOFAData('v2/safari_data_feed.json')
-const beta = useSOFAData('v1/apple-beta-os-feed.json')
+const beta = useSOFAData('data/resources/apple_beta_feed.json')
 const metadata = useSOFAData('data/resources/sofa-status.json', {
   autoRefresh: true,
   refreshInterval: 5 * 60 * 1000 // Check every 5 minutes
@@ -1958,7 +1981,7 @@ onMounted(async () => {
   
   // Fetch metrics data from local file
   try {
-    const response = await fetch('/resources/metrics.json')
+    const response = await fetch('/data/resources/metrics.json')
     if (response.ok) {
       metricsData.value = await response.json()
     } else {
@@ -2477,5 +2500,708 @@ const copyToClipboard = async (text: string, itemId?: string) => {
     padding: 0.625rem 1.25rem;
     font-size: 0.8125rem;
   }
+}
+
+/* Platform Button Gradient Borders */
+.platform-btn {
+  position: relative;
+  overflow: hidden;
+  border-color: transparent !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+
+.platform-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: var(--platform-gradient);
+  border-radius: 0.5rem;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.platform-btn:hover::before {
+  opacity: 0.8;
+}
+
+/* Platform-specific gradients and underline colors */
+.platform-btn[data-platform="macos"] {
+  --platform-gradient: linear-gradient(135deg, #E11D48 0%, #F472B6 100%);
+  text-decoration-color: #E11D48;
+}
+
+.platform-btn[data-platform="ios"] {
+  --platform-gradient: linear-gradient(135deg, #1E3A8A 0%, #60A5FA 100%);
+  text-decoration-color: #1E3A8A;
+}
+
+.platform-btn[data-platform="tvos"] {
+  --platform-gradient: linear-gradient(135deg, #EA580C 0%, #FB923C 100%);
+  text-decoration-color: #EA580C;
+}
+
+.platform-btn[data-platform="watchos"] {
+  --platform-gradient: linear-gradient(135deg, #166534 0%, #4ADE80 100%);
+  text-decoration-color: #166534;
+}
+
+.platform-btn[data-platform="visionos"] {
+  --platform-gradient: linear-gradient(135deg, #7C2D92 0%, #C084FC 100%);
+  text-decoration-color: #7C2D92;
+}
+
+.platform-btn[data-platform="safari"] {
+  --platform-gradient: linear-gradient(135deg, #0E7490 0%, #06B6D4 100%);
+  text-decoration-color: #0E7490;
+}
+
+/* Icon and text color changes - permanent */
+.platform-btn .platform-text[data-platform="macos"] {
+  background: linear-gradient(135deg, #E11D48 0%, #F472B6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.platform-btn .platform-icon-svg[data-platform="macos"] {
+  color: #E11D48;
+}
+
+.platform-btn:hover .platform-icon-svg[data-platform="macos"] {
+  color: #F472B6;
+}
+
+.platform-btn:hover .platform-text[data-platform="macos"] {
+  background: linear-gradient(135deg, #F472B6 0%, #E11D48 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.platform-btn .platform-icon-svg[data-platform="ios"] {
+  color: #1E3A8A;
+}
+
+.platform-btn .platform-text[data-platform="ios"] {
+  background: linear-gradient(135deg, #1E3A8A 0%, #60A5FA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.platform-btn:hover .platform-icon-svg[data-platform="ios"] {
+  color: #60A5FA;
+}
+
+.platform-btn:hover .platform-text[data-platform="ios"] {
+  background: linear-gradient(135deg, #60A5FA 0%, #1E3A8A 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* tvOS */
+.platform-btn .platform-icon-svg[data-platform="tvos"] {
+  color: #EA580C;
+}
+
+.platform-btn .platform-text[data-platform="tvos"] {
+  background: linear-gradient(135deg, #EA580C 0%, #FB923C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.platform-btn:hover .platform-icon-svg[data-platform="tvos"] {
+  color: #FB923C;
+}
+
+.platform-btn:hover .platform-text[data-platform="tvos"] {
+  background: linear-gradient(135deg, #FB923C 0%, #EA580C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* watchOS */
+.platform-btn .platform-icon-svg[data-platform="watchos"] {
+  color: #166534;
+}
+
+.platform-btn .platform-text[data-platform="watchos"] {
+  background: linear-gradient(135deg, #166534 0%, #4ADE80 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.platform-btn:hover .platform-icon-svg[data-platform="watchos"] {
+  color: #4ADE80;
+}
+
+.platform-btn:hover .platform-text[data-platform="watchos"] {
+  background: linear-gradient(135deg, #4ADE80 0%, #166534 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* visionOS */
+.platform-btn .platform-icon-svg[data-platform="visionos"] {
+  color: #7C2D92;
+}
+
+.platform-btn .platform-text[data-platform="visionos"] {
+  background: linear-gradient(135deg, #7C2D92 0%, #C084FC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.platform-btn:hover .platform-icon-svg[data-platform="visionos"] {
+  color: #C084FC;
+}
+
+.platform-btn:hover .platform-text[data-platform="visionos"] {
+  background: linear-gradient(135deg, #C084FC 0%, #7C2D92 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Safari */
+.platform-btn .platform-icon-svg[data-platform="safari"] {
+  color: #0E7490;
+}
+
+.platform-btn .platform-text[data-platform="safari"] {
+  background: linear-gradient(135deg, #0E7490 0%, #06B6D4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.platform-btn:hover .platform-icon-svg[data-platform="safari"] {
+  color: #06B6D4;
+}
+
+.platform-btn:hover .platform-text[data-platform="safari"] {
+  background: linear-gradient(135deg, #06B6D4 0%, #0E7490 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Bento Card Badge Colors */
+.macos-badge {
+  background-color: #FCE7F3 !important;
+  color: #BE185D !important;
+}
+
+.dark .macos-badge {
+  background-color: #831843 !important;
+  color: #F472B6 !important;
+}
+
+.ios-badge {
+  background-color: #BFDBFE !important;
+  color: #1E40AF !important;
+}
+
+.dark .ios-badge {
+  background-color: #1E293B !important;
+  color: #60A5FA !important;
+}
+
+/* Other Platform Update Cards - Individual Platform Colors */
+.other-platform-safari {
+  position: relative;
+}
+
+.other-platform-safari:hover {
+  border-color: #06B6D4 !important;
+}
+
+.dark .other-platform-safari:hover {
+  border-color: #0284C7 !important;
+}
+
+.other-platform-safari .text-lg.font-bold {
+  background: linear-gradient(135deg, #0E7490 0%, #06B6D4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.other-platform-tvos:hover {
+  border-color: #FB923C !important;
+}
+
+.dark .other-platform-tvos:hover {
+  border-color: #EA580C !important;
+}
+
+.other-platform-tvos .text-lg.font-bold {
+  background: linear-gradient(135deg, #EA580C 0%, #FB923C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.other-platform-visionos:hover {
+  border-color: #C084FC !important;
+}
+
+.dark .other-platform-visionos:hover {
+  border-color: #9333EA !important;
+}
+
+.other-platform-visionos .text-lg.font-bold {
+  background: linear-gradient(135deg, #7C2D92 0%, #C084FC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.other-platform-watchos:hover {
+  border-color: #4ADE80 !important;
+}
+
+.dark .other-platform-watchos:hover {
+  border-color: #16A34A !important;
+}
+
+.other-platform-watchos .text-lg.font-bold {
+  background: linear-gradient(135deg, #166534 0%, #4ADE80 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Main Platform Version Cards */
+.macos-version-card:hover {
+  border-color: #F472B6 !important;
+}
+
+.dark .macos-version-card:hover {
+  border-color: #BE185D !important;
+}
+
+.macos-version-card .text-base.font-bold {
+  background: linear-gradient(135deg, #E11D48 0%, #F472B6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.ios-version-card:hover {
+  border-color: #60A5FA !important;
+}
+
+.dark .ios-version-card:hover {
+  border-color: #1D4ED8 !important;
+}
+
+.ios-version-card .text-base.font-bold {
+  background: linear-gradient(135deg, #1E3A8A 0%, #60A5FA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Timeline Release Cards - Platform-specific colors */
+.timeline-macos:hover { border-color: #F472B6 !important; }
+.dark .timeline-macos:hover { border-color: #BE185D !important; }
+.timeline-macos .text-sm.font-bold {
+  background: linear-gradient(135deg, #E11D48 0%, #F472B6 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; color: transparent;
+}
+
+.timeline-ios:hover { border-color: #60A5FA !important; }
+.dark .timeline-ios:hover { border-color: #1D4ED8 !important; }
+.timeline-ios .text-sm.font-bold {
+  background: linear-gradient(135deg, #1E3A8A 0%, #60A5FA 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; color: transparent;
+}
+
+.timeline-tvos:hover { border-color: #FB923C !important; }
+.dark .timeline-tvos:hover { border-color: #EA580C !important; }
+.timeline-tvos .text-sm.font-bold {
+  background: linear-gradient(135deg, #EA580C 0%, #FB923C 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; color: transparent;
+}
+
+.timeline-watchos:hover { border-color: #4ADE80 !important; }
+.dark .timeline-watchos:hover { border-color: #16A34A !important; }
+.timeline-watchos .text-sm.font-bold {
+  background: linear-gradient(135deg, #166534 0%, #4ADE80 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; color: transparent;
+}
+
+.timeline-visionos:hover { border-color: #C084FC !important; }
+.dark .timeline-visionos:hover { border-color: #9333EA !important; }
+.timeline-visionos .text-sm.font-bold {
+  background: linear-gradient(135deg, #7C2D92 0%, #C084FC 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; color: transparent;
+}
+
+.timeline-safari:hover { border-color: #06B6D4 !important; }
+.dark .timeline-safari:hover { border-color: #0284C7 !important; }
+.timeline-safari .text-sm.font-bold {
+  background: linear-gradient(135deg, #0E7490 0%, #06B6D4 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; color: transparent;
+}
+
+/* Beta Release Cards - Platform-specific colors */
+.beta-macos:hover { border-color: #F472B6 !important; }
+.dark .beta-macos:hover { border-color: #BE185D !important; }
+.beta-macos .text-base.font-bold {
+  background: linear-gradient(135deg, #E11D48 0%, #F472B6 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; color: transparent;
+}
+
+.beta-ios:hover { border-color: #60A5FA !important; }
+.dark .beta-ios:hover { border-color: #1D4ED8 !important; }
+.beta-ios .text-base.font-bold {
+  background: linear-gradient(135deg, #1E3A8A 0%, #60A5FA 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; color: transparent;
+}
+
+.beta-tvos:hover { border-color: #FB923C !important; }
+.dark .beta-tvos:hover { border-color: #EA580C !important; }
+.beta-tvos .text-base.font-bold {
+  background: linear-gradient(135deg, #EA580C 0%, #FB923C 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; color: transparent;
+}
+
+.beta-watchos:hover { border-color: #4ADE80 !important; }
+.dark .beta-watchos:hover { border-color: #16A34A !important; }
+.beta-watchos .text-base.font-bold {
+  background: linear-gradient(135deg, #166534 0%, #4ADE80 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; color: transparent;
+}
+
+.beta-visionos:hover { border-color: #C084FC !important; }
+.dark .beta-visionos:hover { border-color: #9333EA !important; }
+.beta-visionos .text-base.font-bold {
+  background: linear-gradient(135deg, #7C2D92 0%, #C084FC 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; color: transparent;
+}
+
+/* MacAdmins Community Cards - SOFA brand inspired styling */
+.community-github-card:hover {
+  border-color: #8B5CF6 !important;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+}
+
+.dark .community-github-card:hover {
+  border-color: #A78BFA !important;
+  box-shadow: 0 4px 12px rgba(167, 139, 250, 0.25);
+}
+
+.community-github-card .text-lg.font-bold {
+  background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.community-donate-card:hover {
+  border-color: #EC4899 !important;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.2);
+}
+
+.dark .community-donate-card:hover {
+  border-color: #F472B6 !important;
+  box-shadow: 0 4px 12px rgba(244, 114, 182, 0.25);
+}
+
+.community-donate-card .text-lg.font-bold {
+  background: linear-gradient(135deg, #EC4899 0%, #7C3AED 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Enhanced icon colors for community cards - SOFA theme */
+.community-github-card:hover .text-red-500 {
+  color: #8B5CF6 !important;
+}
+
+.community-donate-card:hover .text-green-500 {
+  color: #EC4899 !important;
+}
+
+/* Data Feed Badges - Platform specific */
+.macos-feed-badge {
+  background-color: #FCE7F3 !important;
+  color: #BE185D !important;
+}
+
+.dark .macos-feed-badge {
+  background-color: #831843 !important;
+  color: #F472B6 !important;
+}
+
+.ios-feed-badge {
+  background-color: #BFDBFE !important;
+  color: #1E40AF !important;
+}
+
+.dark .ios-feed-badge {
+  background-color: #1E293B !important;
+  color: #60A5FA !important;
+}
+
+/* Data Feed Time and Hash Colors - Platform harmonized */
+.bento-feed-macos .text-blue-700 {
+  color: #BE185D !important;
+}
+
+.dark .bento-feed-macos .text-blue-300 {
+  color: #F472B6 !important;
+}
+
+.bento-feed-macos .hover\\:text-blue-600:hover {
+  color: #E11D48 !important;
+}
+
+.dark .bento-feed-macos .hover\\:text-blue-400:hover {
+  color: #F472B6 !important;
+}
+
+.bento-feed-ios .text-purple-700 {
+  color: #1E40AF !important;
+}
+
+.dark .bento-feed-ios .text-purple-300 {
+  color: #60A5FA !important;
+}
+
+.bento-feed-ios .hover\\:text-blue-600:hover {
+  color: #1E3A8A !important;
+}
+
+.dark .bento-feed-ios .hover\\:text-blue-400:hover {
+  color: #60A5FA !important;
+}
+
+/* Small icons in data feed cards - Platform harmonized */
+.bento-feed-macos .text-gray-600 {
+  color: #BE185D !important;
+}
+
+.dark .bento-feed-macos .text-gray-400 {
+  color: #F472B6 !important;
+}
+
+.bento-feed-macos .text-blue-600 {
+  color: #E11D48 !important;
+}
+
+.dark .bento-feed-macos .text-blue-400 {
+  color: #F472B6 !important;
+}
+
+.bento-feed-ios .text-gray-600 {
+  color: #1E40AF !important;
+}
+
+.dark .bento-feed-ios .text-gray-400 {
+  color: #60A5FA !important;
+}
+
+.bento-feed-ios .text-purple-600 {
+  color: #1E3A8A !important;
+}
+
+.dark .bento-feed-ios .text-purple-400 {
+  color: #60A5FA !important;
+}
+
+/* Clock, Globe, Shield icons in feeds */
+.bento-feed-macos [class*="h-3"]:not([class*="text-green"]):not([class*="text-red"]):not([class*="text-yellow"]) {
+  color: #BE185D !important;
+}
+
+.dark .bento-feed-macos [class*="h-3"]:not([class*="text-green"]):not([class*="text-red"]):not([class*="text-yellow"]) {
+  color: #F472B6 !important;
+}
+
+.bento-feed-ios [class*="h-3"]:not([class*="text-green"]):not([class*="text-red"]):not([class*="text-yellow"]) {
+  color: #1E40AF !important;
+}
+
+.dark .bento-feed-ios [class*="h-3"]:not([class*="text-green"]):not([class*="text-red"]):not([class*="text-yellow"]) {
+  color: #60A5FA !important;
+}
+
+/* Last Updated Card - Harmonized neutral icons with platform hints */
+.bento-card .text-gray-600:not([class*="text-green"]):not([class*="text-red"]):not([class*="text-yellow"]) {
+  color: #64748B !important;
+}
+
+.dark .bento-card .text-gray-400:not([class*="text-green"]):not([class*="text-red"]):not([class*="text-yellow"]) {
+  color: #94A3B8 !important;
+}
+
+/* Hash display platform colors - target specific hash spans */
+.bento-card .text-gray-700.dark\\:text-gray-300:nth-of-type(1) {
+  color: #BE185D !important;
+}
+
+.dark .bento-card .text-gray-700.dark\\:text-gray-300:nth-of-type(1) {
+  color: #F472B6 !important;
+}
+
+.bento-card .text-gray-700.dark\\:text-gray-300:nth-of-type(2) {
+  color: #1E40AF !important;
+}
+
+.dark .bento-card .text-gray-700.dark\\:text-gray-300:nth-of-type(2) {
+  color: #60A5FA !important;
+}
+
+/* More specific hash targeting */
+.bento-card .text-sm.font-mono .text-gray-700:first-child {
+  color: #BE185D !important;
+}
+
+.dark .bento-card .text-sm.font-mono .text-gray-300:first-child {
+  color: #F472B6 !important;
+}
+
+.bento-card .text-sm.font-mono .text-gray-700:last-child {
+  color: #1E40AF !important;
+}
+
+.dark .bento-card .text-sm.font-mono .text-gray-300:last-child {
+  color: #60A5FA !important;
+}
+
+/* Shield icon for Hash Check - neutral but harmonious */
+.bento-card .text-gray-600[class*="h-3"] {
+  color: #6366F1 !important;
+}
+
+.dark .bento-card .text-gray-400[class*="h-3"] {
+  color: #A78BFA !important;
+}
+
+/* Fix missing Bento card header icons */
+.bento-card .bento-card-icon svg[class*="h-4"] {
+  opacity: 1 !important;
+}
+
+/* Recent Security Releases - Timeline icon should match Timeline badge */
+.bento-timeline-gradient .bento-card-icon {
+  background-color: #DCFCE7 !important;
+}
+
+.dark .bento-timeline-gradient .bento-card-icon {
+  background-color: rgba(20, 83, 45, 0.3) !important;
+}
+
+.bento-timeline-gradient .bento-card-icon svg {
+  color: #16A34A !important;
+}
+
+.dark .bento-timeline-gradient .bento-card-icon svg {
+  color: #4ADE80 !important;
+}
+
+/* Cloudflare Cache - Statistics icon harmonious color */
+.bento-statistics .bento-card-icon {
+  background-color: #EBF4FF !important;
+}
+
+.dark .bento-statistics .bento-card-icon {
+  background-color: rgba(30, 41, 59, 0.3) !important;
+}
+
+.bento-statistics .bento-card-icon svg {
+  color: #3B82F6 !important;
+}
+
+.dark .bento-statistics .bento-card-icon svg {
+  color: #60A5FA !important;
+}
+
+/* Data feed clock icons - platform specific in individual cards */
+.bento-feed-macos .text-blue-600[class*="ClockIcon"] {
+  color: #BE185D !important;
+}
+
+.dark .bento-feed-macos .text-purple-600[class*="ClockIcon"] {
+  color: #F472B6 !important;
+}
+
+.bento-feed-ios .text-purple-600[class*="ClockIcon"] {
+  color: #1E40AF !important;
+}
+
+.dark .bento-feed-ios .text-purple-600[class*="ClockIcon"] {
+  color: #60A5FA !important;
+}
+
+/* Reduce excessive padding in footer text elements */
+.bento-card .text-xs.text-gray-500 {
+  padding: 0 !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0 !important;
+}
+
+/* Specific fixes for Recent Security Releases and Cloudflare Cache footers */
+.bento-timeline-gradient .text-xs.text-gray-500,
+.bento-statistics .text-xs.text-gray-500 {
+  padding: 0 !important;
+  margin: 0.25rem 0 0 0 !important;
+}
+
+/* "Showing 10 most recent releases" text */
+.bento-timeline-gradient .flex.items-center.justify-between {
+  margin-top: 0.5rem !important;
+  padding-top: 0 !important;
+  border-top: none !important;
+}
+
+/* "Updated 3h ago" text */
+.bento-statistics .text-xs.flex.items-center.gap-1 {
+  margin-top: 0.25rem !important;
+  padding-top: 0.25rem !important;
 }
 </style>
