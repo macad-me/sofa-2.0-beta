@@ -120,7 +120,7 @@
         :icon="ShieldIcon"
       >
         <template #badge>
-          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Beta</span>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-50 dark:bg-orange-950 text-orange-400 dark:text-orange-300">Beta</span>
         </template>
         <div class="grid grid-cols-1 gap-3 flex-grow">
           <a v-if="bulletinData?.beta_releases?.macos" :href="`${baseUrl}/macos/tahoe`" class="block">
@@ -130,10 +130,10 @@
                   <component :is="MonitorIcon" class="h-3.5 w-3.5 text-emerald-600" />
                   <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">macOS {{ bulletinData.beta_releases.macos.version }}</span>
                 </div>
-                <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">
+                <div class="text-lg font-bold text-emerald-700 cloudflare-metric">
                   Build {{ bulletinData.beta_releases.macos.build }}
                 </div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">
+                <div class="text-xs small-text">
                   Released {{ formatDate(bulletinData.beta_releases.macos.released) }}
                 </div>
               </div>
@@ -146,10 +146,10 @@
                   <component :is="SmartphoneIcon" class="h-3.5 w-3.5 text-emerald-600" />
                   <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">iOS {{ bulletinData.beta_releases.ios.version }}</span>
                 </div>
-                <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">
+                <div class="text-lg font-bold text-emerald-700 cloudflare-metric">
                   Build {{ bulletinData.beta_releases.ios.build }}
                 </div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">
+                <div class="text-xs small-text">
                   Released {{ formatDate(bulletinData.beta_releases.ios.released) }}
                 </div>
               </div>
@@ -167,7 +167,7 @@
         :style="{ order: bentoDisplayOrder['macos'] }"
       >
         <template #badge>
-          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md macos-badge">Latest</span>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Latest</span>
         </template>
         <div class="grid grid-cols-1 gap-3 flex-grow">
           <a 
@@ -179,10 +179,10 @@
             <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-macos-300 dark:hover:border-macos-600 transition-all duration-150 macos-version-card">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
-                  <span class="text-xs text-gray-500 dark:text-gray-400">{{ version.releaseDate }}</span>
+                  <span class="text-xs small-text">{{ version.releaseDate }}</span>
                   <div class="flex items-center gap-1">
-                    <component :is="ShieldIcon" class="h-3 w-3" :class="version.cves > 0 ? 'text-orange-500' : 'text-gray-400'" />
-                    <span class="text-xs text-gray-600 dark:text-gray-400">
+                    <component :is="ShieldIcon" class="h-3 w-3" :class="version.cves > 0 ? 'text-orange-400 dark:text-orange-300' : 'text-gray-400'" />
+                    <span class="text-xs" :class="version.cves > 0 ? 'cve-warning' : 'small-text'">
                       {{ version.cves === 0 ? 'No CVEs' : `${version.cves} CVEs fixed` }}
                     </span>
                   </div>
@@ -191,7 +191,7 @@
                   <div class="text-base font-bold text-gray-900 dark:text-gray-100">
                     macOS {{ version.version }}
                   </div>
-                  <div class="text-xs text-gray-600 dark:text-gray-400 mt-0.5">
+                  <div class="text-xs small-text mt-0.5">
                     Build {{ version.build }}
                   </div>
                 </div>
@@ -209,7 +209,7 @@
         :style="{ order: bentoDisplayOrder['ios-ipados'] }"
       >
         <template #badge>
-          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md ios-badge">Latest</span>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Latest</span>
         </template>
         <div class="grid grid-cols-1 gap-3 flex-grow">
           <a 
@@ -221,10 +221,10 @@
             <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-ios-300 dark:hover:border-ios-600 transition-all duration-150 ios-version-card">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
-                  <span class="text-xs text-gray-500 dark:text-gray-400">{{ version.releaseDate }}</span>
+                  <span class="text-xs small-text">{{ version.releaseDate }}</span>
                   <div class="flex items-center gap-1">
-                    <component :is="ShieldIcon" class="h-3 w-3" :class="version.cves > 0 ? 'text-orange-500' : 'text-gray-400'" />
-                    <span class="text-xs text-gray-600 dark:text-gray-400">
+                    <component :is="ShieldIcon" class="h-3 w-3" :class="version.cves > 0 ? 'text-orange-400 dark:text-orange-300' : 'text-gray-400'" />
+                    <span class="text-xs" :class="version.cves > 0 ? 'cve-warning' : 'small-text'">
                       {{ version.cves === 0 ? 'No CVEs' : `${version.cves} CVEs fixed` }}
                     </span>
                   </div>
@@ -233,7 +233,7 @@
                   <div class="text-base font-bold text-gray-900 dark:text-gray-100">
                     iOS {{ version.version }}
                   </div>
-                  <div class="text-xs text-gray-600 dark:text-gray-400 mt-0.5">
+                  <div class="text-xs small-text mt-0.5">
                     Build {{ version.build }}
                   </div>
                 </div>
@@ -258,10 +258,10 @@
                   <component :is="HeartIcon" class="h-3.5 w-3.5 text-red-500" />
                   <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">MAOS</span>
                 </div>
-                <div class="text-lg font-bold">
+                <div class="text-lg font-bold community-title">
                     Support SOFA creators
                 </div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">
+                <div class="text-xs small-text">
                   via GitHub Sponsors
                 </div>
               </div>
@@ -274,10 +274,10 @@
                   <component :is="DollarSignIcon" class="h-3.5 w-3.5 text-green-500" />
                   <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">MacAdmins.org</span>
                 </div>
-                <div class="text-lg font-bold">
+                <div class="text-lg font-bold community-title">
                   MacAdmins Foundation
                 </div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">
+                <div class="text-xs small-text">
                   via direct donation
                 </div>
               </div>
@@ -301,9 +301,9 @@
             <div class="group/btn p-4 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
               <div class="space-y-2">
                 <div class="flex items-center justify-between">
-                  <span class="text-xs text-gray-500 dark:text-gray-400">{{ watchOSVersion.releaseDate }}</span>
+                  <span class="text-xs small-text">{{ watchOSVersion.releaseDate }}</span>
                   <div class="flex items-center gap-1">
-                    <component :is="ShieldIcon" class="h-3.5 w-3.5" :class="watchOSVersion.cves > 0 ? 'text-orange-500' : 'text-gray-400'" />
+                    <component :is="ShieldIcon" class="h-3.5 w-3.5" :class="watchOSVersion.cves > 0 ? 'text-orange-400' : 'text-gray-400'" />
                     <span class="text-xs text-gray-600 dark:text-gray-400">
                       {{ watchOSVersion.cves === 0 ? 'No CVEs' : `${watchOSVersion.cves} CVEs` }}
                     </span>
@@ -313,7 +313,7 @@
                   <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
                     {{ watchOSVersion.name }}
                   </div>
-                  <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  <div class="text-sm small-text mt-1">
                     Build {{ watchOSVersion.build }}
                   </div>
                 </div>
@@ -324,9 +324,9 @@
             <div class="group/btn p-4 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
               <div class="space-y-2">
                 <div class="flex items-center justify-between">
-                  <span class="text-xs text-gray-500 dark:text-gray-400">{{ tvOSVersion.releaseDate }}</span>
+                  <span class="text-xs small-text">{{ tvOSVersion.releaseDate }}</span>
                   <div class="flex items-center gap-1">
-                    <component :is="ShieldIcon" class="h-3.5 w-3.5" :class="tvOSVersion.cves > 0 ? 'text-orange-500' : 'text-gray-400'" />
+                    <component :is="ShieldIcon" class="h-3.5 w-3.5" :class="tvOSVersion.cves > 0 ? 'text-orange-400' : 'text-gray-400'" />
                     <span class="text-xs text-gray-600 dark:text-gray-400">
                       {{ tvOSVersion.cves === 0 ? 'No CVEs' : `${tvOSVersion.cves} CVEs` }}
                     </span>
@@ -336,7 +336,7 @@
                   <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
                     {{ tvOSVersion.name }}
                   </div>
-                  <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  <div class="text-sm small-text mt-1">
                     Build {{ tvOSVersion.build }}
                   </div>
                 </div>
@@ -347,9 +347,9 @@
             <div class="group/btn p-4 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-150">
               <div class="space-y-2">
                 <div class="flex items-center justify-between">
-                  <span class="text-xs text-gray-500 dark:text-gray-400">{{ visionOSVersion.releaseDate }}</span>
+                  <span class="text-xs small-text">{{ visionOSVersion.releaseDate }}</span>
                   <div class="flex items-center gap-1">
-                    <component :is="ShieldIcon" class="h-3.5 w-3.5" :class="visionOSVersion.cves > 0 ? 'text-orange-500' : 'text-gray-400'" />
+                    <component :is="ShieldIcon" class="h-3.5 w-3.5" :class="visionOSVersion.cves > 0 ? 'text-orange-400' : 'text-gray-400'" />
                     <span class="text-xs text-gray-600 dark:text-gray-400">
                       {{ visionOSVersion.cves === 0 ? 'No CVEs' : `${visionOSVersion.cves} CVEs` }}
                     </span>
@@ -359,7 +359,7 @@
                   <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
                     {{ visionOSVersion.name }}
                   </div>
-                  <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  <div class="text-sm small-text mt-1">
                     Build {{ visionOSVersion.build }}
                   </div>
                 </div>
@@ -385,7 +385,7 @@
             <div class="group/btn p-4 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-150">
               <div class="space-y-2">
                 <div class="flex items-center justify-between">
-                  <span class="text-xs text-gray-500 dark:text-gray-400">{{ safariVersion.releaseDate }}</span>
+                  <span class="text-xs small-text">{{ safariVersion.releaseDate }}</span>
                   <div class="flex items-center gap-1">
                     <component :is="ShieldIcon" class="h-3.5 w-3.5 text-gray-400" />
                     <span class="text-xs text-gray-600 dark:text-gray-400">
@@ -397,7 +397,7 @@
                   <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
                     {{ safariVersion.name }}
                   </div>
-                  <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  <div class="text-sm small-text mt-1">
                     Version {{ safariVersion.version }}
                   </div>
                 </div>
@@ -417,7 +417,7 @@
         :style="{ order: bentoDisplayOrder['other-platforms-combined'] }"
       >
         <template #badge>
-          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">Latest</span>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Latest</span>
         </template>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 flex-grow">
@@ -427,15 +427,15 @@
               <div class="flex items-center justify-between">
                 <span class="text-xs text-gray-500 dark:text-gray-400">{{ safariVersion.releaseDate }}</span>
                 <div class="flex items-center gap-1">
-                  <component :is="ShieldIcon" class="h-3 w-3" :class="safariVersion.cves > 0 ? 'text-orange-500' : 'text-gray-400'" />
-                  <span class="text-xs" :class="safariVersion.cves > 0 ? 'text-orange-600 dark:text-orange-400' : 'text-gray-600 dark:text-gray-400'">{{ safariVersion.cves > 0 ? `${safariVersion.cves} CVEs` : 'No CVEs' }}</span>
+                  <component :is="ShieldIcon" class="h-3 w-3" :class="safariVersion.cves > 0 ? 'text-orange-400' : 'text-gray-400'" />
+                  <span class="text-xs" :class="safariVersion.cves > 0 ? 'cve-warning' : 'small-text'">{{ safariVersion.cves > 0 ? `${safariVersion.cves} CVEs` : 'No CVEs' }}</span>
                 </div>
               </div>
               <div>
                 <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
                   Safari {{ safariVersion.version }}
                 </div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">
+                <div class="text-xs small-text">
                   Build {{ safariVersion.build }}
                 </div>
               </div>
@@ -448,15 +448,15 @@
               <div class="flex items-center justify-between">
                 <span class="text-xs text-gray-500 dark:text-gray-400">{{ tvOSVersion.releaseDate }}</span>
                 <div class="flex items-center gap-1">
-                  <component :is="ShieldIcon" class="h-3 w-3" :class="tvOSVersion.cves > 0 ? 'text-orange-500' : 'text-gray-400'" />
-                  <span class="text-xs" :class="tvOSVersion.cves > 0 ? 'text-orange-600 dark:text-orange-400' : 'text-gray-600 dark:text-gray-400'">{{ tvOSVersion.cves > 0 ? `${tvOSVersion.cves} CVEs` : 'No CVEs' }}</span>
+                  <component :is="ShieldIcon" class="h-3 w-3" :class="tvOSVersion.cves > 0 ? 'text-orange-400' : 'text-gray-400'" />
+                  <span class="text-xs" :class="tvOSVersion.cves > 0 ? 'cve-warning' : 'small-text'">{{ tvOSVersion.cves > 0 ? `${tvOSVersion.cves} CVEs` : 'No CVEs' }}</span>
                 </div>
               </div>
               <div>
                 <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
                   tvOS {{ tvOSVersion.version }}
                 </div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">
+                <div class="text-xs small-text">
                   Build {{ tvOSVersion.build }}
                 </div>
               </div>
@@ -469,15 +469,15 @@
               <div class="flex items-center justify-between">
                 <span class="text-xs text-gray-500 dark:text-gray-400">{{ visionOSVersion.releaseDate }}</span>
                 <div class="flex items-center gap-1">
-                  <component :is="ShieldIcon" class="h-3 w-3" :class="visionOSVersion.cves > 0 ? 'text-orange-500' : 'text-gray-400'" />
-                  <span class="text-xs" :class="visionOSVersion.cves > 0 ? 'text-orange-600 dark:text-orange-400' : 'text-gray-600 dark:text-gray-400'">{{ visionOSVersion.cves > 0 ? `${visionOSVersion.cves} CVEs` : 'No CVEs' }}</span>
+                  <component :is="ShieldIcon" class="h-3 w-3" :class="visionOSVersion.cves > 0 ? 'text-orange-400' : 'text-gray-400'" />
+                  <span class="text-xs" :class="visionOSVersion.cves > 0 ? 'cve-warning' : 'small-text'">{{ visionOSVersion.cves > 0 ? `${visionOSVersion.cves} CVEs` : 'No CVEs' }}</span>
                 </div>
               </div>
               <div>
                 <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
                   visionOS {{ visionOSVersion.version }}
                 </div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">
+                <div class="text-xs small-text">
                   Build {{ visionOSVersion.build }}
                 </div>
               </div>
@@ -490,15 +490,15 @@
               <div class="flex items-center justify-between">
                 <span class="text-xs text-gray-500 dark:text-gray-400">{{ watchOSVersion.releaseDate }}</span>
                 <div class="flex items-center gap-1">
-                  <component :is="ShieldIcon" class="h-3 w-3" :class="watchOSVersion.cves > 0 ? 'text-orange-500' : 'text-gray-400'" />
-                  <span class="text-xs" :class="watchOSVersion.cves > 0 ? 'text-orange-600 dark:text-orange-400' : 'text-gray-600 dark:text-gray-400'">{{ watchOSVersion.cves > 0 ? `${watchOSVersion.cves} CVEs` : 'No CVEs' }}</span>
+                  <component :is="ShieldIcon" class="h-3 w-3" :class="watchOSVersion.cves > 0 ? 'text-orange-400' : 'text-gray-400'" />
+                  <span class="text-xs" :class="watchOSVersion.cves > 0 ? 'text-orange-400 dark:text-orange-300' : 'text-gray-600 dark:text-gray-400'">{{ watchOSVersion.cves > 0 ? `${watchOSVersion.cves} CVEs` : 'No CVEs' }}</span>
                 </div>
               </div>
               <div>
                 <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
                   watchOS {{ watchOSVersion.version }}
                 </div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">
+                <div class="text-xs small-text">
                   Build {{ watchOSVersion.build }}
                 </div>
               </div>
@@ -525,7 +525,7 @@
                 <div class="text-lg font-bold text-indigo-700 dark:text-indigo-300">
                   macadmins/sofa
                 </div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">
+                <div class="text-xs small-text">
                   {{ starCount || '264' }} stars • Open source
                 </div>
               </div>
@@ -541,7 +541,7 @@
                 <div class="text-lg font-bold text-indigo-700 dark:text-indigo-300">
                   #sofa
                 </div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">
+                <div class="text-xs small-text">
                   Join the conversation
                 </div>
               </div>
@@ -559,7 +559,7 @@
         :style="{ order: bentoDisplayOrder['macos-data-feed'] }"
       >
         <template #badge>
-          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md macos-feed-badge">Live</span>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Live</span>
         </template>
         <div class="space-y-3 flex-grow">
           <div class="grid grid-cols-2 gap-3">
@@ -571,7 +571,7 @@
               <div class="text-lg font-bold text-blue-700 dark:text-blue-300">
                 {{ macosTime.local.time }}
               </div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">
+              <div class="text-xs small-text">
                 Local • {{ macosTime.local.date }}
               </div>
             </div>
@@ -583,7 +583,7 @@
               <div class="text-sm font-bold text-blue-700 dark:text-blue-300">
                 {{ macosTime.utc.full }}
               </div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">
+              <div class="text-xs small-text">
                 Coordinated Universal Time
               </div>
             </div>
@@ -626,7 +626,7 @@
         :style="{ order: bentoDisplayOrder['ios-data-feed'] }"
       >
         <template #badge>
-          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md ios-feed-badge">Live</span>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Live</span>
         </template>
         <div class="space-y-3 flex-grow">
           <div class="grid grid-cols-2 gap-3">
@@ -638,7 +638,7 @@
               <div class="text-lg font-bold text-purple-700 dark:text-purple-300">
                 {{ iosTime.local.time }}
               </div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">
+              <div class="text-xs small-text">
                 Local • {{ iosTime.local.date }}
               </div>
             </div>
@@ -650,7 +650,7 @@
               <div class="text-sm font-bold text-purple-700 dark:text-purple-300">
                 {{ iosTime.utc.full }}
               </div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">
+              <div class="text-xs small-text">
                 Coordinated Universal Time
               </div>
             </div>
@@ -695,7 +695,7 @@
         <template #badge>
           <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md"
                 :class="{
-                  'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200': apiStatus.color === 'green',
+                  'bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200': apiStatus.color === 'green',
                   'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200': apiStatus.color === 'yellow',
                   'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200': apiStatus.color === 'red',
                   'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400': apiStatus.color === 'gray'
@@ -711,19 +711,23 @@
                            'text-red-600': macOSFeedStatus.color === 'red',
                            'text-gray-600': macOSFeedStatus.color === 'gray'
                          }" />
-              <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">macOS Feed</span>
+              <span class="font-semibold small-text text-sm">macOS Feed</span>
             </div>
             <div class="text-lg font-bold flex items-center gap-1"
                  :class="{
-                   'text-green-700 dark:text-green-300': macOSFeedStatus.color === 'green',
-                   'text-yellow-700 dark:text-yellow-300': macOSFeedStatus.color === 'yellow',
-                   'text-red-700 dark:text-red-300': macOSFeedStatus.color === 'red',
-                   'text-gray-700 dark:text-gray-300': macOSFeedStatus.color === 'gray'
+                   'status-green': macOSFeedStatus.color === 'green',
+                   'status-orange': macOSFeedStatus.color === 'yellow',
+                   'status-red': macOSFeedStatus.color === 'red',
+                   'status-gray': macOSFeedStatus.color === 'gray'
                  }">
               <span>{{ macOSFeedStatus.status }}</span>
-              <span class="text-xs">{{ macOSFeedStatus.indicator }}</span>
+              <span class="text-xs" :class="{
+                'status-green': macOSFeedStatus.color === 'green',
+                'status-orange': macOSFeedStatus.color === 'yellow', 
+                'status-red': macOSFeedStatus.color === 'red'
+              }">{{ macOSFeedStatus.indicator }}</span>
             </div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">
+            <div class="text-xs small-text">
               {{ macosTime.local.time }}
             </div>
           </div>
@@ -736,35 +740,39 @@
                            'text-red-600': iOSFeedStatus.color === 'red',
                            'text-gray-600': iOSFeedStatus.color === 'gray'
                          }" />
-              <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">iOS Feed</span>
+              <span class="font-semibold small-text text-sm">iOS Feed</span>
             </div>
             <div class="text-lg font-bold flex items-center gap-1"
                  :class="{
-                   'text-green-700 dark:text-green-300': iOSFeedStatus.color === 'green',
-                   'text-yellow-700 dark:text-yellow-300': iOSFeedStatus.color === 'yellow',
-                   'text-red-700 dark:text-red-300': iOSFeedStatus.color === 'red',
-                   'text-gray-700 dark:text-gray-300': iOSFeedStatus.color === 'gray'
+                   'status-green': iOSFeedStatus.color === 'green',
+                   'status-orange': iOSFeedStatus.color === 'yellow',
+                   'status-red': iOSFeedStatus.color === 'red',
+                   'status-gray': iOSFeedStatus.color === 'gray'
                  }">
               <span>{{ iOSFeedStatus.status }}</span>
-              <span class="text-xs">{{ iOSFeedStatus.indicator }}</span>
+              <span class="text-xs" :class="{
+                'status-green': iOSFeedStatus.color === 'green',
+                'status-orange': iOSFeedStatus.color === 'yellow',
+                'status-red': iOSFeedStatus.color === 'red'  
+              }">{{ iOSFeedStatus.indicator }}</span>
             </div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">
+            <div class="text-xs small-text">
               {{ iosTime.local.time }}
             </div>
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-1">
-              <component :is="ShieldIcon" class="h-3.5 w-3.5 text-gray-600" />
-              <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Hash Check</span>
+              <component :is="ShieldIcon" class="h-3.5 w-3.5 status-green" />
+              <span class="font-semibold small-text text-sm">Hash Check</span>
             </div>
-            <div class="text-sm font-mono text-gray-600 dark:text-gray-400">
+            <div class="text-sm font-mono">
               <div class="flex items-center gap-1">
-                <span class="text-xs">macOS:</span>
-                <span class="font-bold text-gray-700 dark:text-gray-300">{{ macosHashRef ? macosHashRef.substring(0, 8) : '--' }}</span>
+                <span class="text-xs small-text">macOS:</span>
+                <span class="font-bold macos-hash-color">{{ macosHashRef ? macosHashRef.substring(0, 8) : '--' }}</span>
               </div>
               <div class="flex items-center gap-1">
-                <span class="text-xs">iOS:</span>
-                <span class="font-bold text-gray-700 dark:text-gray-300">{{ iosHashRef ? iosHashRef.substring(0, 8) : '--' }}</span>
+                <span class="text-xs small-text">iOS:</span>
+                <span class="font-bold ios-hash-color">{{ iosHashRef ? iosHashRef.substring(0, 8) : '--' }}</span>
               </div>
             </div>
           </div>
@@ -779,16 +787,16 @@
                          }" />
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">API Status</span>
             </div>
-            <div class="text-lg font-bold"
+            <div class="text-lg font-bold api-status-text"
                  :class="{
-                   'text-green-700 dark:text-green-300': apiStatus.color === 'green',
-                   'text-yellow-700 dark:text-yellow-300': apiStatus.color === 'yellow',
-                   'text-red-700 dark:text-red-300': apiStatus.color === 'red',
-                   'text-gray-700 dark:text-gray-300': apiStatus.color === 'gray'
+                   'status-green': apiStatus.color === 'green',
+                   'status-orange': apiStatus.color === 'yellow',
+                   'status-red': apiStatus.color === 'red',
+                   'status-gray': apiStatus.color === 'gray'
                  }">
               {{ apiStatus.status }}
             </div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">
+            <div class="text-xs small-text">
               {{ apiStatus.message }}
             </div>
           </div>
@@ -814,7 +822,7 @@
       >
         <template #badge>
           <span v-if="metricsLoading" class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200">Loading</span>
-          <span v-else-if="metricsData && !metricsData.error" class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">Live</span>
+          <span v-else-if="metricsData && !metricsData.error" class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Live</span>
           <span v-else class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">Offline</span>
         </template>
         <div v-if="metricsData && !metricsData.error" class="grid grid-cols-2 gap-3 flex-grow">
@@ -823,34 +831,34 @@
               <component :is="GlobeIcon" class="h-3.5 w-3.5 text-emerald-600" />
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Total Requests</span>
             </div>
-            <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">{{ metricsData?.volume?.metrics?.totalRequests?.formatted || metricsData?.metrics?.totalRequests?.formatted || '--' }}</div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">{{ metricsData?.periods?.volume?.days || metricsData?.period?.days || '--' }} day volume</div>
+            <div class="text-lg font-bold text-emerald-700 cloudflare-metric">{{ metricsData?.volume?.metrics?.totalRequests?.formatted || metricsData?.metrics?.totalRequests?.formatted || '--' }}</div>
+            <div class="text-xs small-text">{{ metricsData?.periods?.volume?.days || metricsData?.period?.days || '--' }} day volume</div>
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-1">
               <component :is="UsersIcon" class="h-3.5 w-3.5 text-emerald-600" />
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Cache Ratio</span>
             </div>
-            <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">{{ metricsData?.volume?.metrics?.cacheRatio?.formatted || metricsData?.metrics?.cacheRatio?.formatted || '--' }}</div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">Efficiency metric</div>
+            <div class="text-lg font-bold text-emerald-700 cloudflare-metric">{{ metricsData?.volume?.metrics?.cacheRatio?.formatted || metricsData?.metrics?.cacheRatio?.formatted || '--' }}</div>
+            <div class="text-xs small-text">Efficiency metric</div>
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-1">
               <component :is="ServerIcon" class="h-3.5 w-3.5 text-emerald-600" />
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Bandwidth</span>
             </div>
-            <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">{{ metricsData?.volume?.metrics?.bandwidth?.formatted || metricsData?.metrics?.bandwidth?.formatted || '--' }}</div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">{{ metricsData?.periods?.volume?.days || metricsData?.period?.days || '--' }} day total</div>
+            <div class="text-lg font-bold text-emerald-700 cloudflare-metric">{{ metricsData?.volume?.metrics?.bandwidth?.formatted || metricsData?.metrics?.bandwidth?.formatted || '--' }}</div>
+            <div class="text-xs small-text">{{ metricsData?.periods?.volume?.days || metricsData?.period?.days || '--' }} day total</div>
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-1">
               <component :is="TrendingUpIcon" class="h-3.5 w-3.5 text-emerald-600" />
               <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">Daily Average</span>
             </div>
-            <div class="text-lg font-bold text-emerald-700 dark:text-emerald-300">
+            <div class="text-lg font-bold text-emerald-700 cloudflare-metric">
               {{ metricsData?.volume?.calculated?.dailyAverage?.formatted?.requests || metricsData?.calculated?.dailyAverage?.formatted?.requests || '--' }}
             </div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">
+            <div class="text-xs small-text">
               Avg requests/day
             </div>
           </div>
@@ -913,7 +921,7 @@
         :style="{ order: bentoDisplayOrder['v2-data-feeds'] }"
       >
         <template #badge>
-          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">Direct Access</span>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Direct Access</span>
         </template>
         <div class="space-y-2 flex-grow">
           <div class="grid grid-cols-1 gap-1.5">
@@ -992,8 +1000,8 @@
               <div class="flex items-center justify-between">
                 <span class="text-xs text-gray-500 dark:text-gray-400">{{ beta.released }}</span>
                 <div class="flex items-center gap-1">
-                  <component :is="SparklesIcon" class="h-3 w-3 text-orange-500" />
-                  <span class="text-xs text-orange-600 dark:text-orange-400">
+                  <component :is="SparklesIcon" class="h-3 w-3 text-orange-400" />
+                  <span class="text-xs text-orange-400 dark:text-orange-300">
                     Beta
                   </span>
                 </div>
@@ -1002,7 +1010,7 @@
                 <div class="text-base font-bold text-gray-900 dark:text-gray-100">
                   {{ beta.platform }} {{ beta.version }}
                 </div>
-                <div class="text-xs text-gray-600 dark:text-gray-400 mt-0.5">
+                <div class="text-xs small-text mt-0.5">
                   Build {{ beta.build }}
                 </div>
               </div>
@@ -1029,7 +1037,7 @@
         :style="{ order: bentoDisplayOrder['timeline'] }"
       >
         <template #badge>
-          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">Timeline</span>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 timeline-badge">Timeline</span>
         </template>
         
         <div 
@@ -1045,14 +1053,14 @@
                  style="width: 200px;">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
-                  <span class="text-xs text-gray-500 dark:text-gray-400">{{ release.formattedDate }}</span>
+                  <span class="text-xs small-text">{{ release.formattedDate }}</span>
                   <component :is="CalendarDaysIcon" class="h-3 w-3 text-green-500" />
                 </div>
                 <div>
                   <div class="text-sm font-bold text-gray-900 dark:text-gray-100 truncate" :title="release.name">
                     {{ release.name }}
                   </div>
-                  <div class="text-xs text-gray-600 dark:text-gray-400 mt-0.5">
+                  <div class="text-xs small-text mt-0.5">
                     Version {{ release.version }}
                   </div>
                   <a v-if="release.url" :href="release.url" target="_blank" rel="noopener noreferrer" 
@@ -1103,7 +1111,7 @@
         :style="{ order: bentoDisplayOrder['v1-data-feeds'] || 12 }"
       >
         <template #badge>
-          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">Direct Access</span>
+          <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200">Direct Access</span>
         </template>
         <div class="space-y-2 flex-grow">
           <div class="grid grid-cols-1 gap-1.5">
@@ -1156,7 +1164,7 @@
                 <div class="text-lg font-bold text-indigo-700 dark:text-indigo-300">
                   Donate
                 </div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">
+                <div class="text-xs small-text">
                   Open Source
                 </div>
               </div>
@@ -1172,7 +1180,7 @@
                 <div class="text-lg font-bold text-indigo-700 dark:text-indigo-300">
                   Support
                 </div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">
+                <div class="text-xs small-text">
                   Foundation
                 </div>
               </div>
@@ -1911,11 +1919,11 @@ const getFeedFreshness = (timestamp) => {
   const diffMinutes = Math.floor((now - feedDate) / 60000)
   
   if (diffMinutes < 60) {
-    return { status: 'Live', color: 'green', indicator: '🟢' }
+    return { status: 'Live', color: 'green', indicator: '⬤' }
   } else if (diffMinutes < 1440) { // 24 hours
-    return { status: 'Recent', color: 'yellow', indicator: '🟡' }
+    return { status: 'Recent', color: 'yellow', indicator: '⬤' }
   } else {
-    return { status: 'Stale', color: 'red', indicator: '🔴' }
+    return { status: 'Stale', color: 'red', indicator: '⬤' }
   }
 }
 
@@ -2512,7 +2520,7 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
 }
 
-/* Light mode: Full colored backgrounds with white text */
+/* Light mode: Full colored backgrounds with white text - 90% transparency */
 .platform-btn[data-platform="macos"] {
   background: linear-gradient(135deg, rgba(225, 29, 72, 0.9) 0%, rgba(236, 72, 153, 0.9) 100%) !important;
   color: white !important;
@@ -2565,6 +2573,19 @@ const copyToClipboard = async (text: string, itemId?: string) => {
 
 .platform-btn .platform-icon-svg {
   color: white !important;
+}
+
+/* Platform button opacity - only for navigation buttons */
+.platform-btn {
+  opacity: 0.8;
+}
+
+.platform-btn:hover {
+  opacity: 0.9 !important;
+}
+
+.platform-btn:active {
+  opacity: 0.95 !important;
 }
 
 /* Dark mode: Full colored backgrounds with white text */
@@ -2662,6 +2683,8 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
 .platform-btn .platform-icon-svg[data-platform="macos"] {
@@ -2677,6 +2700,8 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
 .platform-btn .platform-icon-svg[data-platform="ios"] {
@@ -2689,6 +2714,8 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
 .platform-btn:hover .platform-icon-svg[data-platform="ios"] {
@@ -2700,6 +2727,8 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
 /* tvOS */
@@ -2713,6 +2742,8 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
 .platform-btn:hover .platform-icon-svg[data-platform="tvos"] {
@@ -2725,6 +2756,8 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
 /* watchOS */
@@ -2738,6 +2771,8 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
 .platform-btn:hover .platform-icon-svg[data-platform="watchos"] {
@@ -2750,6 +2785,8 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
 /* visionOS */
@@ -2763,6 +2800,8 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
 .platform-btn:hover .platform-icon-svg[data-platform="visionos"] {
@@ -2775,6 +2814,8 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
 /* Safari */
@@ -2788,6 +2829,8 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
 .platform-btn:hover .platform-icon-svg[data-platform="safari"] {
@@ -2800,286 +2843,602 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
-/* Bento Card Badge Colors */
-.macos-badge {
-  background-color: #FCE7F3 !important;
-  color: #BE185D !important;
+/* Universal Green Badge System - All Live/Latest/Online/Timeline badges */
+.macos-badge,
+.ios-badge,
+.timeline-badge {
+  background-color: #DCFCE7 !important;
+  color: #16A34A !important;
 }
 
-.dark .macos-badge {
-  background-color: #831843 !important;
-  color: #F472B6 !important;
-}
-
-.ios-badge {
-  background-color: #BFDBFE !important;
-  color: #1E40AF !important;
-}
-
-.dark .ios-badge {
-  background-color: #1E293B !important;
-  color: #60A5FA !important;
+.dark .macos-badge,
+.dark .ios-badge,
+.dark .timeline-badge {
+  background-color: rgba(16, 185, 129, 0.3) !important;
+  color: #10B981 !important;
 }
 
 /* Other Platform Update Cards - Individual Platform Colors */
-.other-platform-safari {
-  position: relative;
-}
+/* Old individual other-platform cards - now covered by universal system */
 
-.other-platform-safari:hover {
-  border-color: #06B6D4 !important;
-}
+/* Removed Universal Platform Card System - was causing conflicts with functional status colors */
+/* macOS Platform Cards */
+/* Specific styling only where needed - no universal overrides */
 
-.dark .other-platform-safari:hover {
-  border-color: #0284C7 !important;
-}
-
-.other-platform-safari .text-lg.font-bold {
-  background: linear-gradient(135deg, #0E7490 0%, #06B6D4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
-
-.other-platform-tvos:hover {
-  border-color: #FB923C !important;
-}
-
-.dark .other-platform-tvos:hover {
-  border-color: #EA580C !important;
-}
-
-.other-platform-tvos .text-lg.font-bold {
-  background: linear-gradient(135deg, #EA580C 0%, #FB923C 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
-
-.other-platform-visionos:hover {
-  border-color: #C084FC !important;
-}
-
-.dark .other-platform-visionos:hover {
-  border-color: #9333EA !important;
-}
-
-.other-platform-visionos .text-lg.font-bold {
-  background: linear-gradient(135deg, #7C2D92 0%, #C084FC 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
-
-.other-platform-watchos:hover {
-  border-color: #4ADE80 !important;
-}
-
-.dark .other-platform-watchos:hover {
-  border-color: #16A34A !important;
-}
-
-.other-platform-watchos .text-lg.font-bold {
-  background: linear-gradient(135deg, #166534 0%, #4ADE80 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Main Platform Version Cards */
-.macos-version-card:hover {
-  border-color: #F472B6 !important;
-}
-
-.dark .macos-version-card:hover {
+.dark [class*="macos"]:hover, .dark .macos-version-card:hover {
   border-color: #BE185D !important;
 }
 
-.macos-version-card .text-base.font-bold {
+[class*="macos"] .text-base.font-bold, [class*="macos"] .text-sm.font-bold, [class*="macos"] .text-lg.font-bold {
   background: linear-gradient(135deg, #E11D48 0%, #F472B6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
+  font-size: 1rem !important;
 }
 
-.ios-version-card:hover {
+.dark [class*="macos"] .text-base.font-bold, .dark [class*="macos"] .text-sm.font-bold, .dark [class*="macos"] .text-lg.font-bold {
+  background: linear-gradient(135deg, #F472B6 0%, #E879F9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
+}
+
+/* iOS Platform Cards */
+[class*="ios"]:hover, .ios-version-card:hover {
   border-color: #60A5FA !important;
 }
 
-.dark .ios-version-card:hover {
+.dark [class*="ios"]:hover, .dark .ios-version-card:hover {
   border-color: #1D4ED8 !important;
 }
 
-.ios-version-card .text-base.font-bold {
+[class*="ios"] .text-base.font-bold, [class*="ios"] .text-sm.font-bold, [class*="ios"] .text-lg.font-bold {
   background: linear-gradient(135deg, #1E3A8A 0%, #60A5FA 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
-/* Timeline Release Cards - Platform-specific colors */
-.timeline-macos:hover { border-color: #F472B6 !important; }
-.dark .timeline-macos:hover { border-color: #BE185D !important; }
-.timeline-macos .text-sm.font-bold {
-  background: linear-gradient(135deg, #E11D48 0%, #F472B6 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; color: transparent;
+.dark [class*="ios"] .text-base.font-bold, .dark [class*="ios"] .text-sm.font-bold, .dark [class*="ios"] .text-lg.font-bold {
+  background: linear-gradient(135deg, #60A5FA 0%, #93C5FD 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
-.timeline-ios:hover { border-color: #60A5FA !important; }
-.dark .timeline-ios:hover { border-color: #1D4ED8 !important; }
-.timeline-ios .text-sm.font-bold {
-  background: linear-gradient(135deg, #1E3A8A 0%, #60A5FA 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; color: transparent;
+/* tvOS Platform Cards */
+[class*="tvos"]:hover {
+  border-color: #FB923C !important;
 }
 
-.timeline-tvos:hover { border-color: #FB923C !important; }
-.dark .timeline-tvos:hover { border-color: #EA580C !important; }
-.timeline-tvos .text-sm.font-bold {
+.dark [class*="tvos"]:hover {
+  border-color: #EA580C !important;
+}
+
+[class*="tvos"] .text-base.font-bold, [class*="tvos"] .text-sm.font-bold, [class*="tvos"] .text-lg.font-bold {
   background: linear-gradient(135deg, #EA580C 0%, #FB923C 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
-.timeline-watchos:hover { border-color: #4ADE80 !important; }
-.dark .timeline-watchos:hover { border-color: #16A34A !important; }
-.timeline-watchos .text-sm.font-bold {
+.dark [class*="tvos"] .text-base.font-bold, .dark [class*="tvos"] .text-sm.font-bold, .dark [class*="tvos"] .text-lg.font-bold {
+  background: linear-gradient(135deg, #FB923C 0%, #FCD34D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
+}
+
+/* watchOS Platform Cards */
+[class*="watchos"]:hover {
+  border-color: #4ADE80 !important;
+}
+
+.dark [class*="watchos"]:hover {
+  border-color: #16A34A !important;
+}
+
+[class*="watchos"] .text-base.font-bold, [class*="watchos"] .text-sm.font-bold, [class*="watchos"] .text-lg.font-bold {
   background: linear-gradient(135deg, #166534 0%, #4ADE80 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
-.timeline-visionos:hover { border-color: #C084FC !important; }
-.dark .timeline-visionos:hover { border-color: #9333EA !important; }
-.timeline-visionos .text-sm.font-bold {
+.dark [class*="watchos"] .text-base.font-bold, .dark [class*="watchos"] .text-sm.font-bold, .dark [class*="watchos"] .text-lg.font-bold {
+  background: linear-gradient(135deg, #4ADE80 0%, #86EFAC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
+}
+
+/* visionOS Platform Cards */
+[class*="visionos"]:hover {
+  border-color: #C084FC !important;
+}
+
+.dark [class*="visionos"]:hover {
+  border-color: #9333EA !important;
+}
+
+[class*="visionos"] .text-base.font-bold, [class*="visionos"] .text-sm.font-bold, [class*="visionos"] .text-lg.font-bold {
   background: linear-gradient(135deg, #7C2D92 0%, #C084FC 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
-.timeline-safari:hover { border-color: #06B6D4 !important; }
-.dark .timeline-safari:hover { border-color: #0284C7 !important; }
-.timeline-safari .text-sm.font-bold {
+.dark [class*="visionos"] .text-base.font-bold, .dark [class*="visionos"] .text-sm.font-bold, .dark [class*="visionos"] .text-lg.font-bold {
+  background: linear-gradient(135deg, #C084FC 0%, #DDD6FE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
+}
+
+/* Safari Platform Cards */
+[class*="safari"]:hover {
+  border-color: #06B6D4 !important;
+}
+
+.dark [class*="safari"]:hover {
+  border-color: #0284C7 !important;
+}
+
+[class*="safari"] .text-base.font-bold, [class*="safari"] .text-sm.font-bold, [class*="safari"] .text-lg.font-bold {
   background: linear-gradient(135deg, #0E7490 0%, #06B6D4 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
-/* Beta Release Cards - Platform-specific colors */
-.beta-macos:hover { border-color: #F472B6 !important; }
-.dark .beta-macos:hover { border-color: #BE185D !important; }
-.beta-macos .text-base.font-bold {
-  background: linear-gradient(135deg, #E11D48 0%, #F472B6 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; color: transparent;
+.dark [class*="safari"] .text-base.font-bold, .dark [class*="safari"] .text-sm.font-bold, .dark [class*="safari"] .text-lg.font-bold {
+  background: linear-gradient(135deg, #06B6D4 0%, #67E8F9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+  font-size: 1rem !important;
 }
 
-.beta-ios:hover { border-color: #60A5FA !important; }
-.dark .beta-ios:hover { border-color: #1D4ED8 !important; }
-.beta-ios .text-base.font-bold {
-  background: linear-gradient(135deg, #1E3A8A 0%, #60A5FA 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; color: transparent;
+/* CSS Custom Properties - Clean System */
+:root {
+  --cve-warning-color: #EA580C;
+  --cve-warning-color-dark: #FB923C;
+  --small-text-color: #6B7280;
+  --small-text-color-dark: #9CA3AF;
+  --status-green: #10B981;
+  --status-green-dark: rgb(110, 231, 183);
+  --status-orange: #EA580C;
+  --status-orange-dark: #FB923C;
+  --macos-color: #BE185D;
+  --macos-color-dark: #F472B6;
+  --ios-color: #1E40AF;
+  --ios-color-dark: #60A5FA;
 }
 
-.beta-tvos:hover { border-color: #FB923C !important; }
-.dark .beta-tvos:hover { border-color: #EA580C !important; }
-.beta-tvos .text-base.font-bold {
-  background: linear-gradient(135deg, #EA580C 0%, #FB923C 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; color: transparent;
+/* Clean Small Text System */
+.small-text {
+  color: var(--small-text-color) !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
 }
 
-.beta-watchos:hover { border-color: #4ADE80 !important; }
-.dark .beta-watchos:hover { border-color: #16A34A !important; }
-.beta-watchos .text-base.font-bold {
-  background: linear-gradient(135deg, #166534 0%, #4ADE80 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; color: transparent;
+.dark .small-text {
+  color: var(--small-text-color-dark) !important;
+  text-decoration: none !important;
 }
 
-.beta-visionos:hover { border-color: #C084FC !important; }
-.dark .beta-visionos:hover { border-color: #9333EA !important; }
-.beta-visionos .text-base.font-bold {
-  background: linear-gradient(135deg, #7C2D92 0%, #C084FC 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; color: transparent;
+/* CVE Warning System */
+.cve-warning {
+  color: var(--cve-warning-color) !important;
+  text-decoration: none !important;
 }
+
+.dark .cve-warning {
+  color: var(--cve-warning-color-dark) !important;
+  text-decoration: none !important;
+}
+
+/* Remove all underlines from Bento card text */
+.bento-card * {
+  text-decoration: none !important;
+}
+
+/* Force API Status to use traffic light colors, not platform colors */
+.api-status-text.text-green-600 {
+  color: var(--status-green) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+.dark .api-status-text.text-green-400 {
+  color: var(--status-green-dark) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+/* Clean Status Classes using CSS Custom Properties */
+.status-green {
+  color: var(--status-green) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+.dark .status-green {
+  color: var(--status-green-dark) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+.status-orange {
+  color: var(--status-orange) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+.dark .status-orange {
+  color: var(--status-orange-dark) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+/* Force status dot colors with maximum specificity */
+.bento-card span.text-xs.status-green,
+.bento-card .status-green {
+  color: #10B981 !important;
+}
+
+.dark .bento-card span.text-xs.status-green,
+.dark .bento-card .status-green {
+  color: rgb(110, 231, 183) !important;
+}
+
+.bento-card span.text-xs.status-orange,
+.bento-card .status-orange {
+  color: #EA580C !important;
+}
+
+.dark .bento-card span.text-xs.status-orange,
+.dark .bento-card .status-orange {
+  color: #FB923C !important;
+}
+
+.bento-card span.text-xs.status-red,
+.bento-card .status-red {
+  color: #DC2626 !important;
+}
+
+.dark .bento-card span.text-xs.status-red,
+.dark .bento-card .status-red {
+  color: #FCA5A5 !important;
+}
+
+/* Force green badge text to use less neon colors */
+.bento-card .text-green-700 {
+  color: #10B981 !important;
+}
+
+.dark .bento-card .text-green-200 {
+  color: rgb(110, 231, 183) !important;
+}
+
+.bento-card .bg-green-100 {
+  background-color: #DCFCE7 !important;
+}
+
+.dark .bento-card .bg-green-900 {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+/* Cloudflare metrics text - use the same green as Live badge */
+.cloudflare-metric {
+  color: #10B981 !important;
+}
+
+.dark .cloudflare-metric {
+  color: rgb(110, 231, 183) !important;
+}
+
+/* Community Cards - Subtle unified gradient aligned with OS names */
+.community-github-card .text-lg.font-bold,
+.community-donate-card .text-lg.font-bold {
+  background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-size: 1rem !important;
+  line-height: 1.2;
+}
+
+.community-github-card:hover,
+.community-donate-card:hover {
+  border-color: #A78BFA !important;
+}
+
+.dark .community-github-card:hover,
+.dark .community-donate-card:hover {
+  border-color: #C4B5FD !important;
+}
+
+.status-red {
+  color: #DC2626 !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+.dark .status-red {
+  color: #FCA5A5 !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+.status-gray {
+  color: #6B7280 !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+.dark .status-gray {
+  color: #9CA3AF !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+/* Platform-specific hash colors - aggressive override */
+.macos-hash-color {
+  color: #BE185D !important;
+  font-weight: 500 !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+.dark .macos-hash-color {
+  color: #F472B6 !important;
+  font-weight: 500 !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+.ios-hash-color {
+  color: #1E40AF !important;
+  font-weight: 500 !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+.dark .ios-hash-color {
+  color: #60A5FA !important;
+  font-weight: 500 !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+/* Legacy gray text overrides - will be replaced by small-text class */
+.bento-card .text-xs,
+.bento-card .text-gray-400,
+.bento-card .text-gray-500,
+.bento-card .text-gray-600,
+.bento-card .text-gray-700 {
+  color: #6B7280 !important;
+  font-weight: 500 !important;
+}
+
+.dark .bento-card .text-xs,
+.dark .bento-card .text-gray-300,
+.dark .bento-card .text-gray-400,
+.dark .bento-card .text-gray-500 {
+  color: #9CA3AF !important;
+}
+
+.bento-card .text-sm:not(.font-bold) {
+  color: #4B5563 !important;
+  font-weight: 500 !important;
+}
+
+.dark .bento-card .text-sm:not(.font-bold) {
+  color: #D1D5DB !important;
+}
+
+/* Specific overrides for common conflicting classes */
+.bento-card .text-gray-500,
+.bento-card .text-gray-600 {
+  color: #6B7280 !important;
+}
+
+.dark .bento-card .text-gray-400,
+.dark .bento-card .text-gray-300 {
+  color: #9CA3AF !important;
+}
+
+/* Force functional status colors to override platform styling - Higher specificity */
+.bento-card div .text-orange-600,
+.bento-card span .text-orange-600,
+.bento-card .text-orange-600 {
+  color: #EA580C !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  text-decoration: none !important;
+}
+
+.dark .bento-card div .text-orange-300,
+.dark .bento-card span .text-orange-300,
+.dark .bento-card .text-orange-300,
+.dark .bento-card div .text-orange-400,
+.dark .bento-card span .text-orange-400,
+.dark .bento-card .text-orange-400 {
+  color: #FB923C !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  text-decoration: none !important;
+}
+
+/* Force traffic light colors to override platform colors - All variations */
+.bento-card .text-green-600,
+.bento-card .text-green-700,
+.bento-card .text-green-800 {
+  color: #16A34A !important;
+}
+
+.dark .bento-card .text-green-200,
+.dark .bento-card .text-green-300,
+.dark .bento-card .text-green-400 {
+  color: #4ADE80 !important;
+}
+
+.bento-card .text-orange-600,
+.bento-card .text-orange-700,
+.bento-card .text-orange-800 {
+  color: #EA580C !important;
+}
+
+.dark .bento-card .text-orange-200,
+.dark .bento-card .text-orange-300,
+.dark .bento-card .text-orange-400 {
+  color: #FB923C !important;
+}
+
+.bento-card .text-red-600,
+.bento-card .text-red-700,
+.bento-card .text-red-800 {
+  color: #DC2626 !important;
+}
+
+.dark .bento-card .text-red-200,
+.dark .bento-card .text-red-300,
+.dark .bento-card .text-red-400 {
+  color: #FCA5A5 !important;
+}
+
+/* Force green backgrounds to be consistent */
+.bento-card .bg-green-100 {
+  background-color: #DCFCE7 !important;
+}
+
+.dark .bento-card .bg-green-900 {
+  background-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Universal Green Badge System - Match Apple Beta Releases exact styling */
+.bg-green-100 {
+  background-color: #DCFCE7 !important;
+}
+
+.dark .bg-green-900 {
+  background-color: #0F172A !important;
+}
+
+.text-green-700 {
+  color: #15803D !important;
+}
+
+.dark .text-green-200 {
+  color: #4ADE80 !important;
+}
+
+/* Force ALL badge labels to use unified green - override all colors */
+.inline-flex.items-center[class*="bg-orange"],
+.inline-flex.items-center[class*="bg-blue"],  
+.inline-flex.items-center[class*="bg-yellow"],
+.inline-flex.items-center[class*="bg-purple"] {
+  background-color: #DCFCE7 !important;
+  color: #059669 !important;
+}
+
+.dark .inline-flex.items-center[class*="bg-orange"],
+.dark .inline-flex.items-center[class*="bg-blue"],
+.dark .inline-flex.items-center[class*="bg-yellow"], 
+.dark .inline-flex.items-center[class*="bg-purple"] {
+  background-color: rgba(34, 197, 94, 0.25) !important;
+  color: #34D399 !important;
+}
+
+/* Build text platform colors need to be applied in HTML or through more specific selectors
+   The :contains() selector doesn't exist in CSS - we need to target specific elements */
+
+/* Old individual timeline cards - now covered by universal system */
+
+/* Old individual beta cards - now covered by universal system */
 
 /* MacAdmins Community Cards - SOFA brand inspired styling */
-.community-github-card:hover {
-  border-color: #8B5CF6 !important;
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
-}
+/* Old community styling removed - now using unified subtle styling above */
 
-.dark .community-github-card:hover {
-  border-color: #A78BFA !important;
-  box-shadow: 0 4px 12px rgba(167, 139, 250, 0.25);
-}
-
-.community-github-card .text-lg.font-bold {
-  background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
-
-.community-donate-card:hover {
-  border-color: #EC4899 !important;
-  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.2);
-}
-
-.dark .community-donate-card:hover {
-  border-color: #F472B6 !important;
-  box-shadow: 0 4px 12px rgba(244, 114, 182, 0.25);
-}
-
-.community-donate-card .text-lg.font-bold {
-  background: linear-gradient(135deg, #EC4899 0%, #7C3AED 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Enhanced icon colors for community cards - SOFA theme */
+/* Keep heart icon natural on hover - no color change */
 .community-github-card:hover .text-red-500 {
-  color: #8B5CF6 !important;
+  color: #EF4444 !important;
 }
 
 .community-donate-card:hover .text-green-500 {
-  color: #EC4899 !important;
+  color: #DC2626 !important;
+  filter: drop-shadow(0 0 2px rgba(220, 38, 38, 0.5));
 }
 
-/* Data Feed Badges - Platform specific */
-.macos-feed-badge {
-  background-color: #FCE7F3 !important;
-  color: #BE185D !important;
-}
-
-.dark .macos-feed-badge {
-  background-color: #831843 !important;
-  color: #F472B6 !important;
-}
-
+/* Data Feed Badges - Present Green Theme */
+.macos-feed-badge,
 .ios-feed-badge {
-  background-color: #BFDBFE !important;
-  color: #1E40AF !important;
+  background-color: #DCFCE7 !important;
+  color: #15803D !important;
 }
 
+.dark .macos-feed-badge,
 .dark .ios-feed-badge {
-  background-color: #1E293B !important;
-  color: #60A5FA !important;
+  background-color: rgba(16, 185, 129, 0.3) !important;
+  color: #10B981 !important;
 }
 
 /* Data Feed Time and Hash Colors - Platform harmonized */
@@ -3099,12 +3458,13 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   color: #F472B6 !important;
 }
 
+/* iOS Data Feed - better contrast in dark mode */
 .bento-feed-ios .text-purple-700 {
   color: #1E40AF !important;
 }
 
 .dark .bento-feed-ios .text-purple-300 {
-  color: #60A5FA !important;
+  color: #93C5FD !important;
 }
 
 .bento-feed-ios .hover\\:text-blue-600:hover {
@@ -3112,7 +3472,7 @@ const copyToClipboard = async (text: string, itemId?: string) => {
 }
 
 .dark .bento-feed-ios .hover\\:text-blue-400:hover {
-  color: #60A5FA !important;
+  color: #93C5FD !important;
 }
 
 /* Small icons in data feed cards - Platform harmonized */
