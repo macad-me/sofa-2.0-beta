@@ -99,7 +99,7 @@
       <a v-for="platform in platforms" 
          :key="platform.name"
          :href="platform.link"
-         class="platform-btn group flex items-center justify-center gap-2.5 px-3.5 py-2.5 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-lg text-sm font-semibold transition-all duration-200 hover:shadow-sm min-w-0"
+         class="platform-btn group flex items-center justify-center gap-2.5 px-3.5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 hover:shadow-sm min-w-0"
          :data-platform="platform.color">
         <div class="platform-icon w-4 h-4 flex items-center justify-center flex-shrink-0" :data-platform="platform.color">
           <component :is="platform.icon" class="platform-icon-svg w-full h-full" :data-platform="platform.color" />
@@ -2502,32 +2502,127 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   }
 }
 
-/* Platform Button Gradient Borders */
+/* Platform Button Styling */
 .platform-btn {
   position: relative;
   overflow: hidden;
-  border-color: transparent !important;
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1.5px;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
 }
 
-.platform-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  padding: 2px;
-  background: var(--platform-gradient);
-  border-radius: 0.5rem;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
+/* Light mode: Full colored backgrounds with white text */
+.platform-btn[data-platform="macos"] {
+  background: linear-gradient(135deg, rgba(225, 29, 72, 0.9) 0%, rgba(236, 72, 153, 0.9) 100%) !important;
+  color: white !important;
+  border: none !important;
+  text-decoration: none !important;
 }
 
-.platform-btn:hover::before {
-  opacity: 0.8;
+.platform-btn[data-platform="ios"] {
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(59, 130, 246, 0.9) 100%) !important;
+  color: white !important;
+  border: none !important;
+  text-decoration: none !important;
 }
+
+.platform-btn[data-platform="tvos"] {
+  background: linear-gradient(135deg, rgba(234, 88, 12, 0.9) 0%, rgba(249, 115, 22, 0.9) 100%) !important;
+  color: white !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.platform-btn[data-platform="watchos"] {
+  background: linear-gradient(135deg, rgba(22, 101, 52, 0.9) 0%, rgba(34, 197, 94, 0.9) 100%) !important;
+  color: white !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.platform-btn[data-platform="visionos"] {
+  background: linear-gradient(135deg, rgba(124, 45, 146, 0.9) 0%, rgba(168, 85, 247, 0.9) 100%) !important;
+  color: white !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.platform-btn[data-platform="safari"] {
+  background: linear-gradient(135deg, rgba(14, 116, 144, 0.9) 0%, rgba(8, 145, 178, 0.9) 100%) !important;
+  color: white !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+/* Light mode: Override text and icon colors to white */
+.platform-btn .platform-text {
+  color: white !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+.platform-btn .platform-icon-svg {
+  color: white !important;
+}
+
+/* Dark mode: Full colored backgrounds with white text */
+.dark .platform-btn[data-platform="macos"] {
+  background: linear-gradient(135deg, rgba(225, 29, 72, 0.9) 0%, rgba(236, 72, 153, 0.9) 100%) !important;
+  color: white !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.dark .platform-btn[data-platform="ios"] {
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(59, 130, 246, 0.9) 100%) !important;
+  color: white !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.dark .platform-btn[data-platform="tvos"] {
+  background: linear-gradient(135deg, rgba(234, 88, 12, 0.9) 0%, rgba(249, 115, 22, 0.9) 100%) !important;
+  color: white !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.dark .platform-btn[data-platform="watchos"] {
+  background: linear-gradient(135deg, rgba(22, 101, 52, 0.9) 0%, rgba(34, 197, 94, 0.9) 100%) !important;
+  color: white !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.dark .platform-btn[data-platform="visionos"] {
+  background: linear-gradient(135deg, rgba(124, 45, 146, 0.9) 0%, rgba(168, 85, 247, 0.9) 100%) !important;
+  color: white !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.dark .platform-btn[data-platform="safari"] {
+  background: linear-gradient(135deg, rgba(14, 116, 144, 0.9) 0%, rgba(8, 145, 178, 0.9) 100%) !important;
+  color: white !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+/* Dark mode: Override text and icon colors to white */
+.dark .platform-btn .platform-text {
+  color: white !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+.dark .platform-btn .platform-icon-svg {
+  color: white !important;
+}
+
+/* Removed old gradient border pseudo-elements that were causing thin lines */
 
 /* Platform-specific gradients and underline colors */
 .platform-btn[data-platform="macos"] {
