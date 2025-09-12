@@ -259,7 +259,7 @@
                   <span class="font-semibold text-gray-900 dark:text-gray-100 text-sm">MAOS</span>
                 </div>
                 <div class="text-lg font-bold community-title">
-                    Support SOFA creators
+                    Support the SOFA team
                 </div>
                 <div class="text-xs small-text">
                   via GitHub Sponsors
