@@ -1,8 +1,8 @@
 {
   "OSName": "tvOS",
   "Version": "2.0",
-  "UpdateHash": "8d88ab8ad7a0575a98cc5005cfc6d5eafc0ff1ad66b911b811ca557af0f6dd00",
-  "LastCheck": "2025-09-12T18:15:48.866382026+00:00",
+  "UpdateHash": "001336f8d2a29760663141274e73a51fbab7011dda437f54b1c8f5d4e2afc6f1",
+  "LastCheck": "2025-09-12T18:41:19.933294710+00:00",
   "OSVersions": [
     {
       "OSVersion": "tvOS 18",
@@ -21,10 +21,10 @@
         "SecurityInfo": "https://support.apple.com/en-us/124153",
         "SecurityInfoContext": "tvOS has been updated to version 18.6, which was released on July 29, 2025. This update addresses 24 security issues and is the most recent approved version.",
         "SupportedDevices": [
-          "AppleTV6,2",
           "AppleTV11,1",
           "AppleTV5,3",
-          "AppleTV14,1"
+          "AppleTV14,1",
+          "AppleTV6,2"
         ],
         "CVEs": {
           "CVE-2025-31273": {},
@@ -92,10 +92,10 @@
           "SecurityInfo": "https://support.apple.com/en-us/124153",
           "SecurityInfoContext": "tvOS has been updated to version 18.6, which was released on July 29, 2025. This update addresses 24 security issues and is the most recent approved version.",
           "SupportedDevices": [
-            "AppleTV11,1",
-            "AppleTV6,2",
+            "AppleTV14,1",
             "AppleTV5,3",
-            "AppleTV14,1"
+            "AppleTV11,1",
+            "AppleTV6,2"
           ],
           "CVEs": {
             "CVE-2025-31273": {},
@@ -162,10 +162,10 @@
           "SecurityInfo": "https://support.apple.com/en-us/122720",
           "SecurityInfoContext": "tvOS 18.5 was released on May 12, 2025. This release addressed 25 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
-            "AppleTV5,3",
             "AppleTV14,1",
+            "AppleTV6,2",
             "AppleTV11,1",
-            "AppleTV6,2"
+            "AppleTV5,3"
           ],
           "CVEs": {
             "CVE-2024-8176": {},
