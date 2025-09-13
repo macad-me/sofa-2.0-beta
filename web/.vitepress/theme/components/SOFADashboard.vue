@@ -422,7 +422,8 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 flex-grow">
           <!-- Safari -->
-          <div v-if="safariVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-safari-300 dark:hover:border-safari-600 transition-all duration-150 other-platform-safari">
+          <a v-if="safariVersion" :href="`${baseUrl}/safari/safari18`" class="block">
+            <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-safari-300 dark:hover:border-safari-600 transition-all duration-150 other-platform-safari">
             <div class="space-y-1.5">
               <div class="flex items-center justify-between">
                 <span class="text-xs text-gray-500 dark:text-gray-400">{{ safariVersion.releaseDate }}</span>
@@ -440,10 +441,12 @@
                 </div>
               </div>
             </div>
-          </div>
+            </div>
+          </a>
           
           <!-- tvOS -->
-          <div v-if="tvOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-tvos-300 dark:hover:border-tvos-600 transition-all duration-150 other-platform-tvos">
+          <a v-if="tvOSVersion" :href="`${baseUrl}/tvos/tvos18`" class="block">
+            <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-tvos-300 dark:hover:border-tvos-600 transition-all duration-150 other-platform-tvos">
             <div class="space-y-1.5">
               <div class="flex items-center justify-between">
                 <span class="text-xs text-gray-500 dark:text-gray-400">{{ tvOSVersion.releaseDate }}</span>
@@ -461,10 +464,12 @@
                 </div>
               </div>
             </div>
-          </div>
+            </div>
+          </a>
           
           <!-- visionOS -->
-          <div v-if="visionOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-visionos-300 dark:hover:border-visionos-600 transition-all duration-150 other-platform-visionos">
+          <a v-if="visionOSVersion" :href="`${baseUrl}/visionos/visionos2`" class="block">
+            <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-visionos-300 dark:hover:border-visionos-600 transition-all duration-150 other-platform-visionos">
             <div class="space-y-1.5">
               <div class="flex items-center justify-between">
                 <span class="text-xs text-gray-500 dark:text-gray-400">{{ visionOSVersion.releaseDate }}</span>
@@ -482,10 +487,12 @@
                 </div>
               </div>
             </div>
-          </div>
+            </div>
+          </a>
           
           <!-- watchOS -->
-          <div v-if="watchOSVersion" class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-watchos-300 dark:hover:border-watchos-600 transition-all duration-150 other-platform-watchos">
+          <a v-if="watchOSVersion" :href="`${baseUrl}/watchos/watchos11`" class="block">
+            <div class="group/btn p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-watchos-300 dark:hover:border-watchos-600 transition-all duration-150 other-platform-watchos">
             <div class="space-y-1.5">
               <div class="flex items-center justify-between">
                 <span class="text-xs text-gray-500 dark:text-gray-400">{{ watchOSVersion.releaseDate }}</span>
@@ -503,7 +510,8 @@
                 </div>
               </div>
             </div>
-          </div>
+            </div>
+          </a>
         </div>
       </BentoCard>
 
@@ -1246,6 +1254,8 @@ import {
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
   Cpu as CpuIcon,
+  DollarSign as DollarSignIcon,
+  Rss as RssIcon,
   Settings as SettingsIcon,
   ArrowUp as ArrowUpIcon,
   ArrowDown as ArrowDownIcon,
@@ -2510,7 +2520,7 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   }
 }
 
-/* Platform Button Styling */
+/* Platform Button Styling - Smooth theme transitions */
 .platform-btn {
   position: relative;
   overflow: hidden;
@@ -2518,6 +2528,7 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   text-underline-offset: 3px;
   text-decoration-thickness: 1.5px;
   background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+  transition: background-color 0.3s ease, color 0.3s ease, opacity 0.2s ease;
 }
 
 /* Light mode: Full colored backgrounds with white text - 90% transparency */
@@ -3055,11 +3066,12 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   --ios-color-dark: #60A5FA;
 }
 
-/* Clean Small Text System */
+/* Clean Small Text System - Smooth theme transitions */
 .small-text {
   color: var(--small-text-color) !important;
   font-weight: 500 !important;
   text-decoration: none !important;
+  transition: color 0.3s ease;
 }
 
 .dark .small-text {
@@ -3078,9 +3090,10 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   text-decoration: none !important;
 }
 
-/* Remove all underlines from Bento card text */
+/* Remove all underlines from Bento card text - smooth transitions */
 .bento-card * {
   text-decoration: none !important;
+  transition: color 0.3s ease;
 }
 
 /* Force API Status to use traffic light colors, not platform colors */
@@ -3267,42 +3280,18 @@ const copyToClipboard = async (text: string, itemId?: string) => {
   -webkit-text-fill-color: unset !important;
 }
 
-/* Legacy gray text overrides - will be replaced by small-text class */
-.bento-card .text-xs,
-.bento-card .text-gray-400,
-.bento-card .text-gray-500,
-.bento-card .text-gray-600,
-.bento-card .text-gray-700 {
-  color: #6B7280 !important;
-  font-weight: 500 !important;
+/* Last Updated Bento - Force neutral gray hover border */
+.bento-card[class*="hover:border-gray"]:hover {
+  border-color: #9CA3AF !important;
 }
 
-.dark .bento-card .text-xs,
-.dark .bento-card .text-gray-300,
-.dark .bento-card .text-gray-400,
-.dark .bento-card .text-gray-500 {
-  color: #9CA3AF !important;
+.dark .bento-card[class*="hover:border-gray"]:hover {
+  border-color: #6B7280 !important;
 }
 
-.bento-card .text-sm:not(.font-bold) {
-  color: #4B5563 !important;
-  font-weight: 500 !important;
-}
+/* Legacy CSS removed - now handled by small-text class system */
 
-.dark .bento-card .text-sm:not(.font-bold) {
-  color: #D1D5DB !important;
-}
-
-/* Specific overrides for common conflicting classes */
-.bento-card .text-gray-500,
-.bento-card .text-gray-600 {
-  color: #6B7280 !important;
-}
-
-.dark .bento-card .text-gray-400,
-.dark .bento-card .text-gray-300 {
-  color: #9CA3AF !important;
-}
+/* Duplicate overrides removed - handled by small-text class */
 
 /* Force functional status colors to override platform styling - Higher specificity */
 .bento-card div .text-orange-600,
