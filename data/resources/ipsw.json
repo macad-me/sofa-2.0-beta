@@ -1,5 +1,5 @@
 {
-  "update_hash": "sha256:5bb167a72e4bb9417ddca922610481d011fa97bc61e67e89f85aaa131bf5047b",
+  "update_hash": "sha256:f2b949260fe95e060577bc4c1ca1acc24243a53caab7cf03fd23af884b2ab309",
   "devices": [
     {
       "name": "iPhone 2G",
@@ -1825,6 +1825,15 @@
   },
   "signing_status": {
     "MacBookPro18,1": [
+      {
+        "version": "26.0",
+        "buildid": "25A354",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025FallFCS/fullrestores/093-37622/CE01FAB2-7F26-48EE-AEE4-5E57A7F6D8BB/UniversalMac_26.0_25A354_Restore.ipsw",
+        "filesize": 18267586270
+      },
       {
         "version": "15.6.1",
         "buildid": "24G90",
@@ -3787,12 +3796,12 @@
     ]
   },
   "macos_ipsw": {
-    "version": "15.6.1",
-    "build": "24G90",
-    "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/093-10809/CFD6DD38-DAF0-40DA-854F-31AAD1294C6F/UniversalMac_15.6.1_24G90_Restore.ipsw",
-    "apple_slug": "093-10809",
-    "fetch_timestamp": "2025-09-15T17:11:08.883681333Z"
+    "version": "26.0",
+    "build": "25A354",
+    "url": "https://updates.cdn-apple.com/2025FallFCS/fullrestores/093-37622/CE01FAB2-7F26-48EE-AEE4-5E57A7F6D8BB/UniversalMac_26.0_25A354_Restore.ipsw",
+    "apple_slug": "093-37622",
+    "fetch_timestamp": "2025-09-15T18:18:13.930646787Z"
   },
   "total_devices": 259,
-  "total_firmwares": 217
+  "total_firmwares": 218
 }
