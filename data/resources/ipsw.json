@@ -1,5 +1,5 @@
 {
-  "update_hash": "sha256:1a1e2cbe4406db37ba46da18795df3171ac0b2f8fd187d2c7e599ba6e13167df",
+  "update_hash": "sha256:a39eeb87069b2a2200dddc3c9dc4e7435194dd2a0aa2ee62a0004783eb7824aa",
   "devices": [
     {
       "name": "iPhone 2G",
@@ -3736,7 +3736,7 @@
     "build": "24G90",
     "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/093-10809/CFD6DD38-DAF0-40DA-854F-31AAD1294C6F/UniversalMac_15.6.1_24G90_Restore.ipsw",
     "apple_slug": "093-10809",
-    "fetch_timestamp": "2025-09-14T18:39:55.772901078Z"
+    "fetch_timestamp": "2025-09-15T02:15:29.318649148Z"
   },
   "total_devices": 255,
   "total_firmwares": 214
