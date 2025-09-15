@@ -1,5 +1,5 @@
 {
-  "update_hash": "sha256:f5c73e58602599b0301eda97fc0cf251107a27b273ea32c332378455cea16752",
+  "update_hash": "sha256:5bb167a72e4bb9417ddca922610481d011fa97bc61e67e89f85aaa131bf5047b",
   "devices": [
     {
       "name": "iPhone 2G",
@@ -1785,6 +1785,34 @@
       "platform": "t6041",
       "cpid": 24641,
       "bdid": 2
+    },
+    {
+      "name": "iPhone 17 Pro",
+      "identifier": "iPhone18,1",
+      "platform": "t8150",
+      "cpid": 33104,
+      "bdid": 12
+    },
+    {
+      "name": "iPhone 17 Pro Max",
+      "identifier": "iPhone18,2",
+      "platform": "t8150",
+      "cpid": 33104,
+      "bdid": 14
+    },
+    {
+      "name": "iPhone Air",
+      "identifier": "iPhone18,4",
+      "platform": "t8150",
+      "cpid": 33104,
+      "bdid": 10
+    },
+    {
+      "name": "iPhone 17",
+      "identifier": "iPhone18,3",
+      "platform": "t8150",
+      "cpid": 33104,
+      "bdid": 8
     }
   ],
   "latest_versions": {
@@ -2241,6 +2269,15 @@
     ],
     "iPad13,16": [
       {
+        "version": "26.0",
+        "buildid": "23A341",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025FallFCS/fullrestores/093-40640/A785EFFD-F539-43D3-A199-528B374AC3C4/iPad_Spring_2022_26.0_23A341_Restore.ipsw",
+        "filesize": 9747237378
+      },
+      {
         "version": "18.6.2",
         "buildid": "22G100",
         "signed": true,
@@ -2692,6 +2729,15 @@
       }
     ],
     "iPhone14,2": [
+      {
+        "version": "26.0",
+        "buildid": "23A341",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025FallFCS/fullrestores/093-40100/1729B767-C677-4E46-8B04-C71D37AFE6EA/iPhone14,2_26.0_23A341_Restore.ipsw",
+        "filesize": 9932058861
+      },
       {
         "version": "18.6.2",
         "buildid": "22G100",
@@ -3271,6 +3317,15 @@
     ],
     "iPhone15,2": [
       {
+        "version": "26.0",
+        "buildid": "23A341",
+        "signed": true,
+        "signing_started": null,
+        "signing_stopped": null,
+        "url": "https://updates.cdn-apple.com/2025FallFCS/fullrestores/093-41174/A9AE0724-CC0C-4CD5-B46C-5E09CA8DCFF7/iPhone15,2_26.0_23A341_Restore.ipsw",
+        "filesize": 9977276418
+      },
+      {
         "version": "18.6.2",
         "buildid": "22G100",
         "signed": true,
@@ -3736,8 +3791,8 @@
     "build": "24G90",
     "url": "https://updates.cdn-apple.com/2025SummerFCS/fullrestores/093-10809/CFD6DD38-DAF0-40DA-854F-31AAD1294C6F/UniversalMac_15.6.1_24G90_Restore.ipsw",
     "apple_slug": "093-10809",
-    "fetch_timestamp": "2025-09-15T16:11:59.006472846Z"
+    "fetch_timestamp": "2025-09-15T17:11:08.883681333Z"
   },
-  "total_devices": 255,
-  "total_firmwares": 214
+  "total_devices": 259,
+  "total_firmwares": 217
 }
