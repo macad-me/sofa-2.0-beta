@@ -1,7 +1,7 @@
 {
-  "content_hash": "a9fb24e172ad74c6b6dd9c163f4144ca853d0d7c36b6010f69a91d5dc4a0c860",
+  "content_hash": "e1dcd3a04ef4f52ded0aaad19f50a6728f0f39b054aaf169b3897a858a8b7467",
   "content_changed": true,
-  "generated_at": "2025-09-23T20:13:59.744230946Z",
+  "generated_at": "2025-09-24T02:08:21.786496768Z",
   "latest_releases": {
     "macos": {
       "version": "26.0",
@@ -241,42 +241,30 @@
       "updates_link": null
     },
     "safari": {
-      "version": "18.6",
-      "build": "18.6",
-      "release_date": "2025-07-30T00:00:00Z",
-      "url": "https://support.apple.com/en-us/124152",
+      "version": "26.0",
+      "build": "26.0",
+      "release_date": "2025-09-15T00:00:00Z",
+      "url": "https://support.apple.com/en-us/125113",
       "cves_fixed": [
-        "CVE-2025-24188",
-        "CVE-2025-31273",
-        "CVE-2025-31277",
-        "CVE-2025-31278",
-        "CVE-2025-43211",
-        "CVE-2025-43212",
-        "CVE-2025-43213",
-        "CVE-2025-43214",
-        "CVE-2025-43216",
-        "CVE-2025-43227",
-        "CVE-2025-43228",
-        "CVE-2025-43229",
-        "CVE-2025-43240",
-        "CVE-2025-43265",
-        "CVE-2025-6558",
-        "CVE-2025-7424",
-        "CVE-2025-7425"
+        "CVE-2025-31254",
+        "CVE-2025-43272",
+        "CVE-2025-43327",
+        "CVE-2025-43342",
+        "CVE-2025-43343",
+        "CVE-2025-43356",
+        "CVE-2025-43368"
       ],
-      "actively_exploited_count": 1,
-      "total_cve_count": 17,
+      "actively_exploited_count": 0,
+      "total_cve_count": 7,
       "enterprise_link": null,
       "updates_link": null
     }
   },
   "security_summary": {
-    "unique_cves_fixed": 99,
-    "kev_matches": 1,
+    "unique_cves_fixed": 82,
+    "kev_matches": 0,
     "latest_wave_date": "2025-09-18",
-    "kev_cve_list": [
-      "CVE-2025-6558"
-    ]
+    "kev_cve_list": []
   },
   "beta_releases": {
     "latest_wave": "2025-09-22",
