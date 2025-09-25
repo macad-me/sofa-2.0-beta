@@ -1,5 +1,5 @@
 {
-  "etag": "5e59701c6119d696dfff74ab76bc275ef1552a6955e4936ea5e0491c8b886c26",
+  "etag": "5c73760e666c77c53c5e27013edef1adc0bb8ce9331a314285be368f0a073a4d",
   "data": {
     "AssetSets": {
       "iOS": [
@@ -242,7 +242,7 @@
         },
         {
           "Build": "22M84",
-          "ExpirationDate": "2025-12-24",
+          "ExpirationDate": "2025-12-14",
           "PostingDate": "2025-07-29",
           "ProductVersion": "18.6",
           "SupportedDevices": [
@@ -1679,7 +1679,7 @@
         },
         {
           "Build": "22M6084",
-          "ExpirationDate": "2025-12-24",
+          "ExpirationDate": "2025-12-14",
           "PostingDate": "2025-07-29",
           "ProductVersion": "18.6",
           "SupportedDevices": [
