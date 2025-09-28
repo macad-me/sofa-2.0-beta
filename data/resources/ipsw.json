@@ -1,5 +1,5 @@
 {
-  "update_hash": "sha256:e24dae47642e77d1f3873779bf54d830c5003dca4e500cef4f0cb512cfcabb4a",
+  "update_hash": "sha256:8f502f47400c063f87101a08f43d59a0ea31c4419114216c06bb2b1a09a3c3a8",
   "devices": [
     {
       "name": "iPhone 2G",
@@ -3800,7 +3800,7 @@
     "build": "25A354",
     "url": "https://updates.cdn-apple.com/2025FallFCS/fullrestores/093-37622/CE01FAB2-7F26-48EE-AEE4-5E57A7F6D8BB/UniversalMac_26.0_25A354_Restore.ipsw",
     "apple_slug": "093-37622",
-    "fetch_timestamp": "2025-09-27T18:41:03.994983852Z"
+    "fetch_timestamp": "2025-09-28T02:18:05.255064471Z"
   },
   "total_devices": 259,
   "total_firmwares": 218
