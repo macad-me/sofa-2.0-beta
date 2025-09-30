@@ -1,7 +1,7 @@
 {
   "Version": "2.0",
   "UpdateHash": "e651544af3752331abcf4117a063321843bc20427d91d4a3457d1ae63ed84d44",
-  "LastCheck": "2025-09-30T02:02:32.942596353+00:00",
+  "LastCheck": "2025-09-30T06:47:37.651777950+00:00",
   "OSVersions": [
     {
       "OSVersion": "macOS 26",
@@ -13147,13 +13147,13 @@
     }
   ],
   "XProtectPlistConfigData": {
-    "com.apple.XProtect": "5316",
-    "ReleaseDate": "2025-09-23T18:42:55Z"
+    "ReleaseDate": "2025-09-23T18:42:55Z",
+    "com.apple.XProtect": "5316"
   },
   "XProtectPayloads": {
+    "com.apple.XprotectFramework.PluginService": "74",
     "ReleaseDate": "2025-09-23T18:42:55Z",
-    "com.apple.XProtectFramework.XProtect": "153",
-    "com.apple.XprotectFramework.PluginService": "74"
+    "com.apple.XProtectFramework.XProtect": "153"
   },
   "InstallationApps": {
     "LatestUMA": {
