@@ -1,11 +1,11 @@
 {
-  "etag": "bcb45f8b3fe7dbbbfc91f45d21dddacc19a8286e754fdbb1b43f539177db307b",
+  "etag": "4c53d4012ec728cd13c9cc3e53a89bb28b749a255c90f52b82fe2cd8a2425507",
   "data": {
     "AssetSets": {
       "iOS": [
         {
           "Build": "21H440",
-          "ExpirationDate": "2025-12-30",
+          "ExpirationDate": "2025-10-27",
           "PostingDate": "2025-05-27",
           "ProductVersion": "17.7.8",
           "SupportedDevices": [
@@ -103,7 +103,7 @@
         },
         {
           "Build": "21H6440",
-          "ExpirationDate": "2025-12-30",
+          "ExpirationDate": "2025-10-27",
           "PostingDate": "2025-05-27",
           "ProductVersion": "17.7.8",
           "SupportedDevices": [
@@ -704,7 +704,7 @@
         },
         {
           "Build": "22F6076",
-          "ExpirationDate": "2025-12-30",
+          "ExpirationDate": "2025-10-27",
           "PostingDate": "2025-05-27",
           "ProductVersion": "18.5",
           "SupportedDevices": [
@@ -1146,7 +1146,7 @@
         },
         {
           "Build": "22F76",
-          "ExpirationDate": "2025-12-30",
+          "ExpirationDate": "2025-10-27",
           "PostingDate": "2025-05-27",
           "ProductVersion": "18.5",
           "SupportedDevices": [
