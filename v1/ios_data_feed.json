@@ -1,5 +1,5 @@
 {
-  "UpdateHash": "197852f33cd82b3ef0ef87ce0c04178fd756dacb5eefe1b15943d2c67838cdfd",
+  "UpdateHash": "1795a5dc7a6393ad94b28efb230186d656644a626dbe1158f2d8881ec907d017",
   "OSVersions": [
     {
       "OSVersion": "26",
@@ -46,7 +46,6 @@
           "SecurityInfo": "https://support.apple.com/en-us/125108",
           "SupportedDevices": [],
           "CVEs": {
-            "CVE-2025-24133": false,
             "CVE-2025-30468": false,
             "CVE-2025-31254": true,
             "CVE-2025-31255": false,
@@ -77,7 +76,7 @@
           "ActivelyExploitedCVEs": [
             "CVE-2025-31254"
           ],
-          "UniqueCVEsCount": 27,
+          "UniqueCVEsCount": 26,
           "DaysSincePreviousRelease": 0
         }
       ]
