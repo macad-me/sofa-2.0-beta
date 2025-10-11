@@ -1,7 +1,7 @@
 {
   "Version": "2.0",
-  "UpdateHash": "06b1a8301a95b0f92ce9af3a2c08b5670a6e5ea0964eab00588502dda4a8a4bb",
-  "LastCheck": "2025-10-11T01:58:39.843939908+00:00",
+  "UpdateHash": "17e712efafb6e508820643379989bf79c3373b46feea254b0cffedf3ec6e1576",
+  "LastCheck": "2025-10-11T06:42:39.595736805+00:00",
   "OSVersions": [
     {
       "OSVersion": "macOS 26",
@@ -13063,7 +13063,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2021-09-20T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/kb/HT213220",
+          "SecurityInfo": "https://support.apple.com/kb/HT213605",
           "SecurityInfoContext": "macOS 12.0 was released on . This update has no published CVE entries. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
@@ -13148,12 +13148,12 @@
     }
   ],
   "XProtectPlistConfigData": {
-    "ReleaseDate": "2025-10-08T18:36:54Z",
-    "com.apple.XProtect": "5318"
+    "com.apple.XProtect": "5318",
+    "ReleaseDate": "2025-10-08T18:36:54Z"
   },
   "XProtectPayloads": {
-    "com.apple.XProtectFramework.XProtect": "153",
     "com.apple.XprotectFramework.PluginService": "74",
+    "com.apple.XProtectFramework.XProtect": "153",
     "ReleaseDate": "2025-10-08T18:36:54Z"
   },
   "InstallationApps": {
