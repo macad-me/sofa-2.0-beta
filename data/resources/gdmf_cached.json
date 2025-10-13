@@ -1,5 +1,5 @@
 {
-  "etag": "ef023f8071e95cd57606ed0da73bd0ecc28c7ba385eed66de1a406255f9f6c6f",
+  "etag": "b5620c8dfe1039b15ef2cfba7eecac03a3c44593ed57421a32ed0b1fb1db70b2",
   "data": {
     "AssetSets": {
       "iOS": [
@@ -5308,7 +5308,7 @@
         {
           "Build": "23M341",
           "ExpirationDate": "2026-01-11",
-          "PostingDate": "2025-09-29",
+          "PostingDate": "2025-10-13",
           "ProductVersion": "26.0.1",
           "SupportedDevices": [
             "RealityDevice14,1"
@@ -5317,7 +5317,7 @@
         {
           "Build": "23M6341",
           "ExpirationDate": "2026-01-11",
-          "PostingDate": "2025-09-29",
+          "PostingDate": "2025-10-13",
           "ProductVersion": "26.0.1",
           "SupportedDevices": [
             "RealityDevice14,1"
