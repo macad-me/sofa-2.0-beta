@@ -1,8 +1,8 @@
 {
-  "update_hash": "sha256:769d0e99f751e72b35e138292374fe431731b27762090ddc4a4c46eaff095355",
-  "total_products": 26,
+  "update_hash": "sha256:747c9369d7a730b33141379757790b8cac2c29f1cf9e1b7f85d642a5a42d6f64",
+  "total_products": 27,
   "categories": {
-    "macOS": 26
+    "macOS": 27
   },
   "catalog_url": "https://swscan.apple.com/content/catalogs/others/index-14-13-12-10.16-10.15-10.14-10.13-10.12-10.11-10.10-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog",
   "products": [
@@ -14,6 +14,15 @@
       "posting_date": "2025-09-29T17:18:15Z",
       "size": 16954679325,
       "download_url": "https://swcdn.apple.com/content/downloads/27/44/093-50844-A_ADFZL6MD5J/3p92a0vzjzewywyitfwajte1w5t8t4pzts/InstallAssistant.pkg"
+    },
+    {
+      "product_key": "093-49299",
+      "title": "macOS Tahoe",
+      "version": "26.0.1",
+      "build": "25A8364",
+      "posting_date": "2025-10-16T00:11:31Z",
+      "size": 14393012429,
+      "download_url": "https://swcdn.apple.com/content/downloads/37/03/093-49299-A_MZ8OHDOFLQ/d8m9w3lyshl2vrb2u1h1peyjrazmx1jrzt/InstallAssistant.pkg"
     },
     {
       "product_key": "093-37779",

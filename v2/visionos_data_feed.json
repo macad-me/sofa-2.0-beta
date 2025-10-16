@@ -1,8 +1,8 @@
 {
   "OSName": "visionOS",
   "Version": "2.0",
-  "UpdateHash": "d20ff16a9e434adc0873fa47dd9bd530eea9d8d70f63d533db8caa1b269f6703",
-  "LastCheck": "2025-10-15T20:14:54.895851014+00:00",
+  "UpdateHash": "94be9d3f6ccfba01549e2585743257958f4e6aac1f7ea6e28d767538f3affb57",
+  "LastCheck": "2025-10-16T02:11:24.337386543+00:00",
   "OSVersions": [
     {
       "OSVersion": "visionOS 26",
@@ -10,18 +10,21 @@
         "UpdateName": "visionOS 26.0.1",
         "ProductName": "visionOS",
         "ProductVersion": "26.0.1",
-        "Build": "23M6341",
+        "Build": "23M9340",
         "AllBuilds": [
+          "23M9340",
+          "23M8340",
           "23M6341",
           "23M341"
         ],
         "ReleaseDate": "2025-09-29",
-        "ExpirationDate": "2026-01-13",
+        "ExpirationDate": "2026-01-14",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/125338",
         "SecurityInfoContext": "visionOS has been updated to version 26.0.1, which was released on September 29, 2025. This update addresses one security issue and is the most recent approved version.",
         "SupportedDevices": [
-          "RealityDevice14,1"
+          "RealityDevice14,1",
+          "RealityDevice17,1"
         ],
         "CVEs": {
           "CVE-2025-43400": {}
@@ -49,18 +52,21 @@
           "UpdateName": "visionOS 26.0.1",
           "ProductName": "visionOS",
           "ProductVersion": "26.0.1",
-          "Build": "23M6341",
+          "Build": "23M9340",
           "AllBuilds": [
+            "23M9340",
+            "23M8340",
             "23M6341",
             "23M341"
           ],
           "ReleaseDate": "2025-09-29",
-          "ExpirationDate": "2026-01-13",
+          "ExpirationDate": "2026-01-14",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/125338",
           "SecurityInfoContext": "visionOS has been updated to version 26.0.1, which was released on September 29, 2025. This update addresses one security issue and is the most recent approved version.",
           "SupportedDevices": [
-            "RealityDevice14,1"
+            "RealityDevice14,1",
+            "RealityDevice17,1"
           ],
           "CVEs": {
             "CVE-2025-43400": {}

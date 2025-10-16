@@ -1,8 +1,8 @@
 {
   "OSName": "watchOS",
   "Version": "2.0",
-  "UpdateHash": "afcd458a151f5f14355499016d6980ed7094f81fa64de2493e6ed64180e37d73",
-  "LastCheck": "2025-10-15T20:14:54.885353746+00:00",
+  "UpdateHash": "6e92d5c82f9713280ee6054d2cf9f52bcc47772fcf50961126540fded9a4ef2d",
+  "LastCheck": "2025-10-16T02:11:24.326475455+00:00",
   "OSVersions": [
     {
       "OSVersion": "watchOS 26",
@@ -17,7 +17,7 @@
           "23R362"
         ],
         "ReleaseDate": "2025-09-29",
-        "ExpirationDate": "2026-01-13",
+        "ExpirationDate": "2026-01-14",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/100100",
         "SecurityInfoContext": "watchOS has been updated to version 26.0.2, which was released on September 29, 2025. This update has no published CVE entries and is the most recent approved version.",
@@ -89,7 +89,7 @@
             "23R362"
           ],
           "ReleaseDate": "2025-09-29",
-          "ExpirationDate": "2026-01-13",
+          "ExpirationDate": "2026-01-14",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SecurityInfoContext": "watchOS has been updated to version 26.0.2, which was released on September 29, 2025. This update has no published CVE entries and is the most recent approved version.",
@@ -288,7 +288,7 @@
           "22U6090"
         ],
         "ReleaseDate": "2025-08-14",
-        "ExpirationDate": "2026-01-13",
+        "ExpirationDate": "2026-01-14",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/100100",
         "SecurityInfoContext": "watchOS has been updated to version 11.6.1, which was released on August 14, 2025. This update has no published CVE entries and is the most recent approved version.",
@@ -346,7 +346,7 @@
             "22U6090"
           ],
           "ReleaseDate": "2025-08-14",
-          "ExpirationDate": "2026-01-13",
+          "ExpirationDate": "2026-01-14",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SecurityInfoContext": "watchOS has been updated to version 11.6.1, which was released on August 14, 2025. This update has no published CVE entries and is the most recent approved version.",
@@ -403,10 +403,10 @@
             "22U6084"
           ],
           "ReleaseDate": "2025-07-29",
-          "ExpirationDate": "2026-01-13",
+          "ExpirationDate": "2026-01-14",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/124155",
-          "SecurityInfoContext": "watchOS 11.6 was released on July 29, 2025. This release addressed 21 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
+          "SecurityInfoContext": "watchOS 11.6 was released on July 29, 2025. This release addressed 23 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "Watch6,1",
             "Watch6,10",
@@ -454,22 +454,24 @@
             "CVE-2025-43234": {},
             "CVE-2025-43265": {},
             "CVE-2025-43277": {},
+            "CVE-2025-43282": {},
             "CVE-2025-6558": {
               "nist_url": "https://nvd.nist.gov/vuln/detail/CVE-2025-6558",
               "in_kev": true,
               "severity": "High"
             },
+            "CVE-2025-6965": {},
             "CVE-2025-7424": {},
             "CVE-2025-7425": {}
           },
           "ActivelyExploitedCVEs": [
             "CVE-2025-6558"
           ],
-          "UniqueCVEsCount": 21,
+          "UniqueCVEsCount": 23,
           "DaysSincePreviousRelease": 78,
           "update_summary": {
             "priority": "high",
-            "summary": "Addresses 21 security issues",
+            "summary": "Addresses 23 security issues",
             "recommendation": "Update to stay secure - security fixes available",
             "stats": {
               "exploited": 0,
@@ -478,7 +480,7 @@
               "medium": 0,
               "low": 0,
               "remote": 0,
-              "total": 21
+              "total": 23
             }
           }
         },
