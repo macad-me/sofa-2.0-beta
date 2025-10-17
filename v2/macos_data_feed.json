@@ -1,7 +1,7 @@
 {
   "Version": "2.0",
-  "UpdateHash": "6d1935e35b993a8727ca2f48e1417b4f76819c261ca7b87d34c782f94572691a",
-  "LastCheck": "2025-10-17T18:16:41.793932343+00:00",
+  "UpdateHash": "5f8b03a66cf0c45da57357ca50981636d09fa50bf91a65c146a0354b66cc6bed",
+  "LastCheck": "2025-10-17T18:44:00.912400452+00:00",
   "OSVersions": [
     {
       "OSVersion": "macOS 26",
@@ -13075,7 +13075,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2021-09-20T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/kb/HT213604",
+          "SecurityInfo": "https://support.apple.com/en-us/121839",
           "SecurityInfoContext": "macOS 12.0 was released on . This update has no published CVE entries. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
