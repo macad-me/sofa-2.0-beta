@@ -1,5 +1,5 @@
 {
-  "etag": "4235c0ce8a3904aa42220512f0bdd9019dd681e065f2cf2a2434658daaa94452",
+  "etag": "9a9ce1e23b91ab80710e61f9887f58d0370eb230894ef18ec15e960c607cacda",
   "data": {
     "AssetSets": {
       "iOS": [
@@ -4970,7 +4970,7 @@
         {
           "Build": "25A8364",
           "ExpirationDate": "2026-01-16",
-          "PostingDate": "2025-10-16",
+          "PostingDate": "2025-10-18",
           "ProductVersion": "26.0.1",
           "SupportedDevices": [
             "J704AP"
@@ -4979,7 +4979,7 @@
         {
           "Build": "25A362",
           "ExpirationDate": "2026-01-16",
-          "PostingDate": "2025-10-16",
+          "PostingDate": "2025-10-18",
           "ProductVersion": "26.0.1",
           "SupportedDevices": [
             "J152FAP",
@@ -5042,7 +5042,7 @@
         {
           "Build": "23J30",
           "ExpirationDate": "2026-01-16",
-          "PostingDate": "2025-10-16",
+          "PostingDate": "2025-10-18",
           "ProductVersion": "14.8.1",
           "SupportedDevices": [
             "J132AP",
@@ -5106,7 +5106,7 @@
         {
           "Build": "21H1320",
           "ExpirationDate": "2026-01-16",
-          "PostingDate": "2025-10-16",
+          "PostingDate": "2025-10-18",
           "ProductVersion": "12.7.6",
           "SupportedDevices": [
             "J132AP",
@@ -5172,7 +5172,7 @@
         {
           "Build": "20G1427",
           "ExpirationDate": "2026-01-16",
-          "PostingDate": "2025-10-16",
+          "PostingDate": "2025-10-18",
           "ProductVersion": "11.7.10",
           "SupportedDevices": [
             "J132AP",
@@ -5268,7 +5268,7 @@
         {
           "Build": "22H730",
           "ExpirationDate": "2026-01-16",
-          "PostingDate": "2025-10-16",
+          "PostingDate": "2025-10-18",
           "ProductVersion": "13.7.8",
           "SupportedDevices": [
             "J132AP",
@@ -5331,7 +5331,7 @@
         {
           "Build": "24G231",
           "ExpirationDate": "2026-01-16",
-          "PostingDate": "2025-10-16",
+          "PostingDate": "2025-10-18",
           "ProductVersion": "15.7.1",
           "SupportedDevices": [
             "J132AP",
