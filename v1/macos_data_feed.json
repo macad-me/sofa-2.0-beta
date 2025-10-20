@@ -1,5 +1,5 @@
 {
-  "UpdateHash": "538962c06544b97101f02428559689b39ffade475b7386684ea0b6b8e6ba1d7d",
+  "UpdateHash": "a10d11d767f3cc0426368082e97c2700bb5e4071c21f35c1bfa1d9bdd5f006d7",
   "OSVersions": [
     {
       "OSVersion": "Tahoe 26",
@@ -10851,10 +10851,11 @@
             "CVE-2022-42805": false,
             "CVE-2022-42858": false,
             "CVE-2022-46708": false,
-            "CVE-2022-48503": false,
+            "CVE-2022-48503": true,
             "CVE-2022-48578": false
           },
           "ActivelyExploitedCVEs": [
+            "CVE-2022-48503",
             "CVE-2022-2294"
           ],
           "UniqueCVEsCount": 71,
