@@ -1,8 +1,68 @@
 {
-  "UpdateHash": "33679e695c679a44816a2a60978c07bc34eaff7061d0ad42b0b47926a8dd82f7",
+  "UpdateHash": "8f6dec9edd606a01087543c48c6fea8318fa548346fec68e0371eab61e244ede",
   "created_at": "2025-09-08T14:41:18.992158Z",
   "description": "Historical archive of Apple OS releases including betas removed from current feed",
   "items": [
+    {
+      "build": "17B5045g",
+      "downloads_url": "https://developer.apple.com/download/applications",
+      "platform": "Xcode",
+      "release_notes_url": "https://developer.apple.com/go/?id=xcode-26_1-sdk-rn",
+      "released": "2025-10-20",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "Xcode 26.1 beta 3 (17B5045g)",
+      "version": "26.1 beta 3"
+    },
+    {
+      "build": "23B5073a",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "iOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=ios-26_1-rn",
+      "released": "2025-10-20",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "iOS 26.1 beta 4 (23B5073a)",
+      "version": "26.1 beta 4"
+    },
+    {
+      "build": "25B5072a",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "macOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=macos-26_1-rn",
+      "released": "2025-10-20",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "macOS 26.1 beta 4 (25B5072a)",
+      "version": "26.1 beta 4"
+    },
+    {
+      "build": "23J5571a",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "tvOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=tvos-26_1-rn",
+      "released": "2025-10-20",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "tvOS 26.1 beta 4 (23J5571a)",
+      "version": "26.1 beta 4"
+    },
+    {
+      "build": "23N5042a",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "visionOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=visionos-26_1-rn",
+      "released": "2025-10-20",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "visionOS 26.1 beta 4 (23N5042a)",
+      "version": "26.1 beta 4"
+    },
+    {
+      "build": "23S5031a",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "watchOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=watchos-26_1-rn",
+      "released": "2025-10-20",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "watchOS 26.1 beta 4 (23S5031a)",
+      "version": "26.1 beta 4"
+    },
     {
       "build": "23B5064e",
       "downloads_url": "https://developer.apple.com/download/os",
@@ -924,6 +984,6 @@
       "version": "17.7.6 RC"
     }
   ],
-  "last_updated": "2025-10-13T17:11:43.018422Z",
+  "last_updated": "2025-10-20T18:19:31.650381Z",
   "source": "https://developer.apple.com/news/releases/"
 }
