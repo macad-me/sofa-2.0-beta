@@ -1,5 +1,5 @@
 {
-  "update_hash": "sha256:92185287d769ac770a8935f9603b86e294b1db0c25b491dda0563f0fef395449",
+  "update_hash": "sha256:4e43c296903864df98bf4c52fbe05e4a8476374c6bb9e3793cd1019ddbaadc31",
   "total_products": 28,
   "categories": {
     "macOS": 28
@@ -20,7 +20,7 @@
       "title": "macOS Tahoe",
       "version": "26.0.1",
       "build": "25A8364",
-      "posting_date": "2025-10-16T00:11:31Z",
+      "posting_date": "2025-10-20T20:57:24Z",
       "size": 14393012429,
       "download_url": "https://swcdn.apple.com/content/downloads/37/03/093-49299-A_MZ8OHDOFLQ/d8m9w3lyshl2vrb2u1h1peyjrazmx1jrzt/InstallAssistant.pkg"
     },
