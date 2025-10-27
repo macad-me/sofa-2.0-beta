@@ -1,5 +1,5 @@
 {
-  "UpdateHash": "4f049f3ddd07c1cb22188ab1ced07df89a92c359bfa7e861f710105b3f3385e9",
+  "UpdateHash": "a3527b34608ae886d7aa070316b4b4d3d1f7ea8a1ffde0bef995c7e4a194c4f4",
   "OSVersions": [
     {
       "OSVersion": "Tahoe 26",
@@ -967,9 +967,9 @@
           "UpdateName": "macOS Sequoia 15.5",
           "ProductName": "macOS",
           "ProductVersion": "15.5",
-          "Build": "24F74",
+          "Build": "24G231",
           "ReleaseDate": "2025-05-12T00:00:00Z",
-          "ExpirationDate": "2025-10-27",
+          "ExpirationDate": "2026-01-25",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122716",
           "SupportedDevices": [
@@ -3019,9 +3019,9 @@
           "UpdateName": "macOS Sonoma 14.7.6",
           "ProductName": "macOS",
           "ProductVersion": "14.7.6",
-          "Build": "23H626",
+          "Build": "23J30",
           "ReleaseDate": "2025-05-12T00:00:00Z",
-          "ExpirationDate": "2025-10-27",
+          "ExpirationDate": "2026-01-25",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122717",
           "SupportedDevices": [
@@ -5641,9 +5641,9 @@
           "UpdateName": "macOS Ventura 13.7.6",
           "ProductName": "macOS",
           "ProductVersion": "13.7.6",
-          "Build": "22H625",
+          "Build": "22H730",
           "ReleaseDate": "2025-05-12T00:00:00Z",
-          "ExpirationDate": "2025-10-27",
+          "ExpirationDate": "2026-01-25",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122718",
           "SupportedDevices": [
