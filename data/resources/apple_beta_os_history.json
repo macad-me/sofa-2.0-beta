@@ -1,8 +1,78 @@
 {
-  "UpdateHash": "8f6dec9edd606a01087543c48c6fea8318fa548346fec68e0371eab61e244ede",
+  "UpdateHash": "ff67fbdb8e2004a28b1a3e1e64418d04b628eb6da30bba0b9f03e52a4fff8c12",
   "created_at": "2025-09-08T14:41:18.992158Z",
   "description": "Historical archive of Apple OS releases including betas removed from current feed",
   "items": [
+    {
+      "build": "17B54",
+      "downloads_url": "https://developer.apple.com/download/applications",
+      "platform": "Xcode",
+      "release_notes_url": "https://developer.apple.com/go/?id=xcode-26_1-sdk-rn",
+      "released": "2025-10-28",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "Xcode 26.1 RC (17B54)",
+      "version": "26.1 RC"
+    },
+    {
+      "build": "23B82",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "iOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=ios-26_1-rn",
+      "released": "2025-10-28",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "iOS 26.1 RC (23B82)",
+      "version": "26.1 RC"
+    },
+    {
+      "build": "22H123",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "iOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=ios-18_7-rn",
+      "released": "2025-10-28",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "iOS 18.7.2 RC (22H123)",
+      "version": "18.7.2 RC"
+    },
+    {
+      "build": "25B77",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "macOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=macos-26_1-rn",
+      "released": "2025-10-28",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "macOS 26.1 RC (25B77)",
+      "version": "26.1 RC"
+    },
+    {
+      "build": "23J580",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "tvOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=tvos-26_1-rn",
+      "released": "2025-10-28",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "tvOS 26.1 RC (23J580)",
+      "version": "26.1 RC"
+    },
+    {
+      "build": "23N48",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "visionOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=visionos-26_1-rn",
+      "released": "2025-10-28",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "visionOS 26.1 RC (23N48)",
+      "version": "26.1 RC"
+    },
+    {
+      "build": "23S36",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "watchOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=watchos-26_1-rn",
+      "released": "2025-10-28",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "watchOS 26.1 RC (23S36)",
+      "version": "26.1 RC"
+    },
     {
       "build": "17B5045g",
       "downloads_url": "https://developer.apple.com/download/applications",
@@ -984,6 +1054,6 @@
       "version": "17.7.6 RC"
     }
   ],
-  "last_updated": "2025-10-20T18:19:31.650381Z",
+  "last_updated": "2025-10-29T02:20:16.772408Z",
   "source": "https://developer.apple.com/news/releases/"
 }
