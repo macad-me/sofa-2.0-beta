@@ -1,5 +1,5 @@
 {
-  "UpdateHash": "81505e544c141f421517ce3e2d5734d8b1a477407d5e9c4e68321949764e0cec",
+  "UpdateHash": "d31c84aacbcbd2daf5389239cee39e58197c7be9e33f8976df3502ef56d66b51",
   "OSVersions": [
     {
       "OSVersion": "Tahoe 26",
@@ -9,7 +9,7 @@
         "ProductVersion": "26.0.1",
         "Build": "25A8364",
         "ReleaseDate": "2025-09-29T00:00:00Z",
-        "ExpirationDate": "2026-01-29",
+        "ExpirationDate": "2026-01-30",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/125328",
         "SupportedDevices": [
@@ -84,7 +84,7 @@
           "ProductVersion": "26.0.1",
           "Build": "25A8364",
           "ReleaseDate": "2025-09-29T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/125328",
           "SupportedDevices": [
@@ -414,7 +414,7 @@
         "ProductVersion": "15.7.1",
         "Build": "24G231",
         "ReleaseDate": "2025-09-29T00:00:00Z",
-        "ExpirationDate": "2026-01-29",
+        "ExpirationDate": "2026-01-30",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/125329",
         "SupportedDevices": [
@@ -500,7 +500,7 @@
           "ProductVersion": "15.7.1",
           "Build": "24G231",
           "ReleaseDate": "2025-09-29T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/125329",
           "SupportedDevices": [
@@ -969,7 +969,7 @@
           "ProductVersion": "15.5",
           "Build": "24G231",
           "ReleaseDate": "2025-05-12T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122716",
           "SupportedDevices": [
@@ -1104,7 +1104,7 @@
           "ProductVersion": "15.4.1",
           "Build": "24G231",
           "ReleaseDate": "2025-04-16T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122400",
           "SupportedDevices": [
@@ -1193,7 +1193,7 @@
           "ProductVersion": "15.4",
           "Build": "24G231",
           "ReleaseDate": "2025-03-31T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122373",
           "SupportedDevices": [
@@ -1432,7 +1432,7 @@
           "ProductVersion": "15.3.2",
           "Build": "24G231",
           "ReleaseDate": "2025-03-11T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122283",
           "SupportedDevices": [
@@ -1519,7 +1519,7 @@
           "ProductVersion": "15.3.1",
           "Build": "24G231",
           "ReleaseDate": "2025-02-10T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122900",
           "SupportedDevices": [
@@ -1606,7 +1606,7 @@
           "ProductVersion": "15.3",
           "Build": "24G231",
           "ReleaseDate": "2025-01-27T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122068",
           "SupportedDevices": [
@@ -1764,7 +1764,7 @@
           "ProductVersion": "15.2",
           "Build": "24G231",
           "ReleaseDate": "2024-12-11T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121839",
           "SupportedDevices": [
@@ -1931,7 +1931,7 @@
           "ProductVersion": "15.1.1",
           "Build": "24G231",
           "ReleaseDate": "2024-11-19T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121753",
           "SupportedDevices": [
@@ -2020,7 +2020,7 @@
           "ProductVersion": "15.1",
           "Build": "24G231",
           "ReleaseDate": "2024-10-28T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121564",
           "SupportedDevices": [
@@ -2184,7 +2184,7 @@
           "ProductVersion": "15.0.1",
           "Build": "24G231",
           "ReleaseDate": "2024-10-03T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SupportedDevices": [
@@ -2267,7 +2267,7 @@
           "ProductVersion": "15.0",
           "Build": "24G231",
           "ReleaseDate": "2024-09-16T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121238",
           "SupportedDevices": [
@@ -2559,7 +2559,7 @@
         "ProductVersion": "14.8.1",
         "Build": "23J30",
         "ReleaseDate": "2025-09-29T00:00:00Z",
-        "ExpirationDate": "2026-01-29",
+        "ExpirationDate": "2026-01-30",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/125330",
         "SupportedDevices": [
@@ -2634,7 +2634,7 @@
           "ProductVersion": "14.8.1",
           "Build": "23J30",
           "ReleaseDate": "2025-09-29T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/125330",
           "SupportedDevices": [
@@ -3021,7 +3021,7 @@
           "ProductVersion": "14.7.6",
           "Build": "23J30",
           "ReleaseDate": "2025-05-12T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122717",
           "SupportedDevices": [
@@ -3127,7 +3127,7 @@
           "ProductVersion": "14.7.5",
           "Build": "23J30",
           "ReleaseDate": "2025-03-31T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122374",
           "SupportedDevices": [
@@ -3312,7 +3312,7 @@
           "ProductVersion": "14.7.4",
           "Build": "23J30",
           "ReleaseDate": "2025-02-10T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122901",
           "SupportedDevices": [
@@ -3388,7 +3388,7 @@
           "ProductVersion": "14.7.3",
           "Build": "23J30",
           "ReleaseDate": "2025-01-27T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122069",
           "SupportedDevices": [
@@ -3506,7 +3506,7 @@
           "ProductVersion": "14.7.2",
           "Build": "23J30",
           "ReleaseDate": "2024-12-11T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121840",
           "SupportedDevices": [
@@ -3619,7 +3619,7 @@
           "ProductVersion": "14.7.1",
           "Build": "23J30",
           "ReleaseDate": "2024-10-28T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121570",
           "SupportedDevices": [
@@ -3744,7 +3744,7 @@
           "ProductVersion": "14.7",
           "Build": "23J30",
           "ReleaseDate": "2024-09-16T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121247",
           "SupportedDevices": [
@@ -3856,7 +3856,7 @@
           "ProductVersion": "14.6.1",
           "Build": "23J30",
           "ReleaseDate": "2024-08-07T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SupportedDevices": [
@@ -3928,7 +3928,7 @@
           "ProductVersion": "14.6",
           "Build": "23J30",
           "ReleaseDate": "2024-07-29T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120911",
           "SupportedDevices": [
@@ -4081,7 +4081,7 @@
           "ProductVersion": "14.5",
           "Build": "23J30",
           "ReleaseDate": "2024-05-13T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120903",
           "SupportedDevices": [
@@ -4205,7 +4205,7 @@
           "ProductVersion": "14.4.1",
           "Build": "23J30",
           "ReleaseDate": "2024-03-25T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120889",
           "SupportedDevices": [
@@ -4279,7 +4279,7 @@
           "ProductVersion": "14.4",
           "Build": "23J30",
           "ReleaseDate": "2024-03-07T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120895",
           "SupportedDevices": [
@@ -4434,7 +4434,7 @@
           "ProductVersion": "14.3.1",
           "Build": "23J30",
           "ReleaseDate": "2024-02-08T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SupportedDevices": [
@@ -4506,7 +4506,7 @@
           "ProductVersion": "14.3",
           "Build": "23J30",
           "ReleaseDate": "2024-01-22T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120309",
           "SupportedDevices": [
@@ -4601,7 +4601,7 @@
           "ProductVersion": "14.2.1",
           "Build": "23J30",
           "ReleaseDate": "2023-12-19T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT214048",
           "SupportedDevices": [
@@ -4675,7 +4675,7 @@
           "ProductVersion": "14.2",
           "Build": "23J30",
           "ReleaseDate": "2023-12-11T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT214036",
           "SupportedDevices": [
@@ -4807,7 +4807,7 @@
           "ProductVersion": "14.1.2",
           "Build": "23J30",
           "ReleaseDate": "2023-11-30T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT214032",
           "SupportedDevices": [
@@ -4885,7 +4885,7 @@
           "ProductVersion": "14.1.1",
           "Build": "23J30",
           "ReleaseDate": "2023-11-07T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121012",
           "SupportedDevices": [
@@ -4957,7 +4957,7 @@
           "ProductVersion": "14.1",
           "Build": "23J30",
           "ReleaseDate": "2023-10-25T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213984",
           "SupportedDevices": [
@@ -5100,7 +5100,7 @@
           "ProductVersion": "14.0",
           "Build": "23J30",
           "ReleaseDate": "2023-09-26T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213940",
           "SupportedDevices": [
@@ -5377,7 +5377,7 @@
         "ProductVersion": "13.7.8",
         "Build": "22H730",
         "ReleaseDate": "2025-08-20T00:00:00Z",
-        "ExpirationDate": "2026-01-29",
+        "ExpirationDate": "2026-01-30",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/124929",
         "SupportedDevices": [
@@ -5453,7 +5453,7 @@
           "ProductVersion": "13.7.8",
           "Build": "22H730",
           "ReleaseDate": "2025-08-20T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/124929",
           "SupportedDevices": [
@@ -5643,7 +5643,7 @@
           "ProductVersion": "13.7.6",
           "Build": "22H730",
           "ReleaseDate": "2025-05-12T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122718",
           "SupportedDevices": [
@@ -5745,7 +5745,7 @@
           "ProductVersion": "13.7.5",
           "Build": "22H730",
           "ReleaseDate": "2025-03-31T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122375",
           "SupportedDevices": [
@@ -5922,7 +5922,7 @@
           "ProductVersion": "13.7.4",
           "Build": "22H730",
           "ReleaseDate": "2025-02-10T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122902",
           "SupportedDevices": [
@@ -5997,7 +5997,7 @@
           "ProductVersion": "13.7.3",
           "Build": "22H730",
           "ReleaseDate": "2025-01-27T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122070",
           "SupportedDevices": [
@@ -6104,7 +6104,7 @@
           "ProductVersion": "13.7.2",
           "Build": "22H730",
           "ReleaseDate": "2024-12-11T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121842",
           "SupportedDevices": [
@@ -6209,7 +6209,7 @@
           "ProductVersion": "13.7.1",
           "Build": "22H730",
           "ReleaseDate": "2024-10-28T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121568",
           "SupportedDevices": [
@@ -6330,7 +6330,7 @@
           "ProductVersion": "13.7",
           "Build": "22H730",
           "ReleaseDate": "2024-09-16T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121234",
           "SupportedDevices": [
@@ -6433,7 +6433,7 @@
           "ProductVersion": "13.6.9",
           "Build": "22H730",
           "ReleaseDate": "2024-08-07T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/100100",
           "SupportedDevices": [
@@ -6504,7 +6504,7 @@
           "ProductVersion": "13.6.8",
           "Build": "22H730",
           "ReleaseDate": "2024-07-29T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120912",
           "SupportedDevices": [
@@ -6622,7 +6622,7 @@
           "ProductVersion": "13.6.7",
           "Build": "22H730",
           "ReleaseDate": "2024-05-13T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120900",
           "SupportedDevices": [
@@ -6718,7 +6718,7 @@
           "ProductVersion": "13.6.6",
           "Build": "22H730",
           "ReleaseDate": "2024-03-25T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120891",
           "SupportedDevices": [
@@ -6791,7 +6791,7 @@
           "ProductVersion": "13.6.5",
           "Build": "22H730",
           "ReleaseDate": "2024-03-07T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120886",
           "SupportedDevices": [
@@ -6897,7 +6897,7 @@
           "ProductVersion": "13.6.4",
           "Build": "22H730",
           "ReleaseDate": "2024-01-22T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120307",
           "SupportedDevices": [
@@ -6984,7 +6984,7 @@
           "ProductVersion": "13.6.3",
           "Build": "22H730",
           "ReleaseDate": "2023-12-11T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT214038",
           "SupportedDevices": [
@@ -7087,7 +7087,7 @@
           "ProductVersion": "13.6.2",
           "Build": "22H730",
           "ReleaseDate": "2023-11-07T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121012",
           "SupportedDevices": [
@@ -7158,7 +7158,7 @@
           "ProductVersion": "13.6.1",
           "Build": "22H730",
           "ReleaseDate": "2023-10-25T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213985",
           "SupportedDevices": [
@@ -7258,7 +7258,7 @@
           "ProductVersion": "13.6",
           "Build": "22H730",
           "ReleaseDate": "2023-09-21T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213931",
           "SupportedDevices": [
@@ -7356,7 +7356,7 @@
           "ProductVersion": "13.5.2",
           "Build": "22H730",
           "ReleaseDate": "2023-09-07T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213906",
           "SupportedDevices": [
@@ -7431,7 +7431,7 @@
           "ProductVersion": "13.5.1",
           "Build": "22H730",
           "ReleaseDate": "2023-08-17T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/121012",
           "SupportedDevices": [
@@ -7502,7 +7502,7 @@
           "ProductVersion": "13.5",
           "Build": "22H730",
           "ReleaseDate": "2023-07-24T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213843",
           "SupportedDevices": [
@@ -7654,7 +7654,7 @@
           "ProductVersion": "13.4.1",
           "Build": "22H730",
           "ReleaseDate": "2023-06-21T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213813",
           "SupportedDevices": [
@@ -7731,7 +7731,7 @@
           "ProductVersion": "13.4",
           "Build": "22H730",
           "ReleaseDate": "2023-05-18T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213758",
           "SupportedDevices": [
@@ -7870,7 +7870,7 @@
           "ProductVersion": "13.3.1",
           "Build": "22H730",
           "ReleaseDate": "2023-10-31T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213721",
           "SupportedDevices": [
@@ -7947,7 +7947,7 @@
           "ProductVersion": "13.3",
           "Build": "22H730",
           "ReleaseDate": "2023-03-27T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213670",
           "SupportedDevices": [
@@ -8117,7 +8117,7 @@
           "ProductVersion": "13.2.1",
           "Build": "22H730",
           "ReleaseDate": "2023-10-31T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213633",
           "SupportedDevices": [
@@ -8195,7 +8195,7 @@
           "ProductVersion": "13.2",
           "Build": "22H730",
           "ReleaseDate": "2023-01-23T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213605",
           "SupportedDevices": [
@@ -8305,7 +8305,7 @@
           "ProductVersion": "13.1",
           "Build": "22H730",
           "ReleaseDate": "2022-12-13T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213532",
           "SupportedDevices": [
@@ -8431,7 +8431,7 @@
           "ProductVersion": "13.0.1",
           "Build": "22H730",
           "ReleaseDate": "2024-06-12T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213504",
           "SupportedDevices": [
@@ -8505,7 +8505,7 @@
           "ProductVersion": "13.0",
           "Build": "22H730",
           "ReleaseDate": "2022-10-24T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213488",
           "SupportedDevices": [
@@ -8839,7 +8839,7 @@
         "ProductVersion": "12.7.6",
         "Build": "21H1320",
         "ReleaseDate": "2024-07-29T00:00:00Z",
-        "ExpirationDate": "2026-01-29",
+        "ExpirationDate": "2026-01-30",
         "ReleaseType": "OS",
         "SecurityInfo": "https://support.apple.com/en-us/120910",
         "SupportedDevices": [
@@ -8959,7 +8959,7 @@
           "ProductVersion": "12.7.6",
           "Build": "21H1320",
           "ReleaseDate": "2024-07-29T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120910",
           "SupportedDevices": [
@@ -9078,7 +9078,7 @@
           "ProductVersion": "12.7.5",
           "Build": "21H1320",
           "ReleaseDate": "2024-05-13T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120899",
           "SupportedDevices": [
@@ -9172,7 +9172,7 @@
           "ProductVersion": "12.7.4",
           "Build": "21H1320",
           "ReleaseDate": "2024-03-07T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120884",
           "SupportedDevices": [
@@ -9277,7 +9277,7 @@
           "ProductVersion": "12.7.3",
           "Build": "21H1320",
           "ReleaseDate": "2024-01-22T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/120305",
           "SupportedDevices": [
@@ -9363,7 +9363,7 @@
           "ProductVersion": "12.7.2",
           "Build": "21H1320",
           "ReleaseDate": "2023-12-11T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT214037",
           "SupportedDevices": [
@@ -9466,7 +9466,7 @@
           "ProductVersion": "12.7.1",
           "Build": "21H1320",
           "ReleaseDate": "2023-10-25T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213983",
           "SupportedDevices": [
@@ -9564,7 +9564,7 @@
           "ProductVersion": "12.7",
           "Build": "21H1320",
           "ReleaseDate": "2023-09-21T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213932",
           "SupportedDevices": [
@@ -9659,7 +9659,7 @@
           "ProductVersion": "12.6.9",
           "Build": "21H1320",
           "ReleaseDate": "2023-09-11T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213914",
           "SupportedDevices": [
@@ -9737,7 +9737,7 @@
           "ProductVersion": "12.6.8",
           "Build": "21H1320",
           "ReleaseDate": "2023-07-24T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213844",
           "SupportedDevices": [
@@ -9865,7 +9865,7 @@
           "ProductVersion": "12.6.7",
           "Build": "21H1320",
           "ReleaseDate": "2023-06-21T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213810",
           "SupportedDevices": [
@@ -9943,7 +9943,7 @@
           "ProductVersion": "12.6.6",
           "Build": "21H1320",
           "ReleaseDate": "2023-05-18T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213759",
           "SupportedDevices": [
@@ -10050,7 +10050,7 @@
           "ProductVersion": "12.6.5",
           "Build": "21H1320",
           "ReleaseDate": "2023-10-31T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213724",
           "SupportedDevices": [
@@ -10128,7 +10128,7 @@
           "ProductVersion": "12.6.4",
           "Build": "21H1320",
           "ReleaseDate": "2023-03-27T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213677",
           "SupportedDevices": [
@@ -10244,7 +10244,7 @@
           "ProductVersion": "12.6.3",
           "Build": "21H1320",
           "ReleaseDate": "2024-06-12T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213604",
           "SupportedDevices": [
@@ -10340,7 +10340,7 @@
           "ProductVersion": "12.6.2",
           "Build": "21H1320",
           "ReleaseDate": "2022-12-13T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213533",
           "SupportedDevices": [
@@ -10432,7 +10432,7 @@
           "ProductVersion": "12.6.1",
           "Build": "21H1320",
           "ReleaseDate": "2024-06-12T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213494",
           "SupportedDevices": [
@@ -10521,7 +10521,7 @@
           "ProductVersion": "12.6",
           "Build": "21H1320",
           "ReleaseDate": "2024-06-12T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213444",
           "SupportedDevices": [
@@ -10638,7 +10638,7 @@
           "ProductVersion": "12.5.1",
           "Build": "21H1320",
           "ReleaseDate": "2023-10-31T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213413",
           "SupportedDevices": [
@@ -10718,7 +10718,7 @@
           "ProductVersion": "12.5",
           "Build": "21H1320",
           "ReleaseDate": "2022-07-20T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213345",
           "SupportedDevices": [
@@ -10867,7 +10867,7 @@
           "ProductVersion": "12.4",
           "Build": "21H1320",
           "ReleaseDate": "2022-05-16T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213257",
           "SupportedDevices": [
@@ -11026,7 +11026,7 @@
           "ProductVersion": "12.3.1",
           "Build": "21H1320",
           "ReleaseDate": "2023-11-02T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213220",
           "SupportedDevices": [
@@ -11106,7 +11106,7 @@
           "ProductVersion": "12.3",
           "Build": "21H1320",
           "ReleaseDate": "2023-10-31T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213183",
           "SupportedDevices": [
@@ -11250,7 +11250,7 @@
           "ProductVersion": "12.2.1",
           "Build": "21H1320",
           "ReleaseDate": "2023-11-06T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213092",
           "SupportedDevices": [
@@ -11328,7 +11328,7 @@
           "ProductVersion": "12.2",
           "Build": "21H1320",
           "ReleaseDate": "2023-11-02T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/kb/HT213054",
           "SupportedDevices": [
@@ -11420,7 +11420,7 @@
           "ProductVersion": "12.1",
           "Build": "21H1320",
           "ReleaseDate": "2021-12-13T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/102874",
           "SupportedDevices": [
@@ -11549,7 +11549,7 @@
           "ProductVersion": "12.0.1",
           "Build": "21H1320",
           "ReleaseDate": "2021-10-25T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/103236",
           "SupportedDevices": [
@@ -11697,7 +11697,7 @@
           "ProductVersion": "12.0",
           "Build": "21H1320",
           "ReleaseDate": "2021-09-20T00:00:00Z",
-          "ExpirationDate": "2026-01-29",
+          "ExpirationDate": "2026-01-30",
           "ReleaseType": "OS",
           "SecurityInfo": "",
           "SupportedDevices": [
