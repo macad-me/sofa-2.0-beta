@@ -1,5 +1,5 @@
 {
-  "etag": "d7d85c2f824307f86231f84483b443c267b383f55d68a8b7a09ed4bc6ad4959c",
+  "etag": "551f0dfae8b803f71f8a6d7d92aafd8536863df7a29193b8bc5ebbbc90f6409e",
   "data": {
     "AssetSets": {
       "iOS": [
@@ -56,7 +56,7 @@
         {
           "Build": "19H390",
           "ExpirationDate": "2026-02-01",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "15.8.4",
           "SupportedDevices": [
             "iPad5,1",
@@ -118,7 +118,7 @@
         {
           "Build": "21H446",
           "ExpirationDate": "2025-11-18",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "17.7.9",
           "SupportedDevices": [
             "iPad7,1",
@@ -167,7 +167,7 @@
         {
           "Build": "21H6446",
           "ExpirationDate": "2025-11-18",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "17.7.9",
           "SupportedDevices": [
             "iPad7,1",
@@ -181,7 +181,7 @@
         {
           "Build": "22M84",
           "ExpirationDate": "2025-12-14",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "18.6",
           "SupportedDevices": [
             "AppleTV11,1",
@@ -423,7 +423,7 @@
         {
           "Build": "22G86",
           "ExpirationDate": "2025-11-18",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "18.6",
           "SupportedDevices": [
             "iPad11,1",
@@ -489,7 +489,7 @@
         {
           "Build": "22G86",
           "ExpirationDate": "2025-11-12",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "18.6",
           "SupportedDevices": [
             "iPhone11,2",
@@ -682,7 +682,7 @@
         {
           "Build": "16H81",
           "ExpirationDate": "2026-02-01",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "12.5.7",
           "SupportedDevices": [
             "iPad4,1",
@@ -704,7 +704,7 @@
         {
           "Build": "16H6081",
           "ExpirationDate": "2026-02-01",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "12.5.7",
           "SupportedDevices": [
             "iPad4,1",
@@ -993,7 +993,7 @@
         {
           "Build": "20H360",
           "ExpirationDate": "2026-02-01",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "16.7.11",
           "SupportedDevices": [
             "iPad6,11",
@@ -1554,7 +1554,7 @@
         {
           "Build": "19H6390",
           "ExpirationDate": "2026-02-01",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "15.8.4",
           "SupportedDevices": [
             "iPad5,1",
@@ -1815,7 +1815,7 @@
         {
           "Build": "22M6084",
           "ExpirationDate": "2025-12-14",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "18.6",
           "SupportedDevices": [
             "AppleTV11,1",
@@ -1983,7 +1983,7 @@
         {
           "Build": "20H6360",
           "ExpirationDate": "2026-02-01",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "16.7.11",
           "SupportedDevices": [
             "iPad6,11",
@@ -2037,7 +2037,7 @@
         {
           "Build": "22G6086",
           "ExpirationDate": "2025-11-18",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "18.6",
           "SupportedDevices": [
             "iPad11,1",
@@ -2103,7 +2103,7 @@
         {
           "Build": "22G6086",
           "ExpirationDate": "2025-11-12",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "18.6",
           "SupportedDevices": [
             "iPhone11,2",
@@ -2452,7 +2452,7 @@
         {
           "Build": "22H722",
           "ExpirationDate": "2025-11-18",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "13.7.7",
           "SupportedDevices": [
             "J132AP",
@@ -2579,7 +2579,7 @@
         {
           "Build": "20G1427",
           "ExpirationDate": "2026-02-01",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "11.7.10",
           "SupportedDevices": [
             "J132AP",
@@ -2885,7 +2885,7 @@
         {
           "Build": "24G84",
           "ExpirationDate": "2025-11-18",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "15.6",
           "SupportedDevices": [
             "J132AP",
@@ -3035,7 +3035,7 @@
         {
           "Build": "21H1320",
           "ExpirationDate": "2026-02-01",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "12.7.6",
           "SupportedDevices": [
             "J132AP",
@@ -3165,7 +3165,7 @@
         {
           "Build": "23H723",
           "ExpirationDate": "2025-11-18",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "14.7.7",
           "SupportedDevices": [
             "J132AP",
@@ -3387,7 +3387,7 @@
         {
           "Build": "22O6785",
           "ExpirationDate": "2025-12-14",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "2.6",
           "SupportedDevices": [
             "RealityDevice14,1"
@@ -3396,7 +3396,7 @@
         {
           "Build": "22O785",
           "ExpirationDate": "2025-12-14",
-          "PostingDate": "2025-07-29",
+          "PostingDate": "2025-08-05",
           "ProductVersion": "2.6",
           "SupportedDevices": [
             "RealityDevice14,1"
