@@ -1,5 +1,5 @@
 {
-  "update_hash": "sha256:53dc642a19d7b31a04a0405eae80d161f0095bc37a3e04463ce7bdbf26f704a4",
+  "update_hash": "sha256:126c61f01b4bc38f34039157f78f2d499b7989c56353f890d3a5d57e616a12d8",
   "devices": [
     {
       "name": "iPhone 2G",
@@ -3914,7 +3914,7 @@
     "build": "25B78",
     "url": "https://updates.cdn-apple.com/2025FallFCS/fullrestores/089-04148/791B6F00-A30B-4EB0-B2E3-257167F7715B/UniversalMac_26.1_25B78_Restore.ipsw",
     "apple_slug": "089-04148",
-    "fetch_timestamp": "2025-11-04T18:47:10.969858884Z"
+    "fetch_timestamp": "2025-11-04T19:10:44.038005400Z"
   },
   "total_devices": 265,
   "total_firmwares": 226

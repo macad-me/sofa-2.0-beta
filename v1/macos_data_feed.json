@@ -12517,13 +12517,13 @@
     }
   ],
   "XProtectPlistConfigData": {
-    "com.apple.XProtect": "5321",
-    "ReleaseDate": "2025-10-23T01:48:45Z"
+    "com.apple.XProtect": "5322",
+    "ReleaseDate": "2025-11-04T18:28:30Z"
   },
   "XProtectPayloads": {
-    "com.apple.XProtectFramework.XProtect": "153",
+    "com.apple.XProtectFramework.XProtect": "156",
     "com.apple.XprotectFramework.PluginService": "74",
-    "ReleaseDate": "2025-10-23T01:48:45Z"
+    "ReleaseDate": "2025-11-04T18:28:30Z"
   },
   "Models": {
     "Mac13,1": "Mac Studio (2022)",
