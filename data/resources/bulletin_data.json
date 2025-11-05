@@ -1,7 +1,7 @@
 {
-  "content_hash": "0c2f45ef02a2859ea96e490b65b659c865f712cede7dca5c3f8b6712d046dc4e",
+  "content_hash": "145a457c7c0f7017da867fdb7a94e6748012755d327eee264e17e1c0b0fcf76e",
   "content_changed": true,
-  "generated_at": "2025-11-05T02:18:29.220569569Z",
+  "generated_at": "2025-11-05T06:48:31.171227092Z",
   "latest_releases": {
     "macos": {
       "version": "26.1",
