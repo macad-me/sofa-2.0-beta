@@ -1,12 +1,12 @@
 {
-  "update_hash": "sha256:f22fc4c2094f565b7f90515c16e55c1e30673d1560189d295e2d7022a9224a1b",
+  "update_hash": "sha256:fb61b4999e8e73561308d10786d881516a13f0895a555e03d824e41e0074bdd9",
   "config_version": "5322",
   "payload_version": "156",
   "remediator_version": "156",
   "gatekeeper_version": "140",
   "mrt_version": "1.93",
   "plugin_service_version": "74",
-  "release_date": "2025-11-04T18:28:30Z",
+  "release_date": "2025-11-10T20:24:16Z",
   "xprotect_entries": {
     "com.apple.MRT": "1.93",
     "com.apple.XProtect": "5322",
