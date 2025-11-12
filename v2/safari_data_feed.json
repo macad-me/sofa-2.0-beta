@@ -1,6 +1,6 @@
 {
   "Version": "2.0",
-  "UpdateHash": "e68a05a920a265980955bc3167d30792aed831d6704bd67adcac7b2541047f64",
+  "UpdateHash": "b66ea40b5bfcda9cabbbe7d50cd96564305fd8f4d06d3ade255a8a4670454087",
   "AppVersions": [
     {
       "AppVersion": "Safari 26",
@@ -866,13 +866,20 @@
               "entry_added_date": "2023-12-21",
               "nist_url": "https://nvd.nist.gov/vuln/detail/CVE-2023-42866",
               "tags": [
+                "webkit"
+              ]
+            },
+            "CVE-2023-43000": {
+              "entry_added_date": "2025-11-11",
+              "nist_url": "https://nvd.nist.gov/vuln/detail/CVE-2023-43000",
+              "tags": [
                 "arbitrary-code",
                 "webkit"
               ]
             }
           },
           "ActivelyExploitedCVEs": [],
-          "UniqueCVEsCount": 11,
+          "UniqueCVEsCount": 12,
           "DaysSincePreviousRelease": 14
         },
         {
