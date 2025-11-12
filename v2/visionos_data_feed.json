@@ -1,8 +1,8 @@
 {
   "OSName": "visionOS",
   "Version": "2.0",
-  "UpdateHash": "10a4d594f6c4d8fdc779d47e7e4149fc7077f0751c76a624b90d01d60ff059b3",
-  "LastCheck": "2025-11-12T18:45:34.792180695+00:00",
+  "UpdateHash": "0b6b0d16e8ca91eb64c12a18aad4e8fced7bf942853ed513d00ccf4dc57ca015",
+  "LastCheck": "2025-11-12T19:11:20.155988759+00:00",
   "OSVersions": [
     {
       "OSVersion": "visionOS 26",
@@ -523,7 +523,7 @@
           "ReleaseDate": "2025-03-31",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/122378",
-          "SecurityInfoContext": "visionOS 2.4 was released on March 31, 2025. This release addressed 51 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
+          "SecurityInfoContext": "visionOS 2.4 was released on March 31, 2025. This release addressed 52 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [],
           "CVEs": {
             "CVE-2024-48958": {},
@@ -538,6 +538,7 @@
             "CVE-2025-24190": {},
             "CVE-2025-24192": {},
             "CVE-2025-24194": {},
+            "CVE-2025-24203": {},
             "CVE-2025-24206": {},
             "CVE-2025-24210": {},
             "CVE-2025-24211": {},
@@ -579,11 +580,11 @@
             "CVE-2025-43205": {}
           },
           "ActivelyExploitedCVEs": [],
-          "UniqueCVEsCount": 51,
+          "UniqueCVEsCount": 52,
           "DaysSincePreviousRelease": 20,
           "update_summary": {
             "priority": "high",
-            "summary": "Addresses 51 security issues",
+            "summary": "Addresses 52 security issues",
             "recommendation": "Update to stay secure - security fixes available",
             "stats": {
               "exploited": 0,
@@ -592,7 +593,7 @@
               "medium": 0,
               "low": 0,
               "remote": 0,
-              "total": 51
+              "total": 52
             }
           }
         },
