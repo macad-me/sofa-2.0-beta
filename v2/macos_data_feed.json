@@ -1,7 +1,7 @@
 {
   "Version": "2.0",
-  "UpdateHash": "7f31a3d28634732fcd93174ac5d19608cf2d673ce55a06430119bbbe9be91a7e",
-  "LastCheck": "2025-11-12T13:07:16.974223037+00:00",
+  "UpdateHash": "27824d3b690df8c31a0db5442c3ef0af8c4bd8ba5877cdfefd129156bf55e0f9",
+  "LastCheck": "2025-11-12T17:14:16.056432163+00:00",
   "OSVersions": [
     {
       "OSVersion": "macOS 26",
@@ -503,7 +503,7 @@
           "ExpirationDate": "2025-12-28",
           "ReleaseType": "OS",
           "SecurityInfo": "https://support.apple.com/en-us/125110",
-          "SecurityInfoContext": "macOS 26.0 was released on September 15, 2025. This release addressed 84 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
+          "SecurityInfoContext": "macOS 26.0 was released on September 15, 2025. This release addressed 78 security issues. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J152FAP",
             "J160AP",
@@ -583,12 +583,12 @@
             "CVE-2025-43285": {},
             "CVE-2025-43286": {},
             "CVE-2025-43287": {},
-            "CVE-2025-43288": {},
             "CVE-2025-43291": {},
             "CVE-2025-43292": {},
             "CVE-2025-43293": {},
             "CVE-2025-43294": {},
             "CVE-2025-43295": {},
+            "CVE-2025-43296": {},
             "CVE-2025-43297": {},
             "CVE-2025-43298": {},
             "CVE-2025-43299": {},
@@ -609,7 +609,6 @@
             "CVE-2025-43318": {},
             "CVE-2025-43319": {},
             "CVE-2025-43321": {},
-            "CVE-2025-43323": {},
             "CVE-2025-43325": {},
             "CVE-2025-43326": {},
             "CVE-2025-43327": {},
@@ -620,13 +619,11 @@
             "CVE-2025-43332": {},
             "CVE-2025-43333": {},
             "CVE-2025-43337": {},
-            "CVE-2025-43338": {},
             "CVE-2025-43340": {},
             "CVE-2025-43341": {},
             "CVE-2025-43342": {},
             "CVE-2025-43343": {},
             "CVE-2025-43344": {},
-            "CVE-2025-43345": {},
             "CVE-2025-43346": {},
             "CVE-2025-43347": {},
             "CVE-2025-43349": {},
@@ -637,22 +634,19 @@
             "CVE-2025-43357": {},
             "CVE-2025-43358": {},
             "CVE-2025-43359": {},
-            "CVE-2025-43361": {},
             "CVE-2025-43366": {},
             "CVE-2025-43367": {},
             "CVE-2025-43368": {},
             "CVE-2025-43369": {},
             "CVE-2025-43372": {},
-            "CVE-2025-43376": {},
-            "CVE-2025-43419": {},
             "CVE-2025-6965": {}
           },
           "ActivelyExploitedCVEs": [],
-          "UniqueCVEsCount": 84,
+          "UniqueCVEsCount": 78,
           "DaysSincePreviousRelease": 0,
           "update_summary": {
             "priority": "high",
-            "summary": "Addresses 84 security issues",
+            "summary": "Addresses 78 security issues",
             "recommendation": "Update to stay secure - security fixes available",
             "stats": {
               "exploited": 0,
@@ -661,7 +655,7 @@
               "medium": 0,
               "low": 0,
               "remote": 0,
-              "total": 84
+              "total": 78
             }
           }
         }
@@ -13765,7 +13759,7 @@
           "AllBuilds": [],
           "ReleaseDate": "2021-09-20T00:00:00Z",
           "ReleaseType": "OS",
-          "SecurityInfo": "https://support.apple.com/kb/HT213345",
+          "SecurityInfo": "https://support.apple.com/kb/HT213809",
           "SecurityInfoContext": "macOS 12.0 was released on . This update has no published CVE entries. Newer updates are now available, so please check to see if they apply to your devices.",
           "SupportedDevices": [
             "J132AP",
