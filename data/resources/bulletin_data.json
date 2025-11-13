@@ -1,7 +1,7 @@
 {
-  "content_hash": "c3c267a6c70bf8636802e488ae842aad3b1b3952806c2d13b717e805b7820648",
+  "content_hash": "884ea52da491fe36f035b9307bbbe0400fc2e85805976bc4a83a7da261ec58a1",
   "content_changed": true,
-  "generated_at": "2025-11-13T13:06:38.162617634Z",
+  "generated_at": "2025-11-13T17:14:52.570489097Z",
   "latest_releases": {
     "macos": {
       "version": "26.1",
@@ -397,44 +397,42 @@
       "updates_link": null
     },
     "safari": {
-      "version": "26.1",
-      "build": "26.1",
-      "release_date": "2025-11-03T00:00:00Z",
-      "url": "https://support.apple.com/en-us/125640",
+      "version": "18.6",
+      "build": "18.6",
+      "release_date": "2025-07-30T00:00:00Z",
+      "url": "https://support.apple.com/en-us/124152",
       "cves_fixed": [
-        "CVE-2025-43392",
-        "CVE-2025-43421",
-        "CVE-2025-43425",
-        "CVE-2025-43427",
-        "CVE-2025-43429",
-        "CVE-2025-43430",
-        "CVE-2025-43431",
-        "CVE-2025-43432",
-        "CVE-2025-43433",
-        "CVE-2025-43434",
-        "CVE-2025-43435",
-        "CVE-2025-43438",
-        "CVE-2025-43440",
-        "CVE-2025-43441",
-        "CVE-2025-43443",
-        "CVE-2025-43457",
-        "CVE-2025-43458",
-        "CVE-2025-43480",
-        "CVE-2025-43493",
-        "CVE-2025-43502",
-        "CVE-2025-43503"
+        "CVE-2025-24188",
+        "CVE-2025-31273",
+        "CVE-2025-31277",
+        "CVE-2025-31278",
+        "CVE-2025-43211",
+        "CVE-2025-43212",
+        "CVE-2025-43213",
+        "CVE-2025-43214",
+        "CVE-2025-43216",
+        "CVE-2025-43227",
+        "CVE-2025-43228",
+        "CVE-2025-43229",
+        "CVE-2025-43240",
+        "CVE-2025-43265",
+        "CVE-2025-6558",
+        "CVE-2025-7424",
+        "CVE-2025-7425"
       ],
-      "actively_exploited_count": 0,
-      "total_cve_count": 21,
+      "actively_exploited_count": 1,
+      "total_cve_count": 17,
       "enterprise_link": null,
       "updates_link": null
     }
   },
   "security_summary": {
-    "unique_cves_fixed": 118,
-    "kev_matches": 0,
+    "unique_cves_fixed": 135,
+    "kev_matches": 1,
     "latest_wave_date": "2025-11-03T00:00:00Z",
-    "kev_cve_list": []
+    "kev_cve_list": [
+      "CVE-2025-6558"
+    ]
   },
   "beta_releases": {
     "latest_wave": "2025-11-12",
