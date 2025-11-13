@@ -1,8 +1,58 @@
 {
-  "UpdateHash": "157b38b088f39767bedb9d1d7cbbe6afaec6bdcb9c7909ee40cb118f1d7ed185",
+  "UpdateHash": "f0ea86c80111d43e13bb68d5285015148409a5e5e1b2ddeca0d97f02e08e90ab",
   "created_at": "2025-09-08T14:41:18.992158Z",
   "description": "Historical archive of Apple OS releases including betas removed from current feed",
   "items": [
+    {
+      "build": "23C5033g",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "iOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=ios-26_2-rn",
+      "released": "2025-11-12",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "iOS 26.2 beta 2 (23C5033g)",
+      "version": "26.2 beta 2"
+    },
+    {
+      "build": "25C5037g",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "macOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=macos-26_1-rn",
+      "released": "2025-11-12",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "macOS 26.2 beta 2 (25C5037g)",
+      "version": "26.2 beta 2"
+    },
+    {
+      "build": "23K5035d",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "tvOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=tvos-26_2-rn",
+      "released": "2025-11-12",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "tvOS 26.2 beta 2 (23K5035d)",
+      "version": "26.2 beta 2"
+    },
+    {
+      "build": "23N5285d",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "visionOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=visionos-26_2-rn",
+      "released": "2025-11-12",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "visionOS 26.2 beta 2 (23N5285d)",
+      "version": "26.2 beta 2"
+    },
+    {
+      "build": "23S5286d",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "watchOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=watchos-26_2-rn",
+      "released": "2025-11-12",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "watchOS 26.2 beta 2 (23S5286d)",
+      "version": "26.2 beta 2"
+    },
     {
       "build": "17B100",
       "downloads_url": "https://developer.apple.com/download/applications",
@@ -1134,6 +1184,6 @@
       "version": "17.7.6 RC"
     }
   ],
-  "last_updated": "2025-11-12T02:17:25.725145Z",
+  "last_updated": "2025-11-13T02:19:32.065012Z",
   "source": "https://developer.apple.com/news/releases/"
 }
