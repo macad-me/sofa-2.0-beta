@@ -1,5 +1,5 @@
 {
-  "UpdateHash": "2d53b832c08e0f88025a0366f06b436b6c1850aab2359ddabb9f20ff96690726",
+  "UpdateHash": "32e9f5211bf9a1d03492b14ec2b36c39ea707458f636ef0da07dce35e008be69",
   "OSVersions": [
     {
       "OSVersion": "Tahoe 26",
@@ -529,7 +529,6 @@
             "CVE-2025-43293": false,
             "CVE-2025-43294": false,
             "CVE-2025-43295": false,
-            "CVE-2025-43296": false,
             "CVE-2025-43297": false,
             "CVE-2025-43298": false,
             "CVE-2025-43299": false,
@@ -589,7 +588,7 @@
             "CVE-2025-6965": false
           },
           "ActivelyExploitedCVEs": [],
-          "UniqueCVEsCount": 85,
+          "UniqueCVEsCount": 84,
           "DaysSincePreviousRelease": 0
         }
       ],
