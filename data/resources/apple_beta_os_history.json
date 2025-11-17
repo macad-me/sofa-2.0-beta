@@ -1,8 +1,48 @@
 {
-  "UpdateHash": "f0ea86c80111d43e13bb68d5285015148409a5e5e1b2ddeca0d97f02e08e90ab",
+  "UpdateHash": "f0880c6a83bc57b141d7bd511bde2d2e1094e89608828191d1873339274cf464",
   "created_at": "2025-09-08T14:41:18.992158Z",
   "description": "Historical archive of Apple OS releases including betas removed from current feed",
   "items": [
+    {
+      "build": "23C5044b",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "iOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=ios-26_2-rn",
+      "released": "2025-11-17",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "iOS 26.2 beta 3 (23C5044b)",
+      "version": "26.2 beta 3"
+    },
+    {
+      "build": "25C5048a",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "macOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=macos-26_1-rn",
+      "released": "2025-11-17",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "macOS 26.2 beta 3 (25C5048a)",
+      "version": "26.2 beta 3"
+    },
+    {
+      "build": "23K5046a",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "tvOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=tvos-26_2-rn",
+      "released": "2025-11-17",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "tvOS 26.2 beta 3 (23K5046a)",
+      "version": "26.2 beta 3"
+    },
+    {
+      "build": "23S5297b",
+      "downloads_url": "https://developer.apple.com/download/os",
+      "platform": "watchOS",
+      "release_notes_url": "https://developer.apple.com/go/?id=watchos-26_2-rn",
+      "released": "2025-11-17",
+      "source_card_url": "https://developer.apple.com/news/releases/",
+      "title": "watchOS 26.2 beta 3 (23S5297b)",
+      "version": "26.2 beta 3"
+    },
     {
       "build": "23C5033g",
       "downloads_url": "https://developer.apple.com/download/os",
@@ -1184,6 +1224,6 @@
       "version": "17.7.6 RC"
     }
   ],
-  "last_updated": "2025-11-13T02:19:32.065012Z",
+  "last_updated": "2025-11-17T18:19:20.746106Z",
   "source": "https://developer.apple.com/news/releases/"
 }
