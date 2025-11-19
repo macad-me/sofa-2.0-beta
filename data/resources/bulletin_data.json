@@ -1,7 +1,7 @@
 {
-  "content_hash": "07f0f07d6d284e7498ca7bcd9294ababa61f40e961a9c77dc0b6661ae1e84c07",
+  "content_hash": "b2fc17a343ef0dd41981bb278472a6c0188a2473e8e24f895c2351748520583e",
   "content_changed": true,
-  "generated_at": "2025-11-18T20:15:58.927639381Z",
+  "generated_at": "2025-11-19T02:17:37.090643332Z",
   "latest_releases": {
     "macos": {
       "version": "26.1",
@@ -464,9 +464,9 @@
       "released": "2025-11-17"
     },
     "visionos": {
-      "version": "26.2 beta 2",
-      "build": "23N5285d",
-      "released": "2025-11-12"
+      "version": "26.2 beta 3",
+      "build": "23N5296b",
+      "released": "2025-11-18"
     }
   },
   "recent_releases": [
